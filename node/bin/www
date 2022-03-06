@@ -44,6 +44,7 @@ function normalizePort(val) {
   if (port >= 0) {
     // port number
     return port;
+    
   }
 
   return false;
@@ -85,4 +86,4 @@ function onListening() {
   debug("Listening on " + bind);
 }
 
-module.exports = { port };
+

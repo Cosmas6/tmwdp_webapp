@@ -1,11 +1,18 @@
 var express = require("express");
 var router = express.Router();
+var nodemailer = require("nodemailer");
 var app = express();
-var port = require("../bin/www");
 
-console.log(port);
-// app.listen(port, () => {
-//   console.log(`nodemailerProject is listening at http://localhost:${port}`);
-// });
+let transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    type: "OAuth2",
+    user: process.env.MAIL_USERNAME,
+    pass: process.env.MAIL_PASSWORD,
+    clientId: process.env.OAUTH_CLIENTID,
+    clientSecret: process.env.OAUTH_CLIENT_SECRET,
+    refreshToken: process.env.OAUTH_REFRESH_TOKEN,
+  },
+});
 
 module.exports = router;
