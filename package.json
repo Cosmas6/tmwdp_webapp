@@ -51,9 +51,9 @@
     "webpack-dev-server": "^4.7.4"
   },
   "scripts": {
-    "build": "webpack --mode=production",
-    "watch": "webpack --watch",
-    "start": "webpack serve --open --mode=development "
+    "build": "cd client &&webpack --mode=production",
+    "watch": "cd client && webpack --watch",
+    "start": "cd client && webpack serve --open --mode=development ",
   },
   "eslintConfig": {
     "extends": [
