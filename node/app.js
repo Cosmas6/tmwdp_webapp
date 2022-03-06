@@ -7,6 +7,7 @@ var logger = require("morgan");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var testAPIRouter = require("./routes/testAPI");
+var nodeMailerRouter = require("./routes/nodeMailer");
 var cors = require("cors");
 var fileUpload = require("express-fileupload");
 
@@ -27,6 +28,7 @@ app.use(fileUpload());
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/testAPI", testAPIRouter);
+app.use("/nodeMailer", nodeMailerRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
