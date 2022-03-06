@@ -18,6 +18,16 @@ function Login() {
   const { register, errors, handleSubmit } = useForm();
   const [Api, setApi] = useState("");
 
+  const callAPI = () => {
+    fetch("http://localhost:4000/testAPI")
+      .then((res) => res.text())
+      .then((res) => setApi(res));
+  };
+
+  useEffect(() => {
+    callAPI();
+  }, []);
+
   useEffect(() => {
     const sayHelloButton = sayHelloRef.current;
     sayHelloButton.addEventListener("click", () => {
