@@ -53,7 +53,7 @@
   "scripts": {
     "build": "cd client &&webpack --mode=production",
     "watch": "cd client && webpack --watch",
-    "start": "cd client && webpack serve --open --mode=development ",
+    "start": "cd client && webpack serve --open --mode=development"
   },
   "eslintConfig": {
     "extends": [
