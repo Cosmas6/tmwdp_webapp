@@ -1,0 +1,69 @@
+$primaryMargin: 0 auto;
+$primaryBorder: 1px solid black;
+$primaryBorderRadius: 3px;
+$layout-breakpoint-small: 960px;
+@import "~include-media/dist/_include-media.scss";
+
+@mixin displayBlock() {
+  display: block;
+  width: 100%;
+}
+
+@mixin fontsizeAndMarginBottom($fontSize, $marginBottom) {
+  font-size: $fontSize;
+  margin-bottom: $marginBottom;
+}
+
+.Login_Container {
+  margin: $primaryMargin;
+  padding-top: 50px;
+  @include media(">=phone") {
+    width: 350px;
+  }
+
+  h1 {
+    text-align: center;
+  }
+  .Form_Container {
+    width: 50%;
+    margin: $primaryMargin;
+    @include displayBlock();
+  }
+
+  .Form_Input {
+    @include displayBlock();
+    @include fontsizeAndMarginBottom(14px, 10px);
+    border: $primaryBorder;
+    border-radius: $primaryBorderRadius;
+    padding: 10px 15px;
+  }
+
+  .Input_Label {
+    @include displayBlock();
+    @include fontsizeAndMarginBottom(14px, 13px);
+    line-height: 2;
+    text-align: left;
+    margin-top: 20px;
+    color: black;
+    font-weight: 200;
+  }
+
+  .Submit_Button {
+    background: white;
+    color: black;
+    text-transform: uppercase;
+    padding: 20px;
+    width: 100%;
+    margin-top: 40px;
+    font-size: 16px;
+    letter-spacing: 3px;
+    border: $primaryBorder;
+    border-radius: $primaryBorderRadius;
+  }
+  .Submit_Button:hover {
+    transition: 0.3s;
+    background: blue;
+    color: white;
+    border: 1px solid #006dfc;
+  }
+}

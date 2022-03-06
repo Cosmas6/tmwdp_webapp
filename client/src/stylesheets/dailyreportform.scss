@@ -1,0 +1,30 @@
+@import "./login.scss";
+
+@mixin displayBlock() {
+  display: block;
+  width: 100%;
+}
+
+.DailyReportForm_Container {
+  @extend .Login_Container;
+  @include displayBlock();
+  @include media(">=phone") {
+    width: 350px;
+  }
+
+  .Date_Container {
+    margin-top: 40px;
+    margin-bottom: 30px;
+  }
+  .form-check {
+    min-height: 2.5rem;
+  }
+  .form-check-label {
+    padding-left: 1rem;
+    margin-top: 0.5em;
+  }
+  .form-check-input {
+    width: 2em;
+    height: 2em;
+  }
+}

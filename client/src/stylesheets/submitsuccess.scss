@@ -1,0 +1,6 @@
+@import "./login.scss";
+@import "./dailyreport.scss";
+
+.SubmitSuccess_Container {
+  @extend .DailyReport_Container;
+}
