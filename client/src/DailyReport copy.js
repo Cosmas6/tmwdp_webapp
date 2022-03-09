@@ -1,51 +1,27 @@
-import React, { useState, useRef } from "react";
-import axios from "axios";
+import React, { useEffect, useRef } from "react";
 import "./stylesheets/dailyreport.scss";
 import { toPng } from "html-to-image";
 import jsPDF from "jspdf";
 
 const DailyReport = ({ reportKey, email, activities }) => {
   const reportRef = useRef();
-  const [filePdf, setfilePdf] = useState(null);
 
   const onButtonClick = () => {
     toPng(reportRef.current, {
       cacheBust: true,
     })
       .then((dataUrl) => {
-        var img = new Image();
-        img.src = dataUrl;
-        setfilePdf(img);
-        var formData = new FormData();
-        formData.append("pdf", filePdf);
+        const link = document.createElement("a");
+        link.href = dataUrl;
         // link.download = "my-image-name.png";
-        // const doc = new jsPDF();
-        // doc.addImage(dataUrl, "PNG", 0, 0);
-        // setfilePdf(dataUrl);
-        // var formData = new FormData();
-        // formData.append("pdf", filePdf);
-        axios
-          .post("http://localhost:4000/nodeMailer", formData, {
-            headers: {
-              // Accept: "application/json",
-              "Content-Type": "multipart/form-data",
-            },
-          })
-          .then((res) => {
-            // then print response status
-            console.log(res.statusText);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        const doc = new jsPDF();
+        doc.addImage(dataUrl, "PNG", 0, 0);
+        doc.save("sample-file.pdf");
+        // link.click();
       })
       .catch((err) => {
         console.log(err);
       });
-
-    // doc.save(filePdf);
-    // doc.save("sample-file.pdf");
-    // link.click();
   };
   return (
     <>
@@ -138,7 +114,7 @@ const DailyReport = ({ reportKey, email, activities }) => {
           </table>
         </div>
       </div>
-      <button onClick={onButtonClick}>Send to Mail</button>
+      <button onClick={onButtonClick}>Click me</button>
     </>
   );
 };

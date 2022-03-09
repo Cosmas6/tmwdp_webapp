@@ -1,9 +1,20 @@
 var express = require("express");
 var router = express.Router();
+var multer = require("multer");
 require("dotenv").config();
 var nodemailer = require("nodemailer");
 const { google } = require("googleapis");
 const OAuth2 = google.auth.OAuth2;
+
+router.get("/", function (req, res, next) {
+  res.send("Nodemailer is working properly");
+});
+
+var upload = multer({ dest: "./public/images/" });
+
+router.post("/", upload.single("image"), function (req, res) {
+  console.log(req.files);
+});
 
 const createTransporter = async () => {
   const oauth2Client = new OAuth2(

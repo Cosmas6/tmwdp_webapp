@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Actions from "./store/actions";
 import { RadioGroup, Radio, FormControlLabel } from "@mui/material";
-import { exportComponentAsPDF } from "react-component-export-image";
 import jsPDF from "jspdf";
 import ReactDOMServer from "react-dom/server";
-import html2canvas from "html2canvas";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DateAdapter from "@mui/lab/AdapterDateFns";
@@ -56,8 +54,7 @@ const DailyReportForm = () => {
 
       const docSnap = await getDoc(newReportRef);
       if (docSnap.exists()) {
-
-        dispatch(Actions.setID( docSnap.id ));
+        dispatch(Actions.setID(docSnap.id));
         console.log(docSnap.data(), "docSnap data");
       } else {
         console.log("No such document!");
@@ -81,8 +78,6 @@ const DailyReportForm = () => {
       },
     });
   };
-
-
 
   return (
     <div className="DailyReportForm_Container">
