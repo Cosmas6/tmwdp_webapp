@@ -6,38 +6,43 @@ import jsPDF from "jspdf";
 
 const DailyReport = ({ reportKey, email, activities }) => {
   const reportRef = useRef();
-  const [filePdf, setfilePdf] = useState(null);
+  let axiosConfig = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  };
 
   const onButtonClick = () => {
     toPng(reportRef.current, {
       cacheBust: true,
     })
       .then((dataUrl) => {
-        var img = new Image();
-        img.src = dataUrl;
-        setfilePdf(img);
-        var formData = new FormData();
-        formData.append("pdf", filePdf);
+        const doc = new jsPDF();
+        doc.addImage(dataUrl, "PNG", 0, 0);
+        var temp = doc.save("PDF-File");
+        var data = new FormData();
+        data.append("pdf", temp);
+        // console.log(formData);
+        axios
+          .post("http://localhost:4000/multer", data)
+          .then((res) => {
+            // then print response status
+            console.log(res.statusText, "statusText");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        // const doc = new jsPDF();
+        // doc.addImage(dataUrl, "PNG", 0, 0);
+        // doc.save("PDF-File");
+        // var formData = new FormData();
+        // formData.append("pdf", dataUrl);
         // link.download = "my-image-name.png";
         // const doc = new jsPDF();
         // doc.addImage(dataUrl, "PNG", 0, 0);
         // setfilePdf(dataUrl);
         // var formData = new FormData();
         // formData.append("pdf", filePdf);
-        axios
-          .post("http://localhost:4000/nodeMailer", formData, {
-            headers: {
-              // Accept: "application/json",
-              "Content-Type": "multipart/form-data",
-            },
-          })
-          .then((res) => {
-            // then print response status
-            console.log(res.statusText);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
       })
       .catch((err) => {
         console.log(err);
@@ -137,8 +142,8 @@ const DailyReport = ({ reportKey, email, activities }) => {
             </tbody>
           </table>
         </div>
+        <button onClick={onButtonClick}>Save File</button>
       </div>
-      <button onClick={onButtonClick}>Send to Mail</button>
     </>
   );
 };
