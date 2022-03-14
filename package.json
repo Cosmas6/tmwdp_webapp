@@ -10,7 +10,7 @@
   "dependencies": {
   },
   "scripts": {
-    "build": "cd client &&webpack --mode=production",
+    "build": "cd client && webpack --mode=production",
     "watch": "cd client && webpack --watch",
     "start": "cd client && webpack serve --open --mode=development"
   },
