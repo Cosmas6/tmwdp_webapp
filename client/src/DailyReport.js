@@ -4,14 +4,9 @@ import "./stylesheets/dailyreport.scss";
 import { toPng } from "html-to-image";
 import jsPDF from "jspdf";
 
-const DailyReport = ({ reportKey, email, activities }) => {
+const DailyReport = ({ reportKey, email, activities,date }) => {
   const reportRef = useRef();
-  let axiosConfig = {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  };
-
+  
   const onButtonClick = () => {
     toPng(reportRef.current, {
       cacheBust: true,
@@ -19,18 +14,14 @@ const DailyReport = ({ reportKey, email, activities }) => {
       .then((dataUrl) => {
         const doc = new jsPDF();
         doc.addImage(dataUrl, "PNG", 0, 0);
-        var temp = doc.save("PDF-File");
-        var data = new FormData();
-        data.append("pdf", temp);
-        // console.log(formData);
+        doc.save(date);
+        var pdf = doc.output("datauristring");
         axios
-          .post("http://localhost:4000/multer", data)
+          .post("http://localhost:4000/multer", pdf, {
+          })
           .then((res) => {
             // then print response status
-            console.log(res.statusText, "statusText");
-          })
-          .catch((err) => {
-            console.log(err);
+            console.log(res.statusText);
           });
         // const doc = new jsPDF();
         // doc.addImage(dataUrl, "PNG", 0, 0);

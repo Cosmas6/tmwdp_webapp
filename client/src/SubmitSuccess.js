@@ -55,6 +55,7 @@ const SubmitSuccess = () => {
           reportKey={reportData.id}
           email={document.Email}
           activities={document.Activities}
+          date={document.Date}
         />
       </div>
 

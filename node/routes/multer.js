@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var multer = require("multer");
+var maxSize = 200 * 1024 * 1024;
 
 router.get("/", function (req, res, next) {
   res.send("Multer is working properly");
@@ -8,7 +9,7 @@ router.get("/", function (req, res, next) {
 
 var store = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./public/images/");
+    cb(null, "../public/images");
   },
   filename: function (req, file, cb) {
     cb(null, Date.now());
@@ -16,7 +17,9 @@ var store = multer.diskStorage({
   },
 });
 
-var upload = multer({ storage: store }).single("PDF-File");
+var upload = multer({ storage: store}).single(
+  "PDF-File"
+);
 
 router.post("/", function (req, res) {
   upload(req, res, function (err) {
