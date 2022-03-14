@@ -8,6 +8,7 @@
     "node": "16.13.1"
   },
   "dependencies": {
+    "webpack": "^5.70.0"
   },
   "scripts": {
     "build": "cd client && webpack --mode=production",
