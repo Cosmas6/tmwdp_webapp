@@ -4,10 +4,10 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
-const mode = "development";
+const mode = "production";
 
 module.exports = {
-  devtool: "eval",
+  devtool: false,
   stats: "errors-warnings",
   entry: ["@babel/polyfill", "./src/index.js"],
   mode: mode,
