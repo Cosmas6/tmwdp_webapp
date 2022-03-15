@@ -12,7 +12,7 @@ module.exports = {
   entry: ["@babel/polyfill", "./src/index.js"],
   mode: mode,
   devServer: {
-    host: "0.0.0.0",
+    host: "127.0.0.1",
     port: 8080,
     // contentBase: "./build",
     hot: true,
