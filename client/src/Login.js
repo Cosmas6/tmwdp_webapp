@@ -6,7 +6,7 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { getFunctions, httpsCallable } from "firebase/functions";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useForm } from "react-hook-form";
 import "./stylesheets/login.scss";
 
