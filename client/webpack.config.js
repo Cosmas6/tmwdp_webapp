@@ -14,6 +14,7 @@ module.exports = {
   devServer: {
     host: "0.0.0.0",
     port: 8080,
+    public: "https://tmwdp-cmqt6.ondigitalocean.app/",
     // contentBase: "./build",
     hot: true,
     // overlay: true,
