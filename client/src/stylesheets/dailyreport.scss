@@ -29,10 +29,18 @@ $primaryMargin: 0 auto;
   }
 
   td,
-  th,
-  tr {
-    border: 1px solid black;
+  tr,
+  th {
     text-align: left;
     padding-left: 10px;
+  }
+
+  td,
+  tr,
+  th,
+  table,
+  tbody {
+    border-style: solid !important;
+    border-width: 1px;
   }
 }

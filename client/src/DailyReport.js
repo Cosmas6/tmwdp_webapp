@@ -1,28 +1,23 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import axios from "axios";
 import "./stylesheets/dailyreport.scss";
-import { toPng } from "html-to-image";
+import domtoimage from 'dom-to-image';
 import jsPDF from "jspdf";
 
-const DailyReport = ({ reportKey, email, activities,date }) => {
+const DailyReport = ({ reportKey, email, activities, date }) => {
   const reportRef = useRef();
-  
+
   const onButtonClick = () => {
-    toPng(reportRef.current, {
-      cacheBust: true,
-    })
+    domtoimage.toPng(reportRef.current)
       .then((dataUrl) => {
         const doc = new jsPDF();
         doc.addImage(dataUrl, "PNG", 0, 0);
         doc.save(date);
         var pdf = doc.output("datauristring");
-        axios
-          .post("http://localhost:4000/multer", pdf, {
-          })
-          .then((res) => {
-            // then print response status
-            console.log(res.statusText);
-          });
+        axios.post("http://localhost:4000/multer", pdf, {}).then((res) => {
+          // then print response status
+          console.log(res.statusText);
+        });
         // const doc = new jsPDF();
         // doc.addImage(dataUrl, "PNG", 0, 0);
         // doc.save("PDF-File");
@@ -34,6 +29,8 @@ const DailyReport = ({ reportKey, email, activities,date }) => {
         // setfilePdf(dataUrl);
         // var formData = new FormData();
         // formData.append("pdf", filePdf);
+        // var img = canvas.toDataURL();
+        // window.open(img);
       })
       .catch((err) => {
         console.log(err);
