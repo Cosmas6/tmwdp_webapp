@@ -12,8 +12,8 @@ module.exports = {
   entry: ["@babel/polyfill", "./src/index.js"],
   mode: mode,
   devServer: {
+    host: "0.0.0.0",
     port: 8080,
-    host: "https://tmwdp-cmqt6.ondigitalocean.app/",
     // contentBase: "./build",
     hot: true,
     // overlay: true,
