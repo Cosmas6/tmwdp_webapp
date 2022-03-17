@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
@@ -30,6 +30,14 @@ const DailyReportForm = () => {
   } = useForm();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    let authToken = sessionStorage.getItem("Auth Token");
+
+    if (!authToken) {
+      navigate("/login");
+    }
+  }, []);
+
   const [datevalue, setDateValue] = useState();
 
   const dispatch = useDispatch();
@@ -48,17 +56,17 @@ const DailyReportForm = () => {
         Date: data.Date,
         Shift: data.Shift,
         Activities: data.Activities,
-        PlantEQ:data.PlantEQ,
-        SMEC_Ins:data.SMEC_Ins,
-        CGGC_Ins:data.CGGC_Ins,
-        Safety_Officer:data.Safety_Officer,
-        Drivers:data.Drivers,
-        SMEC_Eng:data.SMEC_Eng,
-        Site_Foreman:data.Site_Foreman,
-        Plant_Operator:data.Plant_Operator,
-        Unskilled_Labour:data.Unskilled_Labour,
-        Welder:data.Welder,
-        Chinese_Staff:data.Chinese_Staff,
+        PlantEQ: data.PlantEQ,
+        SMEC_Ins: data.SMEC_Ins,
+        CGGC_Ins: data.CGGC_Ins,
+        Safety_Officer: data.Safety_Officer,
+        Drivers: data.Drivers,
+        SMEC_Eng: data.SMEC_Eng,
+        Site_Foreman: data.Site_Foreman,
+        Plant_Operator: data.Plant_Operator,
+        Unskilled_Labour: data.Unskilled_Labour,
+        Welder: data.Welder,
+        Chinese_Staff: data.Chinese_Staff,
         Timestamp: serverTimestamp(),
       });
       //place an alert later

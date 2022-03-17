@@ -6,10 +6,10 @@ const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 // const BundleAnalyzerPlugin =
 //   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
-const mode = "development";
+const mode = "production";
 
 module.exports = {
-  devtool: "eval",
+  devtool: false,
   stats: "errors-warnings",
   entry: ["@babel/polyfill", "./src/index.js"],
   mode: mode,

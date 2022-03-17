@@ -14,7 +14,7 @@ const SubmitSuccess = () => {
     let authToken = sessionStorage.getItem("Auth Token");
 
     if (authToken) {
-      // navigate("/dashboard");
+      navigate("/submitsuccess");
     }
 
     if (!authToken) {

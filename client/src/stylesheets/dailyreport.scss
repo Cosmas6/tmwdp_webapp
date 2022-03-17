@@ -10,7 +10,6 @@ $primaryMargin: 0 auto;
   @include media(">=phone", "<=tablet") {
     overflow: auto;
     padding: 0px 20px;
-    min-width: 100%;
   }
   @include displayBlock();
   @extend .Login_Container;
@@ -21,8 +20,8 @@ $primaryMargin: 0 auto;
   .DailyReportTable_Container {
     padding: 15px 30px;
     @include media(">=phone", "<=tablet") {
-      padding: 15px 0px;
-      width: 100%;
+      width: 90%;
+      margin: 0 auto;
     }
   }
 

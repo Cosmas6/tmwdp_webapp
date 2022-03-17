@@ -6,7 +6,7 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { getFunctions, httpsCallable } from "firebase/functions";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import { useForm } from "react-hook-form";
 import "./stylesheets/login.scss";
 
@@ -23,6 +23,18 @@ function Login() {
       .then((res) => res.text())
       .then((res) => setApi(res));
   };
+
+  useEffect(() => {
+    let authToken = sessionStorage.getItem("Auth Token");
+
+    if (authToken) {
+      navigate("/dashboard");
+    }
+
+    if (!authToken) {
+      navigate("/login");
+    }
+  }, []);
 
   useEffect(() => {
     callAPI();

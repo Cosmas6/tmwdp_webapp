@@ -16,19 +16,7 @@ const Start = () => {
       navigate("/login");
     }
   }, []);
-  return (
-    <div className="Start_Container">
-      {/* <h1>TMWDP</h1>
-      <form>
-        <Link to="/login">
-          <button type="button">Log In</button>
-        </Link>
-        <Link to="/register">
-          <button type="button">Register</button>
-        </Link>
-      </form> */}
-    </div>
-  );
+  return <div className="Start_Container"></div>;
 };
 
 export default Start;
