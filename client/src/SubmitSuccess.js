@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "./stylesheets/submitsuccess.scss";
@@ -9,7 +9,6 @@ import DailyReport from "./DailyReport";
 const SubmitSuccess = () => {
   const navigate = useNavigate();
   const [document, setDocument] = useState([]);
-  const ref = useRef();
 
   useEffect(() => {
     let authToken = sessionStorage.getItem("Auth Token");
@@ -50,15 +49,25 @@ const SubmitSuccess = () => {
       <div className="SubmitSuccess_Container">
         <h1>Submit Successful!</h1>
       </div>
-      <div ref={ref}>
-        <DailyReport
-          reportKey={reportData.id}
-          email={document.Email}
-          activities={document.Activities}
-          date={document.Date}
-        />
-      </div>
-
+      <DailyReport
+        reportKey={reportData.id}
+        section={document.Section}
+        weather={document.Weather}
+        date={document.Date}
+        shift={document.Shift}
+        activities={document.Activities}
+        plantEQ={document.PlantEQ}
+        SMEC_Ins={document.SMEC_Ins}
+        CGGC_Ins={document.CGGC_Ins}
+        safety_officer={document.Safety_Officer}
+        drivers={document.Drivers}
+        SMEC_Eng={document.SMEC_Eng}
+        site_foreman={document.Site_Foreman}
+        plant_operator={document.Plant_Operator}
+        unskilled_labour={document.Unskilled_Labour}
+        welder={document.Welder}
+        chinese_staff={document.Chinese_Staff}
+      />
     </>
   );
 };

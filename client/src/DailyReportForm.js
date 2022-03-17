@@ -21,7 +21,6 @@ import {
 } from "firebase/firestore";
 import "./stylesheets/dailyreportform.scss";
 import DailyReport from "./DailyReport.js";
-const documentTest = new jsPDF();
 
 const DailyReportForm = () => {
   const {
@@ -44,10 +43,22 @@ const DailyReportForm = () => {
     try {
       const newReportRef = doc(collection(db, "daily-report"));
       await setDoc(newReportRef, {
-        Email: data.Email,
-        Date: data.Date,
+        Section: data.Section,
         Weather: data.Weather,
+        Date: data.Date,
+        Shift: data.Shift,
         Activities: data.Activities,
+        PlantEQ:data.PlantEQ,
+        SMEC_Ins:data.SMEC_Ins,
+        CGGC_Ins:data.CGGC_Ins,
+        Safety_Officer:data.Safety_Officer,
+        Drivers:data.Drivers,
+        SMEC_Eng:data.SMEC_Eng,
+        Site_Foreman:data.Site_Foreman,
+        Plant_Operator:data.Plant_Operator,
+        Unskilled_Labour:data.Unskilled_Labour,
+        Welder:data.Welder,
+        Chinese_Staff:data.Chinese_Staff,
         Timestamp: serverTimestamp(),
       });
       //place an alert later
@@ -70,38 +81,29 @@ const DailyReportForm = () => {
     // console.log("isSubmitted", isSubmitted);
   };
 
-  const save = () => {
-    const pdfElement = pdfRef.current;
-    documentTest.html(ReactDOMServer.renderToStaticMarkup(pdfElement), {
-      callback: () => {
-        documentTest.save("myDocument.pdf");
-      },
-    });
-  };
-
   return (
     <div className="DailyReportForm_Container">
       <form className="Form_Container" onSubmit={handleSubmit(onSubmit)}>
-        <label className="Input_Label">Email</label>
-        <input
-          className="Form_Input"
-          type="text"
-          id="email"
-          {...register("Email", {
-            required: true,
-          })}
-        />
-        <div className="Date_Container">
-          <LocalizationProvider dateAdapter={DateAdapter}>
-            <DesktopDatePicker
-              label="Date"
-              inputFormat="dd/MM/yyyy"
-              {...register("Date", { required: true })}
-              value={datevalue}
-              onChange={handleChange}
-              renderInput={(params) => <TextField {...params} />}
+        <div className="Section_Container">
+          <label className="Input_Label">Section</label>
+          <RadioGroup
+            aria-labelledby="Section"
+            defaultValue="Spillway"
+            name="radio-buttons-group"
+          >
+            <FormControlLabel
+              {...register("Section", { required: true })}
+              value="Spillway"
+              control={<Radio />}
+              label="Spillway"
             />
-          </LocalizationProvider>
+            <FormControlLabel
+              {...register("Section", { required: true })}
+              value="Tunnels"
+              control={<Radio />}
+              label="Tunnels"
+            />
+          </RadioGroup>
         </div>
         <div className="Weather_Container">
           <label className="Input_Label">Weather</label>
@@ -124,16 +126,157 @@ const DailyReportForm = () => {
             />
           </RadioGroup>
         </div>
-        <label className="Input_Label">Activities</label>
+        <div className="Date_Container">
+          <LocalizationProvider dateAdapter={DateAdapter}>
+            <DesktopDatePicker
+              label="Date"
+              inputFormat="dd/MM/yyyy"
+              {...register("Date", { required: true })}
+              value={datevalue}
+              onChange={handleChange}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
+        </div>
+        <div className="Shift_Container">
+          <label className="Input_Label">Shift</label>
+          <RadioGroup
+            aria-labelledby="Shift"
+            defaultValue="Dayshift"
+            name="radio-buttons-group"
+          >
+            <FormControlLabel
+              {...register("Shift", { required: true })}
+              value="Dayshift"
+              control={<Radio />}
+              label="Dayshift"
+            />
+            <FormControlLabel
+              {...register("Shift", { required: true })}
+              value="Nightshift"
+              control={<Radio />}
+              label="Nightshift"
+            />
+          </RadioGroup>
+        </div>
+        <TextField
+          id="outlined-multiline-static"
+          label="Activities"
+          {...register("Activities", { required: true })}
+          multiline
+          rows={8}
+          defaultValue=""
+        />
+        <TextField
+          id="outlined-multiline-static"
+          {...register("PlantEQ", { required: true })}
+          label="Plant and Equipment"
+          multiline
+          rows={8}
+          defaultValue=""
+        />
+        <div className="numbers">
+          <TextField
+            id="outlined-number"
+            {...register("SMEC_Ins", { required: true })}
+            label="SMEC INSPECTORS"
+            type="number"
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+          <TextField
+            id="outlined-number"
+            {...register("CGGC_Ins", { required: true })}
+            label="CGGC INSPECTORS"
+            type="number"
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+          <TextField
+            id="outlined-number"
+            {...register("Safety_Officer", { required: true })}
+            label="SAFETY OFFICER"
+            type="number"
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+          <TextField
+            id="outlined-number"
+            {...register("Drivers", { required: true })}
+            label="DRIVERS"
+            type="number"
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+          <TextField
+            id="outlined-number"
+            {...register("SMEC_Eng", { required: true })}
+            label="SMEC ENGINEER"
+            type="number"
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+          <TextField
+            id="outlined-number"
+            {...register("Site_Foreman", { required: true })}
+            label="SITE FOREMAN"
+            type="number"
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+          <TextField
+            id="outlined-number"
+            {...register("Plant_Operator", { required: true })}
+            label="PLANT OPERATOR"
+            type="number"
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+          <TextField
+            id="outlined-number"
+            {...register("Unskilled_Labour", { required: true })}
+            label="UNSKILLED LABOUR"
+            type="number"
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+          <TextField
+            id="outlined-number"
+            {...register("Welder", { required: true })}
+            label="WELDER"
+            type="number"
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+          <TextField
+            id="outlined-number"
+            {...register("Chinese_Staff", { required: true })}
+            label="CHINESE STAFF"
+            type="number"
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+        </div>
+        {/* <label className="Input_Label">Email</label>
         <input
           className="Form_Input"
           type="text"
-          id="activities"
-          {...register("Activities", {
+          id="email"
+          {...register("Email", {
             required: true,
           })}
         />
-        <h4>Hello World!</h4>
+        <input className="Form_Input" type="text" id="activities" /> */}
         <button className="Submit_Button" type="submit">
           Submit Form
         </button>

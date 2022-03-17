@@ -27,4 +27,15 @@
     width: 2em;
     height: 2em;
   }
+  .MuiFormControl-root {
+    margin-top: 30px;
+  }
+
+  #outlined-number {
+    width: 150px;
+    display: block;
+  }
+  #outlined-multiline-static {
+    width: 300px;
+  }
 }

@@ -4,15 +4,17 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
-const mode = "production";
+// const BundleAnalyzerPlugin =
+//   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+const mode = "development";
 
 module.exports = {
-  devtool: false,
+  devtool: "eval",
   stats: "errors-warnings",
   entry: ["@babel/polyfill", "./src/index.js"],
   mode: mode,
   devServer: {
-    allowedHosts: ['.ngrok.io'],
+    allowedHosts: [".ngrok.io"],
     port: 8080,
     // contentBase: "./build",
     hot: true,
@@ -42,6 +44,7 @@ module.exports = {
           : "[name].css",
     }),
     new NodePolyfillPlugin(),
+    // new BundleAnalyzerPlugin(),
   ],
   module: {
     rules: [

@@ -8,7 +8,9 @@ $primaryMargin: 0 auto;
 
 .DailyReport_Container {
   @include media(">=phone", "<=tablet") {
-    width: 400px;
+    overflow: auto;
+    padding: 0px 20px;
+    min-width: 100%;
   }
   @include displayBlock();
   @extend .Login_Container;
@@ -18,6 +20,10 @@ $primaryMargin: 0 auto;
 
   .DailyReportTable_Container {
     padding: 15px 30px;
+    @include media(">=phone", "<=tablet") {
+      padding: 15px 0px;
+      width: 100%;
+    }
   }
 
   table {
@@ -33,14 +39,14 @@ $primaryMargin: 0 auto;
   th {
     text-align: left;
     padding-left: 10px;
+    padding-right: 10px;
   }
 
   td,
   tr,
   th,
-  table,
-  tbody {
-    border-style: solid !important;
+  table {
+    border-style: solid;
     border-width: 1px;
   }
 }
