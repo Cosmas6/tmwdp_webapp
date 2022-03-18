@@ -31,6 +31,7 @@ const DailyReport = ({
       .then((dataUrl) => {
         const doc = new jsPDF();
         doc.addImage(dataUrl, "PNG", 0, 0);
+        doc.internal.scaleFactor = 1.33;
         doc.save(date);
         var pdf = doc.output("datauristring");
         axios.post("http://localhost:4000/multer", pdf).then((res) => {

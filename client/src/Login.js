@@ -18,11 +18,11 @@ function Login() {
   const { register, errors, handleSubmit } = useForm();
   const [Api, setApi] = useState("");
 
-  const callAPI = () => {
-    fetch("http://localhost:4000/testAPI")
-      .then((res) => res.text())
-      .then((res) => setApi(res));
-  };
+  // const callAPI = () => {
+  //   fetch("http://localhost:4000/testAPI")
+  //     .then((res) => res.text())
+  //     .then((res) => setApi(res));
+  // };
 
   useEffect(() => {
     let authToken = sessionStorage.getItem("Auth Token");
@@ -97,7 +97,7 @@ function Login() {
   return (
     <>
       <div className="Login_Container">
-        <p>{Api}</p>
+        {/* <p>{Api}</p> */}
         <h1>TMWDP</h1>
         <form
           className="Form_Container"
