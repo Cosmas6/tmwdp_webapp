@@ -23,14 +23,21 @@ const Dashboard = () => {
   };
 
   const createReport = () => {
-    navigate('/dailyreportform')
-  }
+    navigate("/dailyreportform");
+  };
+
+  const headCount = () => {
+    navigate("/headcount");
+  };
 
   return (
     <div className="Dashboard_Container">
       <h1>Dashboard - DR</h1>
       <button className="Submit_Button" onClick={createReport} type="submit">
-        Create Report
+        Create Daily Report
+      </button>
+      <button className="Submit_Button" onClick={headCount} type="submit">
+        Headcount
       </button>
       <button className="Submit_Button" onClick={logOut} type="submit">
         Log Out

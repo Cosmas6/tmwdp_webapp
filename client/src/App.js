@@ -9,6 +9,7 @@ import FilterData from "./FilterData";
 import DailyReportForm from "./DailyReportForm";
 import Loading from "./Loading";
 import { Routes, Route } from "react-router-dom";
+import Headcount from "./Headcount";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/headcount" element={<Headcount />} />
           <Route path="/dailyreport" element={<DailyReport />} />
           <Route path="/dailyreportform" element={<DailyReportForm />} />
           <Route path="/submitsuccess" element={<SubmitSuccess />} />
