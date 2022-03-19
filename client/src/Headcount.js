@@ -19,10 +19,10 @@ const Headcount = () => {
   const [admStateVal, setAdmStateVal] = useState(0);
 
   const dispatch = useDispatch();
+  const DeptDocRef = doc(db, "headcounts", "departments");
 
   const updateDamFn = async () => {
     // Create a reference to the SF doc.
-    const DeptDocRef = doc(db, "headcounts", "departments");
 
     try {
       const newPopulation = await runTransaction(db, async (transaction) => {
@@ -44,7 +44,127 @@ const Headcount = () => {
     }
   };
 
+  const updateMatFn = async () => {
+    // Create a reference to the SF doc.
+
+    try {
+      const newPopulation = await runTransaction(db, async (transaction) => {
+        const DeptDoc = await transaction.get(DeptDocRef);
+        if (!DeptDoc.exists()) {
+          throw "Document does not exist!";
+        }
+        console.log("Dam value: " + matStateVal);
+        const newPop = DeptDoc.data().materialTally + matStateVal;
+
+        transaction.update(DeptDocRef, { materialTally: newPop });
+        return newPop;
+      });
+      dispatch(Actions.setMatValue(newPopulation));
+      console.log("Population increased to ", newPopulation);
+    } catch (e) {
+      // This will be a "population is too big" error.
+      console.error(e);
+    }
+  };
+
+  const updateTunFn = async () => {
+    // Create a reference to the SF doc.
+
+    try {
+      const newPopulation = await runTransaction(db, async (transaction) => {
+        const DeptDoc = await transaction.get(DeptDocRef);
+        if (!DeptDoc.exists()) {
+          throw "Document does not exist!";
+        }
+        console.log("Dam value: " + tunStateVal);
+        const newPop = DeptDoc.data().tunnelTally + tunStateVal;
+
+        transaction.update(DeptDocRef, { tunnelTally: newPop });
+        return newPop;
+      });
+      dispatch(Actions.setTunValue(newPopulation));
+      console.log("Population increased to ", newPopulation);
+    } catch (e) {
+      // This will be a "population is too big" error.
+      console.error(e);
+    }
+  };
+
+  const updateSpilFn = async () => {
+    // Create a reference to the SF doc.
+
+    try {
+      const newPopulation = await runTransaction(db, async (transaction) => {
+        const DeptDoc = await transaction.get(DeptDocRef);
+        if (!DeptDoc.exists()) {
+          throw "Document does not exist!";
+        }
+        console.log("Dam value: " + spilStateVal);
+        const newPop = DeptDoc.data().spillwayTally + spilStateVal;
+
+        transaction.update(DeptDocRef, { spillwayTally: newPop });
+        return newPop;
+      });
+      dispatch(Actions.setSpilValue(newPopulation));
+      console.log("Population increased to ", newPopulation);
+    } catch (e) {
+      // This will be a "population is too big" error.
+      console.error(e);
+    }
+  };
+
+  const updateSurFn = async () => {
+    // Create a reference to the SF doc.
+
+    try {
+      const newPopulation = await runTransaction(db, async (transaction) => {
+        const DeptDoc = await transaction.get(DeptDocRef);
+        if (!DeptDoc.exists()) {
+          throw "Document does not exist!";
+        }
+        console.log("Dam value: " + surStateVal);
+        const newPop = DeptDoc.data().surveyTally + surStateVal;
+
+        transaction.update(DeptDocRef, { surveyTally: newPop });
+        return newPop;
+      });
+      dispatch(Actions.setSurValue(newPopulation));
+      console.log("Population increased to ", newPopulation);
+    } catch (e) {
+      // This will be a "population is too big" error.
+      console.error(e);
+    }
+  };
+
+  const updateAdmFn = async () => {
+    // Create a reference to the SF doc.
+
+    try {
+      const newPopulation = await runTransaction(db, async (transaction) => {
+        const DeptDoc = await transaction.get(DeptDocRef);
+        if (!DeptDoc.exists()) {
+          throw "Document does not exist!";
+        }
+        console.log("Dam value: " + admStateVal);
+        const newPop = DeptDoc.data().adminTally + admStateVal;
+
+        transaction.update(DeptDocRef, { adminTally: newPop });
+        return newPop;
+      });
+      dispatch(Actions.setAdmValue(newPopulation));
+      console.log("Population increased to ", newPopulation);
+    } catch (e) {
+      // This will be a "population is too big" error.
+      console.error(e);
+    }
+  };
+
   const damData = useSelector((state) => state.repData);
+  const matData = useSelector((state) => state.repData);
+  const tunData = useSelector((state) => state.repData);
+  const spilData = useSelector((state) => state.repData);
+  const surData = useSelector((state) => state.repData);
+  const admData = useSelector((state) => state.repData);
 
   return (
     <div className="Headcount_Container">
@@ -54,7 +174,7 @@ const Headcount = () => {
       <h1>No. of people in:</h1>
 
       <h1>Dam Section</h1>
-      <h1>{damData.value}</h1>
+      <h1>{damData.damValue}</h1>
       <div className="textfield">
         <TextField
           id="outlined-number"
@@ -68,17 +188,104 @@ const Headcount = () => {
         />
       </div>
 
-      <button onClick={updateDamFn}>Update</button>
+      <button className="Add_Button" onClick={updateDamFn}>
+        Add
+      </button>
 
       <h1>Material Section</h1>
+      <h1>{matData.matValue}</h1>
+      <div className="textfield">
+        <TextField
+          id="outlined-number"
+          label="MATERIALS"
+          type="number"
+          value={matStateVal}
+          onChange={(e) => setMatStateVal(e.target.valueAsNumber)}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+      </div>
+
+      <button className="Add_Button" onClick={updateMatFn}>
+        Add
+      </button>
 
       <h1>Tunnel Section</h1>
+      <h1>{tunData.tunValue}</h1>
+      <div className="textfield">
+        <TextField
+          id="outlined-number"
+          label="TUNNELS"
+          type="number"
+          value={tunStateVal}
+          onChange={(e) => setTunStateVal(e.target.valueAsNumber)}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+      </div>
+
+      <button className="Add_Button" onClick={updateTunFn}>
+        Add
+      </button>
 
       <h1>Spillway Section</h1>
+      <h1>{spilData.spilValue}</h1>
+      <div className="textfield">
+        <TextField
+          id="outlined-number"
+          label="DAMS"
+          type="number"
+          value={spilStateVal}
+          onChange={(e) => setSpilStateVal(e.target.valueAsNumber)}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+      </div>
+
+      <button className="Add_Button" onClick={updateSpilFn}>
+        Add
+      </button>
 
       <h1>Survey</h1>
+      <h1>{surData.surValue}</h1>
+      <div className="textfield">
+        <TextField
+          id="outlined-number"
+          label="DAMS"
+          type="number"
+          value={surStateVal}
+          onChange={(e) => setSurStateVal(e.target.valueAsNumber)}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+      </div>
+
+      <button className="Add_Button" onClick={updateSurFn}>
+        Add
+      </button>
 
       <h1>HSE Admin and Contractor's Office Staff</h1>
+      <h1>{admData.admValue}</h1>
+      <div className="textfield">
+        <TextField
+          id="outlined-number"
+          label="DAMS"
+          type="number"
+          value={admStateVal}
+          onChange={(e) => setAdmStateVal(e.target.valueAsNumber)}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+      </div>
+
+      <button className="Add_Button" onClick={updateAdmFn}>
+        Add
+      </button>
       {/* </form> */}
     </div>
   );

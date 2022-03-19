@@ -11,4 +11,18 @@
   .MuiFormControl-root {
     margin: 0 auto;
   }
+
+  .Add_Button {
+    margin: 0 auto;
+    background: white;
+    color: black;
+    text-transform: uppercase;
+    padding: 20px;
+    width: 50%;
+    margin-top: 40px;
+    font-size: 16px;
+    letter-spacing: 3px;
+    border: $primaryBorder;
+    border-radius: $primaryBorderRadius;
+  }
 }
