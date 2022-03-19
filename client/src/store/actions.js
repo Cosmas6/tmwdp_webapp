@@ -8,6 +8,16 @@ const setID = (docDatatype) => {
   };
 };
 
+const setDamValue = (damValuetype) => {
+  return {
+    type: "UPDATEDAM_VALUE",
+    payload: damValuetype,
+  };
+};
+
+
+
 export default {
   setID,
+  setDamValue,
 };

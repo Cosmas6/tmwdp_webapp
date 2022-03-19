@@ -3,6 +3,7 @@
 # dependencies
 /node_modules
 /build
+/src/headcountComments.js
 # /.pnp
 # .pnp.js
 

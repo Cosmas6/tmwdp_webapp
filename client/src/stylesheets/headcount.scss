@@ -3,4 +3,12 @@
 .Headcount_Container {
   @extend .Login_Container;
 
+  #outlined-number {
+    width: 150px;
+    display: block;
+  }
+
+  .MuiFormControl-root {
+    margin: 0 auto;
+  }
 }

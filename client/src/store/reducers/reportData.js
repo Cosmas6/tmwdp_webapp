@@ -1,9 +1,8 @@
 //reportData reducer
 
-import Actions from "../actions";
-
 const initialState = {
   id: "",
+  damValue: "",
 };
 
 const reportData = (state = initialState, action) => {
@@ -12,6 +11,11 @@ const reportData = (state = initialState, action) => {
       return {
         ...state,
         id: action.payload,
+      };
+    case "UPDATEDAM_VALUE":
+      return {
+        ...state,
+        damValue: action.payload,
       };
     default:
       return state;

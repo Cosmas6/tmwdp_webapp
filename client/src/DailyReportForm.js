@@ -4,8 +4,6 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import Actions from "./store/actions";
 import { RadioGroup, Radio, FormControlLabel } from "@mui/material";
-import jsPDF from "jspdf";
-import ReactDOMServer from "react-dom/server";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DateAdapter from "@mui/lab/AdapterDateFns";
@@ -17,10 +15,8 @@ import {
   setDoc,
   serverTimestamp,
   getDoc,
-  QueryDocumentSnapshot,
 } from "firebase/firestore";
 import "./stylesheets/dailyreportform.scss";
-import DailyReport from "./DailyReport.js";
 
 const DailyReportForm = () => {
   const {

@@ -36,9 +36,9 @@ function Login() {
     }
   }, []);
 
-  useEffect(() => {
-    callAPI();
-  }, []);
+  // useEffect(() => {
+  //   callAPI();
+  // }, []);
 
   useEffect(() => {
     const sayHelloButton = sayHelloRef.current;
