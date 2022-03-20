@@ -50,6 +50,13 @@ const setAdmValue = (admValuetype) => {
   };
 };
 
+const setPdfLink = (pdfValuetype) => {
+  return {
+    type: "UPDATE_PDF_VALUE",
+    payload: pdfValuetype,
+  };
+};
+
 export default {
   setID,
   setDamValue,
@@ -58,4 +65,5 @@ export default {
   setSpilValue,
   setSurValue,
   setAdmValue,
+  setPdfLink,
 };

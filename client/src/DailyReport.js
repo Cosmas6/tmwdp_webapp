@@ -1,8 +1,7 @@
-import React, { useRef } from "react";
-import axios from "axios";
+import React, { useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Actions from "./store/actions";
 import "./stylesheets/dailyreport.scss";
-import domtoimage from "dom-to-image";
-import jsPDF from "jspdf";
 
 const DailyReport = ({
   reportKey,
@@ -24,119 +23,246 @@ const DailyReport = ({
   chinese_staff,
 }) => {
   const reportRef = useRef();
+  const pdfLinkRef = useRef();
+  const [pdfLink, setPdfLink] = useState();
+  const dispatch = useDispatch();
 
   const onButtonClick = () => {
-    domtoimage
-      .toPng(reportRef.current)
-      .then((dataUrl) => {
-        const doc = new jsPDF();
-        doc.addImage(dataUrl, "PNG", 0, 0);
-        doc.internal.scaleFactor = 1.33;
-        doc.save(date);
-        var pdf = doc.output("datauristring");
-        axios.post("http://localhost:4000/multer", pdf).then((res) => {
-          // then print response status
-          console.log(res.statusText);
-        });
-      })
-      .catch((err) => {
-        console.log(err);
+    fetch("https://v2018.api2pdf.com/chrome/html", {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "To be decided",
+      },
+      body: JSON.stringify({
+        html: ` 
+          <html style="color: green" lang="en">
+          <head>
+            <title>Daily Report for ${date}</title>
+            <link
+              href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+              rel="stylesheet"
+              integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+              crossorigin="anonymous"
+            />
+          </head>
+          <body>
+            <div className="DailyReportTable_Container ">
+              <table
+                class="table table-bordered border-dark table-sm"
+                style="width: 900px; margin: 15vh auto"
+              >
+                <tbody>
+                  <tr>
+                    <th colspan="6" class="text-center">
+                      CIVIL WORKS FOR CONSTRUCTION OF THWAKE DAM EMBARKMENT AND
+                      ASSOCIATED WORKS
+                    </th>
+                  </tr>
+                  <tr>
+                    <th>INSPECTOR'S</th>
+                    <td colspan="1"></td>
+                    <th>SECTION:</th>
+                    <td colspan="4" style="padding-left: 10px">${section}</td>
+                  </tr>
+                  <tr>
+                    <th>WEATHER:</th>
+                    <td style="padding-left: 10px">${weather}</td>
+                    <th>DATE:</th>
+                    <td style="padding-left: 10px">${date}</td>
+                    <th>SHIFT:</th>
+                    <td style="padding-left: 10px">${shift}</td>
+                  </tr>
+                  <tr></tr>
+                  <tr></tr>
+                  <tr>
+                    <th colspan="6">ACTIVITIES:</th>
+                  </tr>
+                  <tr>
+                    <td colspan="6" style="padding-left: 10px">${activities}</td>
+                  </tr>
+                  <tr>
+                    <th colspan="6">PLANT AND EQUIPMENT:</th>
+                  </tr>
+                  <tr>
+                    <td colspan="6" style="padding-left: 10px">${plantEQ}</td>
+                  </tr>
+                  <tr>
+                    <th colspan="6">LABOUR</th>
+                  </tr>
+                  <tr></tr>
+                  <tr>
+                    <th>DESCRIPTION</th>
+                    <th>NO</th>
+                    <th>DESCRIPTION</th>
+                    <th colspan="3">NO</th>
+                  </tr>
+                  <tr>
+                    <td width="40%">SMEC INSPECTORS</td>
+                    <td style="padding-left: 10px">${SMEC_Ins}</td>
+                    <td>SMEC ENGINEER</td>
+                    <td colspan="3" style="padding-left: 10px">${SMEC_Eng}</td>
+                  </tr>
+                  <tr>
+                    <td>CGGC INSPECTORS</td>
+                    <td style="padding-left: 10px">${CGGC_Ins}</td>
+                    <td>SITE FOREMAN</td>
+                    <td colspan="3" style="padding-left: 10px">${site_foreman}</td>
+                  </tr>
+                  <tr>
+                    <td>SAFETY OFFICER</td>
+                    <td style="padding-left: 10px">${safety_officer}</td>
+                    <td>PLANT OPERATOR</td>
+                    <td colspan="3" style="padding-left: 10px">${plant_operator}</td>
+                  </tr>
+                  <tr>
+                    <td>DRIVERS</td>
+                    <td style="padding-left: 10px">${drivers}</td>
+                    <td>UNSKILLED LABOUR</td>
+                    <td colspan="3" style="padding-left: 10px">${unskilled_labour}</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>WELDER</td>
+                    <td colspan="3" style="padding-left: 10px">${welder}</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>CHINESE STAFF</td>
+                    <td colspan="3" style="padding-left: 10px">${chinese_staff}</td>
+                  </tr>
+                  <tr>
+                    <th colspan="6">REMARKS/OBSERVATION:</th>
+                  </tr>
+                  <tr>
+                    <td>SMEC</td>
+                    <td colspan="5">CGGC</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </body>
+          </html>
+          `,
+        fileName: "test.pdf",
+        options: {
+          textAlign: "left",
+        },
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res.pdf);
+        dispatch(Actions.setPdfLink(res.pdf));
       });
   };
+
+  const pdfLinkData = useSelector((state) => state.pdfGenData);
+
   return (
     <>
       <div className="DailyReport_Container">
         <div className="DailyReportTable_Container" ref={reportRef}>
           <h1>Daily Report Form</h1>
           <table>
-            <tr>
-              <th colSpan="6">
-                CIVIL WORKS FOR CONSTRUCTION OF THWAKE DAM EMBARKMENT AND
-                ASSOCIATED WORKS
-              </th>
-            </tr>
-            <tr>
-              <th>INSPECTOR'S</th>
-              <td colSpan="1"></td>
-              <th>SECTION:</th>
-              <td colSpan="4">{section}</td>
-            </tr>
-            <tr>
-              <th>WEATHER:</th>
-              <td>{weather}</td>
-              <th>DATE:</th>
-              <td>{date}</td>
-              <th>SHIFT:</th>
-              <td>{shift}</td>
-            </tr>
-            <tr></tr>
-            <tr></tr>
-            <tr>
-              <th colSpan="6">ACTIVITIES:</th>
-            </tr>
-            <th colSpan="6">{activities}</th>
-            <tr>
-              <th colSpan="6">PLANT AND EQUIPMENT:</th>
-            </tr>
-            <th colSpan="6">{plantEQ}</th>
-            <tr>
-              <th colSpan="6">LABOUR</th>
-            </tr>
-            <tr></tr>
-            <tr>
-              <th>DESCRIPTION</th>
-              <th>NO</th>
-              <th>DESCRIPTION</th>
-              <th colSpan="3">NO</th>
-            </tr>
-            <tr>
-              <td width="40%">SMEC INSPECTORS</td>
-              <td>{SMEC_Ins}</td>
-              <td>SMEC ENGINEER</td>
-              <td colSpan="3">{SMEC_Eng}</td>
-            </tr>
-            <tr>
-              <td>CGGC INSPECTORS</td>
-              <td>{CGGC_Ins}</td>
-              <td>SITE FOREMAN</td>
-              <td colSpan="3">{site_foreman}</td>
-            </tr>
-            <tr>
-              <td>SAFETY OFFICER</td>
-              <td>{safety_officer}</td>
-              <td>PLANT OPERATOR</td>
-              <td colSpan="3">{plant_operator}</td>
-            </tr>
-            <tr>
-              <td>DRIVERS</td>
-              <td>{drivers}</td>
-              <td>UNSKILLED LABOUR</td>
-              <td colSpan="3">{unskilled_labour}</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td>WELDER</td>
-              <td colSpan="3">{welder}</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td>CHINESE STAFF</td>
-              <td colSpan="3">{chinese_staff}</td>
-            </tr>
-            <tr>
-              <th colSpan="6">REMARKS/OBSERVATION:</th>
-            </tr>
-            <tr>
-              <td>SMEC</td>
-              <td colSpan="5">CGGC</td>
-            </tr>
+            <tbody>
+              <tr>
+                <th colSpan="6">
+                  CIVIL WORKS FOR CONSTRUCTION OF THWAKE DAM EMBARKMENT AND
+                  ASSOCIATED WORKS
+                </th>
+              </tr>
+              <tr>
+                <th>INSPECTOR'S</th>
+                <td colSpan="1"></td>
+                <th>SECTION:</th>
+                <td colSpan="4">{section}</td>
+              </tr>
+              <tr>
+                <th>WEATHER:</th>
+                <td>{weather}</td>
+                <th>DATE:</th>
+                <td>{date}</td>
+                <th>SHIFT:</th>
+                <td>{shift}</td>
+              </tr>
+              <tr></tr>
+              <tr></tr>
+              <tr>
+                <th colSpan="6">ACTIVITIES:</th>
+              </tr>
+              <tr>
+                <td colSpan="6">{activities}</td>
+              </tr>
+              <tr>
+                <th colSpan="6">PLANT AND EQUIPMENT:</th>
+              </tr>
+              <tr>
+                <td colSpan="6">{plantEQ}</td>
+              </tr>
+              <tr>
+                <th colSpan="6">LABOUR</th>
+              </tr>
+              <tr></tr>
+              <tr>
+                <th>DESCRIPTION</th>
+                <th>NO</th>
+                <th>DESCRIPTION</th>
+                <th colSpan="3">NO</th>
+              </tr>
+              <tr>
+                <td width="40%">SMEC INSPECTORS</td>
+                <td>{SMEC_Ins}</td>
+                <td>SMEC ENGINEER</td>
+                <td colSpan="3">{SMEC_Eng}</td>
+              </tr>
+              <tr>
+                <td>CGGC INSPECTORS</td>
+                <td>{CGGC_Ins}</td>
+                <td>SITE FOREMAN</td>
+                <td colSpan="3">{site_foreman}</td>
+              </tr>
+              <tr>
+                <td>SAFETY OFFICER</td>
+                <td>{safety_officer}</td>
+                <td>PLANT OPERATOR</td>
+                <td colSpan="3">{plant_operator}</td>
+              </tr>
+              <tr>
+                <td>DRIVERS</td>
+                <td>{drivers}</td>
+                <td>UNSKILLED LABOUR</td>
+                <td colSpan="3">{unskilled_labour}</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td>WELDER</td>
+                <td colSpan="3">{welder}</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td>CHINESE STAFF</td>
+                <td colSpan="3">{chinese_staff}</td>
+              </tr>
+              <tr>
+                <th colSpan="6">REMARKS/OBSERVATION:</th>
+              </tr>
+              <tr>
+                <td>SMEC</td>
+                <td colSpan="5">CGGC</td>
+              </tr>
+            </tbody>
           </table>
         </div>
         <button className="Submit_Button" onClick={onButtonClick}>
-          Save File
+          Generate Link
         </button>
+        <a href={pdfLinkData.pdfLink}>Click to download</a>
       </div>
     </>
   );

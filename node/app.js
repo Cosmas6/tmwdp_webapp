@@ -10,7 +10,7 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var testAPIRouter = require("./routes/testAPI");
 var nodeMailerRouter = require("./routes/nodeMailer");
-var multerRouter = require("./routes/multer");
+
 
 var fileUpload = require("express-fileupload");
 
@@ -35,7 +35,7 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/testAPI", testAPIRouter);
 app.use("/nodeMailer", nodeMailerRouter);
-app.use("/multer", multerRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -45,8 +45,8 @@ app.use(function (req, res, next) {
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
-  res.header("Access-Control-Allow-Origin", "*");
-  next();
+  // res.header("Access-Control-Allow-Origin", "*");
+  // next();
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
 

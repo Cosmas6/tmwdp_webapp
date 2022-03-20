@@ -32,7 +32,6 @@
     "include-media": "^1.4.10",
     "jspdf": "^2.5.1",
     "node-fetch": "^3.2.2",
-    "nodemon": "^2.0.15",
     "react": "^17.0.2",
     "react-component-export-image": "^1.0.6",
     "react-dom": "^17.0.2",
