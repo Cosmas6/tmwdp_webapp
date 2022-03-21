@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
 } from "firebase/auth";
+import Loading from "./Loading";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useForm } from "react-hook-form";
@@ -16,13 +17,7 @@ function Login() {
   const errorRef = useRef();
   const formRef = useRef();
   const { register, errors, handleSubmit } = useForm();
-  const [Api, setApi] = useState("");
-
-  // const callAPI = () => {
-  //   fetch("http://localhost:4000/testAPI")
-  //     .then((res) => res.text())
-  //     .then((res) => setApi(res));
-  // };
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   useEffect(() => {
     let authToken = sessionStorage.getItem("Auth Token");
@@ -35,10 +30,6 @@ function Login() {
       navigate("/login");
     }
   }, []);
-
-  // useEffect(() => {
-  //   callAPI();
-  // }, []);
 
   useEffect(() => {
     const sayHelloButton = sayHelloRef.current;
@@ -59,8 +50,6 @@ function Login() {
     const email = data.Email;
     const password = data.Password;
 
-    // console.log("RESULT", data, email, password);
-
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -78,26 +67,9 @@ function Login() {
       });
   };
 
-  useEffect(() => {
-    let authToken = sessionStorage.getItem("Auth Token");
-
-    if (authToken) {
-      navigate("/dashboard");
-    }
-
-    if (!authToken) {
-      navigate("/login");
-    }
-  }, []);
-  // const onSubmit = (data) => {
-  //   console.log("RESULT", data);
-  //   alert(JSON.stringify(data));
-  // };
-
   return (
     <>
       <div className="Login_Container">
-        {/* <p>{Api}</p> */}
         <h1>TMWDP</h1>
         <form
           className="Form_Container"

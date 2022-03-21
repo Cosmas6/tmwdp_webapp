@@ -9,7 +9,6 @@ import storage from "redux-persist/lib/storage";
 import reportData from "./store/reducers/reportData";
 import { BrowserRouter } from "react-router-dom";
 import lastAction from "./store/reducers/lastAction";
-import pdfGenData from "./store/reducers/pdfGenData";
 
 const persistConfig = {
   key: "root",
@@ -19,7 +18,6 @@ const persistConfig = {
 const rootReducers = combineReducers({
   repData: reportData,
   lastActionData: lastAction,
-  pdfGenData: pdfGenData,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducers);

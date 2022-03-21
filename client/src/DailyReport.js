@@ -1,6 +1,4 @@
-import React, { useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Actions from "./store/actions";
+import React, { useRef } from "react";
 import "./stylesheets/dailyreport.scss";
 
 const DailyReport = ({
@@ -23,9 +21,7 @@ const DailyReport = ({
   chinese_staff,
 }) => {
   const reportRef = useRef();
-  const pdfLinkRef = useRef();
-  const [pdfLink, setPdfLink] = useState();
-  const dispatch = useDispatch();
+
 
   const onButtonClick = () => {
     fetch("https://v2018.api2pdf.com/chrome/html", {
@@ -155,12 +151,11 @@ const DailyReport = ({
     })
       .then((res) => res.json())
       .then((res) => {
+        document.getElementById("pdfLink").innerHTML =
+          "<a href='" + res.pdf + "'>DOWNLOAD</a>";
         console.log(res.pdf);
-        dispatch(Actions.setPdfLink(res.pdf));
       });
   };
-
-  const pdfLinkData = useSelector((state) => state.pdfGenData);
 
   return (
     <>
@@ -259,10 +254,12 @@ const DailyReport = ({
             </tbody>
           </table>
         </div>
+        <div className="Download_Link">
+          <p id="pdfLink"></p>
+        </div>
         <button className="Submit_Button" onClick={onButtonClick}>
           Generate Link
         </button>
-        <a href={pdfLinkData.pdfLink}>Click to download</a>
       </div>
     </>
   );
