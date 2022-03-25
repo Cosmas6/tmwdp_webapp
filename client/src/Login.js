@@ -5,8 +5,7 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
 } from "firebase/auth";
-import Loading from "./Loading";
-import { getFunctions, httpsCallable } from "firebase/functions";
+// import { getFunctions, httpsCallable } from "firebase/functions";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useForm } from "react-hook-form";
 import "./stylesheets/login.scss";
@@ -31,18 +30,18 @@ function Login() {
     }
   }, []);
 
-  useEffect(() => {
-    const sayHelloButton = sayHelloRef.current;
-    sayHelloButton.addEventListener("click", () => {
-      //get function reference
-      const functions = getFunctions();
+  // useEffect(() => {
+  //   const sayHelloButton = sayHelloRef.current;
+  //   sayHelloButton.addEventListener("click", () => {
+  //     //get function reference
+  //     const functions = getFunctions();
 
-      const sayHello = httpsCallable(functions, "sayHello");
-      sayHello({ name: "Cosmas" }).then((result) => {
-        // console.log(result.data);
-      });
-    });
-  }, []);
+  //     const sayHello = httpsCallable(functions, "sayHello");
+  //     sayHello({ name: "Cosmas" }).then((result) => {
+  //       // console.log(result.data);
+  //     });
+  //   });
+  // }, []);
 
   const onSubmit = (data) => {
     const errorElement = errorRef.current;

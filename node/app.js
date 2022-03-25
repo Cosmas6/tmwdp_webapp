@@ -5,37 +5,49 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var bodyParser = require("body-parser");
-
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var testAPIRouter = require("./routes/testAPI");
 var nodeMailerRouter = require("./routes/nodeMailer");
-
+var recordRoutes = require("./routes/records");
+var dbo = require("./mongoDB/conn");
 
 var fileUpload = require("express-fileupload");
 
 var app = express();
+app.use(cors());
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
 
+const corsConfig = {
+  origin: true,
+  credentials: true,
+};
+
+app.use(cors(corsConfig));
+app.options("*", cors(corsConfig));
 app.use(logger("dev"));
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "/public")));
 app.use(cors());
 app.use(fileUpload());
-
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/testAPI", testAPIRouter);
 app.use("/nodeMailer", nodeMailerRouter);
+app.use("/records", recordRoutes);
 
+// perform a database connection when server starts
+dbo.connectToServer(function (err) {
+  if (err) console.error(err);
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -45,8 +57,6 @@ app.use(function (req, res, next) {
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
-  // res.header("Access-Control-Allow-Origin", "*");
-  // next();
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
 

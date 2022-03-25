@@ -29,7 +29,7 @@ const DailyReport = ({
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: "To be decided",
+        Authorization: "e11aaf91-5cf3-4c53-958a-a3304484ea8e",
       },
       body: JSON.stringify({
         html: ` 
@@ -143,7 +143,7 @@ const DailyReport = ({
           </body>
           </html>
           `,
-        fileName: "test.pdf",
+        fileName: date,
         options: {
           textAlign: "left",
         },

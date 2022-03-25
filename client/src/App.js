@@ -10,6 +10,9 @@ import DailyReportForm from "./DailyReportForm";
 import Loading from "./Loading";
 import { Routes, Route } from "react-router-dom";
 import Headcount from "./Headcount";
+import Create from "./mongo/create";
+import Edit from "./mongo/edit";
+import RecordList from "./mongo/recordList";
 
 const App = () => {
   return (
@@ -26,6 +29,9 @@ const App = () => {
           <Route path="/dailyreportform" element={<DailyReportForm />} />
           <Route path="/submitsuccess" element={<SubmitSuccess />} />
           <Route path="/filterdata" element={<FilterData />} />
+          <Route path="/create" element={<Create />} />
+          <Route path="/edit" element={<Edit />} />
+          <Route path="/recordList" element={<RecordList />} />
         </Routes>
       </Suspense>
     </>
