@@ -29,7 +29,7 @@ const DailyReport = ({
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: "e11aaf91-5cf3-4c53-958a-a3304484ea8e",
+        Authorization: "No key",
       },
       body: JSON.stringify({
         html: ` 
