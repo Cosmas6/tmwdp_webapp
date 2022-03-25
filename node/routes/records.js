@@ -40,10 +40,11 @@ router.get("/:id", function (req, res) {
 router.post("/add", function (req, response) {
   let db_connect = dbo.getDb();
   let myobj = {
-    name: req.body.person_name,
-    position: req.body.person_position,
-    level: req.body.person_level,
+    name: req.body.name,
+    position: req.body.position,
+    level: req.body.level,
   };
+  console.log(req.body, "myobj");
   db_connect
     .collection("RecordsCollection")
     .insertOne(myobj, function (err, res) {
@@ -58,9 +59,9 @@ router.post("/update/:id", function (req, response) {
   let myquery = { _id: ObjectId(req.params.id) };
   let newvalues = {
     $set: {
-      person_name: req.body.person_name,
-      person_position: req.body.person_position,
-      person_level: req.body.person_level,
+      name: req.body.name,
+      position: req.body.position,
+      level: req.body.level,
     },
   };
   db_connect

@@ -30,7 +30,7 @@ const App = () => {
           <Route path="/submitsuccess" element={<SubmitSuccess />} />
           <Route path="/filterdata" element={<FilterData />} />
           <Route path="/create" element={<Create />} />
-          <Route path="/edit" element={<Edit />} />
+          <Route path="/edit/:id" element={<Edit />} />
           <Route path="/recordList" element={<RecordList />} />
         </Routes>
       </Suspense>

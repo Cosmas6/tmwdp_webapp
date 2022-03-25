@@ -33,7 +33,7 @@ export default function Create() {
       window.alert(error);
       return;
     });
-
+    console.log(newPerson, "newPerson");
     setForm({ name: "", position: "", level: "" });
     navigate("/recordList");
   }
