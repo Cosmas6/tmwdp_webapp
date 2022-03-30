@@ -3,7 +3,9 @@
 .Create_Container {
   @extend .Login_Container;
 
-  
+  .Form_Input {
+    width: 70%;
+  }
   .brand-check,
   .form-check {
     margin-top: 10px;
