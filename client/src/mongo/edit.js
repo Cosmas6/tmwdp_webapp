@@ -4,8 +4,8 @@ import { useParams, useNavigate } from "react-router";
 export default function Edit() {
   const [form, setForm] = useState({
     name: "",
-    position: "",
-    level: "",
+    brand: "",
+    department: "",
     records: [],
   });
   const params = useParams();
@@ -50,8 +50,8 @@ export default function Edit() {
     e.preventDefault();
     const editedPerson = {
       name: form.name,
-      position: form.position,
-      level: form.level,
+      brand: form.brand,
+      department: form.department,
     };
 
     // This will send a post request to update the data in the database.
@@ -68,81 +68,103 @@ export default function Edit() {
 
   // This following section will display the form that takes input from the user to update the data.
   return (
-    <div>
-      <h3>Update Record</h3>
+    <div className="Edit_Container">
+      <h1>Edit Record</h1>
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label htmlFor="name">Name: </label>
+          <label htmlFor="name" className="Input_Label">
+            Name
+          </label>
           <input
             type="text"
-            className="form-control"
+            className="Form_Input"
             id="name"
             value={form.name}
             onChange={(e) => updateForm({ name: e.target.value })}
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="position">Position: </label>
-          <input
-            type="text"
-            className="form-control"
-            id="position"
-            value={form.position}
-            onChange={(e) => updateForm({ position: e.target.value })}
-          />
-        </div>
-        <div className="form-group">
-          <div className="form-check form-check-inline">
+        <div className="brand-group">
+          <label htmlFor="brand" className="Input_Label">
+            Laptop Brand
+          </label>
+          <div className="brand-check">
             <input
               className="form-check-input"
-              type="radio"
-              name="positionOptions"
-              id="positionIntern"
-              value="Intern"
-              checked={form.level === "Intern"}
-              onChange={(e) => updateForm({ level: e.target.value })}
+              type="checkbox"
+              name="brandOptions"
+              id="brandHP"
+              value="HP"
+              checked={form.brand === "HP"}
+              onChange={(e) => updateForm({ brand: e.target.value })}
             />
-            <label htmlFor="positionIntern" className="form-check-label">
-              Intern
+            <label htmlFor="brand" className="Check_Label">
+              HP
             </label>
           </div>
-          <div className="form-check form-check-inline">
+          <div className="brand-check">
             <input
               className="form-check-input"
-              type="radio"
-              name="positionOptions"
-              id="positionJunior"
-              value="Junior"
-              checked={form.level === "Junior"}
-              onChange={(e) => updateForm({ level: e.target.value })}
+              type="checkbox"
+              name="brandOptions"
+              id="brandLenovo"
+              value="Lenovo"
+              checked={form.brand === "Lenovo"}
+              onChange={(e) => updateForm({ brand: e.target.value })}
             />
-            <label htmlFor="positionJunior" className="form-check-label">
-              Junior
-            </label>
-          </div>
-          <div className="form-check form-check-inline">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="positionOptions"
-              id="positionSenior"
-              value="Senior"
-              checked={form.level === "Senior"}
-              onChange={(e) => updateForm({ level: e.target.value })}
-            />
-            <label htmlFor="positionSenior" className="form-check-label">
-              Senior
+            <label htmlFor="brand" className="Check_Label">
+              Lenovo
             </label>
           </div>
         </div>
-        <br />
-
         <div className="form-group">
-          <input
-            type="submit"
-            value="Update Record"
-            className="btn btn-primary"
-          />
+          <label htmlFor="department" className="Input_Label">
+            Department
+          </label>
+          <div className="form-check form-check-inline">
+            <input
+              className="form-check-input"
+              type="radio"
+              name="departmentOptions"
+              id="departmentSurvey"
+              value="Survey"
+              checked={form.department === "Survey"}
+              onChange={(e) => updateForm({ department: e.target.value })}
+            />
+            <label htmlFor="departmentIntern" className="form-check-label">
+              Survey
+            </label>
+          </div>
+          <div className="form-check form-check-inline">
+            <input
+              className="form-check-input"
+              type="radio"
+              name="departmentOptions"
+              id="departmentIT"
+              value="IT"
+              checked={form.department === "IT"}
+              onChange={(e) => updateForm({ department: e.target.value })}
+            />
+            <label htmlFor="departmentJunior" className="form-check-label">
+              IT
+            </label>
+          </div>
+          <div className="form-check form-check-inline">
+            <input
+              className="form-check-input"
+              type="radio"
+              name="departmentOptions"
+              id="departmentSpillway"
+              value="Spillway"
+              checked={form.department === "Spillway"}
+              onChange={(e) => updateForm({ department: e.target.value })}
+            />
+            <label htmlFor="departmentSenior" className="form-check-label">
+              Spillway
+            </label>
+          </div>
+        </div>
+        <div className="form-group">
+          <input type="submit" value="Submit" className="Submit_Button" />
         </div>
       </form>
     </div>

@@ -5,7 +5,7 @@ $layout-breakpoint-small: 960px;
 @import "~include-media/dist/_include-media.scss";
 
 @mixin displayBlock() {
-  display: block;
+  display: inline-block;
   width: 100%;
 }
 
@@ -15,6 +15,7 @@ $layout-breakpoint-small: 960px;
 }
 
 .Login_Container {
+  box-sizing: border-box;
   margin: $primaryMargin;
   padding-top: 50px;
   @include media(">=phone") {
@@ -25,7 +26,6 @@ $layout-breakpoint-small: 960px;
     text-align: center;
   }
   .Form_Container {
-    width: 50%;
     margin: $primaryMargin;
     @include displayBlock();
   }

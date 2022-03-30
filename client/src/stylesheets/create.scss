@@ -1,0 +1,16 @@
+@import "./login.scss";
+
+.Create_Container {
+  @extend .Login_Container;
+
+  
+  .brand-check,
+  .form-check {
+    margin-top: 10px;
+  }
+
+  .Check_Label,
+  .form-check-label {
+    margin-left: 5px;
+  }
+}

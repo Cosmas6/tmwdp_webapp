@@ -41,8 +41,8 @@ router.post("/add", function (req, response) {
   let db_connect = dbo.getDb();
   let myobj = {
     name: req.body.name,
-    position: req.body.position,
-    level: req.body.level,
+    brand: req.body.brand,
+    department: req.body.department,
   };
   console.log(req.body, "myobj");
   db_connect
@@ -60,8 +60,8 @@ router.post("/update/:id", function (req, response) {
   let newvalues = {
     $set: {
       name: req.body.name,
-      position: req.body.position,
-      level: req.body.level,
+      brand: req.body.brand,
+      department: req.body.department,
     },
   };
   db_connect
