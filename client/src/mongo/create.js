@@ -45,19 +45,18 @@ export default function Create() {
     <div className="Create_Container">
       <h1>Laptop Inventory</h1>
       <form className="Form_Container" onSubmit={onSubmit}>
-        <div className="name-group">
-          <label htmlFor="name-input" className="Input_Label">
-            Name
-          </label>
-          <input
-            type="text"
-            className="Form_Input"
-            id="name"
-            name="name-input"
-            value={form.name}
-            onChange={(e) => updateForm({ name: e.target.value })}
-          />
-        </div>
+        <label htmlFor="name-input" className="Input_Label">
+          Name
+        </label>
+        <input
+          type="text"
+          className="Form_Input"
+          id="name"
+          name="name-input"
+          value={form.name}
+          onChange={(e) => updateForm({ name: e.target.value })}
+        />
+
         <div className="brand-group">
           <label htmlFor="brand" className="Input_Label">
             Laptop Brand
