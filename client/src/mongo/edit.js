@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
+import "../stylesheets/edit.scss";
 
 export default function Edit() {
   const [form, setForm] = useState({
@@ -69,20 +70,20 @@ export default function Edit() {
   // This following section will display the form that takes input from the user to update the data.
   return (
     <div className="Edit_Container">
-      <h1>Edit Record</h1>
-      <form onSubmit={onSubmit}>
-        <div className="form-group">
-          <label htmlFor="name" className="Input_Label">
-            Name
-          </label>
-          <input
-            type="text"
-            className="Form_Input"
-            id="name"
-            value={form.name}
-            onChange={(e) => updateForm({ name: e.target.value })}
-          />
-        </div>
+      <h1>Laptop Inventory</h1>
+      <form className="Form_Container" onSubmit={onSubmit}>
+        <label htmlFor="name-input" className="Input_Label">
+          Name
+        </label>
+        <input
+          type="text"
+          className="Form_Input"
+          id="name"
+          name="name-input"
+          value={form.name}
+          onChange={(e) => updateForm({ name: e.target.value })}
+        />
+
         <div className="brand-group">
           <label htmlFor="brand" className="Input_Label">
             Laptop Brand
@@ -91,13 +92,13 @@ export default function Edit() {
             <input
               className="form-check-input"
               type="checkbox"
-              name="brandOptions"
+              name="brandHP"
               id="brandHP"
               value="HP"
               checked={form.brand === "HP"}
               onChange={(e) => updateForm({ brand: e.target.value })}
             />
-            <label htmlFor="brand" className="Check_Label">
+            <label htmlFor="brandHP" className="Check_Label">
               HP
             </label>
           </div>
@@ -105,13 +106,13 @@ export default function Edit() {
             <input
               className="form-check-input"
               type="checkbox"
-              name="brandOptions"
+              name="brandLenovo"
               id="brandLenovo"
               value="Lenovo"
               checked={form.brand === "Lenovo"}
               onChange={(e) => updateForm({ brand: e.target.value })}
             />
-            <label htmlFor="brand" className="Check_Label">
+            <label htmlFor="brandLenovo" className="Check_Label">
               Lenovo
             </label>
           </div>
@@ -124,13 +125,13 @@ export default function Edit() {
             <input
               className="form-check-input"
               type="radio"
-              name="departmentOptions"
+              name="departmentSurvey"
               id="departmentSurvey"
               value="Survey"
               checked={form.department === "Survey"}
               onChange={(e) => updateForm({ department: e.target.value })}
             />
-            <label htmlFor="departmentIntern" className="form-check-label">
+            <label htmlFor="departmentSurvey" className="form-check-label">
               Survey
             </label>
           </div>
@@ -138,13 +139,13 @@ export default function Edit() {
             <input
               className="form-check-input"
               type="radio"
-              name="departmentOptions"
+              name="departmentIT"
               id="departmentIT"
               value="IT"
               checked={form.department === "IT"}
               onChange={(e) => updateForm({ department: e.target.value })}
             />
-            <label htmlFor="departmentJunior" className="form-check-label">
+            <label htmlFor="departmentIT" className="form-check-label">
               IT
             </label>
           </div>
@@ -152,13 +153,13 @@ export default function Edit() {
             <input
               className="form-check-input"
               type="radio"
-              name="departmentOptions"
+              name="departmentSpillway"
               id="departmentSpillway"
               value="Spillway"
               checked={form.department === "Spillway"}
               onChange={(e) => updateForm({ department: e.target.value })}
             />
-            <label htmlFor="departmentSenior" className="form-check-label">
+            <label htmlFor="departmentSpillway" className="form-check-label">
               Spillway
             </label>
           </div>

@@ -3,7 +3,6 @@ $primaryBorder: 1px solid black;
 $primaryBorderRadius: 3px;
 $layout-breakpoint-small: 960px;
 @import "~include-media/dist/_include-media.scss";
-@import "~bootstrap/dist/css/bootstrap.min.css";
 
 @mixin displayBlock() {
   display: block;
