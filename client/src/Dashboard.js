@@ -26,6 +26,10 @@ const Dashboard = () => {
     navigate("/dailyreportform");
   };
 
+  const instrumentationRedirect = () => {
+    navigate("/instrumentation");
+  };
+
   const headCount = () => {
     navigate("/headcount");
   };
@@ -35,6 +39,13 @@ const Dashboard = () => {
       <h1>Dashboard - DR</h1>
       <button className="Submit_Button" onClick={createReport} type="submit">
         Create Daily Report
+      </button>
+      <button
+        className="Submit_Button"
+        onClick={instrumentationRedirect}
+        type="submit"
+      >
+        Instrumentation
       </button>
       <button className="Submit_Button" onClick={headCount} type="submit">
         Headcount

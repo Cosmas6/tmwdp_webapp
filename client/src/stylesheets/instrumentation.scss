@@ -1,0 +1,7 @@
+@import "./login.scss";
+
+.Instrumentation_Container {
+  .Section_Dropdown {
+    @extend .Login_Container;
+  }
+}

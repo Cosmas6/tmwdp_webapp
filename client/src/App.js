@@ -13,6 +13,7 @@ import Headcount from "./Headcount";
 import Create from "./mongo/create";
 import Edit from "./mongo/edit";
 import RecordList from "./mongo/recordList";
+import Instrumentation from "./Instrumentation";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/headcount" element={<Headcount />} />
           <Route path="/dailyreport" element={<DailyReport />} />
           <Route path="/dailyreportform" element={<DailyReportForm />} />
+          <Route path="/instrumentation" element={<Instrumentation />} />
           <Route path="/submitsuccess" element={<SubmitSuccess />} />
           <Route path="/filterdata" element={<FilterData />} />
           <Route path="/create" element={<Create />} />
