@@ -1,22 +1,15 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  getAuth,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-} from "firebase/auth";
-// import { getFunctions, httpsCallable } from "firebase/functions";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useForm } from "react-hook-form";
 import "./stylesheets/login.scss";
 
 function Login() {
   const navigate = useNavigate();
-  const sayHelloRef = useRef();
   const errorRef = useRef();
   const formRef = useRef();
   const { register, errors, handleSubmit } = useForm();
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   useEffect(() => {
     let authToken = sessionStorage.getItem("Auth Token");
@@ -29,19 +22,6 @@ function Login() {
       navigate("/login");
     }
   }, []);
-
-  // useEffect(() => {
-  //   const sayHelloButton = sayHelloRef.current;
-  //   sayHelloButton.addEventListener("click", () => {
-  //     //get function reference
-  //     const functions = getFunctions();
-
-  //     const sayHello = httpsCallable(functions, "sayHello");
-  //     sayHello({ name: "Cosmas" }).then((result) => {
-  //       // console.log(result.data);
-  //     });
-  //   });
-  // }, []);
 
   const onSubmit = (data) => {
     const errorElement = errorRef.current;
@@ -64,6 +44,10 @@ function Login() {
         console.log(error.message);
         errorElement.textContent = error.message;
       });
+  };
+
+  const createReport = () => {
+    navigate("/generatereport");
   };
 
   return (
@@ -96,13 +80,9 @@ function Login() {
           <button className="Submit_Button" type="submit">
             Log In
           </button>
-
           <div className="error-div">
             <p ref={errorRef}></p>
           </div>
-          <button className="Submit_Button" ref={sayHelloRef}>
-            Say Hello
-          </button>
           <p>
             Not Registered? <Link to="/register">Register Instead</Link>
           </p>

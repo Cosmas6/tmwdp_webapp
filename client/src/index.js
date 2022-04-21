@@ -1,4 +1,5 @@
 import React, { Suspense } from "react";
+import { createRoot } from "react-dom/client";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { createStore, combineReducers } from "redux";
@@ -33,17 +34,19 @@ let persistor = persistStore(store);
 //   console.log(store.getState().lastAction);
 // });
 
-ReactDOM.render(
+const container = document.getElementById("root");
+const root = createRoot(container);
+
+root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <App />
+          <App tab="home" />
         </PersistGate>
       </Provider>
     </BrowserRouter>
-  </React.StrictMode>,
-  document.getElementById("root")
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

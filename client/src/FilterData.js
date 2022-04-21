@@ -6,7 +6,6 @@ import TextField from "@mui/material/TextField";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import db from "../firebase.config.js";
 import "./stylesheets/filterdata.scss";
-import { info } from "firebase-functions/logger";
 import DailyReport from "./DailyReport";
 
 const FilterData = () => {

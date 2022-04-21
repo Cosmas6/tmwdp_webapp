@@ -1,6 +1,16 @@
+@import "~include-media/dist/_include-media.scss";
+
 .LeftBank {
-    
+  margin: 0 auto;
+  @include media(">=phone") {
+    width: 1000px;
+  }
   .Section_Title {
     text-align: center;
+    margin-top: 1rem;
+  }
+  td,th {
+    border-style: solid;
+    border-width: 1px;
   }
 }

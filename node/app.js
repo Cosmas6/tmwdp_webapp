@@ -10,6 +10,7 @@ var usersRouter = require("./routes/users");
 var testAPIRouter = require("./routes/testAPI");
 var nodeMailerRouter = require("./routes/nodeMailer");
 var recordRoutes = require("./routes/records");
+var instrumentationRouter = require("./routes/instrumentation");
 var dbo = require("./mongoDB/conn");
 var fileUpload = require("express-fileupload");
 var app = express();
@@ -32,6 +33,7 @@ app.use("/users", usersRouter);
 app.use("/testAPI", testAPIRouter);
 app.use("/nodeMailer", nodeMailerRouter);
 app.use("/records", recordRoutes);
+app.use("/instrumentationRouter", instrumentationRouter);
 
 // perform a database connection when server starts
 dbo.connectToServer(function (err) {
