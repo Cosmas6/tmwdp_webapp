@@ -1,0 +1,8 @@
+@import "../login.scss";
+
+.Tunnels_Container {
+  @extend .Login_Container;
+  .no_instruments {
+    margin-top: 20px;
+  }
+}

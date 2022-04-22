@@ -19,9 +19,8 @@ export default function Create() {
   }
 
   // This function will handle the submission.
-  async function onSubmit(e) {
+  const onSubmit = async (e) => {
     e.preventDefault();
-
     // When a post request is sent to the create url, we'll add a new record to the database.
     const newPerson = { ...form };
     console.log(newPerson, "newPerson");
@@ -38,7 +37,7 @@ export default function Create() {
     });
     setForm({ name: "", brand: "", department: "" });
     navigate("/recordList");
-  }
+  };
 
   // This following section will display the form that takes the input from the user.
   return (

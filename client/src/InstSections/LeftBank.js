@@ -1,7 +1,7 @@
 import React from "react";
 import "../stylesheets/Sections/leftbank.scss";
 
-function LeftBank(props) {
+export default function LeftBank(props) {
   return (
     <div className="LeftBank">
       <h1 className="Section_Title">Left Bank</h1>
@@ -46,5 +46,3 @@ function LeftBank(props) {
     </div>
   );
 }
-
-export default LeftBank;

@@ -12,8 +12,8 @@ module.exports = {
     client.connect(function (err, db) {
       // Verify we got a good "db" object
       if (db) {
-        _db = db.db("Records");
-        console.log("Successfully connected to Records in MongoDB.");
+        _db = db.db("InstrumentationRecords");
+        console.log("Successfully connected to Instrumentation in MongoDB.");
       }
       return callback(err);
     });

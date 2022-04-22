@@ -14,6 +14,11 @@ import Create from "./mongo/create";
 import Edit from "./mongo/edit";
 import RecordList from "./mongo/recordList";
 import Instrumentation from "./Instrumentation";
+import {
+  CreateTunnels,
+  EditTunnels,
+  RecordListTunnels,
+} from "./InstSections/Tunnels";
 
 const App = () => {
   return (
@@ -34,6 +39,9 @@ const App = () => {
           <Route path="/create" element={<Create />} />
           <Route path="/edit/:id" element={<Edit />} />
           <Route path="/recordList" element={<RecordList />} />
+          <Route path="/createTunnels" element={<CreateTunnels />} />
+          <Route path="/editTunnels/:id" element={<EditTunnels />} />
+          <Route path="/recordListTunnels" element={<RecordListTunnels />} />
         </Routes>
       </Suspense>
     </>

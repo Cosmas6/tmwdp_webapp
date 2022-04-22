@@ -4,7 +4,10 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import LeftBank from "./Sections/LeftBank";
+import LeftBank from "./InstSections/LeftBank";
+// import RightBank from "./InstSections/LeftBank";
+// import Spillway from "./InstSections/Spillway";
+import { Tunnels } from "./InstSections/Tunnels";
 import "./stylesheets/instrumentation.scss";
 
 const Instrumentation = () => {
@@ -22,7 +25,7 @@ const Instrumentation = () => {
       case "Spillway Slopes":
         return <div>Spillway Slopes</div>;
       case "Tunnel Slopes":
-        return <div>Tunnel Slopes</div>;
+        return <Tunnels />;
       case "Tunnel A and B":
         return <div>Tunnel A and B</div>;
       default:

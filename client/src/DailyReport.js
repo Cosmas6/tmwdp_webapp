@@ -22,14 +22,13 @@ const DailyReport = ({
 }) => {
   const reportRef = useRef();
 
-
   const onButtonClick = () => {
     fetch("https://v2018.api2pdf.com/chrome/html", {
       method: "post",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: "No key",
+        Authorization: "e11aaf91-5cf3-4c53-958a-a3304484ea8e",
       },
       body: JSON.stringify({
         html: ` 

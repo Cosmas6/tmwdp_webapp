@@ -9,9 +9,11 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var testAPIRouter = require("./routes/testAPI");
 var nodeMailerRouter = require("./routes/nodeMailer");
-var recordRoutes = require("./routes/records");
-var instrumentationRouter = require("./routes/instrumentation");
+var recordRouter = require("./routes/records");
+var SpillwayInstRouter = require("./routes/Instrumentation/Spillway");
+var TunnelInstRouter = require("./routes/Instrumentation/Tunnel");
 var dbo = require("./mongoDB/conn");
+var InstDbo = require("./mongoDB/InstConn");
 var fileUpload = require("express-fileupload");
 var app = express();
 app.use(cors());
@@ -32,10 +34,20 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/testAPI", testAPIRouter);
 app.use("/nodeMailer", nodeMailerRouter);
-app.use("/records", recordRoutes);
-app.use("/instrumentationRouter", instrumentationRouter);
+app.use("/records", recordRouter);
+app.use("/instSpillway", SpillwayInstRouter);
+app.use("/instTunnel", TunnelInstRouter);
 
 // perform a database connection when server starts
+
+// dbo.connectToServer(function (err) {
+//   if (err) console.error(err);
+// });
+
+InstDbo.connectToServer(function (err) {
+  if (err) console.error(err);
+});
+
 dbo.connectToServer(function (err) {
   if (err) console.error(err);
 });

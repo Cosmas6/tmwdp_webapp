@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Editor, EditorState, RichUtils, convertFromRaw } from "draft-js";
-import "draft-js/dist/Draft.css";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
@@ -37,35 +35,6 @@ const DailyReportForm = () => {
   }, []);
 
   const [datevalue, setDateValue] = useState();
-  const [editorState, setEditorState] = useState();
-  
-  );
-
-  const handleKeyCommand = (command, editorState) => {
-    const newState = RichUtils.handleKeyCommand(editorState, command);
-
-    if (newState) {
-      setEditorState(newState);
-      return "handled";
-    }
-
-    return "not-handled";
-  };
-
-  const onItalicClick = (e) => {
-    e.preventDefault();
-    setEditorState(RichUtils.toggleInlineStyle(editorState, "ITALIC"));
-  };
-
-  const onUnderlineClick = (e) => {
-    e.preventDefault();
-    setEditorState(RichUtils.toggleInlineStyle(editorState, "UNDERLINE"));
-  };
-
-  const onBoldClick = (e) => {
-    e.preventDefault();
-    setEditorState(RichUtils.toggleInlineStyle(editorState, "BOLD"));
-  };
 
   const dispatch = useDispatch();
 
@@ -83,7 +52,7 @@ const DailyReportForm = () => {
         Date: data.Date,
         Shift: data.Shift,
         Activities: data.Activities,
-        // PlantEQ: data.PlantEQ,
+        PlantEQ: data.PlantEQ,
         SMEC_Ins: data.SMEC_Ins,
         CGGC_Ins: data.CGGC_Ins,
         Safety_Officer: data.Safety_Officer,
@@ -194,10 +163,10 @@ const DailyReportForm = () => {
             />
           </RadioGroup>
         </div>
-        {/* <TextField
+        <TextField
           id="outlined-multiline-static"
           label="Activities"
-          // {...register("Activities", { required: true })}
+          {...register("Activities", { required: true })}
           multiline
           rows={8}
           defaultValue=""
@@ -209,25 +178,7 @@ const DailyReportForm = () => {
           multiline
           rows={8}
           defaultValue=""
-        /> */}
-
-        <div className="draftJs">
-          <button onClick={onItalicClick}>
-            <em>I</em>
-          </button>
-          <button onClick={onBoldClick}>
-            <b>B</b>
-          </button>
-          <button onClick={onUnderlineClick}>U</button>
-          <Editor
-            {...register("Activities", { required: true })}
-            editorState={editorState}
-            handleKeyCommand={handleKeyCommand}
-            onChange={setEditorState}
-          />
-          {errors.Activities && <p>Please check the field</p>}
-        </div>
-
+        />
         <div className="numbers">
           <TextField
             id="outlined-number"
