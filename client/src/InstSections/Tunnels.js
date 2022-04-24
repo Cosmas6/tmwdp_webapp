@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
@@ -14,9 +14,21 @@ export function CreateTunnels() {
     instrument: "",
     no_instrument: "",
     location: "",
+    x: "",
+    y: "",
     remarks: "",
   });
   const navigate = useNavigate();
+  const textFieldRef = useRef();
+
+  useEffect(() => {
+    const handleWheel = (e) => e.preventDefault();
+    textFieldRef.current.addEventListener("wheel", handleWheel);
+
+    return () => {
+      textFieldRef.current.removeEventListener("wheel", handleWheel);
+    };
+  }, []);
 
   function updateForm(value) {
     return setForm((prev) => {
@@ -40,12 +52,19 @@ export function CreateTunnels() {
       window.alert(error);
       return;
     });
-    setForm({ instrument: "", no_instrument: "", location: "", remarks: "" });
+    setForm({
+      instrument: "",
+      no_instrument: "",
+      location: "",
+      x: "",
+      y: "",
+      remarks: "",
+    });
     navigate("/recordListTunnels");
   };
 
   return (
-    <div className="Tunnels_Container">
+    <div className="Tunnels_Form_Container">
       <h1>Tunnel Instrumentation</h1>
       <form className="Form_Container" onSubmit={onSubmit}>
         <div className="Instrument_Dropdown">
@@ -91,6 +110,7 @@ export function CreateTunnels() {
             InputLabelProps={{
               shrink: true,
             }}
+            ref={textFieldRef}
           />
         </div>
         <div className="location">
@@ -104,6 +124,28 @@ export function CreateTunnels() {
             name="location-input"
             value={form.location}
             onChange={(e) => updateForm({ location: e.target.value })}
+          />
+          <label htmlFor="x-input" className="Input_Label">
+            X Coordinate
+          </label>
+          <input
+            type="text"
+            className="Form_Input"
+            id="x"
+            name="x-input"
+            value={form.x}
+            onChange={(e) => updateForm({ x: e.target.value })}
+          />
+          <label htmlFor="y-input" className="Input_Label">
+            Y Coordinate
+          </label>
+          <input
+            type="text"
+            className="Form_Input"
+            id="y"
+            name="y-input"
+            value={form.y}
+            onChange={(e) => updateForm({ y: e.target.value })}
           />
         </div>
         <div className="remarks">
@@ -132,6 +174,8 @@ export function EditTunnels() {
     instrument: "",
     no_instrument: "",
     location: "",
+    x: "",
+    y: "",
     remarks: "",
     // records: [],
   });
@@ -178,6 +222,8 @@ export function EditTunnels() {
       instrument: form.instrument,
       no_instrument: form.no_instrument,
       location: form.location,
+      x: form.x,
+      y: form.y,
       remarks: form.remarks,
     };
 
@@ -194,7 +240,7 @@ export function EditTunnels() {
   }
 
   return (
-    <div className="Tunnels_Container">
+    <div className="Tunnels_Form_Container">
       <h1>Tunnel Instrumentation</h1>
       <form className="Form_Container" onSubmit={onSubmit}>
         <div className="Instrument_Dropdown">
@@ -254,6 +300,28 @@ export function EditTunnels() {
             value={form.location}
             onChange={(e) => updateForm({ location: e.target.value })}
           />
+          <label htmlFor="x-input" className="Input_Label">
+            X Coordinate
+          </label>
+          <input
+            type="text"
+            className="Form_Input"
+            id="x"
+            name="x-input"
+            value={form.x}
+            onChange={(e) => updateForm({ x: e.target.value })}
+          />
+          <label htmlFor="y-input" className="Input_Label">
+            Y Coordinate
+          </label>
+          <input
+            type="text"
+            className="Form_Input"
+            id="y"
+            name="y-input"
+            value={form.y}
+            onChange={(e) => updateForm({ y: e.target.value })}
+          />
         </div>
         <div className="remarks">
           <label htmlFor="remarks-input" className="Input_Label">
@@ -282,6 +350,8 @@ export function RecordListTunnels() {
       <td>{props.instrument.instrument}</td>
       <td>{props.instrument.no_instrument}</td>
       <td>{props.instrument.location}</td>
+      <td>{props.instrument.x}</td>
+      <td>{props.instrument.y}</td>
       <td>{props.instrument.remarks}</td>
 
       <td>
@@ -351,19 +421,33 @@ export function RecordListTunnels() {
 
   // This following section will display the table with the records of individuals.
   return (
-    <div>
-      <h3>Tunnel Instruments</h3>
-      <table className="table table-striped" style={{ marginTop: 20 }}>
+    <div className="Tunnels_Container">
+      <div className="Tunnels_Title">
+        <h3>Tunnel Instruments</h3>
+      </div>
+      <table
+        className="table table-bordered border-dark"
+        style={{ marginTop: 20 }}
+      >
         <thead>
           <tr>
             <th>Instruments</th>
             <th>No. of Instruments</th>
             <th>Location</th>
+            <th colSpan="2">Coordinates</th>
             <th>Remarks</th>
+          </tr>
+          <tr>
+            <th colSpan="3"></th>
+            <th>X</th>
+            <th>Y</th>
           </tr>
         </thead>
         <tbody>{instrumentList()}</tbody>
       </table>
+      <div className="Add_Instrument_Button">
+        <button>Add Instrument</button>
+      </div>
     </div>
   );
 }

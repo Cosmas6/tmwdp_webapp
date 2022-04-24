@@ -7,7 +7,7 @@ import Select from "@mui/material/Select";
 import LeftBank from "./InstSections/LeftBank";
 // import RightBank from "./InstSections/LeftBank";
 // import Spillway from "./InstSections/Spillway";
-import { Tunnels } from "./InstSections/Tunnels";
+import { RecordListTunnels } from "./InstSections/Tunnels";
 import "./stylesheets/instrumentation.scss";
 
 const Instrumentation = () => {
@@ -24,10 +24,8 @@ const Instrumentation = () => {
         return <LeftBank /*{handleClick={handleClick}}*/ />;
       case "Spillway Slopes":
         return <div>Spillway Slopes</div>;
-      case "Tunnel Slopes":
-        return <Tunnels />;
-      case "Tunnel A and B":
-        return <div>Tunnel A and B</div>;
+      case "Tunnels":
+        return <RecordListTunnels />;
       default:
         console.log(null);
     }
@@ -68,8 +66,7 @@ const Instrumentation = () => {
               <MenuItem value={"Right Bank"}>Right Bank</MenuItem>
               <MenuItem value={"Left Bank"}>Left Bank</MenuItem>
               <MenuItem value={"Spillway Slopes"}>Spillway Slopes</MenuItem>
-              <MenuItem value={"Tunnel Slopes"}>Tunnel Slopes</MenuItem>
-              <MenuItem value={"Tunnel A and B"}>Tunnel A and B</MenuItem>
+              <MenuItem value={"Tunnels"}>Tunnels</MenuItem>
             </Select>
           </FormControl>
         </Box>

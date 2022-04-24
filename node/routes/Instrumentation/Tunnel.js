@@ -33,6 +33,8 @@ router.post("/add", function (req, response) {
     instrument: req.body.instrument,
     no_instrument: req.body.no_instrument,
     location: req.body.location,
+    x: req.body.x,
+    y: req.body.y,
     remarks: req.body.remarks,
   };
   console.log(req.body, "myobj");
@@ -51,6 +53,8 @@ router.post("/update/:id", function (req, response) {
       instrument: req.body.instrument,
       no_instrument: req.body.no_instrument,
       location: req.body.location,
+      x: req.body.x,
+      y: req.body.y,
       remarks: req.body.remarks,
     },
   };
