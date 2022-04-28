@@ -4,5 +4,7 @@
   .Section_Dropdown {
     @extend .Login_Container;
   }
-  
+  .Navbar_Container {
+    width: 280px;
+  }
 }

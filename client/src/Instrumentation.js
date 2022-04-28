@@ -1,9 +1,5 @@
-import React, { useState, useEffect } from "react";
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
+import React from "react";
+import { NavLink } from "react-router-dom";
 import LeftBank from "./InstSections/LeftBank";
 // import RightBank from "./InstSections/LeftBank";
 // import Spillway from "./InstSections/Spillway";
@@ -11,67 +7,115 @@ import { RecordListTunnels } from "./InstSections/Tunnels";
 import "./stylesheets/instrumentation.scss";
 
 const Instrumentation = () => {
-  const [section, setSection] = useState("");
-  const handleChange = (e) => {
-    setSection(e.target.value);
-  };
-
-  const functionWithSwitch = () => {
-    switch (section) {
-      case "Right Bank":
-        return <div>Right Bank</div>;
-      case "Left Bank":
-        return <LeftBank /*{handleClick={handleClick}}*/ />;
-      case "Spillway Slopes":
-        return <div>Spillway Slopes</div>;
-      case "Tunnels":
-        return <RecordListTunnels />;
-      default:
-        console.log(null);
-    }
-  };
+  var pathname = window.location.pathname;
+  console.log(pathname);
+  // const functionWithSwitch = () => {
+  //   switch (damSectionData) {
+  //     case "Right Bank":
+  //       return <div>Right Bank</div>;
+  //     case "Left Bank":
+  //       return <LeftBank /*{handleClick={handleClick}}*/ />;
+  //     case "Spillway Slopes":
+  //       return <div>Spillway Slopes</div>;
+  //     case "Tunnels":
+  //       return <RecordListTunnels />;
+  //     default:
+  //       console.log(null);
+  //   }
+  // };
   //   console.log(section);
 
-  //   useEffect(() => {
-  //     switch (section) {
-  //       case "Right Bank":
-  //         console.log("Right Bank");
-  //       case "Left Bank":
-  //         console.log("Left Bank");
-  //       case "Spillway Slopes":
-  //         console.log("Spillway Slopes");
-  //       case "Tunnel Slopes":
-  //         console.log("Tunnel Slopes");
-  //       case "Tunnel A and B":
-  //         console.log("Tunnel A and B");
-  //       default:
-  //         console.log("Null");
-  //     }
-  //   }, [section]);
   return (
     <div className="Instrumentation_Container">
-      <div className="Section_Dropdown">
-        <Box sx={{ minWidth: 120 }}>
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">
-              Select Dam Section
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={section}
-              label="Select Dam Section"
-              onChange={handleChange}
+      <div className="Navbar_Container">
+        <div className="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark">
+          <a
+            href="/"
+            className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+          >
+            <svg className="bi me-2" width="40" height="32">
+              {/* <use xlink:href="#bootstrap"></use> */}
+            </svg>
+            <span className="fs-4">Instrumentation</span>
+          </a>
+          <hr />
+          <ul className="nav nav-pills flex-column mb-auto">
+            <li className="nav-item">
+              <a href="#" className="nav-link active" aria-current="page">
+                Right Bank
+              </a>
+            </li>
+            <li>
+              <a href="#" className="nav-link text-white">
+                Left Bank
+              </a>
+            </li>
+            <li>
+              <a href="#" className="nav-link text-white">
+                Spillway
+              </a>
+            </li>
+            <li>
+              <NavLink
+                to="/recordListTunnels"
+                className={(isActive) =>
+                  "nav-link" + (!isActive ? " unselected" : "")
+                }
+              >
+                Tunnels
+              </NavLink>
+              <a href="#" className="nav-link text-white"></a>
+            </li>
+          </ul>
+          <hr />
+          <div className="dropdown">
+            <a
+              href="#"
+              className="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+              id="dropdownUser1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
             >
-              <MenuItem value={"Right Bank"}>Right Bank</MenuItem>
-              <MenuItem value={"Left Bank"}>Left Bank</MenuItem>
-              <MenuItem value={"Spillway Slopes"}>Spillway Slopes</MenuItem>
-              <MenuItem value={"Tunnels"}>Tunnels</MenuItem>
-            </Select>
-          </FormControl>
-        </Box>
+              <img
+                src="https://github.com/mdo.png"
+                alt=""
+                className="rounded-circle me-2"
+                width="32"
+                height="32"
+              />
+              <strong>User</strong>
+            </a>
+            <ul
+              className="dropdown-menu dropdown-menu-white text-small shadow"
+              aria-labelledby="dropdownUser1"
+            >
+              <li>
+                <a className="dropdown-item" href="#">
+                  New project...
+                </a>
+              </li>
+              <li>
+                <a className="dropdown-item" href="#">
+                  Settings
+                </a>
+              </li>
+              <li>
+                <a className="dropdown-item" href="#">
+                  Profile
+                </a>
+              </li>
+              <li>
+                <hr className="dropdown-divider" />
+              </li>
+              <li>
+                <a className="dropdown-item" href="#">
+                  Sign out
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div className="section"> {functionWithSwitch()}</div>
     </div>
   );
 };

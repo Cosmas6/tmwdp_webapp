@@ -1,4 +1,3 @@
-//reportData reducer
 
 const initialState = {
   id: "",
@@ -8,6 +7,7 @@ const initialState = {
   spilValue: "",
   surValue: "",
   admValue: "",
+  damSection: "",
 };
 
 const reportData = (state = initialState, action) => {
@@ -46,6 +46,11 @@ const reportData = (state = initialState, action) => {
       return {
         ...state,
         admValue: action.payload,
+      };
+    case "UPDATE_DAM_SECTION":
+      return {
+        ...state,
+        damSection: action.payload,
       };
     default:
       return state;

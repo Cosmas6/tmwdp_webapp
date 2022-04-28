@@ -9,6 +9,8 @@ import storage from "redux-persist/lib/storage";
 import reportData from "./store/reducers/reportData";
 import { BrowserRouter } from "react-router-dom";
 import lastAction from "./store/reducers/lastAction";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 
 const persistConfig = {
   key: "root",

@@ -50,6 +50,12 @@ const setAdmValue = (admValuetype) => {
   };
 };
 
+const setDamSection = (damValuetype) => {
+  return {
+    type: "UPDATE_DAM_SECTION",
+    payload: damValuetype,
+  };
+};
 
 export default {
   setID,
@@ -59,4 +65,5 @@ export default {
   setSpilValue,
   setSurValue,
   setAdmValue,
+  setDamSection,
 };
