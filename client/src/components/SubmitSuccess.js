@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import "./stylesheets/submitsuccess.scss";
+import "../stylesheets/submitsuccess.scss";
 import { doc, getDoc } from "firebase/firestore";
-import db from "../firebase.config.js";
+import db from "../../firebase.config";
 import DailyReport from "./DailyReport";
 
 const SubmitSuccess = () => {

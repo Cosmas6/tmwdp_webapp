@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useForm } from "react-hook-form";
-import "./stylesheets/login.scss";
+import "../stylesheets/login.scss";
 
 function Login() {
   const navigate = useNavigate();

@@ -2,13 +2,9 @@ import React, { lazy, Suspense, useState } from "react";
 import { doc, runTransaction } from "firebase/firestore";
 import { useDispatch, useSelector } from "react-redux";
 import TextField from "@mui/material/TextField";
-import Actions from "./store/actions";
-// import { useForm } from "react-hook-form";
-import db from "../firebase.config.js";
-
-// const LoadingComponent = lazy(() => import("./Loading"));
-
-import "./stylesheets/headcount.scss";
+import Actions from "../store/actions";
+import db from "../../firebase.config.js";
+import "../stylesheets/headcount.scss";
 
 const Headcount = () => {
   const [damStateVal, setdamStateVal] = useState(0);

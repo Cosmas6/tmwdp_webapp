@@ -4,8 +4,8 @@ import DateAdapter from "@mui/lab/AdapterDateFns";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import TextField from "@mui/material/TextField";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import db from "../firebase.config.js";
-import "./stylesheets/filterdata.scss";
+import db from "../../firebase.config.js";
+import "../stylesheets/filterdata.scss";
 import DailyReport from "./DailyReport";
 
 const FilterData = () => {

@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import "./stylesheets/dailyreport.scss";
+import "../stylesheets/dailyreport.scss";
 
 const DailyReport = ({
   reportKey,

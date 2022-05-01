@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import Actions from "./store/actions";
+import Actions from "../store/actions";
 import { RadioGroup, Radio, FormControlLabel } from "@mui/material";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DateAdapter from "@mui/lab/AdapterDateFns";
 import TextField from "@mui/material/TextField";
-import db from "../firebase.config.js";
+import db from "../../firebase.config.js";
 import {
   collection,
   doc,
@@ -16,7 +16,7 @@ import {
   serverTimestamp,
   getDoc,
 } from "firebase/firestore";
-import "./stylesheets/dailyreportform.scss";
+import "../stylesheets/dailyreportform.scss";
 
 const DailyReportForm = () => {
   const {
