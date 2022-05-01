@@ -1,7 +1,7 @@
-@import "../login.scss";
+@import "../main.scss";
 
 .Tunnels_Container {
-  @extend .Login_Container;
+  @extend .Main_Container;
   @include media(">=desktop") {
     width: 70%;
     margin: 0 auto;

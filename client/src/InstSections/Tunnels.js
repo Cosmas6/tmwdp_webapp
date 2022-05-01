@@ -7,7 +7,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
-import "../stylesheets/Sections/tunnels.scss";
+import "../stylesheets/InstSections/tunnels.scss";
 
 export function CreateTunnels() {
   const [form, setForm] = useState({

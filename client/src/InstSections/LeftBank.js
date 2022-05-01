@@ -1,5 +1,5 @@
 import React from "react";
-import "../stylesheets/Sections/leftbank.scss";
+import "../stylesheets/InstSections/leftbank.scss";
 
 export default function LeftBank(props) {
   return (

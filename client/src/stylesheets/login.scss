@@ -1,46 +1,15 @@
-$primaryMargin: 0 auto;
-$primaryBorder: 1px solid black;
-$primaryBorderRadius: 3px;
-$layout-breakpoint-small: 960px;
-@import "~include-media/dist/_include-media.scss";
-
-@mixin displayBlock() {
-  display: block;
-  width: 100%;
-}
-
-@mixin fontsizeAndMarginBottom($fontSize, $marginBottom) {
-  font-size: $fontSize;
-  margin-bottom: $marginBottom;
-}
-
 .Login_Container {
   box-sizing: border-box;
-  margin: $primaryMargin;
-  padding-top: 50px;
-  @include media(">=phone") {
-    width: 350px;
-  }
 
   h1 {
     text-align: center;
   }
-  .Form_Container {
-    margin: $primaryMargin;
-    @include displayBlock();
-  }
 
   .Form_Input {
-    @include displayBlock();
-    @include fontsizeAndMarginBottom(14px, 10px);
-    border: $primaryBorder;
-    border-radius: $primaryBorderRadius;
     padding: 10px 15px;
   }
 
   .Input_Label {
-    @include displayBlock();
-    @include fontsizeAndMarginBottom(14px, 13px);
     line-height: 2;
     text-align: left;
     margin-top: 20px;
@@ -57,8 +26,6 @@ $layout-breakpoint-small: 960px;
     margin-top: 40px;
     font-size: 16px;
     letter-spacing: 3px;
-    border: $primaryBorder;
-    border-radius: $primaryBorderRadius;
   }
   .Submit_Button:hover {
     transition: 0.3s;

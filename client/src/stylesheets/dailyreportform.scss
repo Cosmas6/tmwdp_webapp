@@ -1,16 +1,8 @@
-@import "./login.scss";
-
-@mixin displayBlock() {
-  display: block;
-  width: 100%;
-}
+@import "./main.scss";
 
 .DailyReportForm_Container {
-  @extend .Login_Container;
-  @include displayBlock();
-  @include media(">=phone") {
-    width: 350px;
-  }
+  @extend .Main_Container;
+
 
   .Date_Container {
     margin-top: 40px;

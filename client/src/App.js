@@ -5,7 +5,6 @@ import SideBar from "./SideBar";
 const App = () => {
   return (
     <div className="App_Container">
-      <SideBar />
       <MainRoutes />
     </div>
   );

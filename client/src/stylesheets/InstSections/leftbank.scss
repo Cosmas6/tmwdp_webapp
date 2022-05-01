@@ -1,6 +1,7 @@
-@import "~include-media/dist/_include-media.scss";
+@import "../main.scss";
 
 .LeftBank {
+  @extend .Main_Container;
   margin: 0 auto;
   @include media(">=phone") {
     width: 1000px;
@@ -9,7 +10,8 @@
     text-align: center;
     margin-top: 1rem;
   }
-  td,th {
+  td,
+  th {
     border-style: solid;
     border-width: 1px;
   }

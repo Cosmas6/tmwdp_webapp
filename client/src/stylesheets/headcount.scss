@@ -1,7 +1,7 @@
-@import "./login.scss";
+@import "./main.scss";
 
 .Headcount_Container {
-  @extend .Login_Container;
+  @extend .Main_Container;
 
   #outlined-number {
     width: 150px;

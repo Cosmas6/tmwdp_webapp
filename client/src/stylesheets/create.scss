@@ -1,8 +1,8 @@
-@import "./login.scss";
+@import "./main.scss";
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
 .Create_Container {
-  @extend .Login_Container;
+  @extend .Main_Container;
 
   .Form_Input {
     width: 100%;

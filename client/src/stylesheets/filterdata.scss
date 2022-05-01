@@ -1,18 +1,5 @@
-@import "./dashboard.scss";
-@import "./dailyreportform.scss";
+@import "./main.scss";
 
 .FilterData_Container {
-  @extend .Login_Container;
-  @extend .DailyReportForm_Container;
-
-  .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
-    margin: 0 auto;
-    flex-direction: row;
-  }
-
-  width: 800px;
-
-  ul {
-    padding-left: 0rem;
-  }
+  @extend .Main_Container;
 }

@@ -1,7 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import "./stylesheets/sidebar.scss";
 
 const SideBar = () => {
+  // const logOut = () => {
+  //   sessionStorage.removeItem("Auth Token");
+  //   navigate("/login");
+  // };
   return (
     <div className="Sidebar_Container">
       <div className="Navbar_Container">
@@ -13,26 +18,41 @@ const SideBar = () => {
             <svg className="bi me-2" width="40" height="32">
               {/* <use xlink:href="#bootstrap"></use> */}
             </svg>
-            <span className="fs-4">Instrumentation</span>
+            <span className="fs-4">TMWDP</span>
           </a>
           <hr />
           <ul className="nav nav-pills flex-column mb-auto">
             <li className="nav-item">
-              <a href="#" className="nav-link active" aria-current="page">
-                Right Bank
-              </a>
+              <NavLink
+                to="dailyreportform"
+                className={(isActive) =>
+                  "nav-link" + (!isActive ? "unselected" : "")
+                }
+              >
+                Daily Report
+              </NavLink>
             </li>
             <li>
-              <a href="#" className="nav-link text-white">
-                Left Bank
-              </a>
+              <NavLink
+                to="instrumentation"
+                className={(isActive) =>
+                  "nav-link" + (!isActive ? "unselected" : "")
+                }
+              >
+                Instrumentation
+              </NavLink>
             </li>
             <li>
-              <a href="#" className="nav-link text-white">
-                Spillway
-              </a>
+              <NavLink
+                to="headcount"
+                className={(isActive) =>
+                  "nav-link" + (!isActive ? "unselected" : "")
+                }
+              >
+                Headcount
+              </NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink
                 to="/recordListTunnels"
                 className={(isActive) =>
@@ -42,7 +62,7 @@ const SideBar = () => {
                 Tunnels
               </NavLink>
               <a href="#" className="nav-link text-white"></a>
-            </li>
+            </li> */}
           </ul>
           <hr />
           <div className="dropdown">

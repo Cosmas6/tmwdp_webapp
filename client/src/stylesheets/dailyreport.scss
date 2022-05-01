@@ -1,4 +1,5 @@
 @import "./dashboard.scss";
+@import './main.scss';
 $primaryMargin: 0 auto;
 
 @mixin displayBlock() {
@@ -12,7 +13,7 @@ $primaryMargin: 0 auto;
     padding: 0px 20px;
   }
   @include displayBlock();
-  @extend .Login_Container;
+  @extend .Main_Container;
 
   width: 800px;
   margin-bottom: 30px;

@@ -1,0 +1,22 @@
+@import "~include-media/dist/_include-media.scss";
+$primaryMargin: 0 auto;
+$primaryBorder: 1px solid black;
+$primaryBorderRadius: 3px;
+$layout-breakpoint-small: 960px;
+
+@mixin displayFlex() {
+  display: flex;
+  width: 100%;
+}
+
+@mixin fontsizeAndMarginBottom($fontSize, $marginBottom) {
+  font-size: $fontSize;
+  margin-bottom: $marginBottom;
+}
+
+.Main_Container {
+  @include displayFlex();
+  .title {
+    margin: $primaryMargin;
+  }
+}
