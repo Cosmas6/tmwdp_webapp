@@ -16,15 +16,14 @@ module.exports = {
   devServer: {
     allowedHosts: [".ngrok.io"],
     port: 8080,
-    // contentBase: "./build",
     hot: true,
-    // overlay: true,
     compress: true,
     historyApiFallback: true,
   },
   output: {
     filename: "[name]-[contenthash].bundle.js",
     path: path.resolve(__dirname, "build"),
+    publicPath: "/",
   },
   optimization: {
     minimize: true,

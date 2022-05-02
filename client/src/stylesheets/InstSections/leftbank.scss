@@ -1,7 +1,6 @@
 @import "../main.scss";
 
 .LeftBank {
-  @extend .Main_Container;
   margin: 0 auto;
   @include media(">=phone") {
     width: 1000px;

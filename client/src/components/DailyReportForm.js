@@ -88,7 +88,7 @@ const DailyReportForm = () => {
   return (
     <div className="DailyReportForm_Container">
       <form className="Form_Container" onSubmit={handleSubmit(onSubmit)}>
-        <div className="Section_Container">
+        <div className="Section_Container daily-report-form-flex">
           <label className="Input_Label">Section</label>
           <RadioGroup
             aria-labelledby="Section"
@@ -109,7 +109,7 @@ const DailyReportForm = () => {
             />
           </RadioGroup>
         </div>
-        <div className="Weather_Container">
+        <div className="Weather_Container daily-report-form-flex" >
           <label className="Input_Label">Weather</label>
           <RadioGroup
             aria-labelledby="Weather"
@@ -130,7 +130,7 @@ const DailyReportForm = () => {
             />
           </RadioGroup>
         </div>
-        <div className="Date_Container">
+        <div className="Date_Container daily-report-form-flex">
           <LocalizationProvider dateAdapter={DateAdapter}>
             <DesktopDatePicker
               label="Date"
@@ -142,7 +142,7 @@ const DailyReportForm = () => {
             />
           </LocalizationProvider>
         </div>
-        <div className="Shift_Container">
+        <div className="Shift_Container daily-report-form-flex">
           <label className="Input_Label">Shift</label>
           <RadioGroup
             aria-labelledby="Shift"
@@ -170,6 +170,7 @@ const DailyReportForm = () => {
           multiline
           rows={8}
           defaultValue=""
+          className="daily-report-form-flex"
         />
         <TextField
           id="outlined-multiline-static"
@@ -178,6 +179,7 @@ const DailyReportForm = () => {
           multiline
           rows={8}
           defaultValue=""
+          className="daily-report-form-flex"
         />
         <div className="numbers">
           <TextField
@@ -188,6 +190,7 @@ const DailyReportForm = () => {
             InputLabelProps={{
               shrink: true,
             }}
+            className="daily-report-form-flex"
           />
           <TextField
             id="outlined-number"
@@ -197,6 +200,7 @@ const DailyReportForm = () => {
             InputLabelProps={{
               shrink: true,
             }}
+            className="daily-report-form-flex"
           />
           <TextField
             id="outlined-number"
@@ -206,6 +210,7 @@ const DailyReportForm = () => {
             InputLabelProps={{
               shrink: true,
             }}
+            className="daily-report-form-flex"
           />
           <TextField
             id="outlined-number"
@@ -215,6 +220,7 @@ const DailyReportForm = () => {
             InputLabelProps={{
               shrink: true,
             }}
+            className="daily-report-form-flex"
           />
           <TextField
             id="outlined-number"
@@ -224,6 +230,7 @@ const DailyReportForm = () => {
             InputLabelProps={{
               shrink: true,
             }}
+            className="daily-report-form-flex"
           />
           <TextField
             id="outlined-number"
@@ -233,6 +240,7 @@ const DailyReportForm = () => {
             InputLabelProps={{
               shrink: true,
             }}
+            className="daily-report-form-flex"
           />
           <TextField
             id="outlined-number"
@@ -242,6 +250,7 @@ const DailyReportForm = () => {
             InputLabelProps={{
               shrink: true,
             }}
+            className="daily-report-form-flex"
           />
           <TextField
             id="outlined-number"
@@ -251,6 +260,7 @@ const DailyReportForm = () => {
             InputLabelProps={{
               shrink: true,
             }}
+            className="daily-report-form-flex"
           />
           <TextField
             id="outlined-number"
@@ -260,6 +270,7 @@ const DailyReportForm = () => {
             InputLabelProps={{
               shrink: true,
             }}
+            className="daily-report-form-flex"
           />
           <TextField
             id="outlined-number"
@@ -269,6 +280,7 @@ const DailyReportForm = () => {
             InputLabelProps={{
               shrink: true,
             }}
+            className="daily-report-form-flex"
           />
         </div>
         {/* <label className="Input_Label">Email</label>
@@ -281,7 +293,7 @@ const DailyReportForm = () => {
           })}
         />
         <input className="Form_Input" type="text" id="activities" /> */}
-        <button className="Submit_Button" type="submit">
+        <button className="Submit_Button daily-report-form-flex" type="submit">
           Submit Form
         </button>
       </form>

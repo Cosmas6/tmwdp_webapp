@@ -1,8 +1,8 @@
 @import "./main.scss";
 
 .DailyReportForm_Container {
-  @extend .Main_Container;
-
+  @extend .Display_Inline_Block;
+  float: right;
 
   .Date_Container {
     margin-top: 40px;
@@ -19,9 +19,6 @@
     width: 2em;
     height: 2em;
   }
-  .MuiFormControl-root {
-    margin-top: 30px;
-  }
 
   #outlined-number {
     width: 150px;
@@ -31,5 +28,8 @@
     width: 300px;
   }
 
-  
+  .daily-report-form-flex {
+    display: inline-block;
+    margin: 20px 20px;
+  }
 }

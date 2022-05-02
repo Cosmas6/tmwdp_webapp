@@ -1,16 +1,43 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+
 import "./stylesheets/sidebar.scss";
 
 const SideBar = () => {
-  // const logOut = () => {
-  //   sessionStorage.removeItem("Auth Token");
-  //   navigate("/login");
-  // };
+  const navigate = useNavigate();
+  const logOut = () => {
+    signOut(auth)
+      .then(() => {
+        sessionStorage.removeItem("Auth Token");
+        navigate("/login");
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  };
+  const auth = getAuth();
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        const emailAddress = user.email;
+        setEmail(emailAddress);
+        // ...
+      } else {
+        // User is signed out
+        // ...
+      }
+    });
+  }, []);
+
   return (
     <div className="Sidebar_Container">
       <div className="Navbar_Container">
-        <div className="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark">
+        <div className="d-flex flex-column p-3 text-white bg-dark h-100 navbar-custom-css">
           <a
             href="/"
             className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
@@ -24,30 +51,30 @@ const SideBar = () => {
           <ul className="nav nav-pills flex-column mb-auto">
             <li className="nav-item">
               <NavLink
-                to="dailyreportform"
-                className={(isActive) =>
-                  "nav-link" + (!isActive ? "unselected" : "")
+                className={(navData) =>
+                  navData.isActive ? "nav-link active" : "nav-link"
                 }
+                to="dailyreportform"
               >
                 Daily Report
               </NavLink>
             </li>
             <li>
               <NavLink
-                to="instrumentation"
-                className={(isActive) =>
-                  "nav-link" + (!isActive ? "unselected" : "")
+                className={(navData) =>
+                  navData.isActive ? "nav-link active" : "nav-link"
                 }
+                to="instrumentation"
               >
                 Instrumentation
               </NavLink>
             </li>
             <li>
               <NavLink
-                to="headcount"
-                className={(isActive) =>
-                  "nav-link" + (!isActive ? "unselected" : "")
+                className={(navData) =>
+                  navData.isActive ? "nav-link active" : "nav-link"
                 }
+                to="headcount"
               >
                 Headcount
               </NavLink>
@@ -80,7 +107,7 @@ const SideBar = () => {
                 width="32"
                 height="32"
               />
-              <strong>User</strong>
+              <strong>{email}</strong>
             </a>
             <ul
               className="dropdown-menu dropdown-menu-white text-small shadow"
@@ -105,9 +132,9 @@ const SideBar = () => {
                 <hr className="dropdown-divider" />
               </li>
               <li>
-                <a className="dropdown-item" href="#">
+                <button className="dropdown-item" onClick={logOut}>
                   Sign out
-                </a>
+                </button>
               </li>
             </ul>
           </div>

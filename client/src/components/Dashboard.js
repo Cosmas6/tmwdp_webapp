@@ -10,10 +10,6 @@ const Dashboard = () => {
   useEffect(() => {
     let authToken = sessionStorage.getItem("Auth Token");
 
-    if (authToken) {
-      navigate("/dashboard");
-    }
-
     if (!authToken) {
       navigate("/login");
     }

@@ -1,7 +1,9 @@
 @import "./main.scss";
 
 .Headcount_Container {
-  @extend .Main_Container;
+  float: right;
+  position: relative;
+  
 
   #outlined-number {
     width: 150px;
