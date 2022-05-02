@@ -1,27 +1,23 @@
 @import "./dashboard.scss";
-@import './main.scss';
-$primaryMargin: 0 auto;
-
-@mixin displayBlock() {
-  display: block;
-  width: 100%;
-}
+@import "./main.scss";
 
 .DailyReport_Container {
   @include media(">=phone", "<=tablet") {
     overflow: auto;
     padding: 0px 20px;
   }
-  @include displayBlock();
-
-  width: 800px;
+  @extend .Display_Flex;
+  width: calc(100% - 300px);
   margin-bottom: 30px;
+  padding-left: 20px;
 
   .DailyReportTable_Container {
-    padding: 15px 30px;
     @include media(">=phone", "<=tablet") {
       width: 90%;
       margin: 0 auto;
+    }
+    .drf-title {
+      margin-bottom: 20px;
     }
   }
 
@@ -36,7 +32,6 @@ $primaryMargin: 0 auto;
     color: white;
     border: none;
   }
-
 
   table {
     width: 100%;

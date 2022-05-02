@@ -30,12 +30,12 @@ const MainRoutes = () => (
         <Route path="register" element={<Register />} />
         <Route path="dashboard" element={<Dashboard />}>
           {/* <Route path="/" element={<Navigate replace to="dashboard" />} /> */}
-          <Route path="dailyreportform" element={<DailyReportForm />} />
+          <Route path="dailyreportform" element={<DailyReportForm />}></Route>
           <Route path="instrumentation" element={<Instrumentation />} />
           <Route path="headcount" element={<Headcount />} />
+          <Route path="submitsuccess" element={<SubmitSuccess />} />
         </Route>
         <Route path="dailyreport" element={<DailyReport />} />
-        <Route path="submitsuccess" element={<SubmitSuccess />} />
         <Route path="filterdata" element={<FilterData />} />
         <Route path="create" element={<Create />} />
         <Route path="edit/:id" element={<Edit />} />

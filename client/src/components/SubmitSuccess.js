@@ -13,10 +13,6 @@ const SubmitSuccess = () => {
   useEffect(() => {
     let authToken = sessionStorage.getItem("Auth Token");
 
-    if (authToken) {
-      navigate("/submitsuccess");
-    }
-
     if (!authToken) {
       navigate("/login");
     }
@@ -47,7 +43,7 @@ const SubmitSuccess = () => {
   return (
     <>
       <div className="SubmitSuccess_Container">
-        <h1>Submit Successful!</h1>
+        <h1 className="title">Submit Successful!</h1>
       </div>
       <DailyReport
         reportKey={reportData.id}

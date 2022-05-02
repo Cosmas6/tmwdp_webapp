@@ -62,13 +62,71 @@ const SideBar = () => {
             <li>
               <NavLink
                 className={(navData) =>
-                  navData.isActive ? "nav-link active" : "nav-link"
+                  navData.isActive
+                    ? "nav-link rounded active"
+                    : "nav-link rounded"
                 }
+                data-bs-toggle="collapse"
+                data-bs-target="#dashboard-collapse"
+                aria-expanded="true"
                 to="instrumentation"
               >
                 Instrumentation
               </NavLink>
             </li>
+            <div class="collapse show" id="dashboard-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small sidebar-dropdowns">
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="headcount"
+                  >
+                    Left Bank
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="headcount"
+                  >
+                    Right Bank
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="headcount"
+                  >
+                    Spillway
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="headcount"
+                  >
+                    Tunnels
+                  </NavLink>
+                </li>
+              </ul>
+            </div>
+
             <li>
               <NavLink
                 className={(navData) =>

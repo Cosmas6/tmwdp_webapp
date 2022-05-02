@@ -46,7 +46,7 @@ const DailyReport = ({
             <div className="DailyReportTable_Container ">
               <table
                 class="table table-bordered border-dark table-sm"
-                style="width: 900px; margin: 15vh auto"
+                style="width: 900px;"
               >
                 <tbody>
                   <tr>
@@ -145,6 +145,7 @@ const DailyReport = ({
         fileName: date,
         options: {
           textAlign: "left",
+          height: "7in",
         },
       }),
     })
@@ -160,7 +161,7 @@ const DailyReport = ({
     <>
       <div className="DailyReport_Container">
         <div className="DailyReportTable_Container" ref={reportRef}>
-          <h1>Daily Report Form</h1>
+          <h1 className="title drf-title">Daily Report Form</h1>
           <table>
             <tbody>
               <tr>

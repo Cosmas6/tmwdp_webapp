@@ -1,14 +1,13 @@
 @import "~include-media/dist/_include-media.scss";
 $primaryMargin: 0 auto;
-$navMarginLeft: 20px;
-$navMarginTop: 20px;
+$navMargin: 20px;
 $primaryBorder: 1px solid black;
 $primaryBorderRadius: 3px;
 $layout-breakpoint-small: 960px;
 
 @mixin displayBlock() {
   display: block;
-  width: calc(100% - 280px);
+  width: calc(100% - 300px);
 }
 
 @mixin displayFlex() {
@@ -31,18 +30,25 @@ $layout-breakpoint-small: 960px;
 
 .Display_Flex {
   @include displayFlex();
-  margin-left: $navMarginLeft;
-  margin-top: $navMarginTop;
+  margin: $navMargin $navMargin;
+  flex-direction: column;
+  float: right;
+  position: inherit;
   .title {
     margin: $primaryMargin;
+    text-align: center;
   }
 }
 
 .Display_Inline_Block {
   @include displayInlineBlock();
-  margin-left: $navMarginLeft;
-  margin-top: $navMarginTop;
+  margin-left: $navMargin;
+  margin-top: $navMargin;
+  float: right;
+  position: inherit;
+
   .title {
     margin: $primaryMargin;
+    text-align: center;
   }
 }
