@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import "../stylesheets/dailyreport.scss";
 
 const DailyReport = ({
-  reportKey,
+  // reportKey,
   section,
   weather,
   date,
