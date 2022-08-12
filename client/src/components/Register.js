@@ -51,55 +51,57 @@ const Register = () => {
   });
   return (
     <div className="Register_Container">
-      <h1>TMWDP</h1>
       <div className="Form_Container">
-        <form onSubmit={handleSubmit(onSubmit)} ref={formRef}>
-          <label className="Input_Label">First Name</label>
-          <input
-            className="Form_Input"
-            type="text"
-            id="register-firstName"
-            {...register("First Name", {
-              required: true,
-            })}
-          />
-          <label className="Input_Label">Last Name</label>
-          <input
-            className="Form_Input"
-            type="text"
-            id="register-lastName"
-            {...register("Last Name", {
-              required: true,
-            })}
-          />
-          <label className="Input_Label">Email</label>
-          <input
-            className="Form_Input"
-            type="text"
-            id="login-email"
-            {...register("Email", {
-              required: true,
-            })}
-          />
-          <label className="Input_Label">Password</label>
-          <input
-            className="Form_Input"
-            type="password"
-            id="login-password"
-            {...register("Password", {
-              required: true,
-            })}
-          />
-          <button className="Submit_Button" type="submit">
-            Register
-          </button>
-          <div className="error-div">
-            <p ref={errorRef}></p>
-          </div>
-          <p>
-            Already a Member? <Link to="/login">Login Instead</Link>
-          </p>
-        </form>
+        <h1>TMWDP</h1>
+        <div className="Form">
+          <form onSubmit={handleSubmit(onSubmit)} ref={formRef}>
+            <label className="Input_Label">First Name</label>
+            <input
+              className="Form_Input"
+              type="text"
+              id="register-firstName"
+              {...register("First Name", {
+                required: true,
+              })}
+            />
+            <label className="Input_Label">Last Name</label>
+            <input
+              className="Form_Input"
+              type="text"
+              id="register-lastName"
+              {...register("Last Name", {
+                required: true,
+              })}
+            />
+            <label className="Input_Label">Email</label>
+            <input
+              className="Form_Input"
+              type="text"
+              id="login-email"
+              {...register("Email", {
+                required: true,
+              })}
+            />
+            <label className="Input_Label">Password</label>
+            <input
+              className="Form_Input"
+              type="password"
+              id="login-password"
+              {...register("Password", {
+                required: true,
+              })}
+            />
+            <button className="Submit_Button" type="submit">
+              Register
+            </button>
+            <div className="error-div">
+              <p ref={errorRef}></p>
+            </div>
+            <p>
+              Already a Member? <Link to="/login">Login Instead</Link>
+            </p>
+          </form>
+        </div>
       </div>
     </div>
   );

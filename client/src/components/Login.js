@@ -14,12 +14,12 @@ function Login() {
   useEffect(() => {
     let authToken = sessionStorage.getItem("Auth Token");
 
-    // if (authToken) {
-    //   navigate("dashboard");
-    // }
+    if (authToken) {
+      navigate("dashboard");
+    }
 
     // if (!authToken) {
-    //   navigate("login");
+    //   navigate("/login");
     // }
   }, []);
 
@@ -53,40 +53,44 @@ function Login() {
   return (
     <>
       <div className="Login_Container">
-        <h1>TMWDP</h1>
-        <form
-          className="Form_Container"
-          onSubmit={handleSubmit(onSubmit)}
-          ref={formRef}
-        >
-          <label className="Input_Label">Email</label>
-          <input
-            className="Form_Input"
-            type="text"
-            id="login-email"
-            {...register("Email", {
-              required: true,
-            })}
-          />
-          <label className="Input_Label">Password</label>
-          <input
-            className="Form_Input"
-            type="password"
-            id="login-password"
-            {...register("Password", {
-              required: true,
-            })}
-          />
-          <button className="Submit_Button" type="submit">
-            Log In
-          </button>
-          <div className="error-div">
-            <p ref={errorRef}></p>
-          </div>
-          <p>
-            Not Registered? <Link to="/register">Register Instead</Link>
-          </p>
-        </form>
+        <div className="Form_Container">
+          <h1>TMWDP</h1>
+          <form
+            className="Form"
+            onSubmit={handleSubmit(onSubmit)}
+            ref={formRef}
+          >
+            {/* <label className="Input_Label">Email</label> */}
+            <input
+              className="Form_Input"
+              type="text"
+              placeholder="Email"
+              id="login-email"
+              {...register("Email", {
+                required: true,
+              })}
+            />
+            {/* <label className="Input_Label">Password</label> */}
+            <input
+              className="Form_Input"
+              type="password"
+              placeholder="Password"
+              id="login-password"
+              {...register("Password", {
+                required: true,
+              })}
+            />
+            <button className="Submit_Button" type="submit">
+              LOGIN
+            </button>
+            <div className="error-div">
+              <p ref={errorRef}></p>
+            </div>
+            <p>
+              Not Registered? <Link to="/register">Register Instead</Link>
+            </p>
+          </form>
+        </div>
       </div>
     </>
   );

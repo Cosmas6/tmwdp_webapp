@@ -30,7 +30,7 @@ const DailyReportForm = () => {
     let authToken = sessionStorage.getItem("Auth Token");
 
     if (!authToken) {
-      navigate("/login");
+      navigate("/signin");
     }
   }, []);
 

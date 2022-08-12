@@ -1,12 +1,34 @@
 .Login_Container {
   box-sizing: border-box;
+  background-image: url("../images/istockphoto-1267010934-1024x1024.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  position: relative;
+
+  .Form_Container {
+    position: absolute;
+    right: 0;
+    height: 100vh;
+    padding: 50px;
+    max-width: 500px;
+    background-color: white;
+  }
 
   h1 {
     text-align: center;
   }
 
   .Form_Input {
-    padding: 10px 15px;
+    padding: 10px 0;
+    margin: 20px 0;
+    border: none;
+    border-bottom: 2px solid black;
+    width: 100%;
+    &:focus {
+      outline: none !important;
+    }
   }
 
   .Input_Label {
@@ -18,8 +40,9 @@
   }
 
   .Submit_Button {
-    background: white;
-    color: black;
+    background: black;
+    border: 1px solid black;
+    color: white;
     text-transform: uppercase;
     padding: 20px;
     width: 100%;
@@ -29,9 +52,9 @@
   }
   .Submit_Button:hover {
     transition: 0.3s;
-    background: blue;
-    color: white;
-    border: 1px solid #006dfc;
+    background: white;
+    color: black;
+    border: 1px solid black;
   }
 
   .Loading_Div {
