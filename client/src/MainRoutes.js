@@ -9,7 +9,6 @@ import SubmitSuccess from "./components/SubmitSuccess";
 import FilterData from "./components/FilterData";
 import DailyReportForm from "./components/DailyReportForm";
 import Loading from "./components/Loading";
-import Headcount from "./components/Headcount";
 import Create from "./mongo/create";
 import Edit from "./mongo/edit";
 import RecordList from "./mongo/recordList";
@@ -20,6 +19,7 @@ import {
   RecordListTunnels,
 } from "./InstSections/Tunnels";
 import SignIn from "./components/SignIn";
+import InstGraph from "./components/InstGraph";
 
 const MainRoutes = () => (
   <Suspense fallback={<Loading />}>
@@ -28,13 +28,13 @@ const MainRoutes = () => (
         <Route path="/" element={<Navigate replace to="login" />} />
         <Route path="loading" element={<Loading />} />
         {/* <Route path="signin" element={<SignIn />}> */}
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
         {/* </Route> */}
         <Route path="dashboard" element={<Dashboard />}>
           <Route path="dailyreportform" element={<DailyReportForm />}></Route>
           <Route path="instrumentation" element={<Instrumentation />} />
-          <Route path="headcount" element={<Headcount />} />
+          <Route path="instgraph" element={<InstGraph />} />
           <Route path="submitsuccess" element={<SubmitSuccess />} />
         </Route>
         <Route path="dailyreport" element={<DailyReport />} />

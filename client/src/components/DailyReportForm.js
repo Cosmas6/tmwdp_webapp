@@ -4,9 +4,9 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import Actions from "../store/actions";
 import { RadioGroup, Radio, FormControlLabel } from "@mui/material";
-import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import DateAdapter from "@mui/lab/AdapterDateFns";
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import {AdapterDateFns} from '@mui/x-date-pickers/AdapterDateFns'
 import TextField from "@mui/material/TextField";
 import db from "../../firebase.config.js";
 import {
@@ -131,7 +131,7 @@ const DailyReportForm = () => {
           </RadioGroup>
         </div>
         <div className="Date_Container daily-report-form-flex">
-          <LocalizationProvider dateAdapter={DateAdapter}>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DesktopDatePicker
               label="Date"
               inputFormat="dd/MM/yyyy"

@@ -40,12 +40,12 @@ const SideBar = () => {
         <div className="d-flex flex-column p-3 text-white bg-dark h-100 navbar-custom-css">
           <a
             href="/"
-            className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+            className="d-flex text-white text-decoration-none sidebar-heading-container"
           >
-            <svg className="bi me-2" width="40" height="32">
-              {/* <use xlink:href="#bootstrap"></use> */}
-            </svg>
-            <span className="fs-4">TMWDP</span>
+            {/* <svg className="bi me-2" width="40" height="32">
+              
+            </svg> */}
+            <span className="sidebar-heading">TMWDP</span>
           </a>
           <hr />
           <ul className="nav nav-pills flex-column mb-auto">
@@ -59,7 +59,7 @@ const SideBar = () => {
                 Daily Report
               </NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink
                 className={(navData) =>
                   navData.isActive
@@ -73,9 +73,9 @@ const SideBar = () => {
               >
                 Instrumentation
               </NavLink>
-            </li>
-            <div class="collapse show" id="dashboard-collapse">
-              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small sidebar-dropdowns">
+            </li> */}
+            {/* <div className="collapse show" id="dashboard-collapse">
+              <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small sidebar-dropdowns">
                 <li>
                   <NavLink
                     className={(navData) =>
@@ -125,16 +125,16 @@ const SideBar = () => {
                   </NavLink>
                 </li>
               </ul>
-            </div>
+            </div> */}
 
             <li>
               <NavLink
                 className={(navData) =>
                   navData.isActive ? "nav-link active" : "nav-link"
                 }
-                to="headcount"
+                to="instgraph"
               >
-                Headcount
+                Inst Graph
               </NavLink>
             </li>
             {/* <li>

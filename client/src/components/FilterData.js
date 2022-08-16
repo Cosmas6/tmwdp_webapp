@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import DateAdapter from "@mui/lab/AdapterDateFns";
-import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import TextField from "@mui/material/TextField";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import db from "../../firebase.config.js";
@@ -55,7 +55,7 @@ const FilterData = () => {
     <div className="FilterData_Container">
       <h1>Select Date of Report</h1>
       <div className="Date_Container">
-        <LocalizationProvider dateAdapter={DateAdapter}>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DesktopDatePicker
             label="Date"
             inputFormat="dd/MM/yyyy"
