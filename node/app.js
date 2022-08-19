@@ -10,10 +10,11 @@ var usersRouter = require("./routes/users");
 var testAPIRouter = require("./routes/testAPI");
 var nodeMailerRouter = require("./routes/nodeMailer");
 var recordRouter = require("./routes/records");
-var SpillwayInstRouter = require("./routes/Instrumentation/Spillway");
 var TunnelInstRouter = require("./routes/Instrumentation/Tunnel");
+var crackMeterRouter = require("./routes/Instrumentation/readings");
 var dbo = require("./mongoDB/conn");
 var InstDbo = require("./mongoDB/InstConn");
+var crackmeterDbo = require("./mongoDB/crackmeterConn");
 var fileUpload = require("express-fileupload");
 var app = express();
 app.use(cors());
@@ -27,7 +28,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "/public")));
-app.use(cors());
 app.use(fileUpload());
 
 app.use("/", indexRouter);
@@ -35,14 +35,18 @@ app.use("/users", usersRouter);
 app.use("/testAPI", testAPIRouter);
 app.use("/nodeMailer", nodeMailerRouter);
 app.use("/records", recordRouter);
-app.use("/instSpillway", SpillwayInstRouter);
 app.use("/instTunnel", TunnelInstRouter);
+app.use("/crackMeterRouter", crackMeterRouter);
 
 // perform a database connection when server starts
 
 // dbo.connectToServer(function (err) {
 //   if (err) console.error(err);
 // });
+
+crackmeterDbo.connectToServer(function (err) {
+  if (err) console.error(err);
+});
 
 InstDbo.connectToServer(function (err) {
   if (err) console.error(err);

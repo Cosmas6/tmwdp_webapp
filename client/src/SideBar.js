@@ -132,9 +132,9 @@ const SideBar = () => {
                 className={(navData) =>
                   navData.isActive ? "nav-link active" : "nav-link"
                 }
-                to="instgraph"
+                to="createReading"
               >
-                Inst Graph
+                CM Reading
               </NavLink>
             </li>
             {/* <li>

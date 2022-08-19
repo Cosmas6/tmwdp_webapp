@@ -12,14 +12,14 @@ import Loading from "./components/Loading";
 import Create from "./mongo/create";
 import Edit from "./mongo/edit";
 import RecordList from "./mongo/recordList";
-import Instrumentation from "./components/Instrumentation";
 import {
   CreateTunnels,
   EditTunnels,
   RecordListTunnels,
-} from "./InstSections/Tunnels";
-import SignIn from "./components/SignIn";
-import InstGraph from "./components/InstGraph";
+} from "./Instrumentation/Tunnels";
+import CreateReading from "./Instrumentation/createReading";
+import EditReading from "./Instrumentation/editReading";
+import Reading from "./Instrumentation/Reading";
 
 const MainRoutes = () => (
   <Suspense fallback={<Loading />}>
@@ -33,8 +33,9 @@ const MainRoutes = () => (
         {/* </Route> */}
         <Route path="dashboard" element={<Dashboard />}>
           <Route path="dailyreportform" element={<DailyReportForm />}></Route>
-          <Route path="instrumentation" element={<Instrumentation />} />
-          <Route path="instgraph" element={<InstGraph />} />
+          <Route path="createReading" element={<CreateReading />}></Route>
+          <Route path="editReading" element={<EditReading />}></Route>
+          <Route path="reading" element={<Reading />} />
           <Route path="submitsuccess" element={<SubmitSuccess />} />
         </Route>
         <Route path="dailyreport" element={<DailyReport />} />

@@ -16,7 +16,8 @@ $layout-breakpoint-small: 960px;
 }
 @mixin displayInlineBlock() {
   display: inline-block;
-  width: calc(100% - 300px);
+  width: calc(100% - 320px);
+  margin-right: 20px;
 }
 
 @mixin fontsizeAndMarginBottom($fontSize, $marginBottom) {

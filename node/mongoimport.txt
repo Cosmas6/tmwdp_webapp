@@ -1,0 +1,1 @@
+mongoimport --uri "mongodb+srv://cosmas:mongodbcosmas123@tmwdp.hbt0i.mongodb.net/?retryWrites=true&w=majority" --db CrackMeter --collection C1 --type csv --headerline --file C:\Users\HP\Projects\tmwdp_webapp\node\Crackmeterdata.csv
