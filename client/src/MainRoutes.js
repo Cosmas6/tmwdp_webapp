@@ -32,10 +32,10 @@ const MainRoutes = () => (
         <Route path="register" element={<Register />} />
         {/* </Route> */}
         <Route path="dashboard" element={<Dashboard />}>
-          <Route path="dailyreportform" element={<DailyReportForm />}></Route>
-          <Route path="createReading" element={<CreateReading />}></Route>
-          <Route path="editReading" element={<EditReading />}></Route>
+          <Route path="dailyreportform" element={<DailyReportForm />} />
           <Route path="reading" element={<Reading />} />
+          <Route path="createReading" element={<CreateReading />} />
+          <Route path="editReading/:id" element={<EditReading />} />
           <Route path="submitsuccess" element={<SubmitSuccess />} />
         </Route>
         <Route path="dailyreport" element={<DailyReport />} />

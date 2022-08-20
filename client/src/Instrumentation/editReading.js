@@ -4,13 +4,13 @@ import "../stylesheets/edit.scss";
 
 export default function EditReading() {
   const [form, setForm] = useState({
-    date: "",
-    x1: "",
-    x2: "",
-    y1: "",
-    y2: "",
-    z1: "",
-    z2: "",
+    Date: "",
+    X1: "",
+    X2: "",
+    Y1: "",
+    Y2: "",
+    Z1: "",
+    Z2: "",
     records: [],
   });
   const params = useParams();
@@ -54,13 +54,13 @@ export default function EditReading() {
   async function onSubmit(e) {
     e.preventDefault();
     const editedReading = {
-      date: form.date,
-      x1: form.x1,
-      x2: form.x2,
-      y1: form.y1,
-      y2: form.y2,
-      z1: form.z1,
-      z2: form.z2,
+      Date: form.Date,
+      X1: form.X1,
+      X2: form.X2,
+      Y1: form.Y1,
+      Y2: form.Y2,
+      Z1: form.Z1,
+      Z2: form.Z2,
     };
 
     // This will send a post request to update the data in the database.
@@ -89,7 +89,7 @@ export default function EditReading() {
           className="Form_Input"
           id="date"
           name="date-input"
-          value={form.date}
+          value={form.Date}
           onChange={(e) => updateForm({ date: e.target.value })}
         />
 
@@ -102,7 +102,7 @@ export default function EditReading() {
             className="form-check-input"
             name="X1"
             id="X1"
-            value={form.x1}
+            value={form.X1}
             onChange={(e) => updateForm({ x1: e.target.value })}
           />
           <label htmlFor="X2" className="Input_Label">
@@ -113,7 +113,7 @@ export default function EditReading() {
             className="form-check-input"
             name="X2"
             id="X2"
-            value={form.x2}
+            value={form.X2}
             onChange={(e) => updateForm({ x2: e.target.value })}
           />
         </div>
@@ -127,7 +127,7 @@ export default function EditReading() {
             className="form-check-input"
             name="Y1"
             id="Y1"
-            value={form.y1}
+            value={form.Y1}
             onChange={(e) => updateForm({ y1: e.target.value })}
           />
           <label htmlFor="Y2" className="Input_Label">
@@ -138,7 +138,7 @@ export default function EditReading() {
             className="form-check-input"
             name="Y2"
             id="Y2"
-            value={form.y2}
+            value={form.Y2}
             onChange={(e) => updateForm({ y2: e.target.value })}
           />
         </div>
@@ -152,7 +152,7 @@ export default function EditReading() {
             className="form-check-input"
             name="Z1"
             id="Z1"
-            value={form.z1}
+            value={form.Z1}
             onChange={(e) => updateForm({ z1: e.target.value })}
           />
           <label htmlFor="Z2" className="Input_Label">
@@ -163,7 +163,7 @@ export default function EditReading() {
             className="form-check-input"
             name="Z2"
             id="Z2"
-            value={form.z2}
+            value={form.Z2}
             onChange={(e) => updateForm({ z2: e.target.value })}
           />
         </div>

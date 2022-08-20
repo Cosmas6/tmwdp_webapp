@@ -4,13 +4,13 @@ import "../stylesheets/create.scss";
 
 export default function CreateReading() {
   const [form, setForm] = useState({
-    date: "",
-    x1: "",
-    x2: "",
-    y1: "",
-    y2: "",
-    z1: "",
-    z2: "",
+    Date: "",
+    X1: "",
+    X2: "",
+    Y1: "",
+    Y2: "",
+    Z1: "",
+    Z2: "",
   });
 
   const navigate = useNavigate();
@@ -39,7 +39,7 @@ export default function CreateReading() {
       window.alert(error);
       return;
     });
-    setForm({ date: "", x1: "", x2: "", y1: "", y2: "", z1: "", z2: "" });
+    setForm({ Date: "", X1: "", X2: "", Y1: "", Y2: "", Z1: "", Z2: "" });
     navigate("/dashboard/reading");
   };
 
@@ -57,8 +57,8 @@ export default function CreateReading() {
           className="Form_Input"
           id="date"
           name="date-input"
-          value={form.date}
-          onChange={(e) => updateForm({ date: e.target.value })}
+          value={form.Date}
+          onChange={(e) => updateForm({ Date: e.target.value })}
         />
 
         <div className="X-group">
@@ -70,8 +70,8 @@ export default function CreateReading() {
             className="form-check-input"
             name="X1"
             id="X1"
-            value={form.x1}
-            onChange={(e) => updateForm({ x1: e.target.value })}
+            value={form.X1}
+            onChange={(e) => updateForm({ X1: e.target.value })}
           />
           <label htmlFor="X2" className="Input_Label">
             X2
@@ -81,8 +81,8 @@ export default function CreateReading() {
             className="form-check-input"
             name="X2"
             id="X2"
-            value={form.x2}
-            onChange={(e) => updateForm({ x2: e.target.value })}
+            value={form.X2}
+            onChange={(e) => updateForm({ X2: e.target.value })}
           />
         </div>
 
@@ -95,8 +95,8 @@ export default function CreateReading() {
             className="form-check-input"
             name="Y1"
             id="Y1"
-            value={form.y1}
-            onChange={(e) => updateForm({ y1: e.target.value })}
+            value={form.Y1}
+            onChange={(e) => updateForm({ Y1: e.target.value })}
           />
           <label htmlFor="Y2" className="Input_Label">
             Y2
@@ -106,8 +106,8 @@ export default function CreateReading() {
             className="form-check-input"
             name="Y2"
             id="Y2"
-            value={form.y2}
-            onChange={(e) => updateForm({ y2: e.target.value })}
+            value={form.Y2}
+            onChange={(e) => updateForm({ Y2: e.target.value })}
           />
         </div>
 
@@ -120,8 +120,8 @@ export default function CreateReading() {
             className="form-check-input"
             name="Z1"
             id="Z1"
-            value={form.z1}
-            onChange={(e) => updateForm({ z1: e.target.value })}
+            value={form.Z1}
+            onChange={(e) => updateForm({ Z1: e.target.value })}
           />
           <label htmlFor="Z2" className="Input_Label">
             Z2
@@ -131,8 +131,8 @@ export default function CreateReading() {
             className="form-check-input"
             name="Z2"
             id="Z2"
-            value={form.z2}
-            onChange={(e) => updateForm({ z2: e.target.value })}
+            value={form.Z2}
+            onChange={(e) => updateForm({ Z2: e.target.value })}
           />
         </div>
 

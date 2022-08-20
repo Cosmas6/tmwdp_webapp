@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "../stylesheets/reading.scss";
 
 const Reading = (props) => (
   <tr>
-    <td>{props.reading.date}</td>
-    <td>{props.reading.x1}</td>
-    <td>{props.reading.x2}</td>
-    <td>{props.reading.y1}</td>
-    <td>{props.reading.y2}</td>
-    <td>{props.reading.z1}</td>
-    <td>{props.reading.z2}</td>
+    <td>{props.reading.Date}</td>
+    <td>{props.reading.X1}</td>
+    <td>{props.reading.X2}</td>
+    <td>{props.reading.Y1}</td>
+    <td>{props.reading.Y2}</td>
+    <td>{props.reading.Z1}</td>
+    <td>{props.reading.Z2}</td>
     <td>
-      <Link className="btn btn-link" to={`/edit/${props.reading._id}`}>
+      <Link className="btn btn-link" to={`/dashboard/editReading/${props.reading._id}`}>
         Edit
       </Link>{" "}
       |
       <button
         className="btn btn-link"
         onClick={() => {
-          props.deleteRecord(props.record._id);
+          props.deleteRecord(props.reading._id);
         }}
       >
         Delete
@@ -53,7 +54,7 @@ export default function ReadingList() {
       method: "DELETE",
     });
 
-    const newReadings = records.filter((el) => el._id !== id);
+    const newReadings = readings.filter((el) => el._id !== id);
     setReadings(newReadings);
   }
 
@@ -62,7 +63,7 @@ export default function ReadingList() {
       return (
         <Reading
           reading={reading}
-          deleteRecord={() => deleteRecord(record._id)}
+          deleteRecord={() => deleteRecord(reading._id)}
           key={reading._id}
         />
       );
@@ -70,7 +71,7 @@ export default function ReadingList() {
   }
 
   return (
-    <div>
+    <div className="Reading_Container">
       <h3>Reading List</h3>
       <table className="table table-striped" style={{ marginTop: 20 }}>
         <thead>
