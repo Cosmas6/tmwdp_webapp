@@ -20,6 +20,7 @@ import {
 import CreateReading from "./Instrumentation/createReading";
 import EditReading from "./Instrumentation/editReading";
 import Reading from "./Instrumentation/Reading";
+import ReactGraph from "./components/ReactGraph";
 
 const MainRoutes = () => (
   <Suspense fallback={<Loading />}>
@@ -37,6 +38,7 @@ const MainRoutes = () => (
           <Route path="createReading" element={<CreateReading />} />
           <Route path="editReading/:id" element={<EditReading />} />
           <Route path="submitsuccess" element={<SubmitSuccess />} />
+          <Route path="reactGraph" element={<ReactGraph />} />
         </Route>
         <Route path="dailyreport" element={<DailyReport />} />
         <Route path="filterdata" element={<FilterData />} />

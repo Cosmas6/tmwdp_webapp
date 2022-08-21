@@ -1,0 +1,14 @@
+@import "./main.scss";
+
+.ReactGraph_Container {
+  @extend .Display_Inline_Block;
+  float: right;
+
+  table {
+    th,
+    tr,
+    td {
+      border: 1px solid;
+    }
+  }
+}

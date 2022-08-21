@@ -137,6 +137,16 @@ const SideBar = () => {
                 CM Reading
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                className={(navData) =>
+                  navData.isActive ? "nav-link active" : "nav-link"
+                }
+                to="reactGraph"
+              >
+                Graph
+              </NavLink>
+            </li>
             {/* <li>
               <NavLink
                 to="/recordListTunnels"
