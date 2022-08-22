@@ -11,28 +11,28 @@ import {
 } from "recharts";
 import "../stylesheets/reactgraph.scss";
 
-const DefandcumulList = (props) => {
-  const defX = ((props.reading.X1 + props.reading.X2) / 2).toFixed(2);
-  const defY = ((props.reading.Y1 + props.reading.Y2) / 2).toFixed(2);
-  const defZ = ((props.reading.Z1 + props.reading.Z2) / 2).toFixed(2);
-  const cumulX = (defX - 28.53).toFixed(2);
-  const cumulY = (defY - 27.52).toFixed(2);
-  const cumulZ = (defZ - 19.68).toFixed(2);
-  console.log(defX);
-  return (
-    <>
-      <tr>
-        <td>{props.reading.Date}</td>
-        <td>{defX}</td>
-        <td>{defY}</td>
-        <td>{defZ}</td>
-        <td>{cumulX}</td>
-        <td>{cumulY}</td>
-        <td>{cumulZ}</td>
-      </tr>
-    </>
-  );
-};
+// const DefandcumulList = (props) => {
+//   const defX = ((props.reading.X1 + props.reading.X2) / 2).toFixed(2);
+//   const defY = ((props.reading.Y1 + props.reading.Y2) / 2).toFixed(2);
+//   const defZ = ((props.reading.Z1 + props.reading.Z2) / 2).toFixed(2);
+//   const cumulX = (defX - 28.53).toFixed(2);
+//   const cumulY = (defY - 27.52).toFixed(2);
+//   const cumulZ = (defZ - 19.68).toFixed(2);
+//   console.log(defX);
+//   return (
+//     <>
+//       <tr>
+//         <td>{props.reading.Date}</td>
+//         <td>{defX}</td>
+//         <td>{defY}</td>
+//         <td>{defZ}</td>
+//         <td>{cumulX}</td>
+//         <td>{cumulY}</td>
+//         <td>{cumulZ}</td>
+//       </tr>
+//     </>
+//   );
+// };
 
 export default function ReactGraph() {
   const [readings, setReadings] = useState([]);
@@ -55,54 +55,32 @@ export default function ReactGraph() {
     return;
   }, [readings.length]);
 
-  const data = [
-    {
-      name: "Page A",
-      uv: 4000,
-      pv: 2400,
-      amt: 2400,
-    },
-    {
-      name: "Page B",
-      uv: 3000,
-      pv: 1398,
-      amt: 2210,
-    },
-    {
-      name: "Page C",
-      uv: 2000,
-      pv: 9800,
-      amt: 2290,
-    },
-    {
-      name: "Page D",
-      uv: 2780,
-      pv: 3908,
-      amt: 2000,
-    },
-    {
-      name: "Page E",
-      uv: 1890,
-      pv: 4800,
-      amt: 2181,
-    },
-    {
-      name: "Page F",
-      uv: 2390,
-      pv: 3800,
-      amt: 2500,
-    },
-    {
-      name: "Page G",
-      uv: 3490,
-      pv: 4300,
-      amt: 2100,
-    },
-  ];
+  const data = [];
 
   function defandcumulList() {
     return readings.map((reading) => {
-      return <DefandcumulList reading={reading} key={reading._id} />;
+      const date = reading.Date;
+      const defX = ((reading.X1 + reading.X2) / 2).toFixed(2);
+      const defY = ((reading.Y1 + reading.Y2) / 2).toFixed(2);
+      const defZ = ((reading.Z1 + reading.Z2) / 2).toFixed(2);
+      const cumulX = (defX - 28.53).toFixed(2);
+      const cumulY = (defY - 27.52).toFixed(2);
+      const cumulZ = (defZ - 19.68).toFixed(2);
+
+      let d = {
+        date: date,
+        cumulX: cumulX,
+        cumulY: cumulY,
+        cumulZ: cumulZ,
+      };
+
+      data.push(d);
+
+      return (
+        <>
+          <div className="defandcumulList"></div>
+        </>
+      );
     });
   }
 
@@ -111,8 +89,8 @@ export default function ReactGraph() {
       <h1>Good</h1>
 
       <LineChart
-        width={400}
-        height={200}
+        width={800}
+        height={600}
         data={data}
         margin={{
           top: 5,
@@ -122,33 +100,22 @@ export default function ReactGraph() {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
+        <XAxis dataKey="date" />
+        <YAxis  domain={[-1.5, 1.5]}/>
         <Tooltip />
         <Legend />
         <Line
           type="monotone"
-          dataKey="pv"
-          stroke="#8884d8"
+          dataKey="cumulX"
+          stroke="#0000FF"
+          strokeWidth={2}
           activeDot={{ r: 8 }}
         />
-        <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+        <Line type="monotone" dataKey="cumulY" stroke="#ff0000" strokeWidth={2} />
+        <Line type="monotone" dataKey="cumulZ" stroke="#00FF00" strokeWidth={2} />
       </LineChart>
 
-      <table className="table table-striped" style={{ marginTop: 20 }}>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Def X</th>
-            <th>Def Y</th>
-            <th>Def Z</th>
-            <th>CUMUL X</th>
-            <th>CUMUL Y</th>
-            <th>CUMUL Z</th>
-          </tr>
-        </thead>
-        <tbody>{defandcumulList()}</tbody>
-      </table>
+      {defandcumulList()}
     </div>
   );
 }
