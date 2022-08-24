@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const CMdbo = require("../../mongoDB/crackmeterConn");
+const CMdbo = require("../../../mongoDB/crackmeterConn");
 const ObjectId = require("mongodb").ObjectId;
 
 // This section will help you get a list of all the records.

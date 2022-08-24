@@ -4,7 +4,8 @@ import "../stylesheets/reading.scss";
 
 const Reading = (props) => (
   <tr>
-    <td>{props.reading.Date}</td>
+    <td>{props.reading.CrackMeter}</td>
+    <td>{props.reading.DateOfReading}</td>
     <td>{props.reading.X1}</td>
     <td>{props.reading.X2}</td>
     <td>{props.reading.Y1}</td>
@@ -76,7 +77,8 @@ export default function ReadingList() {
       <table className="table table-striped" style={{ marginTop: 20 }}>
         <thead>
           <tr>
-            <th>Date</th>
+            <th>Crack Meter</th>
+            <th>Date Of Reading</th>
             <th>X1</th>
             <th>X2</th>
             <th>Y1</th>

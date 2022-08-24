@@ -4,7 +4,8 @@ import "../stylesheets/create.scss";
 
 export default function CreateReading() {
   const [form, setForm] = useState({
-    Date: "",
+    CrackMeter:'',
+    DateOfReading: "",
     X1: "",
     X2: "",
     Y1: "",
@@ -39,7 +40,7 @@ export default function CreateReading() {
       window.alert(error);
       return;
     });
-    setForm({ Date: "", X1: "", X2: "", Y1: "", Y2: "", Z1: "", Z2: "" });
+    setForm({ CrackMeter:'',DateOfReading: "", X1: "", X2: "", Y1: "", Y2: "", Z1: "", Z2: "" });
     navigate("/dashboard/reading");
   };
 
@@ -48,17 +49,31 @@ export default function CreateReading() {
     <div className="Create_Container">
       <h1>Crack Meter C1 readings</h1>
       <form className="Form_Container" onSubmit={onSubmit}>
+
+         {/* CrackMeter needs a different input */}
+         <label htmlFor="crackmeter-input" className="Input_Label">
+          Crack Meter
+        </label>
+        <input
+          type="text"
+          className="Form_Input"
+          id="crackmeter"
+          name="crackmeter-input"
+          value={form.CrackMeter}
+          onChange={(e) => updateForm({ CrackMeter: e.target.value })}
+        />
+
         {/* Date needs a different input */}
         <label htmlFor="date-input" className="Input_Label">
-          Date
+          Date Of Reading
         </label>
         <input
           type="text"
           className="Form_Input"
           id="date"
           name="date-input"
-          value={form.Date}
-          onChange={(e) => updateForm({ Date: e.target.value })}
+          value={form.DateOfReading}
+          onChange={(e) => updateForm({ DateOfReading: e.target.value })}
         />
 
         <div className="X-group">
