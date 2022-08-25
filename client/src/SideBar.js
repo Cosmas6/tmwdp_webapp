@@ -132,7 +132,7 @@ const SideBar = () => {
                 className={(navData) =>
                   navData.isActive ? "nav-link active" : "nav-link"
                 }
-                to="createReading"
+                to="cmReading"
               >
                 CM Reading
               </NavLink>
@@ -145,6 +145,16 @@ const SideBar = () => {
                 to="reactGraph"
               >
                 Graph
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className={(navData) =>
+                  navData.isActive ? "nav-link active" : "nav-link"
+                }
+                to="example"
+              >
+               Testing
               </NavLink>
             </li>
             {/* <li>

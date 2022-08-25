@@ -21,6 +21,8 @@ import CreateReading from "./Instrumentation/createReading";
 import EditReading from "./Instrumentation/editReading";
 import Reading from "./Instrumentation/Reading";
 import ReactGraph from "./components/ReactGraph";
+import Example from "./Instrumentation/Example";
+import CMReading from "./Instrumentation/CMReading";
 
 const MainRoutes = () => (
   <Suspense fallback={<Loading />}>
@@ -34,11 +36,13 @@ const MainRoutes = () => (
         {/* </Route> */}
         <Route path="dashboard" element={<Dashboard />}>
           <Route path="dailyreportform" element={<DailyReportForm />} />
+          <Route path="cmReading" element={<CMReading />} />
           <Route path="reading" element={<Reading />} />
           <Route path="createReading" element={<CreateReading />} />
           <Route path="editReading/:id" element={<EditReading />} />
           <Route path="submitsuccess" element={<SubmitSuccess />} />
           <Route path="reactGraph" element={<ReactGraph />} />
+          <Route path="example" element={<Example />} />
         </Route>
         <Route path="dailyreport" element={<DailyReport />} />
         <Route path="filterdata" element={<FilterData />} />

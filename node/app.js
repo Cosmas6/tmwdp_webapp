@@ -12,6 +12,8 @@ var nodeMailerRouter = require("./routes/nodeMailer");
 var recordRouter = require("./routes/records");
 var TunnelInstRouter = require("./routes/Instrumentation/Tunnel");
 var crackMeterRouter = require("./routes/Instrumentation/readings");
+var C1Router = require("./routes/Instrumentation/CrackMeters/C1");
+var C2Router = require("./routes/Instrumentation/CrackMeters/C2");
 var dbo = require("./mongoDB/conn");
 var InstDbo = require("./mongoDB/InstConn");
 var crackmeterDbo = require("./mongoDB/crackmeterConn");
@@ -37,6 +39,8 @@ app.use("/nodeMailer", nodeMailerRouter);
 app.use("/records", recordRouter);
 app.use("/instTunnel", TunnelInstRouter);
 app.use("/crackMeterRouter", crackMeterRouter);
+app.use("/C1Router", C1Router);
+app.use("/C2Router", C2Router);
 
 // perform a database connection when server starts
 
