@@ -132,7 +132,7 @@ const SideBar = () => {
                 className={(navData) =>
                   navData.isActive ? "nav-link active" : "nav-link"
                 }
-                to="cmReading"
+                to="createReading"
               >
                 CM Reading
               </NavLink>

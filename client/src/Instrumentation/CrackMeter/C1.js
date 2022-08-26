@@ -1,13 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router";
 
-const C1 = () => {
+export default function CreateReadingC1() {
+  const [form, setForm] = useState({
+    CrackMeter: 1,
+    DateOfReading: "",
+    X1: "",
+    X2: "",
+    Y1: "",
+    Y2: "",
+    Z1: "",
+    Z2: "",
+  });
+
+  const navigate = useNavigate();
+
+  // These methods will update the state properties.
+  function updateForm(value) {
+    return setForm((prev) => {
+      return { ...prev, ...value };
+    });
+  }
+
+  // This function will handle the submission.
   const onSubmit = async (e) => {
     e.preventDefault();
     // When a post request is sent to the create url, we'll add a new record to the database.
     const newReading = { ...form };
     console.log(newReading, "newReading");
 
-    await fetch("http://localhost:4000/crackMeterRouter/add", {
+    await fetch("http://localhost:4000/C1Router/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -18,7 +40,7 @@ const C1 = () => {
       return;
     });
     setForm({
-      CrackMeter: "",
+      CrackMeter: 1,
       DateOfReading: "",
       X1: "",
       X2: "",
@@ -27,7 +49,7 @@ const C1 = () => {
       Z1: "",
       Z2: "",
     });
-    navigate("/dashboard/reading");
+    // navigate("/dashboard/reading");
   };
   return (
     <div className="Create_Container">
@@ -42,8 +64,9 @@ const C1 = () => {
           className="Form_Input"
           id="crackmeter"
           name="crackmeter-input"
-          value={form.CrackMeter}
-          onChange={(e) => updateForm({ CrackMeter: e.target.value })}
+          value={1}
+          readOnly
+          // onChange={(e) => updateForm({ CrackMeter: e.target.value })}
         />
 
         {/* Date needs a different input */}
@@ -140,6 +163,4 @@ const C1 = () => {
       </form>
     </div>
   );
-};
-
-export default C1;
+}
