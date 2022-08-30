@@ -59,7 +59,7 @@ const SideBar = () => {
                 Daily Report
               </NavLink>
             </li>
-            {/* <li>
+            <li>
               <NavLink
                 className={(navData) =>
                   navData.isActive
@@ -71,10 +71,10 @@ const SideBar = () => {
                 aria-expanded="true"
                 to="instrumentation"
               >
-                Instrumentation
+                CM Reading
               </NavLink>
-            </li> */}
-            {/* <div className="collapse show" id="dashboard-collapse">
+            </li>
+            <div className="collapse show" id="dashboard-collapse">
               <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small sidebar-dropdowns">
                 <li>
                   <NavLink
@@ -83,9 +83,9 @@ const SideBar = () => {
                         ? "link-white rounded active"
                         : "link-white rounded"
                     }
-                    to="headcount"
+                    to="createReadingC1"
                   >
-                    Left Bank
+                   C1
                   </NavLink>
                 </li>
                 <li>
@@ -95,12 +95,12 @@ const SideBar = () => {
                         ? "link-white rounded active"
                         : "link-white rounded"
                     }
-                    to="headcount"
+                    to="createReadingC2"
                   >
-                    Right Bank
+                    C2
                   </NavLink>
                 </li>
-                <li>
+                {/* <li>
                   <NavLink
                     className={(navData) =>
                       navData.isActive
@@ -123,11 +123,11 @@ const SideBar = () => {
                   >
                     Tunnels
                   </NavLink>
-                </li>
+                </li> */}
               </ul>
-            </div> */}
+            </div>
 
-            <li>
+            {/* <li>
               <NavLink
                 className={(navData) =>
                   navData.isActive ? "nav-link active" : "nav-link"
@@ -136,7 +136,7 @@ const SideBar = () => {
               >
                 CM Reading
               </NavLink>
-            </li>
+            </li> */}
             <li>
               <NavLink
                 className={(navData) =>
@@ -154,7 +154,7 @@ const SideBar = () => {
                 }
                 to="example"
               >
-               Testing
+                Testing
               </NavLink>
             </li>
             {/* <li>

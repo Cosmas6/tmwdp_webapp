@@ -24,6 +24,7 @@ import ReactGraph from "./components/ReactGraph";
 import Example from "./Instrumentation/Example";
 import CreateReadingC1 from "./Instrumentation/CrackMeter/C1";
 import CreateReadingC2 from "./Instrumentation/CrackMeter/C2";
+import CMRoutes from "./Instrumentation/CrackMeter/CMRoutes";
 
 const MainRoutes = () => (
   <Suspense fallback={<Loading />}>
@@ -37,12 +38,12 @@ const MainRoutes = () => (
         {/* </Route> */}
         <Route path="dashboard" element={<Dashboard />}>
           <Route path="dailyreportform" element={<DailyReportForm />} />
-          <Route path="reading" element={<Reading />} />
-          <Route path="createReading" element={<CreateReading />}>
-            <Route path="createReadingC1" element={<CreateReadingC1 />} />
-            <Route path="createReadingC2" element={<CreateReadingC2 />} />
-          </Route>
-          <Route path="editReading/:id" element={<EditReading />} />
+          {CMRoutes}
+          {/* <Route path="reading" element={<Reading />} />
+          <Route path="createReading" element={<CreateReading />} />
+          <Route path="createReadingC1" element={<CreateReadingC1 />} />
+          <Route path="createReadingC2" element={<CreateReadingC2 />} />
+          <Route path="editReading/:id" element={<EditReading />} /> */}
           <Route path="submitsuccess" element={<SubmitSuccess />} />
           <Route path="reactGraph" element={<ReactGraph />} />
           <Route path="example" element={<Example />} />
