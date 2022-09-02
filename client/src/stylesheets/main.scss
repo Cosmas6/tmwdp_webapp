@@ -53,3 +53,40 @@ $layout-breakpoint-small: 960px;
     text-align: center;
   }
 }
+
+.Form_Input {
+  padding: 10px 0;
+  margin: 20px 0;
+  border: none;
+  border-bottom: 2px solid black;
+  width: 100%;
+  &:focus {
+    outline: none !important;
+  }
+}
+
+.Input_Label {
+  line-height: 2;
+  text-align: left;
+  margin-top: 20px;
+  color: black;
+  font-weight: 200;
+}
+
+.Submit_Button {
+  background: black;
+  border: 1px solid black;
+  color: white;
+  text-transform: uppercase;
+  padding: 20px;
+  width: 100%;
+  margin-top: 40px;
+  font-size: 16px;
+  letter-spacing: 3px;
+}
+.Submit_Button:hover {
+  transition: 0.3s;
+  background: white;
+  color: black;
+  border: 1px solid black;
+}

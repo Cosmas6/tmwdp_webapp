@@ -7,7 +7,7 @@ const ObjectId = require("mongodb").ObjectId;
 
 router.get("/", function (req, res) {
   let db_connect = CMdbo.getDb();
-  var query = { CrackMeter: 1 };
+  var query = { CrackMeter: 1, CrackMeter: "1" };
   db_connect
     .collection("C1toC12")
     .find(query)

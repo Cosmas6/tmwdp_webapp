@@ -1,159 +1,148 @@
 import React, { useState, useEffect } from "react";
-import { Link,useNavigate,useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import TextField from "@mui/material/TextField";
+import DateFnsUtils from "@date-io/date-fns"; // choose your lib
+import { useForm, Controller } from "react-hook-form";
+import "../../stylesheets/InstSections/crackmeter1.scss";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 export default function CreateReadingC1() {
-  const [form, setForm] = useState({
-    CrackMeter: 1,
-    DateOfReading: "",
-    X1: "",
-    X2: "",
-    Y1: "",
-    Y2: "",
-    Z1: "",
-    Z2: "",
-  });
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors, isSubmitted },
+  } = useForm();
 
   const navigate = useNavigate();
 
-  // These methods will update the state properties.
-  function updateForm(value) {
-    return setForm((prev) => {
-      return { ...prev, ...value };
-    });
-  }
-
   // This function will handle the submission.
-  const onSubmit = async (e) => {
+  const onSubmit = async (data, e) => {
     e.preventDefault();
+    alert(data);
     // When a post request is sent to the create url, we'll add a new record to the database.
-    const newReading = { ...form };
-    console.log(newReading, "newReading");
+    // const newReading = { ...data };
+    // console.log(newReading, "newReading");
 
-    await fetch("http://localhost:4000/C1Router/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newReading),
-    }).catch((error) => {
-      window.alert(error);
-      return;
-    });
-    setForm({
-      CrackMeter: 1,
-      DateOfReading: "",
-      X1: "",
-      X2: "",
-      Y1: "",
-      Y2: "",
-      Z1: "",
-      Z2: "",
-    });
-    navigate("/dashboard/readingC1");
+    // await fetch("http://localhost:4000/C1Router/add", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(data),
+    // }).catch((error) => {
+    //   window.alert(error);
+    //   return;
+    // });
+
+    // navigate("/dashboard/readingC1");
   };
   return (
-    <div className="Create_Container">
+    <div className="C1_Container">
       <h1>Crack Meter C1 readings</h1>
-      <form className="Form_Container" onSubmit={onSubmit}>
-        {/* CrackMeter needs a different input */}
-        <label htmlFor="crackmeter-input" className="Input_Label">
-          Crack Meter
-        </label>
-        <input
-          type="text"
-          className="Form_Input"
-          id="crackmeter"
-          name="crackmeter-input"
-          value={1}
-          readOnly
-          // onChange={(e) => updateForm({ CrackMeter: e.target.value })}
-        />
-
+      <form className="Form_Container" onSubmit={handleSubmit(onSubmit)}>
+        <div className="Crack_Meter_Input">
+          <TextField
+            id="crack-meter"
+            label="Crack Meter"
+            type="number"
+            defaultValue={1}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            inputProps={{ readOnly: true }}
+            className="crack-meter"
+            {...register("CrackMeter", { required: true })}
+          />
+        </div>
         {/* Date needs a different input */}
-        <label htmlFor="date-input" className="Input_Label">
-          Date Of Reading
-        </label>
-        <input
-          type="text"
-          className="Form_Input"
-          id="date"
-          name="date-input"
-          value={form.DateOfReading}
-          onChange={(e) => updateForm({ DateOfReading: e.target.value })}
-        />
+        <div className="Date_Input">
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <Controller
+              control={control}
+              name="DateOfReading"
+              defaultValue={new Date()}
+              render={({ field: { onChange, value } }) => (
+                <DatePicker
+                  label="Date Of Reading"
+                  inputFormat="DD/MM/YYYY"
+                  value={value}
+                  onChange={onChange}
+                  renderInput={(params) => <TextField {...params} />}
+                />
+              )}
+            />
+          </LocalizationProvider>
+        </div>
 
         <div className="X-group">
-          <label htmlFor="X1" className="Input_Label">
-            X1
-          </label>
-          <input
-            type="text"
-            className="form-check-input"
-            name="X1"
+          <TextField
             id="X1"
-            value={form.X1}
-            onChange={(e) => updateForm({ X1: e.target.value })}
+            label="X1"
+            type="number"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            className="X1"
+            {...register("X1", { required: true })}
           />
-          <label htmlFor="X2" className="Input_Label">
-            X2
-          </label>
-          <input
-            type="text"
-            className="form-check-input"
-            name="X2"
+          <TextField
             id="X2"
-            value={form.X2}
-            onChange={(e) => updateForm({ X2: e.target.value })}
+            label="X2"
+            type="number"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            className="X2"
+            {...register("X2", { required: true })}
           />
         </div>
 
         <div className="Y-group">
-          <label htmlFor="Y1" className="Input_Label">
-            Y1
-          </label>
-          <input
-            type="text"
-            className="form-check-input"
-            name="Y1"
+          <TextField
             id="Y1"
-            value={form.Y1}
-            onChange={(e) => updateForm({ Y1: e.target.value })}
+            label="Y1"
+            type="number"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            className="Y1"
+            {...register("Y1", { required: true })}
           />
-          <label htmlFor="Y2" className="Input_Label">
-            Y2
-          </label>
-          <input
-            type="text"
-            className="form-check-input"
-            name="Y2"
+          <TextField
             id="Y2"
-            value={form.Y2}
-            onChange={(e) => updateForm({ Y2: e.target.value })}
+            label="Y2"
+            type="number"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            className="Y2"
+            {...register("Y2", { required: true })}
           />
         </div>
 
         <div className="Z-group">
-          <label htmlFor="Z1" className="Input_Label">
-            Z1
-          </label>
-          <input
-            type="text"
-            className="form-check-input"
-            name="Z1"
+          <TextField
             id="Z1"
-            value={form.Z1}
-            onChange={(e) => updateForm({ Z1: e.target.value })}
+            label="Z1"
+            type="number"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            className="Z1"
+            {...register("Z1", { required: true })}
           />
-          <label htmlFor="Z2" className="Input_Label">
-            Z2
-          </label>
-          <input
-            type="text"
-            className="form-check-input"
-            name="Z2"
+          <TextField
             id="Z2"
-            value={form.Z2}
-            onChange={(e) => updateForm({ Z2: e.target.value })}
+            label="Z2"
+            type="number"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            className="Z2"
+            {...register("Z2", { required: true })}
           />
         </div>
 
@@ -242,42 +231,54 @@ export function EditReadingC1() {
 
   // This following section will display the form that takes input from the user to update the data.
   return (
-    <div className="Edit_Container">
+    <div className="C1_Container">
       <h1>Crack Meter C1 readings</h1>
       <form className="Form_Container" onSubmit={onSubmit}>
         {/* CrackMeter needs a different input */}
-        <label htmlFor="crackmeter-input" className="Input_Label">
-          Crack Meter
-        </label>
-        <input
-          type="text"
-          className="Form_Input"
-          id="crackmeter"
-          name="crackmeter-input"
-          value={form.CrackMeter}
-          onChange={(e) => updateForm({ CrackMeter: e.target.value })}
-        />
-
+        <div className="Crack_Meter_Input">
+          <label htmlFor="crackmeter-input" className="Input_Label">
+            Crack Meter
+          </label>
+          <input
+            type="text"
+            className="Form_Input"
+            id="crackmeter"
+            name="crackmeter-input"
+            value={form.CrackMeter}
+            onChange={(e) => updateForm({ CrackMeter: e.target.value })}
+          />
+        </div>
         {/* Date needs a different input */}
-        <label htmlFor="date-input" className="Input_Label">
-          Date Of Reading
-        </label>
-        <input
-          type="text"
-          className="Form_Input"
-          id="date"
-          name="date-input"
-          value={form.DateOfReading}
-          onChange={(e) => updateForm({ DateOfReading: e.target.value })}
-        />
-
+        <div className="Date_Input">
+          <label htmlFor="date-input" className="Input_Label">
+            Date Of Reading
+          </label>
+          <input
+            type="text"
+            className="Form_Input"
+            id="date"
+            name="date-input"
+            value={form.DateOfReading}
+            onChange={(e) => updateForm({ DateOfReading: e.target.value })}
+          />
+        </div>
         <div className="X-group">
+          <TextField
+            id="outlined-number"
+            label="X1"
+            type="number"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            className="X1"
+            onChange={(e) => updateForm({ x1: e.target.value })}
+          />
           <label htmlFor="X1" className="Input_Label">
             X1
           </label>
           <input
-            type="text"
-            className="form-check-input"
+            type="number"
+            className="Form_Input"
             name="X1"
             id="X1"
             value={form.X1}
@@ -287,8 +288,8 @@ export function EditReadingC1() {
             X2
           </label>
           <input
-            type="text"
-            className="form-check-input"
+            type="number"
+            className="Form_Input"
             name="X2"
             id="X2"
             value={form.X2}
@@ -301,8 +302,8 @@ export function EditReadingC1() {
             Y1
           </label>
           <input
-            type="text"
-            className="form-check-input"
+            type="number"
+            className="Form_Input"
             name="Y1"
             id="Y1"
             value={form.Y1}
@@ -312,8 +313,8 @@ export function EditReadingC1() {
             Y2
           </label>
           <input
-            type="text"
-            className="form-check-input"
+            type="number"
+            className="Form_Input"
             name="Y2"
             id="Y2"
             value={form.Y2}
@@ -326,8 +327,8 @@ export function EditReadingC1() {
             Z1
           </label>
           <input
-            type="text"
-            className="form-check-input"
+            type="number"
+            className="Form_Input"
             name="Z1"
             id="Z1"
             value={form.Z1}
@@ -337,8 +338,8 @@ export function EditReadingC1() {
             Z2
           </label>
           <input
-            type="text"
-            className="form-check-input"
+            type="number"
+            className="Form_Input"
             name="Z2"
             id="Z2"
             value={form.Z2}
@@ -427,24 +428,26 @@ export function ReadingListC1() {
   }
 
   return (
-    <div className="Reading_Container">
-      <h3>Reading List</h3>
-      <table className="table table-striped" style={{ marginTop: 20 }}>
-        <thead>
-          <tr>
-            <th>Crack Meter</th>
-            <th>Date Of Reading</th>
-            <th>X1</th>
-            <th>X2</th>
-            <th>Y1</th>
-            <th>Y2</th>
-            <th>Z1</th>
-            <th>Z2</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>{readingList()}</tbody>
-      </table>
+    <div className="C1_Container">
+      <div className="C1_Table_Container">
+        <h3>Reading List</h3>
+        <table className="table table-striped" style={{ marginTop: 20 }}>
+          <thead>
+            <tr>
+              <th>Crack Meter</th>
+              <th>Date Of Reading</th>
+              <th>X1</th>
+              <th>X2</th>
+              <th>Y1</th>
+              <th>Y2</th>
+              <th>Z1</th>
+              <th>Z2</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>{readingList()}</tbody>
+        </table>
+      </div>
     </div>
   );
 }

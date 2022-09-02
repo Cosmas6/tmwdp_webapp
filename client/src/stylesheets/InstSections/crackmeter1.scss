@@ -1,0 +1,15 @@
+@import "../main.scss";
+
+.C1_Container {
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  @extend .Display_Inline_Block;
+
+  .Form_Input {
+    margin: 5px 0;
+
+  }
+}
