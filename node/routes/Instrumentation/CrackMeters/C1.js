@@ -21,7 +21,7 @@ router.get("/", function (req, res) {
 // This section will help you get a single record by id
 router.get("/:id", function (req, res) {
   let db_connect = CMdbo.getDb();
-  let myquery = { _id: ObjectId(req.params.id), CrackMeter: 1 };
+  let myquery = { _id: ObjectId(req.params.id), CrackMeter: "1" };
   db_connect.collection("C1toC12").findOne(myquery, function (err, result) {
     if (err) throw err;
     res.json(result);
@@ -51,7 +51,7 @@ router.post("/add", function (req, response) {
 // This section will help you update a record by id.
 router.post("/update/:id", function (req, response) {
   let db_connect = CMdbo.getDb();
-  let myquery = { _id: ObjectId(req.params.id), CrackMeter: 1 };
+  let myquery = { _id: ObjectId(req.params.id), CrackMeter: "1" };
   let newvalues = {
     $set: {
       CrackMeter: req.body.CrackMeter,
@@ -76,7 +76,7 @@ router.post("/update/:id", function (req, response) {
 // This section will help you delete a record
 router.delete("/:id", (req, response) => {
   let db_connect = CMdbo.getDb();
-  let myquery = { _id: ObjectId(req.params.id), CrackMeter: 1 };
+  let myquery = { _id: ObjectId(req.params.id), CrackMeter: "1" };
   db_connect.collection("C1toC12").deleteOne(myquery, function (err, obj) {
     if (err) throw err;
     console.log("1 document deleted");

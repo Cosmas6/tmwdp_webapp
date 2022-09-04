@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import TextField from "@mui/material/TextField";
-import DateFnsUtils from "@date-io/date-fns"; // choose your lib
 import { useForm, Controller } from "react-hook-form";
 import "../../stylesheets/InstSections/crackmeter1.scss";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 
 export default function CreateReadingC1() {
   const {
@@ -21,23 +20,23 @@ export default function CreateReadingC1() {
   // This function will handle the submission.
   const onSubmit = async (data, e) => {
     e.preventDefault();
-    alert(data);
+    alert(data.DateOfReading);
     // When a post request is sent to the create url, we'll add a new record to the database.
-    // const newReading = { ...data };
-    // console.log(newReading, "newReading");
+    const newReading = { ...data };
+    console.log(newReading, "newReading");
 
-    // await fetch("http://localhost:4000/C1Router/add", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(data),
-    // }).catch((error) => {
-    //   window.alert(error);
-    //   return;
-    // });
+    await fetch("http://localhost:4000/C1Router/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }).catch((error) => {
+      window.alert(error);
+      return;
+    });
 
-    // navigate("/dashboard/readingC1");
+    navigate("/dashboard/readingC1");
   };
   return (
     <div className="C1_Container">
@@ -57,17 +56,17 @@ export default function CreateReadingC1() {
             {...register("CrackMeter", { required: true })}
           />
         </div>
-        {/* Date needs a different input */}
         <div className="Date_Input">
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
             <Controller
               control={control}
               name="DateOfReading"
               defaultValue={new Date()}
               render={({ field: { onChange, value } }) => (
-                <DatePicker
+                <DesktopDatePicker
                   label="Date Of Reading"
-                  inputFormat="DD/MM/YYYY"
+                  inputFormat="dd/MM/yyyy"
+                  mask="__/__/____"
                   value={value}
                   onChange={onChange}
                   renderInput={(params) => <TextField {...params} />}
@@ -155,17 +154,26 @@ export default function CreateReadingC1() {
 }
 
 export function EditReadingC1() {
-  const [form, setForm] = useState({
-    CrackMeter: "",
-    DateOfReading: "",
-    X1: "",
-    X2: "",
-    Y1: "",
-    Y2: "",
-    Z1: "",
-    Z2: "",
-    records: [],
+  // const [form, setForm] = useState([]);
+  const {
+    register,
+    handleSubmit,
+    control,
+    reset,
+    formState: { errors, isSubmitted },
+  } = useForm({
+    defaultValues: {
+      DateOfReading: "",
+      X1: "",
+      X2: "",
+      Y1: "",
+      Y2: "",
+      Z1: "",
+      Z2: "",
+    },
   });
+  // console.log(form.X1);
+
   const params = useParams();
   const navigate = useNavigate();
 
@@ -185,11 +193,12 @@ export function EditReadingC1() {
       const reading = await response.json();
       if (!reading) {
         window.alert(`Reading with id ${id} not found`);
-        navigate("/readingC1");
+        navigate("dashboard/readingC1");
         return;
       }
 
-      setForm(reading);
+      reset(reading);
+      // setForm(reading);
     }
 
     fetchData();
@@ -198,23 +207,18 @@ export function EditReadingC1() {
   }, [params.id, navigate]);
 
   // These methods will update the state properties.
-  function updateForm(value) {
-    return setForm((prev) => {
-      return { ...prev, ...value };
-    });
-  }
 
-  async function onSubmit(e) {
+  async function onSubmit(data, e) {
     e.preventDefault();
     const editedReading = {
-      CrackMeter: form.CrackMeter,
-      DateOfReading: form.DateOfReading,
-      X1: form.X1,
-      X2: form.X2,
-      Y1: form.Y1,
-      Y2: form.Y2,
-      Z1: form.Z1,
-      Z2: form.Z2,
+      CrackMeter: data.CrackMeter,
+      DateOfReading: data.DateOfReading,
+      X1: data.X1,
+      X2: data.X2,
+      Y1: data.Y1,
+      Y2: data.Y2,
+      Z1: data.Z1,
+      Z2: data.Z2,
     };
 
     // This will send a post request to update the data in the database.
@@ -233,117 +237,107 @@ export function EditReadingC1() {
   return (
     <div className="C1_Container">
       <h1>Crack Meter C1 readings</h1>
-      <form className="Form_Container" onSubmit={onSubmit}>
-        {/* CrackMeter needs a different input */}
+      <form className="Form_Container" onSubmit={handleSubmit(onSubmit)}>
         <div className="Crack_Meter_Input">
-          <label htmlFor="crackmeter-input" className="Input_Label">
-            Crack Meter
-          </label>
-          <input
-            type="text"
-            className="Form_Input"
-            id="crackmeter"
-            name="crackmeter-input"
-            value={form.CrackMeter}
-            onChange={(e) => updateForm({ CrackMeter: e.target.value })}
+          <TextField
+            id="crack-meter"
+            label="Crack Meter"
+            type="number"
+            defaultValue={1}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            inputProps={{ readOnly: true }}
+            className="crack-meter"
+            {...register("CrackMeter", { required: true })}
           />
         </div>
-        {/* Date needs a different input */}
         <div className="Date_Input">
-          <label htmlFor="date-input" className="Input_Label">
-            Date Of Reading
-          </label>
-          <input
-            type="text"
-            className="Form_Input"
-            id="date"
-            name="date-input"
-            value={form.DateOfReading}
-            onChange={(e) => updateForm({ DateOfReading: e.target.value })}
-          />
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <Controller
+              control={control}
+              name="DateOfReading"
+              defaultValue={new Date()}
+              render={({ field: { onChange, value } }) => (
+                <DesktopDatePicker
+                  label="Date Of Reading"
+                  inputFormat="dd/MM/yyyy"
+                  mask="__/__/____"
+                  value={value}
+                  onChange={onChange}
+                  renderInput={(params) => <TextField {...params} />}
+                />
+              )}
+            />
+          </LocalizationProvider>
         </div>
+
         <div className="X-group">
           <TextField
-            id="outlined-number"
+            id="X1"
             label="X1"
             type="number"
             InputLabelProps={{
               shrink: true,
             }}
             className="X1"
-            onChange={(e) => updateForm({ x1: e.target.value })}
+            {...register("X1", { required: true })}
           />
-          <label htmlFor="X1" className="Input_Label">
-            X1
-          </label>
-          <input
-            type="number"
-            className="Form_Input"
-            name="X1"
-            id="X1"
-            value={form.X1}
-            onChange={(e) => updateForm({ x1: e.target.value })}
-          />
-          <label htmlFor="X2" className="Input_Label">
-            X2
-          </label>
-          <input
-            type="number"
-            className="Form_Input"
-            name="X2"
+          <TextField
             id="X2"
-            value={form.X2}
-            onChange={(e) => updateForm({ x2: e.target.value })}
+            label="X2"
+            type="number"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            className="X2"
+            {...register("X2", { required: true })}
           />
         </div>
 
         <div className="Y-group">
-          <label htmlFor="Y1" className="Input_Label">
-            Y1
-          </label>
-          <input
-            type="number"
-            className="Form_Input"
-            name="Y1"
+          <TextField
             id="Y1"
-            value={form.Y1}
-            onChange={(e) => updateForm({ y1: e.target.value })}
-          />
-          <label htmlFor="Y2" className="Input_Label">
-            Y2
-          </label>
-          <input
+            label="Y1"
             type="number"
-            className="Form_Input"
-            name="Y2"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            className="Y1"
+            {...register("Y1", { required: true })}
+          />
+          <TextField
             id="Y2"
-            value={form.Y2}
-            onChange={(e) => updateForm({ y2: e.target.value })}
+            label="Y2"
+            type="number"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            className="Y2"
+            {...register("Y2", { required: true })}
           />
         </div>
 
         <div className="Z-group">
-          <label htmlFor="Z1" className="Input_Label">
-            Z1
-          </label>
-          <input
-            type="number"
-            className="Form_Input"
-            name="Z1"
+          <TextField
             id="Z1"
-            value={form.Z1}
-            onChange={(e) => updateForm({ z1: e.target.value })}
-          />
-          <label htmlFor="Z2" className="Input_Label">
-            Z2
-          </label>
-          <input
+            label="Z1"
             type="number"
-            className="Form_Input"
-            name="Z2"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            className="Z1"
+            {...register("Z1", { required: true })}
+          />
+          <TextField
             id="Z2"
-            value={form.Z2}
-            onChange={(e) => updateForm({ z2: e.target.value })}
+            label="Z2"
+            type="number"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            className="Z2"
+            {...register("Z2", { required: true })}
           />
         </div>
 
@@ -355,38 +349,48 @@ export function EditReadingC1() {
   );
 }
 
-const Reading = (props) => (
-  <tr>
-    <td>{props.reading.CrackMeter}</td>
-    <td>{props.reading.DateOfReading}</td>
-    <td>{props.reading.X1}</td>
-    <td>{props.reading.X2}</td>
-    <td>{props.reading.Y1}</td>
-    <td>{props.reading.Y2}</td>
-    <td>{props.reading.Z1}</td>
-    <td>{props.reading.Z2}</td>
-    <td>
-      <Link
-        className="btn btn-link"
-        to={`/dashboard/editReadingC1/${props.reading._id}`}
-      >
-        Edit
-      </Link>{" "}
-      |
-      <button
-        className="btn btn-link"
-        onClick={() => {
-          props.deleteRecord(props.reading._id);
-        }}
-      >
-        Delete
-      </button>
-    </td>
-  </tr>
-);
+const Reading = (props) => {
+  const dateString = new Date(String(props.reading.DateOfReading));
+  const enUSFormatter = new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+  console.log(enUSFormatter.format(dateString));
+  return (
+    <tr>
+      <td>{props.reading.CrackMeter}</td>
+      <td>{enUSFormatter.format(dateString)}</td>
+      <td>{props.reading.X1}</td>
+      <td>{props.reading.X2}</td>
+      <td>{props.reading.Y1}</td>
+      <td>{props.reading.Y2}</td>
+      <td>{props.reading.Z1}</td>
+      <td>{props.reading.Z2}</td>
+      <td>
+        <Link
+          className="btn btn-link"
+          to={`/dashboard/editReadingC1/${props.reading._id}`}
+        >
+          Edit
+        </Link>{" "}
+        |
+        <button
+          className="btn btn-link"
+          onClick={() => {
+            props.deleteRecord(props.reading._id);
+          }}
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+  );
+};
 
 export function ReadingListC1() {
   const [readings, setReadings] = useState([]);
+
   useEffect(() => {
     async function getReadings() {
       const response = await fetch(`http://localhost:4000/C1Router`);
@@ -400,6 +404,7 @@ export function ReadingListC1() {
       const readings = await response.json();
       setReadings(readings);
     }
+    console.log(readings);
 
     getReadings();
 
@@ -419,9 +424,9 @@ export function ReadingListC1() {
     return readings.map((reading) => {
       return (
         <Reading
+          key={reading._id}
           reading={reading}
           deleteRecord={() => deleteRecord(reading._id)}
-          key={reading._id}
         />
       );
     });

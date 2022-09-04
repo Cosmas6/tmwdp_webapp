@@ -17,13 +17,8 @@ import {
   EditTunnels,
   RecordListTunnels,
 } from "./Instrumentation/Tunnels";
-import CreateReading from "./Instrumentation/createReading";
-import EditReading from "./Instrumentation/editReading";
-import Reading from "./Instrumentation/Reading";
 import ReactGraph from "./components/ReactGraph";
 import Example from "./Instrumentation/Example";
-import CreateReadingC1 from "./Instrumentation/CrackMeter/C1";
-import CreateReadingC2 from "./Instrumentation/CrackMeter/C2";
 import CMRoutes from "./Instrumentation/CrackMeter/CMRoutes";
 
 const MainRoutes = () => (
