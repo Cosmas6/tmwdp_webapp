@@ -7,10 +7,26 @@ const ObjectId = require("mongodb").ObjectId;
 
 router.get("/", function (req, res) {
   let db_connect = CMdbo.getDb();
-  var query = { CrackMeter: 1, CrackMeter: "1" };
+  var query = { CrackMeter: "1" };
   db_connect
-    .collection("C1toC12")
+    .collection("C1toC16")
     .find(query)
+    .sort({ DateOfReading: -1 })
+    .limit(10)
+    .toArray(function (err, result) {
+      if (err) throw err;
+      console.log(err);
+      res.json(result);
+    });
+});
+
+router.get("/graphC1", function (req, res) {
+  let db_connect = CMdbo.getDb();
+  var query = { CrackMeter: "1" };
+  db_connect
+    .collection("C1toC16")
+    .find(query)
+    .sort({ DateOfReading: 1 })
     .toArray(function (err, result) {
       if (err) throw err;
       console.log(err);
@@ -22,7 +38,7 @@ router.get("/", function (req, res) {
 router.get("/:id", function (req, res) {
   let db_connect = CMdbo.getDb();
   let myquery = { _id: ObjectId(req.params.id), CrackMeter: "1" };
-  db_connect.collection("C1toC12").findOne(myquery, function (err, result) {
+  db_connect.collection("C1toC16").findOne(myquery, function (err, result) {
     if (err) throw err;
     res.json(result);
   });
@@ -42,7 +58,7 @@ router.post("/add", function (req, response) {
     Z2: req.body.Z2,
   };
   console.log(req.body, "myobj");
-  db_connect.collection("C1toC12").insertOne(myobj, function (err, res) {
+  db_connect.collection("C1toC16").insertOne(myobj, function (err, res) {
     if (err) throw err;
     response.json(res);
   });
@@ -65,7 +81,7 @@ router.post("/update/:id", function (req, response) {
     },
   };
   db_connect
-    .collection("C1toC12")
+    .collection("C1toC16")
     .updateOne(myquery, newvalues, function (err, res) {
       if (err) throw err;
       console.log("1 document updated");
@@ -77,7 +93,7 @@ router.post("/update/:id", function (req, response) {
 router.delete("/:id", (req, response) => {
   let db_connect = CMdbo.getDb();
   let myquery = { _id: ObjectId(req.params.id), CrackMeter: "1" };
-  db_connect.collection("C1toC12").deleteOne(myquery, function (err, obj) {
+  db_connect.collection("C1toC16").deleteOne(myquery, function (err, obj) {
     if (err) throw err;
     console.log("1 document deleted");
     response.json(obj);

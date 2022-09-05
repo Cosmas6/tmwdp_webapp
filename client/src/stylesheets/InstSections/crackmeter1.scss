@@ -10,6 +10,18 @@
 
   .Form_Input {
     margin: 5px 0;
+  }
+}
 
+.ReactGraph_Container {
+  @extend .Display_Inline_Block;
+  float: right;
+
+  table {
+    th,
+    tr,
+    td {
+      border: 1px solid;
+    }
   }
 }

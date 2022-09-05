@@ -6,6 +6,16 @@ import "../../stylesheets/InstSections/crackmeter1.scss";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 
 export default function CreateReadingC1() {
   const {
@@ -149,6 +159,16 @@ export default function CreateReadingC1() {
           <input type="submit" value="Submit" className="Submit_Button" />
         </div>
       </form>
+      <div className="view-data">
+        <Link className="Extra_Button" to="/dashboard/readingC1">
+          View Data
+        </Link>
+      </div>
+      <div className="view-graph">
+        <Link className="Extra_Button" to="/dashboard/graphC1">
+          View Graph
+        </Link>
+      </div>
     </div>
   );
 }
@@ -277,6 +297,7 @@ export function EditReadingC1() {
             id="X1"
             label="X1"
             type="number"
+            step="0.01"
             InputLabelProps={{
               shrink: true,
             }}
@@ -287,6 +308,7 @@ export function EditReadingC1() {
             id="X2"
             label="X2"
             type="number"
+            step="0.01"
             InputLabelProps={{
               shrink: true,
             }}
@@ -300,6 +322,7 @@ export function EditReadingC1() {
             id="Y1"
             label="Y1"
             type="number"
+            step="0.01"
             InputLabelProps={{
               shrink: true,
             }}
@@ -310,6 +333,7 @@ export function EditReadingC1() {
             id="Y2"
             label="Y2"
             type="number"
+            step="0.01"
             InputLabelProps={{
               shrink: true,
             }}
@@ -323,6 +347,7 @@ export function EditReadingC1() {
             id="Z1"
             label="Z1"
             type="number"
+            step="0.01"
             InputLabelProps={{
               shrink: true,
             }}
@@ -333,6 +358,7 @@ export function EditReadingC1() {
             id="Z2"
             label="Z2"
             type="number"
+            step="0.01"
             InputLabelProps={{
               shrink: true,
             }}
@@ -356,11 +382,10 @@ const Reading = (props) => {
     month: "long",
     day: "numeric",
   });
-  console.log(enUSFormatter.format(dateString));
   return (
     <tr>
       <td>{props.reading.CrackMeter}</td>
-      <td>{enUSFormatter.format(dateString)}</td>
+      <td>{[enUSFormatter.format(dateString)].sort()}</td>
       <td>{props.reading.X1}</td>
       <td>{props.reading.X2}</td>
       <td>{props.reading.Y1}</td>
@@ -452,7 +477,110 @@ export function ReadingListC1() {
           </thead>
           <tbody>{readingList()}</tbody>
         </table>
+        <Link className="graph-link" to="/dashboard/graphC1">
+          View Graph
+        </Link>{" "}
+        <Link className="graph-link" to="/dashboard/createReadingC1">
+          Create Reading
+        </Link>{" "}
       </div>
+    </div>
+  );
+}
+
+export function GraphC1() {
+  const [readings, setReadings] = useState([]);
+  useEffect(() => {
+    async function getReadings() {
+      const response = await fetch(`http://localhost:4000/C1Router/graphC1`);
+
+      if (!response.ok) {
+        const message = `An error occurred: ${response.statusText}`;
+        window.alert(message);
+        return;
+      }
+
+      const readings = await response.json();
+      setReadings(readings);
+    }
+
+    getReadings();
+
+    return;
+  }, [readings.length]);
+
+  const data = [];
+
+  function defandcumulList() {
+    return readings.map((reading) => {
+      const date = reading.DateOfReading;
+      const X1int = parseFloat(reading.X1);
+      const X2int = parseFloat(reading.X1);
+      const Y1int = parseFloat(reading.Y1);
+      const Y2int = parseFloat(reading.Y1);
+      const Z1int = parseFloat(reading.Z1);
+      const Z2int = parseFloat(reading.Z1);
+      const defX = ((X1int + X2int) / 2).toFixed(2);
+      const defY = ((Y1int + Y2int) / 2).toFixed(2);
+      const defZ = ((Z1int + Z2int) / 2).toFixed(2);
+      const cumulX = (defX - 28.53).toFixed(2);
+      const cumulY = (defY - 27.52).toFixed(2);
+      const cumulZ = (defZ - 19.68).toFixed(2);
+
+      let d = {
+        date: date,
+        cumulX: cumulX,
+        cumulY: cumulY,
+        cumulZ: cumulZ,
+      };
+
+      data.push(d);
+    });
+  }
+
+  return (
+    <div className="ReactGraph_Container">
+      <h1>C1 Graphical Layout</h1>
+      <LineChart
+        width={1200}
+        height={600}
+        data={data}
+        margin={{
+          top: 15,
+          right: 30,
+          left: 20,
+          bottom: 5,
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="date" />
+        <YAxis domain={[-2.0, 1.5]} />
+        <Tooltip />
+        <Legend />
+        <Line
+          type="monotone"
+          dataKey="cumulX"
+          stroke="#0000FF"
+          strokeWidth={2}
+          activeDot={{ r: 8 }}
+        />
+        <Line
+          type="monotone"
+          dataKey="cumulY"
+          stroke="#ff0000"
+          strokeWidth={2}
+        />
+        <Line
+          type="monotone"
+          dataKey="cumulZ"
+          stroke="#00FF00"
+          strokeWidth={2}
+        />
+      </LineChart>
+      {defandcumulList()}
+      <Link className="graph-link" to="/dashboard/readingC1">
+        View Data
+      </Link>{" "}
     </div>
   );
 }
