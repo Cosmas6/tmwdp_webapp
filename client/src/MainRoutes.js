@@ -6,19 +6,8 @@ import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
 import DailyReport from "./components/DailyReport";
 import SubmitSuccess from "./components/SubmitSuccess";
-import FilterData from "./components/FilterData";
 import DailyReportForm from "./components/DailyReportForm";
 import Loading from "./components/Loading";
-import Create from "./mongo/create";
-import Edit from "./mongo/edit";
-import RecordList from "./mongo/recordList";
-import {
-  CreateTunnels,
-  EditTunnels,
-  RecordListTunnels,
-} from "./Instrumentation/Tunnels";
-import ReactGraph from "./components/ReactGraph";
-import Example from "./Instrumentation/Example";
 import CMRoutes from "./Instrumentation/CrackMeter/CMRoutes";
 
 const MainRoutes = () => (
@@ -34,23 +23,9 @@ const MainRoutes = () => (
         <Route path="dashboard" element={<Dashboard />}>
           <Route path="dailyreportform" element={<DailyReportForm />} />
           {CMRoutes}
-          {/* <Route path="reading" element={<Reading />} />
-          <Route path="createReading" element={<CreateReading />} />
-          <Route path="createReadingC1" element={<CreateReadingC1 />} />
-          <Route path="createReadingC2" element={<CreateReadingC2 />} />
-          <Route path="editReading/:id" element={<EditReading />} /> */}
           <Route path="submitsuccess" element={<SubmitSuccess />} />
-          <Route path="reactGraph" element={<ReactGraph />} />
-          <Route path="example" element={<Example />} />
         </Route>
         <Route path="dailyreport" element={<DailyReport />} />
-        <Route path="filterdata" element={<FilterData />} />
-        <Route path="create" element={<Create />} />
-        <Route path="edit/:id" element={<Edit />} />
-        <Route path="recordList" element={<RecordList />} />
-        <Route path="createTunnels" element={<CreateTunnels />} />
-        <Route path="editTunnels/:id" element={<EditTunnels />} />
-        <Route path="recordListTunnels" element={<RecordListTunnels />} />
       </Route>
     </Routes>
   </Suspense>

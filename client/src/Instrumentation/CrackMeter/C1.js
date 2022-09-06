@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import TextField from "@mui/material/TextField";
-import { useForm, Controller } from "react-hook-form";
+import { Link, useParams } from "react-router-dom";
+
 import "../../stylesheets/InstSections/crackmeter1.scss";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
+
 import {
   LineChart,
   Line,
@@ -14,363 +11,34 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-  ResponsiveContainer,
 } from "recharts";
+import CMFormCreate from "./CMFormCreate";
+import CMFormEdit from "./CMFormEdit";
 
 export default function CreateReadingC1() {
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState: { errors, isSubmitted },
-  } = useForm();
-
-  const navigate = useNavigate();
-
-  // This function will handle the submission.
-  const onSubmit = async (data, e) => {
-    e.preventDefault();
-    alert(data.DateOfReading);
-    // When a post request is sent to the create url, we'll add a new record to the database.
-    const newReading = { ...data };
-    console.log(newReading, "newReading");
-
-    await fetch("http://localhost:4000/C1Router/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    }).catch((error) => {
-      window.alert(error);
-      return;
-    });
-
-    navigate("/dashboard/readingC1");
-  };
   return (
     <div className="C1_Container">
       <h1>Crack Meter C1 readings</h1>
-      <form className="Form_Container" onSubmit={handleSubmit(onSubmit)}>
-        <div className="Crack_Meter_Input">
-          <TextField
-            id="crack-meter"
-            label="Crack Meter"
-            type="number"
-            defaultValue={1}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            inputProps={{ readOnly: true }}
-            className="crack-meter"
-            {...register("CrackMeter", { required: true })}
-          />
-        </div>
-        <div className="Date_Input">
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <Controller
-              control={control}
-              name="DateOfReading"
-              defaultValue={new Date()}
-              render={({ field: { onChange, value } }) => (
-                <DesktopDatePicker
-                  label="Date Of Reading"
-                  inputFormat="dd/MM/yyyy"
-                  mask="__/__/____"
-                  value={value}
-                  onChange={onChange}
-                  renderInput={(params) => <TextField {...params} />}
-                />
-              )}
-            />
-          </LocalizationProvider>
-        </div>
-
-        <div className="X-group">
-          <TextField
-            id="X1"
-            label="X1"
-            type="number"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            className="X1"
-            {...register("X1", { required: true })}
-          />
-          <TextField
-            id="X2"
-            label="X2"
-            type="number"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            className="X2"
-            {...register("X2", { required: true })}
-          />
-        </div>
-
-        <div className="Y-group">
-          <TextField
-            id="Y1"
-            label="Y1"
-            type="number"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            className="Y1"
-            {...register("Y1", { required: true })}
-          />
-          <TextField
-            id="Y2"
-            label="Y2"
-            type="number"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            className="Y2"
-            {...register("Y2", { required: true })}
-          />
-        </div>
-
-        <div className="Z-group">
-          <TextField
-            id="Z1"
-            label="Z1"
-            type="number"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            className="Z1"
-            {...register("Z1", { required: true })}
-          />
-          <TextField
-            id="Z2"
-            label="Z2"
-            type="number"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            className="Z2"
-            {...register("Z2", { required: true })}
-          />
-        </div>
-
-        <div className="form-group">
-          <input type="submit" value="Submit" className="Submit_Button" />
-        </div>
-      </form>
-      <div className="view-data">
-        <Link className="Extra_Button" to="/dashboard/readingC1">
-          View Data
-        </Link>
-      </div>
-      <div className="view-graph">
-        <Link className="Extra_Button" to="/dashboard/graphC1">
-          View Graph
-        </Link>
-      </div>
+      <CMFormCreate
+        defaultValue={1}
+        fetchLink={`http://localhost:4000/C1Router/add`}
+        dataLink={`/dashboard/readingC1`}
+        graphLink={`/dashboard/graphC1`}
+      />
     </div>
   );
 }
 
 export function EditReadingC1() {
-  // const [form, setForm] = useState([]);
-  const {
-    register,
-    handleSubmit,
-    control,
-    reset,
-    formState: { errors, isSubmitted },
-  } = useForm({
-    defaultValues: {
-      DateOfReading: "",
-      X1: "",
-      X2: "",
-      Y1: "",
-      Y2: "",
-      Z1: "",
-      Z2: "",
-    },
-  });
-  // console.log(form.X1);
-
   const params = useParams();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    async function fetchData() {
-      const id = params.id.toString();
-      const response = await fetch(
-        `http://localhost:4000/C1Router/${params.id.toString()}`
-      );
-
-      if (!response.ok) {
-        const message = `An error has occurred: ${response.statusText}`;
-        window.alert(message);
-        return;
-      }
-
-      const reading = await response.json();
-      if (!reading) {
-        window.alert(`Reading with id ${id} not found`);
-        navigate("dashboard/readingC1");
-        return;
-      }
-
-      reset(reading);
-      // setForm(reading);
-    }
-
-    fetchData();
-
-    return;
-  }, [params.id, navigate]);
-
-  // These methods will update the state properties.
-
-  async function onSubmit(data, e) {
-    e.preventDefault();
-    const editedReading = {
-      CrackMeter: data.CrackMeter,
-      DateOfReading: data.DateOfReading,
-      X1: data.X1,
-      X2: data.X2,
-      Y1: data.Y1,
-      Y2: data.Y2,
-      Z1: data.Z1,
-      Z2: data.Z2,
-    };
-
-    // This will send a post request to update the data in the database.
-    await fetch(`http://localhost:4000/C1Router/update/${params.id}`, {
-      method: "POST",
-      body: JSON.stringify(editedReading),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    navigate("/dashboard/readingC1");
-  }
-
-  // This following section will display the form that takes input from the user to update the data.
   return (
     <div className="C1_Container">
       <h1>Crack Meter C1 readings</h1>
-      <form className="Form_Container" onSubmit={handleSubmit(onSubmit)}>
-        <div className="Crack_Meter_Input">
-          <TextField
-            id="crack-meter"
-            label="Crack Meter"
-            type="number"
-            defaultValue={1}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            inputProps={{ readOnly: true }}
-            className="crack-meter"
-            {...register("CrackMeter", { required: true })}
-          />
-        </div>
-        <div className="Date_Input">
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <Controller
-              control={control}
-              name="DateOfReading"
-              defaultValue={new Date()}
-              render={({ field: { onChange, value } }) => (
-                <DesktopDatePicker
-                  label="Date Of Reading"
-                  inputFormat="dd/MM/yyyy"
-                  mask="__/__/____"
-                  value={value}
-                  onChange={onChange}
-                  renderInput={(params) => <TextField {...params} />}
-                />
-              )}
-            />
-          </LocalizationProvider>
-        </div>
-
-        <div className="X-group">
-          <TextField
-            id="X1"
-            label="X1"
-            type="number"
-            step="0.01"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            className="X1"
-            {...register("X1", { required: true })}
-          />
-          <TextField
-            id="X2"
-            label="X2"
-            type="number"
-            step="0.01"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            className="X2"
-            {...register("X2", { required: true })}
-          />
-        </div>
-
-        <div className="Y-group">
-          <TextField
-            id="Y1"
-            label="Y1"
-            type="number"
-            step="0.01"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            className="Y1"
-            {...register("Y1", { required: true })}
-          />
-          <TextField
-            id="Y2"
-            label="Y2"
-            type="number"
-            step="0.01"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            className="Y2"
-            {...register("Y2", { required: true })}
-          />
-        </div>
-
-        <div className="Z-group">
-          <TextField
-            id="Z1"
-            label="Z1"
-            type="number"
-            step="0.01"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            className="Z1"
-            {...register("Z1", { required: true })}
-          />
-          <TextField
-            id="Z2"
-            label="Z2"
-            type="number"
-            step="0.01"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            className="Z2"
-            {...register("Z2", { required: true })}
-          />
-        </div>
-
-        <div className="form-group">
-          <input type="submit" value="Submit" className="Submit_Button" />
-        </div>
-      </form>
+      <CMFormEdit
+        fetchLink={`http://localhost:4000/C1Router/${params.id.toString()}`}
+        fetchLinkPost={`http://localhost:4000/C1Router/update/${params.id}`}
+        navigateLink={`/dashboard/readingC1`}
+      />
     </div>
   );
 }
