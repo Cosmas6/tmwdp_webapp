@@ -1,10 +1,11 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import { useNavigate, useParams } from "react-router-dom";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { useForm, Controller } from "react-hook-form";
+import "../../stylesheets/InstSections/createandedit.scss";
 
 const CMFormEdit = (props) => {
   const {
@@ -82,114 +83,117 @@ const CMFormEdit = (props) => {
   }
 
   return (
-    <form className="Form_Container" onSubmit={handleSubmit(onSubmit)}>
-      <div className="Crack_Meter_Input">
-        <TextField
-          id="crack-meter"
-          label="Crack Meter"
-          type="number"
-          defaultValue={1}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          inputProps={{ readOnly: true }}
-          className="crack-meter"
-          {...register("CrackMeter", { required: true })}
-        />
-      </div>
-      <div className="Date_Input">
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <Controller
-            control={control}
-            name="DateOfReading"
-            defaultValue={new Date()}
-            render={({ field: { onChange, value } }) => (
-              <DesktopDatePicker
-                label="Date Of Reading"
-                inputFormat="dd/MMM/yyyy"
-                disableMaskedInput
-                value={value}
-                onChange={onChange}
-                renderInput={(params) => <TextField {...params} />}
-              />
-            )}
+    <div className="C1_Container">
+      <h1>{props.cmName}</h1>
+      <form className="Form_Container" onSubmit={handleSubmit(onSubmit)}>
+        <div className="Crack_Meter_Input">
+          <TextField
+            id="crack-meter"
+            label="Crack Meter"
+            type="number"
+            defaultValue={1}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            inputProps={{ readOnly: true }}
+            className="crack-meter"
+            {...register("CrackMeter", { required: true })}
           />
-        </LocalizationProvider>
-      </div>
+        </div>
+        <div className="Date_Input">
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <Controller
+              control={control}
+              name="DateOfReading"
+              defaultValue={new Date()}
+              render={({ field: { onChange, value } }) => (
+                <DesktopDatePicker
+                  label="Date Of Reading"
+                  inputFormat="dd/MMM/yyyy"
+                  disableMaskedInput
+                  value={value}
+                  onChange={onChange}
+                  renderInput={(params) => <TextField {...params} />}
+                />
+              )}
+            />
+          </LocalizationProvider>
+        </div>
 
-      <div className="X-group">
-        <TextField
-          id="X1"
-          label="X1"
-          type="text"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          className="X1"
-          {...register("X1", { required: true })}
-        />
-        <TextField
-          id="X2"
-          label="X2"
-          type="text"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          className="X2"
-          {...register("X2", { required: true })}
-        />
-      </div>
+        <div className="X-group">
+          <TextField
+            id="X1"
+            label="X1"
+            type="text"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            className="X1"
+            {...register("X1", { required: true })}
+          />
+          <TextField
+            id="X2"
+            label="X2"
+            type="text"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            className="X2"
+            {...register("X2", { required: true })}
+          />
+        </div>
 
-      <div className="Y-group">
-        <TextField
-          id="Y1"
-          label="Y1"
-          type="text"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          className="Y1"
-          {...register("Y1", { required: true })}
-        />
-        <TextField
-          id="Y2"
-          label="Y2"
-          type="text"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          className="Y2"
-          {...register("Y2", { required: true })}
-        />
-      </div>
+        <div className="Y-group">
+          <TextField
+            id="Y1"
+            label="Y1"
+            type="text"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            className="Y1"
+            {...register("Y1", { required: true })}
+          />
+          <TextField
+            id="Y2"
+            label="Y2"
+            type="text"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            className="Y2"
+            {...register("Y2", { required: true })}
+          />
+        </div>
 
-      <div className="Z-group">
-        <TextField
-          id="Z1"
-          label="Z1"
-          type="text"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          className="Z1"
-          {...register("Z1", { required: true })}
-        />
-        <TextField
-          id="Z2"
-          label="Z2"
-          type="text"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          className="Z2"
-          {...register("Z2", { required: true })}
-        />
-      </div>
+        <div className="Z-group">
+          <TextField
+            id="Z1"
+            label="Z1"
+            type="text"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            className="Z1"
+            {...register("Z1", { required: true })}
+          />
+          <TextField
+            id="Z2"
+            label="Z2"
+            type="text"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            className="Z2"
+            {...register("Z2", { required: true })}
+          />
+        </div>
 
-      <div className="form-group">
-        <input type="submit" value="Submit" className="Submit_Button" />
-      </div>
-    </form>
+        <div className="form-group">
+          <input type="submit" value="Submit" className="Submit_Button" />
+        </div>
+      </form>
+    </div>
   );
 };
 

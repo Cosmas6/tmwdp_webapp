@@ -1,26 +1,32 @@
-import React, { useRef } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import "../stylesheets/dailyreport.scss";
 
-const DailyReport = ({
-  // reportKey,
-  section,
-  weather,
-  date,
-  shift,
-  activities,
-  plantEQ,
-  SMEC_Ins,
-  CGGC_Ins,
-  safety_officer,
-  drivers,
-  SMEC_Eng,
-  site_foreman,
-  plant_operator,
-  unskilled_labour,
-  welder,
-  chinese_staff,
-}) => {
-  const reportRef = useRef();
+const DailyReport = () => {
+  const [report, setReport] = useState([]);
+  const currentDate = useSelector((state) => state.repData);
+  useEffect(() => {
+    async function getReport() {
+      const response = await fetch(
+        `http://localhost:4000/DailyRSpillwayRouter`
+      );
+
+      if (!response.ok) {
+        const message = `An error occurred: ${response.statusText}`;
+        window.alert(message);
+        return;
+      }
+
+      const report = await response.json();
+      setReport(report);
+    }
+
+    getReport();
+
+    return;
+  }, [report.length]);
+
+  console.log(report);
 
   const onButtonClick = () => {
     fetch("https://v2018.api2pdf.com/chrome/html", {
@@ -34,7 +40,7 @@ const DailyReport = ({
         html: ` 
           <html style="color: green" lang="en">
           <head>
-            <title>Daily Report for ${date}</title>
+            <title>Daily Report for ${report.Date}</title>
             <link
               href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
               rel="stylesheet"
@@ -59,15 +65,15 @@ const DailyReport = ({
                     <th>INSPECTOR'S</th>
                     <td colspan="1"></td>
                     <th>SECTION:</th>
-                    <td colspan="4" style="padding-left: 10px">${section}</td>
+                    <td colspan="4" style="padding-left: 10px">${report.Section}</td>
                   </tr>
                   <tr>
                     <th>WEATHER:</th>
-                    <td style="padding-left: 10px">${weather}</td>
+                    <td style="padding-left: 10px">${report.Weather}</td>
                     <th>DATE:</th>
-                    <td style="padding-left: 10px">${date}</td>
+                    <td style="padding-left: 10px">${report.Date}</td>
                     <th>SHIFT:</th>
-                    <td style="padding-left: 10px">${shift}</td>
+                    <td style="padding-left: 10px">${report.Shift}</td>
                   </tr>
                   <tr></tr>
                   <tr></tr>
@@ -75,13 +81,13 @@ const DailyReport = ({
                     <th colspan="6">ACTIVITIES:</th>
                   </tr>
                   <tr>
-                    <td colspan="6" style="padding-left: 10px">${activities}</td>
+                    <td colspan="6" style="padding-left: 10px">${report.Activities}</td>
                   </tr>
                   <tr>
                     <th colspan="6">PLANT AND EQUIPMENT:</th>
                   </tr>
                   <tr>
-                    <td colspan="6" style="padding-left: 10px">${plantEQ}</td>
+                    <td colspan="6" style="padding-left: 10px">${report.PlantEQ}</td>
                   </tr>
                   <tr>
                     <th colspan="6">LABOUR</th>
@@ -95,39 +101,39 @@ const DailyReport = ({
                   </tr>
                   <tr>
                     <td width="40%">SMEC INSPECTORS</td>
-                    <td style="padding-left: 10px">${SMEC_Ins}</td>
+                    <td style="padding-left: 10px">${report.SMEC_Ins}</td>
                     <td>SMEC ENGINEER</td>
-                    <td colspan="3" style="padding-left: 10px">${SMEC_Eng}</td>
+                    <td colspan="3" style="padding-left: 10px">${report.SMEC_Eng}</td>
                   </tr>
                   <tr>
                     <td>CGGC INSPECTORS</td>
-                    <td style="padding-left: 10px">${CGGC_Ins}</td>
+                    <td style="padding-left: 10px">${report.CGGC_Ins}</td>
                     <td>SITE FOREMAN</td>
-                    <td colspan="3" style="padding-left: 10px">${site_foreman}</td>
+                    <td colspan="3" style="padding-left: 10px">${report.Site_foreman}</td>
                   </tr>
                   <tr>
                     <td>SAFETY OFFICER</td>
-                    <td style="padding-left: 10px">${safety_officer}</td>
+                    <td style="padding-left: 10px">${report.Safety_officer}</td>
                     <td>PLANT OPERATOR</td>
-                    <td colspan="3" style="padding-left: 10px">${plant_operator}</td>
+                    <td colspan="3" style="padding-left: 10px">${report.Plant_operator}</td>
                   </tr>
                   <tr>
                     <td>DRIVERS</td>
-                    <td style="padding-left: 10px">${drivers}</td>
+                    <td style="padding-left: 10px">${report.Drivers}</td>
                     <td>UNSKILLED LABOUR</td>
-                    <td colspan="3" style="padding-left: 10px">${unskilled_labour}</td>
+                    <td colspan="3" style="padding-left: 10px">${report.Unskilled_labour}</td>
                   </tr>
                   <tr>
                     <td></td>
                     <td></td>
                     <td>WELDER</td>
-                    <td colspan="3" style="padding-left: 10px">${welder}</td>
+                    <td colspan="3" style="padding-left: 10px">${report.Welder}</td>
                   </tr>
                   <tr>
                     <td></td>
                     <td></td>
                     <td>CHINESE STAFF</td>
-                    <td colspan="3" style="padding-left: 10px">${chinese_staff}</td>
+                    <td colspan="3" style="padding-left: 10px">${report.Chinese_staff}</td>
                   </tr>
                   <tr>
                     <th colspan="6">REMARKS/OBSERVATION:</th>
@@ -160,7 +166,7 @@ const DailyReport = ({
   return (
     <>
       <div className="DailyReport_Container">
-        <div className="DailyReportTable_Container" ref={reportRef}>
+        <div className="DailyReportTable_Container">
           <h1 className="title drf-title">Daily Report Form</h1>
           <table>
             <tbody>
@@ -174,15 +180,15 @@ const DailyReport = ({
                 <th>INSPECTOR'S</th>
                 <td colSpan="1"></td>
                 <th>SECTION:</th>
-                <td colSpan="4">{section}</td>
+                <td colSpan="4">{report.Section}</td>
               </tr>
               <tr>
                 <th>WEATHER:</th>
-                <td>{weather}</td>
+                <td>{report.Weather}</td>
                 <th>DATE:</th>
-                <td>{date}</td>
+                <td>{report.Date}</td>
                 <th>SHIFT:</th>
-                <td>{shift}</td>
+                <td>{report.Shift}</td>
               </tr>
               <tr></tr>
               <tr></tr>
@@ -190,13 +196,13 @@ const DailyReport = ({
                 <th colSpan="6">ACTIVITIES:</th>
               </tr>
               <tr>
-                <td colSpan="6">{activities}</td>
+                <td colSpan="6">{report.Activities}</td>
               </tr>
               <tr>
                 <th colSpan="6">PLANT AND EQUIPMENT:</th>
               </tr>
               <tr>
-                <td colSpan="6">{plantEQ}</td>
+                <td colSpan="6">{report.PlantEQ}</td>
               </tr>
               <tr>
                 <th colSpan="6">LABOUR</th>
@@ -210,39 +216,39 @@ const DailyReport = ({
               </tr>
               <tr>
                 <td width="40%">SMEC INSPECTORS</td>
-                <td>{SMEC_Ins}</td>
+                <td>{report.SMEC_Ins}</td>
                 <td>SMEC ENGINEER</td>
-                <td colSpan="3">{SMEC_Eng}</td>
+                <td colSpan="3">{report.SMEC_Eng}</td>
               </tr>
               <tr>
                 <td>CGGC INSPECTORS</td>
-                <td>{CGGC_Ins}</td>
+                <td>{report.CGGC_Ins}</td>
                 <td>SITE FOREMAN</td>
-                <td colSpan="3">{site_foreman}</td>
+                <td colSpan="3">{report.Site_foreman}</td>
               </tr>
               <tr>
                 <td>SAFETY OFFICER</td>
-                <td>{safety_officer}</td>
+                <td>{report.Safety_officer}</td>
                 <td>PLANT OPERATOR</td>
-                <td colSpan="3">{plant_operator}</td>
+                <td colSpan="3">{report.Plant_operator}</td>
               </tr>
               <tr>
                 <td>DRIVERS</td>
-                <td>{drivers}</td>
+                <td>{report.Drivers}</td>
                 <td>UNSKILLED LABOUR</td>
-                <td colSpan="3">{unskilled_labour}</td>
+                <td colSpan="3">{report.Unskilled_labour}</td>
               </tr>
               <tr>
                 <td></td>
                 <td></td>
                 <td>WELDER</td>
-                <td colSpan="3">{welder}</td>
+                <td colSpan="3">{report.Welder}</td>
               </tr>
               <tr>
                 <td></td>
                 <td></td>
                 <td>CHINESE STAFF</td>
-                <td colSpan="3">{chinese_staff}</td>
+                <td colSpan="3">{report.Chinese_staff}</td>
               </tr>
               <tr>
                 <th colSpan="6">REMARKS/OBSERVATION:</th>

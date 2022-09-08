@@ -7,6 +7,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import "../stylesheets/register.scss";
+import db from "../../firebase.config";
 
 const Register = () => {
   const navigate = useNavigate();

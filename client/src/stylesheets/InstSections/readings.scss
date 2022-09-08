@@ -1,0 +1,6 @@
+@import "../main.scss";
+
+.C1_Table_Container {
+  @extend .Display_Inline_Block;
+  float: right;
+}

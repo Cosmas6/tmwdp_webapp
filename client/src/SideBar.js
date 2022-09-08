@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import db from "../firebase.config";
 
 import "./stylesheets/sidebar.scss";
 
@@ -85,7 +86,7 @@ const SideBar = () => {
                     }
                     to="createReadingC1"
                   >
-                   C1
+                    C1
                   </NavLink>
                 </li>
                 <li>
@@ -100,16 +101,16 @@ const SideBar = () => {
                     C2
                   </NavLink>
                 </li>
-                {/* <li>
+                <li>
                   <NavLink
                     className={(navData) =>
                       navData.isActive
                         ? "link-white rounded active"
                         : "link-white rounded"
                     }
-                    to="headcount"
+                    to="createReadingC3"
                   >
-                    Spillway
+                    C3
                   </NavLink>
                 </li>
                 <li>
@@ -119,24 +120,157 @@ const SideBar = () => {
                         ? "link-white rounded active"
                         : "link-white rounded"
                     }
-                    to="headcount"
+                    to="createReadingC4"
                   >
-                    Tunnels
+                    C4
                   </NavLink>
-                </li> */}
+                </li>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="createReadingC5"
+                  >
+                    C5
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="createReadingC6"
+                  >
+                    C6
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="createReadingC7"
+                  >
+                    C7
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="createReadingC8"
+                  >
+                    C8
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="createReadingC9"
+                  >
+                    C9
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="createReadingC10"
+                  >
+                    C10
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="createReadingC11"
+                  >
+                    C11
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="createReadingC12"
+                  >
+                    C12
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="createReadingC13"
+                  >
+                    C13
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="createReadingC14"
+                  >
+                    C14
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="createReadingC15"
+                  >
+                    C15
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="createReadingC16"
+                  >
+                    C16
+                  </NavLink>
+                </li>
               </ul>
             </div>
-
-            {/* <li>
-              <NavLink
-                className={(navData) =>
-                  navData.isActive ? "nav-link active" : "nav-link"
-                }
-                to="createReading"
-              >
-                CM Reading
-              </NavLink>
-            </li> */}
             <li>
               <NavLink
                 className={(navData) =>
@@ -154,7 +288,7 @@ const SideBar = () => {
                 }
                 to="example"
               >
-                Testing
+                Test
               </NavLink>
             </li>
             {/* <li>

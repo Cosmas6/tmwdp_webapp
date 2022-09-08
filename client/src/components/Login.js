@@ -4,6 +4,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useForm } from "react-hook-form";
 import "../stylesheets/login.scss";
+import db from "../../firebase.config";
 
 function Login() {
   const navigate = useNavigate();

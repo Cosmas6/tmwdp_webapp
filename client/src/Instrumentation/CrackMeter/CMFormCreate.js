@@ -6,6 +6,7 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { useForm, Controller } from "react-hook-form";
+import "../../stylesheets/InstSections/createandedit.scss";
 
 const CMFormCreate = (props) => {
   const {
@@ -21,8 +22,6 @@ const CMFormCreate = (props) => {
   const onSubmit = async (data, e) => {
     e.preventDefault();
     // When a post request is sent to the create url, we'll add a new record to the database.
-    const newReading = { ...data };
-    console.log(newReading, "newReading");
 
     await fetch(props.fetchLink, {
       method: "POST",
@@ -39,7 +38,8 @@ const CMFormCreate = (props) => {
   };
 
   return (
-    <>
+    <div className="C1_Container">
+      <h1>{props.cmName}</h1>
       <form className="Form_Container" onSubmit={handleSubmit(onSubmit)}>
         <div className="Crack_Meter_Input">
           <TextField
@@ -157,7 +157,7 @@ const CMFormCreate = (props) => {
           View Graph
         </Link>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -1,3 +1,5 @@
+require("dotenv").config();
+// console.log(process.env);
 var createError = require("http-errors");
 var express = require("express");
 var cors = require("cors");
@@ -6,17 +8,27 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var bodyParser = require("body-parser");
 var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
-var testAPIRouter = require("./routes/testAPI");
+var crackmeterDbo = require("./mongoDB/crackmeterConn");
+var dailyreportDbo = require("./mongoDB/dailyreportConn.js");
 var nodeMailerRouter = require("./routes/nodeMailer");
-var recordRouter = require("./routes/records");
-var TunnelInstRouter = require("./routes/Instrumentation/Tunnel");
-var crackMeterRouter = require("./routes/Instrumentation/readings");
+var DailyRSpillway = require("./routes/DailyReport/Spillway");
 var C1Router = require("./routes/Instrumentation/CrackMeters/C1");
 var C2Router = require("./routes/Instrumentation/CrackMeters/C2");
-var dbo = require("./mongoDB/conn");
-var InstDbo = require("./mongoDB/InstConn");
-var crackmeterDbo = require("./mongoDB/crackmeterConn");
+var C3Router = require("./routes/Instrumentation/CrackMeters/C3");
+var C4Router = require("./routes/Instrumentation/CrackMeters/C4");
+var C5Router = require("./routes/Instrumentation/CrackMeters/C5");
+var C6Router = require("./routes/Instrumentation/CrackMeters/C6");
+var C7Router = require("./routes/Instrumentation/CrackMeters/C7");
+var C8Router = require("./routes/Instrumentation/CrackMeters/C8");
+var C9Router = require("./routes/Instrumentation/CrackMeters/C9");
+var C10Router = require("./routes/Instrumentation/CrackMeters/C10");
+var C11Router = require("./routes/Instrumentation/CrackMeters/C11");
+var C12Router = require("./routes/Instrumentation/CrackMeters/C12");
+var C13Router = require("./routes/Instrumentation/CrackMeters/C13");
+var C14Router = require("./routes/Instrumentation/CrackMeters/C14");
+var C15Router = require("./routes/Instrumentation/CrackMeters/C15");
+var C16Router = require("./routes/Instrumentation/CrackMeters/C16");
+
 var fileUpload = require("express-fileupload");
 var app = express();
 app.use(cors());
@@ -33,30 +45,32 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use(fileUpload());
 
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
-app.use("/testAPI", testAPIRouter);
 app.use("/nodeMailer", nodeMailerRouter);
-app.use("/records", recordRouter);
-app.use("/instTunnel", TunnelInstRouter);
-app.use("/crackMeterRouter", crackMeterRouter);
 app.use("/C1Router", C1Router);
 app.use("/C2Router", C2Router);
+app.use("/C3Router", C3Router);
+app.use("/C4Router", C4Router);
+app.use("/C5Router", C5Router);
+app.use("/C6Router", C6Router);
+app.use("/C7Router", C7Router);
+app.use("/C8Router", C8Router);
+app.use("/C9Router", C9Router);
+app.use("/C10Router", C10Router);
+app.use("/C11Router", C11Router);
+app.use("/C12Router", C12Router);
+app.use("/C13Router", C13Router);
+app.use("/C14Router", C14Router);
+app.use("/C15Router", C15Router);
+app.use("/C16Router", C16Router);
+app.use("/DailyRSpillwayRouter", DailyRSpillway);
 
 // perform a database connection when server starts
-
-// dbo.connectToServer(function (err) {
-//   if (err) console.error(err);
-// });
 
 crackmeterDbo.connectToServer(function (err) {
   if (err) console.error(err);
 });
 
-InstDbo.connectToServer(function (err) {
-  if (err) console.error(err);
-});
-
-dbo.connectToServer(function (err) {
+dailyreportDbo.connectToServer(function (err) {
   if (err) console.error(err);
 });
 

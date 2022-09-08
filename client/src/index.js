@@ -8,7 +8,6 @@ import { PersistGate } from "redux-persist/integration/react";
 import storage from "redux-persist/lib/storage";
 import reportData from "./store/reducers/reportData";
 import { BrowserRouter } from "react-router-dom";
-import lastAction from "./store/reducers/lastAction";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 
@@ -19,7 +18,6 @@ const persistConfig = {
 
 const rootReducers = combineReducers({
   repData: reportData,
-  lastActionData: lastAction,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducers);

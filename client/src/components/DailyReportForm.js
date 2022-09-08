@@ -1,30 +1,24 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import Actions from "../store/actions";
+import { useNavigate } from "react-router-dom";
+import { useForm, Controller } from "react-hook-form";
 import { RadioGroup, Radio, FormControlLabel } from "@mui/material";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import TextField from "@mui/material/TextField";
-import db from "../../firebase.config.js";
-import {
-  collection,
-  doc,
-  setDoc,
-  serverTimestamp,
-  getDoc,
-} from "firebase/firestore";
+import allActions from "../store/actions";
 import "../stylesheets/dailyreportform.scss";
 
 const DailyReportForm = () => {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors, isSubmitted },
   } = useForm();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     let authToken = sessionStorage.getItem("Auth Token");
@@ -34,55 +28,21 @@ const DailyReportForm = () => {
     }
   }, []);
 
-  const [datevalue, setDateValue] = useState();
-
-  const dispatch = useDispatch();
-
-  const handleChange = (newValue) => {
-    setDateValue(newValue);
-  };
-
   const onSubmit = async (data, e) => {
     e.preventDefault();
-    try {
-      const newReportRef = doc(collection(db, "daily-report"));
-      await setDoc(newReportRef, {
-        Section: data.Section,
-        Weather: data.Weather,
-        Date: data.Date,
-        Shift: data.Shift,
-        Activities: data.Activities,
-        PlantEQ: data.PlantEQ,
-        SMEC_Ins: data.SMEC_Ins,
-        CGGC_Ins: data.CGGC_Ins,
-        Safety_Officer: data.Safety_Officer,
-        Drivers: data.Drivers,
-        SMEC_Eng: data.SMEC_Eng,
-        Site_Foreman: data.Site_Foreman,
-        Plant_Operator: data.Plant_Operator,
-        Unskilled_Labour: data.Unskilled_Labour,
-        Welder: data.Welder,
-        Chinese_Staff: data.Chinese_Staff,
-        Timestamp: serverTimestamp(),
-      });
-      //place an alert later
+    dispatch(allActions.setDate(data.Date));
+    await fetch(`http://localhost:4000/DailyRSpillwayRouter/add`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }).catch((error) => {
+      window.alert(error);
+      return;
+    });
 
-      const docSnap = await getDoc(newReportRef);
-      if (docSnap.exists()) {
-        dispatch(Actions.setID(docSnap.id));
-        console.log(docSnap.data(), "docSnap data");
-      } else {
-        console.log("No such document!");
-      }
-
-      console.log("submit successful");
-      navigate("/submitsuccess");
-    } catch (err) {
-      console.log(err);
-    } finally {
-    }
-
-    // console.log("isSubmitted", isSubmitted);
+    navigate(`/dashboard/dailyreport`);
   };
 
   return (
@@ -132,13 +92,20 @@ const DailyReportForm = () => {
         </div>
         <div className="Date_Container daily-report-form-flex">
           <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DesktopDatePicker
-              label="Date"
-              inputFormat="dd/MM/yyyy"
-              {...register("Date", { required: true })}
-              value={datevalue}
-              onChange={handleChange}
-              renderInput={(params) => <TextField {...params} />}
+            <Controller
+              control={control}
+              name="Date"
+              defaultValue={new Date()}
+              render={({ field: { onChange, value } }) => (
+                <DesktopDatePicker
+                  label="Date"
+                  inputFormat="dd/MMM/yyyy"
+                  disableMaskedInput
+                  value={value}
+                  onChange={onChange}
+                  renderInput={(params) => <TextField {...params} />}
+                />
+              )}
             />
           </LocalizationProvider>
         </div>
