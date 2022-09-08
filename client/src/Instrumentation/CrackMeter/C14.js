@@ -57,8 +57,8 @@ export function GraphC14() {
         defX={21.63}
         defY={26.73}
         defZ={22.23}
-        YaxisN={-0.5}
-        YaxisP={1.5}
+        YaxisN={-1.0}
+        YaxisP={2.0}
       />
     </div>
   );

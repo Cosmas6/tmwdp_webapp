@@ -57,8 +57,8 @@ export function GraphC5() {
         defX={22.68}
         defY={25.41}
         defZ={11.70}
-        YaxisN={-0.5}
-        YaxisP={1.5}
+        YaxisN={-1.5}
+        YaxisP={2.0}
       />
     </div>
   );

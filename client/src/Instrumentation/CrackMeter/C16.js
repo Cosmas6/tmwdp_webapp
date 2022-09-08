@@ -57,7 +57,7 @@ export function GraphC16() {
         defX={28.89}
         defY={27.45}
         defZ={13.85}
-        YaxisN={-0.5}
+        YaxisN={-1.5}
         YaxisP={1.5}
       />
     </div>

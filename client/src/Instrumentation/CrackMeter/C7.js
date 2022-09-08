@@ -58,7 +58,7 @@ export function GraphC7() {
         defY={23.26}
         defZ={13.42}
         YaxisN={-0.5}
-        YaxisP={1.5}
+        YaxisP={5.0}
       />
     </div>
   );

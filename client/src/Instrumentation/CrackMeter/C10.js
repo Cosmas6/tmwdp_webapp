@@ -57,8 +57,8 @@ export function GraphC10() {
         defX={21.87}
         defY={28.77}
         defZ={24.86}
-        YaxisN={-0.5}
-        YaxisP={1.5}
+        YaxisN={-5.0}
+        YaxisP={2.0}
       />
     </div>
   );
