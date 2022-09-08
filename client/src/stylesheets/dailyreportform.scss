@@ -1,4 +1,5 @@
 @import "./main.scss";
+@import "./loading.scss";
 
 .DailyReportForm_Container {
   @extend .Display_Inline_Block;
@@ -31,5 +32,10 @@
   .daily-report-form-flex {
     display: inline-block;
     margin: 20px 20px;
+  }
+
+  .Submit_Button {
+    width: 200px;
+    padding-bottom: 20px;
   }
 }

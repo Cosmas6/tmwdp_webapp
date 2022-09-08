@@ -21,7 +21,7 @@ const MainRoutes = () => (
         {/* </Route> */}
         <Route path="dashboard" element={<Dashboard />}>
           <Route path="dailyreportform" element={<DailyReportForm />} />
-          {CMRoutes}
+          {/* {CMRoutes} */}
           <Route path="dailyreport" element={<DailyReport />} />
         </Route>
       </Route>

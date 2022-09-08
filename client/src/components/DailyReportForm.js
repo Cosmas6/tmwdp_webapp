@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
@@ -19,6 +19,7 @@ const DailyReportForm = () => {
   } = useForm();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [submitRes, setSubmitRes] = useState();
 
   useEffect(() => {
     let authToken = sessionStorage.getItem("Auth Token");
@@ -37,13 +38,42 @@ const DailyReportForm = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-    }).catch((error) => {
-      window.alert(error);
-      return;
-    });
+    })
+      .then((response) => {
+        const formButtonRef = formButton.current;
+        const formLoaderRef = formLoader.current;
+        if (response.statusText == "OK") {
+          formButtonRef.style.display = "none";
+          formLoaderRef.style.display = "block";
+        } else {
+          alert("FAILURE!");
+        }
+      })
+      .catch((error) => {
+        window.alert(error);
+        return;
+      });
 
-    navigate(`/dashboard/dailyreport`);
+    // navigate(`/dashboard/dailyreport`);
   };
+
+  const formButton = useRef();
+  const formLoader = useRef();
+
+  function showDiv() {
+    console.log(submitRes);
+    // if (submitRes.statusText == "OK") {
+    //   document.getElementById("Submit_Button").style.display = "none";
+    //   document.getElementById("loadingGif").style.display = "block";
+    // } else {
+    //   alert("FAILURE!");
+    // }
+
+    // setTimeout(function () {
+    //   document.getElementById("loadingGif").style.display = "none";
+    //   document.getElementById("showme").style.display = "block";
+    // }, 2000);
+  }
 
   return (
     <div className="DailyReportForm_Container">
@@ -260,9 +290,16 @@ const DailyReportForm = () => {
           })}
         />
         <input className="Form_Input" type="text" id="activities" /> */}
-        <button className="Submit_Button daily-report-form-flex" type="submit">
-          Submit Form
-        </button>
+        <div className="submit-div">
+          <button
+            className="Submit_Button daily-report-form-flex"
+            type="submit"
+            ref={formButton}
+          >
+            <span className="submit-span">Submit Form</span>
+          </button>
+          <div className="loader" ref={formLoader}></div>
+        </div>
       </form>
     </div>
   );

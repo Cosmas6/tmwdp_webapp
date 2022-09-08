@@ -75,7 +75,7 @@ const SideBar = () => {
                 CM Reading
               </NavLink>
             </li>
-            <div className="collapse show" id="dashboard-collapse">
+            <div className="collapse hide" id="dashboard-collapse">
               <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small sidebar-dropdowns">
                 <li>
                   <NavLink

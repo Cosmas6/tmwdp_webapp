@@ -49,7 +49,6 @@ import CreateReadingC16, { GraphC16 } from "./C16";
 import { EditReadingC16 } from "./C16";
 import { ReadingListC16 } from "./C16";
 
-
 export default [
   <>
     <Route path="createReadingC1" element={<CreateReadingC1 />} />

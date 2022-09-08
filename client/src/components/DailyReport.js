@@ -26,8 +26,6 @@ const DailyReport = () => {
     return;
   }, [report.length]);
 
-  console.log(report);
-
   const onButtonClick = () => {
     fetch("https://v2018.api2pdf.com/chrome/html", {
       method: "post",
