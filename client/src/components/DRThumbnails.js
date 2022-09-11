@@ -68,6 +68,13 @@ const DRThumbnails = () => {
           >
             Delete
           </button>
+          |
+          <Link
+            className="btn btn-link"
+            to={`/dashboard/viewDReport/${props.report._id}`}
+          >
+            View
+          </Link>{" "}
         </td>
       </tr>
     );
@@ -78,7 +85,7 @@ const DRThumbnails = () => {
       method: "DELETE",
     });
 
-    const newReport = readings.filter((el) => el._id !== id);
+    const newReport = reports.filter((el) => el._id !== id);
     setReports(newReport);
   }
 

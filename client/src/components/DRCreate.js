@@ -46,14 +46,10 @@ const DRCreate = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-    })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        window.alert(error);
-        return;
-      });
+    }).catch((error) => {
+      window.alert(error);
+      return;
+    });
 
     navigate(`/dashboard/readingDReport`);
   };
@@ -77,45 +73,60 @@ const DRCreate = () => {
         </div>
         <div className="Section_Container daily-report-form-flex">
           <label className="Input_Label">Section</label>
-          <RadioGroup
-            aria-labelledby="Section"
+
+          <Controller
+            control={control}
+            rules={{ required: true }}
+            name="Section"
             defaultValue="Spillway"
-            name="radio-buttons-group"
-          >
-            <FormControlLabel
-              {...register("Section", { required: true })}
-              value="Spillway"
-              control={<Radio />}
-              label="Spillway"
-            />
-            <FormControlLabel
-              {...register("Section", { required: true })}
-              value="Tunnels"
-              control={<Radio />}
-              label="Tunnels"
-            />
-          </RadioGroup>
+            render={({ field }) => (
+              <RadioGroup
+                {...field}
+                aria-labelledby="Section"
+                defaultValue="Spillway"
+                name="radio-buttons-group"
+              >
+                <FormControlLabel
+                  value="Spillway"
+                  control={<Radio />}
+                  label="Spillway"
+                />
+                <FormControlLabel
+                  value="Tunnels"
+                  control={<Radio />}
+                  label="Tunnels"
+                />
+              </RadioGroup>
+            )}
+          />
         </div>
         <div className="Weather_Container daily-report-form-flex">
           <label className="Input_Label">Weather</label>
-          <RadioGroup
-            aria-labelledby="Weather"
+          <Controller
+            control={control}
+            rules={{ required: true }}
+            name="Weather"
             defaultValue="Sunny"
-            name="radio-buttons-group"
-          >
-            <FormControlLabel
-              {...register("Weather", { required: true })}
-              value="Sunny"
-              control={<Radio />}
-              label="Sunny"
-            />
-            <FormControlLabel
-              {...register("Weather", { required: true })}
-              value="Cloudy"
-              control={<Radio />}
-              label="Cloudy"
-            />
-          </RadioGroup>
+            render={({ field }) => (
+              <RadioGroup
+                {...field}
+                aria-labelledby="Weather"
+                defaultValue="Sunny"
+                name="radio-buttons-group"
+              >
+                <FormControlLabel
+                  value="Sunny"
+                  control={<Radio />}
+                  label="Sunny"
+                />
+                <FormControlLabel
+                  value="Cloudy"
+                  control={<Radio />}
+                  label="Cloudy"
+                />
+              </RadioGroup>
+            )}
+          />
         </div>
         <div className="Date_Container daily-report-form-flex">
           <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -138,24 +149,31 @@ const DRCreate = () => {
         </div>
         <div className="Shift_Container daily-report-form-flex">
           <label className="Input_Label">Shift</label>
-          <RadioGroup
-            aria-labelledby="Shift"
+          <Controller
+            control={control}
+            rules={{ required: true }}
+            name="Shift"
             defaultValue="Dayshift"
-            name="radio-buttons-group"
-          >
-            <FormControlLabel
-              {...register("Shift", { required: true })}
-              value="Dayshift"
-              control={<Radio />}
-              label="Dayshift"
-            />
-            <FormControlLabel
-              {...register("Shift", { required: true })}
-              value="Nightshift"
-              control={<Radio />}
-              label="Nightshift"
-            />
-          </RadioGroup>
+            render={({ field }) => (
+              <RadioGroup
+                {...field}
+                aria-labelledby="Shift"
+                defaultValue="Dayshift"
+                name="radio-buttons-group"
+              >
+                <FormControlLabel
+                  value="Dayshift"
+                  control={<Radio />}
+                  label="Dayshift"
+                />
+                <FormControlLabel
+                  value="Nightshift"
+                  control={<Radio />}
+                  label="Nightshift"
+                />
+              </RadioGroup>
+            )}
+          />
         </div>
         <TextField
           id="outlined-multiline-static"

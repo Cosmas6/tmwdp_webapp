@@ -10,7 +10,7 @@ router.get("/", function (req, res) {
   db_connect
     .collection("Spillway")
     .find()
-    .sort()
+    .sort({ Date: -1 })
     .toArray(function (err, result) {
       if (err) throw err;
       console.log(err);
@@ -18,18 +18,19 @@ router.get("/", function (req, res) {
     });
 });
 
-router.get("/current", function (req, response) {
-  let db_connect = CMdbo.getDb();
-  let myobj = {
-    Date: req.body.Date,
-  };
+// router.get("/view/:id", function (req, response) {
+//   let db_connect = CMdbo.getDb();
+//   let myquery = { _id: ObjectId(req.params.id) };
 
-  db_connect.collection("Spillway").findOne(myobj, function (err, result) {
-    if (err) throw err;
-    console.log(err);
-    response.json(result);
-  });
-});
+//   db_connect
+//     .collection("Spillway")
+//     .find(myquery)
+//     .toArray(function (err, result) {
+//       if (err) throw err;
+//       console.log(err);
+//       res.json(result);
+//     });
+// });
 
 // This section will help you get a single record by id
 router.get("/:id", function (req, res) {

@@ -25,6 +25,7 @@ const MainRoutes = () => (
           {/* {CMRoutes} */}
           <Route path="createDReport" element={<DRCreate />} />
           <Route path="editDReport/:id" element={<DREdit />} />
+          <Route path="viewDReport/:id" element={<DailyReport />} />
           <Route path="readingDReport" element={<DRThumbnails />} />
           <Route path="dailyreport" element={<DailyReport />} />
         </Route>
