@@ -55,7 +55,7 @@ const SideBar = () => {
                 className={(navData) =>
                   navData.isActive ? "nav-link active" : "nav-link"
                 }
-                to="dailyreportform"
+                to="createDReport"
               >
                 Daily Report
               </NavLink>

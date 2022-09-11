@@ -1,0 +1,5 @@
+@import "./drcreate.scss";
+
+.DREdit_Container {
+  @extend .DRCreate_Container;
+}

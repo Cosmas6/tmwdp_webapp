@@ -1,13 +1,13 @@
 //I can specify the methods here, such as setID
 
-const setDate = (reportDate) => {
-  console.log(reportDate, "setDateAction");
+const setData = (reportData) => {
+  console.log(reportData, "setDataAction");
   return {
-    type: "UPDATE_REPORT_DATE",
-    payload: reportDate,
+    type: "UPDATE_REPORT_DATA",
+    payload: reportData,
   };
 };
 
 export default {
-  setDate,
+  setData,
 };

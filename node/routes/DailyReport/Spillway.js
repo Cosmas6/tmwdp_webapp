@@ -7,7 +7,6 @@ const ObjectId = require("mongodb").ObjectId;
 
 router.get("/", function (req, res) {
   let db_connect = CMdbo.getDb();
-  var query = {};
   db_connect
     .collection("Spillway")
     .find()
@@ -19,17 +18,17 @@ router.get("/", function (req, res) {
     });
 });
 
-router.get("/current", function (req, res) {
+router.get("/current", function (req, response) {
   let db_connect = CMdbo.getDb();
-  var query = {};
-  db_connect
-    .collection("Spillway")
-    .find()
-    .toArray(function (err, result) {
-      if (err) throw err;
-      console.log(err);
-      res.json(result);
-    });
+  let myobj = {
+    Date: req.body.Date,
+  };
+
+  db_connect.collection("Spillway").findOne(myobj, function (err, result) {
+    if (err) throw err;
+    console.log(err);
+    response.json(result);
+  });
 });
 
 // This section will help you get a single record by id
@@ -46,6 +45,7 @@ router.get("/:id", function (req, res) {
 router.post("/add", function (req, response) {
   let db_connect = CMdbo.getDb();
   let myobj = {
+    UserEmail: req.body.UserEmail,
     Section: req.body.Section,
     Weather: req.body.Weather,
     Date: req.body.Date,
@@ -66,6 +66,7 @@ router.post("/add", function (req, response) {
   console.log(req.body, "myobj");
   db_connect.collection("Spillway").insertOne(myobj, function (err, res) {
     if (err) throw err;
+    console.log(err);
     response.json(res);
   });
 });
@@ -76,6 +77,7 @@ router.post("/update/:id", function (req, response) {
   let myquery = { _id: ObjectId(req.params.id) };
   let newvalues = {
     $set: {
+      UserEmail: req.body.UserEmail,
       Section: req.body.Section,
       Weather: req.body.Weather,
       Date: req.body.Date,

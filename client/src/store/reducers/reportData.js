@@ -4,7 +4,7 @@ const initialState = {
 
 const reportData = (state = initialState, action) => {
   switch (action.type) {
-    case "UPDATE_REPORT_DATE":
+    case "UPDATE_REPORT_DATA":
       return {
         ...state,
         date: action.payload,

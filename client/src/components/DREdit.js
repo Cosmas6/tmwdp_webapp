@@ -1,25 +1,72 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import { RadioGroup, Radio, FormControlLabel } from "@mui/material";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import TextField from "@mui/material/TextField";
-import allActions from "../store/actions";
-import "../stylesheets/dailyreportform.scss";
+import "../stylesheets/dredit.scss";
 
-const DailyReportForm = () => {
+const DREdit = () => {
   const {
     register,
     handleSubmit,
     control,
+    reset,
     formState: { errors, isSubmitted },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      UserEmail: "",
+      Section: "",
+      Weather: "",
+      Date: "",
+      Shift: "",
+      Activities: "",
+      PlantEQ: "",
+      SMEC_Ins: "",
+      CGGC_Ins: "",
+      Safety_Officer: "",
+      Drivers: "",
+      SMEC_Eng: "",
+      Site_Foreman: "",
+      Plant_Operator: "",
+      Unskilled_Labour: "",
+      Welder: "",
+      Chinese_Staff: "",
+    },
+  });
+
+  const params = useParams();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const [submitRes, setSubmitRes] = useState();
+
+  useEffect(() => {
+    async function fetchReport() {
+      const id = params.id.toString();
+      const response = await fetch(
+        `http://localhost:4000/DailyRSpillwayRouter/${params.id.toString()}`
+      );
+
+      if (!response.ok) {
+        const message = `An error has occurred: ${response.statusText}`;
+        window.alert(message);
+        return;
+      }
+
+      const reading = await response.json();
+      if (!reading) {
+        window.alert(`Reading with id ${id} not found`);
+        navigate(`/dashboard/readingDReport`);
+        return;
+      }
+
+      reset(reading);
+    }
+
+    fetchReport();
+
+    return;
+  }, [params.id, navigate]);
 
   useEffect(() => {
     let authToken = sessionStorage.getItem("Auth Token");
@@ -31,53 +78,62 @@ const DailyReportForm = () => {
 
   const onSubmit = async (data, e) => {
     e.preventDefault();
-    dispatch(allActions.setDate(data.Date));
-    await fetch(`http://localhost:4000/DailyRSpillwayRouter/add`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
+    const editedReport = {
+      UserEmail: data.UserEmail,
+      Section: data.Section,
+      Weather: data.Weather,
+      Date: data.Date,
+      Shift: data.Shift,
+      Activities: data.Activities,
+      PlantEQ: data.PlantEQ,
+      SMEC_Ins: data.SMEC_Ins,
+      CGGC_Ins: data.CGGC_Ins,
+      Safety_Officer: data.Safety_Officer,
+      Drivers: data.Drivers,
+      SMEC_Eng: data.SMEC_Eng,
+      Site_Foreman: data.Site_Foreman,
+      Plant_Operator: data.Plant_Operator,
+      Unskilled_Labour: data.Unskilled_Labour,
+      Welder: data.Welder,
+      Chinese_Staff: data.Chinese_Staff,
+    };
+    await fetch(
+      `http://localhost:4000/DailyRSpillwayRouter/update/${params.id}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    )
       .then((response) => {
-        const formButtonRef = formButton.current;
-        const formLoaderRef = formLoader.current;
-        if (response.statusText == "OK") {
-          formButtonRef.style.display = "none";
-          formLoaderRef.style.display = "block";
-        } else {
-          alert("FAILURE!");
-        }
+        console.log(response);
       })
       .catch((error) => {
         window.alert(error);
         return;
       });
 
-    // navigate(`/dashboard/dailyreport`);
+    navigate(`/dashboard/readingDReport`);
   };
 
-  const formButton = useRef();
-  const formLoader = useRef();
-
-  function showDiv() {
-    console.log(submitRes);
-    // if (submitRes.statusText == "OK") {
-    //   document.getElementById("Submit_Button").style.display = "none";
-    //   document.getElementById("loadingGif").style.display = "block";
-    // } else {
-    //   alert("FAILURE!");
-    // }
-
-    // setTimeout(function () {
-    //   document.getElementById("loadingGif").style.display = "none";
-    //   document.getElementById("showme").style.display = "block";
-    // }, 2000);
-  }
-
   return (
-    <div className="DailyReportForm_Container">
+    <div className="DREdit_Container">
       <form className="Form_Container" onSubmit={handleSubmit(onSubmit)}>
+        <div className="User_Container daily-report-form-flex">
+          <TextField
+            id="user-email"
+            label="User Email"
+            type="text"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            inputProps={{ readOnly: true }}
+            className="crack-meter"
+            {...register("UserEmail", { required: true })}
+          />
+        </div>
         <div className="Section_Container daily-report-form-flex">
           <label className="Input_Label">Section</label>
           <RadioGroup
@@ -166,6 +222,9 @@ const DailyReportForm = () => {
           {...register("Activities", { required: true })}
           multiline
           rows={8}
+          InputLabelProps={{
+            shrink: true,
+          }}
           defaultValue=""
           className="daily-report-form-flex"
         />
@@ -175,6 +234,9 @@ const DailyReportForm = () => {
           label="Plant and Equipment"
           multiline
           rows={8}
+          InputLabelProps={{
+            shrink: true,
+          }}
           defaultValue=""
           className="daily-report-form-flex"
         />
@@ -294,15 +356,13 @@ const DailyReportForm = () => {
           <button
             className="Submit_Button daily-report-form-flex"
             type="submit"
-            ref={formButton}
           >
             <span className="submit-span">Submit Form</span>
           </button>
-          <div className="loader" ref={formLoader}></div>
         </div>
       </form>
     </div>
   );
 };
 
-export default DailyReportForm;
+export default DREdit;
