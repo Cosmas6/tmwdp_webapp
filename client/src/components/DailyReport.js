@@ -1,3 +1,4 @@
+import { PDFDownloadLink } from "@react-pdf/renderer";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import "../stylesheets/dailyreport.scss";
@@ -7,6 +8,7 @@ const DailyReport = () => {
   const navigate = useNavigate();
 
   const [report, setReport] = useState([]);
+  const [pdfLink, setPdfLink] = useState();
   const [editBtn, setEditBtn] = useState();
   useEffect(() => {
     async function fetchReport() {
@@ -37,7 +39,7 @@ const DailyReport = () => {
     return;
   }, [params.id, navigate]);
 
-  const [pdfLink, setPdfLink] = useState();
+  var n = new Date(report.Date).toLocaleDateString("es-CL");
 
   useEffect(() => {
     async function fetchReportPdf() {
@@ -166,35 +168,17 @@ const DailyReport = () => {
             height: "7in",
           },
         }),
-      }).then((res) => {
-        const resJson = res.json();
-        console.log(resJson);
-        // setPdfLink(resJson);
-        // document.getElementById("Nodemailer_Link").style.display = "block";
-        // document.getElementById("pdfLink").innerHTML =
-        //   "<a href='" + res.pdf + "'>DOWNLOAD</a>";
-        // console.log(res.pdf);
-      });
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          setPdfLink(res.pdf);
+          console.log(res);
+          console.log(res.pdf);
+        });
     }
 
     fetchReportPdf();
   }, []);
-
-  const PostData = () => {
-    const respdf = pdfLink;
-    console.log(respdf, "respdf");
-    fetch(`http://localhost:4000/nodeMailer`, {
-      method: "POST",
-      // headers: {
-      //   "Content-Type": "text/json",
-      // },
-      body: respdf,
-    })
-      .then((res) => res.json())
-      .catch((err) => {
-        console.log(err, "Nodemailer");
-      });
-  };
 
   return (
     <>
@@ -294,18 +278,14 @@ const DailyReport = () => {
             </tbody>
           </table>
         </div>
-        <div className="Nodemailer_Link">
-          {/* <p id="pdfLink"></p> */}
-          <button className="Submit_Button" onClick={PostData}>
-            Send to Mail
-          </button>
+        <div className="Download_Link">
+          <a className="Submit_Button" href={`${pdfLink}`}>
+            Download PDF
+          </a>
         </div>
         <Link className="btn btn-link" to={`/dashboard/editDReport/${editBtn}`}>
           Edit
         </Link>{" "}
-        {/* <button className="Submit_Button" onClick={onButtonClick}>
-          Generate Link
-        </button> */}
       </div>
     </>
   );

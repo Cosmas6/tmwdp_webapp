@@ -33,7 +33,6 @@ const DRThumbnails = () => {
       const reportsJson = await response.json();
       setReports(reportsJson);
     }
-    console.log(reports, "report");
 
     getReports();
 

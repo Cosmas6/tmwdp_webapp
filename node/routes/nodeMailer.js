@@ -46,34 +46,34 @@ const createTransporter = async () => {
   return transporter;
 };
 
-const sendEmail = async (emailOptions) => {
-  let emailTransporter = await createTransporter();
-  await emailTransporter.sendMail(emailOptions);
-};
+// const sendEmail = async (emailOptions) => {
+//   let emailTransporter = await createTransporter();
+//   await emailTransporter.sendMail(emailOptions);
+// };
 
-router.get("/send", function (req, res, next) {
-  console.log(req.body, "REQBODY");
-  // const mailData = {
-  //   Date: req.body.Date,
-  //   Section: req.body.Section,
-  //   UserEmail: req.body.UserEmail,
-  //   Shift: req.body.Shift,
-  // };
-  // res.send("Nodemailer is working properly");
-});
+// router.get("/send", function (req, res, next) {
+//   console.log(req.body, "REQBODY");
+//   // const mailData = {
+//   //   Date: req.body.Date,
+//   //   Section: req.body.Section,
+//   //   UserEmail: req.body.UserEmail,
+//   //   Shift: req.body.Shift,
+//   // };
+//   // res.send("Nodemailer is working properly");
+// });
 
-sendEmail({
-  from: process.env.EMAIL,
-  to: "cosmasmusis@gmail.com",
-  subject: "Nodemailer Project",
-  text: "Hi from your nodemailer project",
-  attachments: [
-    {
-      // file on disk as an attachment
-      filename: "text3.txt",
-      content: "hello world!",
-    },
-  ],
-});
+// sendEmail({
+//   from: process.env.EMAIL,
+//   to: "cosmasmusis@gmail.com",
+//   subject: "Nodemailer Project",
+//   text: "Hi from your nodemailer project",
+//   attachments: [
+//     {
+//       // file on disk as an attachment
+//       filename: "text3.txt",
+//       content: "hello world!",
+//     },
+//   ],
+// });
 
 module.exports = router;
