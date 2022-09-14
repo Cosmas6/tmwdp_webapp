@@ -43,7 +43,7 @@ const DailyReport = () => {
 
   useEffect(() => {
     async function fetchReportPdf() {
-      fetch("https://v2018.api2pdf.com/chrome/html", {
+      await fetch("https://v2018.api2pdf.com/chrome/html", {
         method: "post",
         headers: {
           Accept: "application/json",
@@ -153,8 +153,8 @@ const DailyReport = () => {
                     <th colspan="6">REMARKS/OBSERVATION:</th>
                   </tr>
                   <tr>
-                    <td>SMEC</td>
-                    <td colspan="5">CGGC</td>
+                    <td style="height: 100px">SMEC</td>
+                    <td colspan="5" style="height: 100px">CGGC</td>
                   </tr>
                 </tbody>
               </table>
@@ -162,23 +162,23 @@ const DailyReport = () => {
           </body>
           </html>
           `,
-          fileName: report.Date,
+          fileName: String(report.Date),
           options: {
             textAlign: "left",
-            height: "7in",
+            height: "11in",
           },
         }),
       })
         .then((res) => res.json())
         .then((res) => {
           setPdfLink(res.pdf);
-          console.log(res);
+          console.log(pdfLink);
           console.log(res.pdf);
         });
     }
 
     fetchReportPdf();
-  }, []);
+  }, [report]);
 
   return (
     <>

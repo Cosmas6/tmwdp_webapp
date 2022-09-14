@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+var moment = require("moment");
 const CMdbo = require("../../mongoDB/dailyreportConn");
 const ObjectId = require("mongodb").ObjectId;
 
@@ -49,7 +50,7 @@ router.post("/add", function (req, response) {
     UserEmail: req.body.UserEmail,
     Section: req.body.Section,
     Weather: req.body.Weather,
-    Date: req.body.Date,
+    Date: moment(req.body.Date).format("MMMM Do YYYY, h:mm:ss a"),
     Shift: req.body.Shift,
     Activities: req.body.Activities,
     PlantEQ: req.body.PlantEQ,

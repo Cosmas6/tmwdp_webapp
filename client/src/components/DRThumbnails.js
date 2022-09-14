@@ -48,7 +48,7 @@ const DRThumbnails = () => {
     });
     return (
       <tr>
-        <td>{[enUSFormatter.format(dateString)].sort()}</td>
+        <td>{props.report.Date}</td>
         <td>{props.report.Section}</td>
         <td>{props.report.Shift}</td>
         <td>

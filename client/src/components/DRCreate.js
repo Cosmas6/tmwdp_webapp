@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import { useNavigate } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import { RadioGroup, Radio, FormControlLabel } from "@mui/material";
@@ -7,9 +9,11 @@ import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import TextField from "@mui/material/TextField";
+import db from "../../firebase.config";
 import "../stylesheets/drcreate.scss";
 
 const DRCreate = () => {
+  const [emailAddr, setEmailAddr] = useState("");
   const {
     register,
     handleSubmit,
@@ -18,24 +22,16 @@ const DRCreate = () => {
   } = useForm();
   const navigate = useNavigate();
 
+  const auth = getAuth();
+
+  // const editorContent = watch("Activities");
+
   useEffect(() => {
     let authToken = sessionStorage.getItem("Auth Token");
 
     if (!authToken) {
       navigate("/signin");
     }
-  }, []);
-
-  const [email, setEmail] = useState("");
-  const auth = getAuth();
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const emailAddress = user.email;
-        setEmail(emailAddress);
-      } else {
-      }
-    });
   }, []);
 
   const onSubmit = async (data, e) => {
@@ -54,24 +50,25 @@ const DRCreate = () => {
     navigate(`/dashboard/readingDReport`);
   };
 
+  const mods = {
+    keyboard: {
+      bindings: keyboardBindings,
+    },
+  };
+
+  const keyboardBindings = {
+    linebreak: {
+      key: 13,
+      handler: function (range, _context) {
+        this.quill.clipboard.dangerouslyPasteHTML(range.index, "<br/>");
+      },
+    },
+  };
+
   return (
     <div className="DRCreate_Container">
       <form className="Form_Container" onSubmit={handleSubmit(onSubmit)}>
-        <div className="User_Container daily-report-form-flex">
-          <TextField
-            id="user-email"
-            label="User Email"
-            type="text"
-            value={email}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            inputProps={{ readOnly: true }}
-            className="crack-meter"
-            {...register("UserEmail", { required: true })}
-          />
-        </div>
-        <div className="Section_Container daily-report-form-flex">
+        {/* <div className="Section_Container daily-report-form-flex">
           <label className="Input_Label">Section</label>
 
           <Controller
@@ -127,7 +124,7 @@ const DRCreate = () => {
               </RadioGroup>
             )}
           />
-        </div>
+        </div> */}
         <div className="Date_Container daily-report-form-flex">
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <Controller
@@ -147,7 +144,7 @@ const DRCreate = () => {
             />
           </LocalizationProvider>
         </div>
-        <div className="Shift_Container daily-report-form-flex">
+        {/* <div className="Shift_Container daily-report-form-flex">
           <label className="Input_Label">Shift</label>
           <Controller
             control={control}
@@ -175,7 +172,8 @@ const DRCreate = () => {
             )}
           />
         </div>
-        <TextField
+        */}
+        {/* <TextField
           id="outlined-multiline-static"
           label="Activities"
           {...register("Activities", { required: true })}
@@ -183,7 +181,26 @@ const DRCreate = () => {
           rows={8}
           defaultValue=""
           className="daily-report-form-flex"
+        /> */}
+        <Controller
+          name="Activities"
+          control={control}
+          // rules={{
+          //   required: "Please enter task description",
+          // }}
+          theme="snow"
+          // modules={mods}
+          render={({ field }) => (
+            <ReactQuill
+              {...field}
+              placeholder={"Write Activities"}
+              onChange={(text) => {
+                field.onChange(text);
+              }}
+            />
+          )}
         />
+        {/*
         <TextField
           id="outlined-multiline-static"
           {...register("PlantEQ", { required: true })}
@@ -294,7 +311,7 @@ const DRCreate = () => {
             }}
             className="daily-report-form-flex"
           />
-        </div>
+        </div> */}
         {/* <label className="Input_Label">Email</label>
         <input
           className="Form_Input"
