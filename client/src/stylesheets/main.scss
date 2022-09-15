@@ -12,7 +12,7 @@ $layout-breakpoint-small: 960px;
 
 @mixin displayFlex() {
   display: flex;
-  width: calc(100% - 300px);
+  width: calc(100% - 120px);
 }
 @mixin displayInlineBlock() {
   display: inline-block;

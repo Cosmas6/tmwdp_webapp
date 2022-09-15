@@ -2,19 +2,35 @@
 @import "./main.scss";
 
 .DailyReport_Container {
-  @include media(">=phone", "<=tablet") {
-    overflow: auto;
-    padding: 0px 20px;
-  }
-  @extend .Display_Flex;
-  width: calc(100% - 300px);
+  float: right;
+  position: inherit;
+  height: 100vh;
   margin-bottom: 30px;
   padding-left: 20px;
+  padding-right: 20px;
+
+  @include media(">=phone", "<=tablet") {
+    overflow: auto;
+    padding: 20px 20px;
+    height: 100%;
+  }
 
   .DailyReportTable_Container {
     @include media(">=phone", "<=tablet") {
-      width: 90%;
+      float: right;
+      position: inherit;
+      width: 100%;
+      overflow: auto;
       margin: 0 auto;
+      height: 100%;
+    }
+    @include media("<phone") {
+      float: right;
+      position: inherit;
+      width: 100%;
+      overflow: auto;
+      margin: 0 auto;
+      height: 100%;
     }
     .drf-title {
       margin-bottom: 20px;
@@ -61,6 +77,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
+    background: black;
+    border: 1px solid black;
+    color: white;
+    text-transform: uppercase;
+    padding: 5px;
+    width: 100%;
+    margin-top: 40px;
+    font-size: 16px;
+    letter-spacing: 3px;
+    text-decoration: none;
+  }
+
+  .Download_Link:hover {
+    transition: 0.3s;
+    background: white;
+    color: black;
+    border: 1px solid black;
   }
 }

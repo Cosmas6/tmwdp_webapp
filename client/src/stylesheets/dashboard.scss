@@ -1,3 +1,6 @@
 @import "./main.scss";
 
-
+.Dashboard_Container {
+  display: flex;
+  flex-direction: row;
+}

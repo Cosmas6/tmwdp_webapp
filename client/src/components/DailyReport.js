@@ -1,4 +1,5 @@
 import { PDFDownloadLink } from "@react-pdf/renderer";
+import ReactMustache from "react-mustache";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import "../stylesheets/dailyreport.scss";
@@ -185,7 +186,6 @@ const DailyReport = () => {
       <div className="DailyReport_Container">
         <div className="DailyReportTable_Container">
           <h1 className="title drf-title">Daily Report Form</h1>
-
           <table>
             <tbody>
               <tr>
@@ -214,13 +214,17 @@ const DailyReport = () => {
                 <th colSpan="6">ACTIVITIES:</th>
               </tr>
               <tr>
-                <td colSpan="6">{report.Activities}</td>
+                <td colSpan="6">
+                  <ReactMustache template={report.Activities} />
+                </td>
               </tr>
               <tr>
                 <th colSpan="6">PLANT AND EQUIPMENT:</th>
               </tr>
               <tr>
-                <td colSpan="6">{report.PlantEQ}</td>
+                <td colSpan="6">
+                  <ReactMustache template={report.PlantEQ} />
+                </td>
               </tr>
               <tr>
                 <th colSpan="6">LABOUR</th>
@@ -277,15 +281,16 @@ const DailyReport = () => {
               </tr>
             </tbody>
           </table>
-        </div>
-        <div className="Download_Link">
-          <a className="Submit_Button" href={`${pdfLink}`}>
+          <a className="Download_Link" href={`${pdfLink}`}>
             Download PDF
           </a>
+          <Link
+            className="Download_Link"
+            to={`/dashboard/editDReport/${editBtn}`}
+          >
+            Edit Pdf
+          </Link>{" "}
         </div>
-        <Link className="btn btn-link" to={`/dashboard/editDReport/${editBtn}`}>
-          Edit
-        </Link>{" "}
       </div>
     </>
   );

@@ -19,24 +19,12 @@ router.get("/", function (req, res) {
     });
 });
 
-// router.get("/view/:id", function (req, response) {
-//   let db_connect = CMdbo.getDb();
-//   let myquery = { _id: ObjectId(req.params.id) };
-
-//   db_connect
-//     .collection("Spillway")
-//     .find(myquery)
-//     .toArray(function (err, result) {
-//       if (err) throw err;
-//       console.log(err);
-//       res.json(result);
-//     });
-// });
-
 // This section will help you get a single record by id
 router.get("/:id", function (req, res) {
   let db_connect = CMdbo.getDb();
-  let myquery = { _id: ObjectId(req.params.id) };
+  let myquery = {
+    _id: ObjectId(req.params.id),
+  };
   db_connect.collection("Spillway").findOne(myquery, function (err, result) {
     if (err) throw err;
     res.json(result);
@@ -82,7 +70,7 @@ router.post("/update/:id", function (req, response) {
       UserEmail: req.body.UserEmail,
       Section: req.body.Section,
       Weather: req.body.Weather,
-      Date: req.body.Date,
+      // Date: moment(req.body.Date).format("MMMM Do YYYY, h:mm:ss a"),
       Shift: req.body.Shift,
       Activities: req.body.Activities,
       PlantEQ: req.body.PlantEQ,

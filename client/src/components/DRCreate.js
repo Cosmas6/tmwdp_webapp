@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import React, { useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +12,6 @@ import db from "../../firebase.config";
 import "../stylesheets/drcreate.scss";
 
 const DRCreate = () => {
-  const [emailAddr, setEmailAddr] = useState("");
   const {
     register,
     handleSubmit,
@@ -21,10 +19,6 @@ const DRCreate = () => {
     formState: { errors, isSubmitted },
   } = useForm();
   const navigate = useNavigate();
-
-  const auth = getAuth();
-
-  // const editorContent = watch("Activities");
 
   useEffect(() => {
     let authToken = sessionStorage.getItem("Auth Token");
@@ -68,7 +62,7 @@ const DRCreate = () => {
   return (
     <div className="DRCreate_Container">
       <form className="Form_Container" onSubmit={handleSubmit(onSubmit)}>
-        {/* <div className="Section_Container daily-report-form-flex">
+        <div className="Section_Container daily-report-form-flex">
           <label className="Input_Label">Section</label>
 
           <Controller
@@ -124,7 +118,7 @@ const DRCreate = () => {
               </RadioGroup>
             )}
           />
-        </div> */}
+        </div>
         <div className="Date_Container daily-report-form-flex">
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <Controller
@@ -144,7 +138,7 @@ const DRCreate = () => {
             />
           </LocalizationProvider>
         </div>
-        {/* <div className="Shift_Container daily-report-form-flex">
+        <div className="Shift_Container daily-report-form-flex">
           <label className="Input_Label">Shift</label>
           <Controller
             control={control}
@@ -172,44 +166,44 @@ const DRCreate = () => {
             )}
           />
         </div>
-        */}
-        {/* <TextField
-          id="outlined-multiline-static"
-          label="Activities"
-          {...register("Activities", { required: true })}
-          multiline
-          rows={8}
-          defaultValue=""
-          className="daily-report-form-flex"
-        /> */}
-        <Controller
-          name="Activities"
-          control={control}
-          // rules={{
-          //   required: "Please enter task description",
-          // }}
-          theme="snow"
-          // modules={mods}
-          render={({ field }) => (
-            <ReactQuill
-              {...field}
-              placeholder={"Write Activities"}
-              onChange={(text) => {
-                field.onChange(text);
-              }}
-            />
-          )}
-        />
-        {/*
-        <TextField
-          id="outlined-multiline-static"
-          {...register("PlantEQ", { required: true })}
-          label="Plant and Equipment"
-          multiline
-          rows={8}
-          defaultValue=""
-          className="daily-report-form-flex"
-        />
+        <div className="ActandPlant_Container daily-report-form-block">
+          <Controller
+            name="Activities"
+            control={control}
+            rules={{
+              required: true,
+            }}
+            theme="snow"
+            render={({ field }) => (
+              <ReactQuill
+                {...field}
+                placeholder={"Write Activities"}
+                onChange={(text) => {
+                  field.onChange(text);
+                }}
+              />
+            )}
+          />
+        </div>
+        <div className="ActandPlant_Container daily-report-form-block">
+          <Controller
+            name="PlantEQ"
+            control={control}
+            rules={{
+              required: true,
+            }}
+            theme="snow"
+            render={({ field }) => (
+              <ReactQuill
+                {...field}
+                placeholder={"Write Plants and Equipment"}
+                onChange={(text) => {
+                  field.onChange(text);
+                }}
+              />
+            )}
+          />
+        </div>
         <div className="numbers">
           <TextField
             id="outlined-number"
@@ -311,17 +305,8 @@ const DRCreate = () => {
             }}
             className="daily-report-form-flex"
           />
-        </div> */}
-        {/* <label className="Input_Label">Email</label>
-        <input
-          className="Form_Input"
-          type="text"
-          id="email"
-          {...register("Email", {
-            required: true,
-          })}
-        />
-        <input className="Form_Input" type="text" id="activities" /> */}
+        </div>
+
         <div className="submit-div">
           <button
             className="Submit_Button daily-report-form-flex"

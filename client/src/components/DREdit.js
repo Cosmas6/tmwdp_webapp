@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
+import ReactQuill from "react-quill";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import { RadioGroup, Radio, FormControlLabel } from "@mui/material";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
+import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import TextField from "@mui/material/TextField";
@@ -20,7 +22,6 @@ const DREdit = () => {
       UserEmail: "",
       Section: "",
       Weather: "",
-      Date: "",
       Shift: "",
       Activities: "",
       PlantEQ: "",
@@ -54,6 +55,7 @@ const DREdit = () => {
       }
 
       const report = await response.json();
+
       if (!report) {
         window.alert(`Reading with id ${id} not found`);
         navigate(`/dashboard/readingDReport`);
@@ -82,7 +84,6 @@ const DREdit = () => {
       UserEmail: data.UserEmail,
       Section: data.Section,
       Weather: data.Weather,
-      Date: data.Date,
       Shift: data.Shift,
       Activities: data.Activities,
       PlantEQ: data.PlantEQ,
@@ -121,19 +122,6 @@ const DREdit = () => {
   return (
     <div className="DREdit_Container">
       <form className="Form_Container" onSubmit={handleSubmit(onSubmit)}>
-        <div className="User_Container daily-report-form-flex">
-          <TextField
-            id="user-email"
-            label="User Email"
-            type="text"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            inputProps={{ readOnly: true }}
-            className="crack-meter"
-            {...register("UserEmail", { required: true })}
-          />
-        </div>
         <div className="Section_Container daily-report-form-flex">
           <label className="Input_Label">Section</label>
           <Controller
@@ -190,25 +178,24 @@ const DREdit = () => {
             )}
           />
         </div>
-        <div className="Date_Container daily-report-form-flex">
+        {/* <div className="Date_Container daily-report-form-flex">
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <Controller
               control={control}
               name="Date"
               defaultValue={new Date()}
-              render={({ field: { onChange, value } }) => (
+              render={({ field: { onChange, value, field } }) => (
                 <DesktopDatePicker
+                  {...field}
                   label="Date"
-                  inputFormat="dd/MMM/yyyy"
-                  disableMaskedInput
-                  value={value}
+                  value={new Date(value)}
                   onChange={onChange}
                   renderInput={(params) => <TextField {...params} />}
                 />
               )}
             />
           </LocalizationProvider>
-        </div>
+        </div> */}
         <div className="Shift_Container daily-report-form-flex">
           <label className="Input_Label">Shift</label>
           <Controller
@@ -237,30 +224,44 @@ const DREdit = () => {
             )}
           />
         </div>
-        <TextField
-          id="outlined-multiline-static"
-          label="Activities"
-          {...register("Activities", { required: true })}
-          multiline
-          rows={8}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          defaultValue=""
-          className="daily-report-form-flex"
-        />
-        <TextField
-          id="outlined-multiline-static"
-          {...register("PlantEQ", { required: true })}
-          label="Plant and Equipment"
-          multiline
-          rows={8}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          defaultValue=""
-          className="daily-report-form-flex"
-        />
+        <div className="ActandPlant_Container daily-report-form-block">
+          <Controller
+            name="Activities"
+            control={control}
+            rules={{
+              required: true,
+            }}
+            theme="snow"
+            render={({ field }) => (
+              <ReactQuill
+                {...field}
+                placeholder={"Write Activities"}
+                onChange={(text) => {
+                  field.onChange(text);
+                }}
+              />
+            )}
+          />
+        </div>
+        <div className="ActandPlant_Container daily-report-form-block">
+          <Controller
+            name="PlantEQ"
+            control={control}
+            rules={{
+              required: true,
+            }}
+            theme="snow"
+            render={({ field }) => (
+              <ReactQuill
+                {...field}
+                placeholder={"Write Plants and Equipment"}
+                onChange={(text) => {
+                  field.onChange(text);
+                }}
+              />
+            )}
+          />
+        </div>
         <div className="numbers">
           <TextField
             id="outlined-number"
