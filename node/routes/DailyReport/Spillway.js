@@ -8,7 +8,7 @@ const ObjectId = require("mongodb").ObjectId;
 // This section will help you get a list of all the records.
 
 var corsOptions = {
-  origin: "http://example.com",
+  origin: "http://localhost:4000",
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
