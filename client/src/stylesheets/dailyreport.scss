@@ -89,6 +89,13 @@
     text-decoration: none;
   }
 
+  .Download_Button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+
   .Download_Link:hover {
     transition: 0.3s;
     background: white;

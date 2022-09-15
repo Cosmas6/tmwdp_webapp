@@ -16,12 +16,12 @@ function Login() {
     let authToken = sessionStorage.getItem("Auth Token");
 
     if (authToken) {
-      navigate("dashboard");
+      navigate("/dashboard");
     }
 
-    // if (!authToken) {
-    //   navigate("/login");
-    // }
+    if (!authToken) {
+      navigate("/login");
+    }
   }, []);
 
   const onSubmit = (data) => {

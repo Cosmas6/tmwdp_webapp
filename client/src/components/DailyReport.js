@@ -9,7 +9,6 @@ const DailyReport = () => {
   const navigate = useNavigate();
 
   const [report, setReport] = useState([]);
-  const [pdfLink, setPdfLink] = useState();
   const [editBtn, setEditBtn] = useState();
   useEffect(() => {
     async function fetchReport() {
@@ -40,19 +39,16 @@ const DailyReport = () => {
     return;
   }, [params.id, navigate]);
 
-  var n = new Date(report.Date).toLocaleDateString("es-CL");
-
-  useEffect(() => {
-    async function fetchReportPdf() {
-      await fetch("https://v2018.api2pdf.com/chrome/html", {
-        method: "post",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          Authorization: "e11aaf91-5cf3-4c53-958a-a3304484ea8e",
-        },
-        body: JSON.stringify({
-          html: `
+  const fetchReportPdf = async () => {
+    await fetch("https://v2018.api2pdf.com/chrome/html", {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "e11aaf91-5cf3-4c53-958a-a3304484ea8e",
+      },
+      body: JSON.stringify({
+        html: `
           <html style="color: green" lang="en">
           <head>
             <title>Daily Report for ${report.Date}</title>
@@ -163,23 +159,20 @@ const DailyReport = () => {
           </body>
           </html>
           `,
-          fileName: String(report.Date),
-          options: {
-            textAlign: "left",
-            height: "11in",
-          },
-        }),
-      })
-        .then((res) => res.json())
-        .then((res) => {
-          setPdfLink(res.pdf);
-          console.log(pdfLink);
-          console.log(res.pdf);
-        });
-    }
-
-    fetchReportPdf();
-  }, [report]);
+        fileName: `${report.Date} ${report.Section} ${report.Shift}.pdf`,
+        options: {
+          textAlign: "left",
+          height: "11in",
+        },
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        document.getElementById(
+          "Download_Button"
+        ).innerHTML = `<a className="Download_Button" href="${res.pdf}" >Download PDF</a>`;
+      });
+  };
 
   return (
     <>
@@ -281,9 +274,10 @@ const DailyReport = () => {
               </tr>
             </tbody>
           </table>
-          <a className="Download_Link" href={`${pdfLink}`}>
-            Download PDF
-          </a>
+          <button className="Download_Link" onClick={fetchReportPdf}>
+            Generate Link
+          </button>
+          <div id="Download_Button"></div>
           <Link
             className="Download_Link"
             to={`/dashboard/editDReport/${editBtn}`}

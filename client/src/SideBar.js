@@ -47,7 +47,7 @@ const SideBar = () => {
     <div className="Sidebar_Container">
       <div
         style={{
-          display: "flex",
+          display: "inline-flex",
           height: "100%",
           overflow: "auto",
           float: "left",
@@ -66,27 +66,32 @@ const SideBar = () => {
           </CDBSidebarHeader>
           <CDBSidebarContent className="sidebar-content">
             <CDBSidebarMenu>
-              <NavLink exact to="createDReport" activeClassName="activeClicked">
+              <NavLink
+                to="createDReport"
+                className={(navData) =>
+                  navData.isActive ? "nav-link active" : "nav-link"
+                }
+              >
                 <CDBSidebarMenuItem icon="columns">
                   Daily Report
                 </CDBSidebarMenuItem>
               </NavLink>
-              {/* <NavLink exact to="/tables" activeClassName="activeClicked">
+              {/* <NavLink  to="/tables" activeClassName="activeClicked">
                 <CDBSidebarMenuItem icon="table">Tables</CDBSidebarMenuItem>
               </NavLink>
-              <NavLink exact to="/profile" activeClassName="activeClicked">
+              <NavLink to="/profile" activeClassName="activeClicked">
                 <CDBSidebarMenuItem icon="user">
                   Profile page
                 </CDBSidebarMenuItem>
               </NavLink>
-              <NavLink exact to="/analytics" activeClassName="activeClicked">
+              <NavLink  to="/analytics" activeClassName="activeClicked">
                 <CDBSidebarMenuItem icon="chart-line">
                   Analytics
                 </CDBSidebarMenuItem>
               </NavLink>
 
               <NavLink
-                exact
+                
                 to="/hero404"
                 target="_blank"
                 activeClassName="activeClicked"

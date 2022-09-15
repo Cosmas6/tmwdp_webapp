@@ -57,6 +57,12 @@ const DRCreate = () => {
         this.quill.clipboard.dangerouslyPasteHTML(range.index, "<br/>");
       },
     },
+    linebreak: {
+      key: "enter",
+      handler: function (range, _context) {
+        this.quill.clipboard.dangerouslyPasteHTML(range.index, "<br/>");
+      },
+    },
   };
 
   return (
@@ -138,6 +144,7 @@ const DRCreate = () => {
             />
           </LocalizationProvider>
         </div>
+
         <div className="Shift_Container daily-report-form-flex">
           <label className="Input_Label">Shift</label>
           <Controller
@@ -166,6 +173,9 @@ const DRCreate = () => {
             )}
           />
         </div>
+        <label className="Input_Label daily-report-form-block">
+          <p>Press space then enter to go to a new line (Android Users)</p>
+        </label>
         <div className="ActandPlant_Container daily-report-form-block">
           <Controller
             name="Activities"
@@ -177,6 +187,7 @@ const DRCreate = () => {
             render={({ field }) => (
               <ReactQuill
                 {...field}
+                modules={mods}
                 placeholder={"Write Activities"}
                 onChange={(text) => {
                   field.onChange(text);
@@ -196,6 +207,7 @@ const DRCreate = () => {
             render={({ field }) => (
               <ReactQuill
                 {...field}
+                modules={mods}
                 placeholder={"Write Plants and Equipment"}
                 onChange={(text) => {
                   field.onChange(text);
