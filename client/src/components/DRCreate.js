@@ -30,7 +30,7 @@ const DRCreate = () => {
 
   const onSubmit = async (data, e) => {
     e.preventDefault();
-    await fetch(`http://localhost:4000/DailyRSpillwayRouter/add`, {
+    await fetch(`https://nodejs.tmwdp.co.ke/DailyRSpillwayRouter/add`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

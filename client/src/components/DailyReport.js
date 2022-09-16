@@ -15,7 +15,7 @@ const DailyReport = () => {
       const id = params.id.toString();
       setEditBtn(id);
       const response = await fetch(
-        `http://localhost:4000/DailyRSpillwayRouter/${params.id.toString()}`
+        `https://nodejs.tmwdp.co.ke/DailyRSpillwayRouter/${params.id.toString()}`
       );
 
       if (!response.ok) {

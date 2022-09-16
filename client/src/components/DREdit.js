@@ -45,7 +45,7 @@ const DREdit = () => {
     async function fetchReport() {
       const id = params.id.toString();
       const response = await fetch(
-        `http://localhost:4000/DailyRSpillwayRouter/${params.id.toString()}`
+        `https://nodejs.tmwdp.co.ke/DailyRSpillwayRouter/${params.id.toString()}`
       );
 
       if (!response.ok) {
@@ -99,7 +99,7 @@ const DREdit = () => {
       Chinese_Staff: data.Chinese_Staff,
     };
     await fetch(
-      `http://localhost:4000/DailyRSpillwayRouter/update/${params.id}`,
+      `https://nodejs.tmwdp.co.ke/DailyRSpillwayRouter/update/${params.id}`,
       {
         method: "POST",
         headers: {

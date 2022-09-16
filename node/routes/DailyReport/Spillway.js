@@ -38,7 +38,7 @@ router.post("/add", function (req, response) {
     UserEmail: req.body.UserEmail,
     Section: req.body.Section,
     Weather: req.body.Weather,
-    Date: moment(req.body.Date).format("MMMM Do YYYY, h:mm:ss a"),
+    Date: moment(req.body.Date).format("MMMM Do YYYY"),
     Shift: req.body.Shift,
     Activities: req.body.Activities,
     PlantEQ: req.body.PlantEQ,

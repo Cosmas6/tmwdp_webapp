@@ -21,7 +21,7 @@ const DRThumbnails = () => {
   useEffect(() => {
     async function getReports() {
       const response = await fetch(
-        `http://localhost:4000/DailyRSpillwayRouter`
+        `https://nodejs.tmwdp.co.ke/DailyRSpillwayRouter`
       );
 
       if (!response.ok) {
@@ -80,7 +80,7 @@ const DRThumbnails = () => {
   };
 
   async function deleteReport(id) {
-    await fetch(`http://localhost:4000/DailyRSpillwayRouter/${id}`, {
+    await fetch(`https://nodejs.tmwdp.co.ke/DailyRSpillwayRouter/${id}`, {
       method: "DELETE",
     });
 
