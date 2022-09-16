@@ -1,5 +1,4 @@
 const express = require("express");
-var cors = require("cors");
 const router = express.Router();
 var moment = require("moment");
 const CMdbo = require("../../mongoDB/dailyreportConn");
@@ -7,12 +6,7 @@ const ObjectId = require("mongodb").ObjectId;
 
 // This section will help you get a list of all the records.
 
-var corsOptions = {
-  origin: "http://localhost:4000",
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
-
-router.get("/", cors(corsOptions), function (req, res) {
+router.get("/", function (req, res) {
   let db_connect = CMdbo.getDb();
   db_connect
     .collection("Spillway")
@@ -26,7 +20,7 @@ router.get("/", cors(corsOptions), function (req, res) {
 });
 
 // This section will help you get a single record by id
-router.get("/:id", cors(corsOptions), function (req, res) {
+router.get("/:id", function (req, res) {
   let db_connect = CMdbo.getDb();
   let myquery = {
     _id: ObjectId(req.params.id),
@@ -38,7 +32,7 @@ router.get("/:id", cors(corsOptions), function (req, res) {
 });
 
 // This section will help you create a new record.
-router.post("/add", cors(corsOptions), function (req, response) {
+router.post("/add", function (req, response) {
   let db_connect = CMdbo.getDb();
   let myobj = {
     UserEmail: req.body.UserEmail,
@@ -68,7 +62,7 @@ router.post("/add", cors(corsOptions), function (req, response) {
 });
 
 // This section will help you update a record by id.
-router.post("/update/:id", cors(corsOptions), function (req, response) {
+router.post("/update/:id", function (req, response) {
   let db_connect = CMdbo.getDb();
   let myquery = { _id: ObjectId(req.params.id) };
   let newvalues = {
@@ -102,7 +96,7 @@ router.post("/update/:id", cors(corsOptions), function (req, response) {
 });
 
 // This section will help you delete a record
-router.delete("/:id", cors(corsOptions), (req, response) => {
+router.delete("/:id", (req, response) => {
   let db_connect = CMdbo.getDb();
   let myquery = { _id: ObjectId(req.params.id) };
   db_connect.collection("Spillway").deleteOne(myquery, function (err, obj) {

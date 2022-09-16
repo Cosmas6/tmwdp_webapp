@@ -2,8 +2,6 @@ require("dotenv").config();
 
 // console.log(process.env);
 var createError = require("http-errors");
-var express = require("express");
-var cors = require("cors");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
@@ -29,10 +27,12 @@ var C13Router = require("./routes/Instrumentation/CrackMeters/C13");
 var C14Router = require("./routes/Instrumentation/CrackMeters/C14");
 var C15Router = require("./routes/Instrumentation/CrackMeters/C15");
 var C16Router = require("./routes/Instrumentation/CrackMeters/C16");
-
 var fileUpload = require("express-fileupload");
+var express = require("express");
+var cors = require("cors");
 var app = express();
 app.use(cors());
+
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -80,6 +80,10 @@ app.use(function (req, res, next) {
   next(createError(404));
 });
 
+app.listen(80, function () {
+  console.log('CORS-enabled web server listening on port 80')
+})
+
 // error handler
 // app.use(function (err, req, res, next) {
 //   // set locals, only providing error in development
@@ -91,13 +95,13 @@ app.use(function (req, res, next) {
 //   res.render("error");
 // });
 
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept"
+//   );
+//   next();
+// });
 
 module.exports = app;
