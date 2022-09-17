@@ -4,11 +4,44 @@ import SideBar from "../SideBar";
 import { Outlet } from "react-router-dom";
 import "../stylesheets/dashboard.scss";
 
-const Dashboard = () => {
+export function useWindowDimensions() {
+  function getWindowDimensions() {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+      width,
+      height,
+    };
+  }
+
+  const [windowDimensions, setWindowDimensions] = useState(
+    getWindowDimensions()
+  );
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return windowDimensions;
+}
+
+export default function Dashboard() {
   const navigate = useNavigate();
   const ToggleSidebar = () => {
     document.getElementById("sidebar").classList.toggle("active");
   };
+
+  const ToggleSidebarSecond = () => {
+    if (width < 768) {
+      document.getElementById("sidebar").classList.toggle("active");
+    }
+  };
+
+  const { height, width } = useWindowDimensions();
 
   useEffect(() => {
     let authToken = sessionStorage.getItem("Auth Token");
@@ -30,20 +63,30 @@ const Dashboard = () => {
             <span className="sidebar-brand-text">TMWDP</span>
           </a>
         </div>
-
+        <hr className="horizontal-line" />
         <ul className="list-unstyled components">
-          <p>Dummy Heading</p>
+          {/* <p>Dummy Heading</p> */}
           <NavLink
             className={(navData) =>
               navData.isActive ? "nav-link active" : "nav-link"
             }
             to="createDReport"
+            onClick={ToggleSidebarSecond}
           >
             Daily Report
           </NavLink>
-          <li className="active">
+          <NavLink
+            className={(navData) =>
+              navData.isActive ? "nav-link active" : "nav-link"
+            }
+            to="readingDReport"
+            onClick={ToggleSidebarSecond}
+          >
+            D Report List
+          </NavLink>
+          {/* <li className="active">
             <a
-              href="#homeSubmenu"
+              href="/createDReport"
               data-toggle="collapse"
               aria-expanded="false"
               className="dropdown-toggle"
@@ -91,10 +134,10 @@ const Dashboard = () => {
           </li>
           <li>
             <a href="/element">Contact</a>
-          </li>
+          </li> */}
         </ul>
 
-        <ul className="list-unstyled CTAs">
+        {/* <ul className="list-unstyled CTAs">
           <li>
             <a
               href="https://bootstrapious.com/tutorial/files/sidebar.zip"
@@ -111,7 +154,7 @@ const Dashboard = () => {
               Back to article
             </a>
           </li>
-        </ul>
+        </ul> */}
       </nav>
       <div className="nav-toggle-button">
         <button
@@ -127,6 +170,4 @@ const Dashboard = () => {
       <Outlet />
     </div>
   );
-};
-
-export default Dashboard;
+}

@@ -39,11 +39,11 @@
   display: block;
   position: fixed;
   width: 100%;
-  height:inherit;
+  height: inherit;
   z-index: 9999;
   top: 0;
   bottom: 0;
-  background: black;
+  background: #1976d2;
   overflow-x: hidden;
   padding: 0;
   overflow: hidden !important;
@@ -80,6 +80,13 @@
   margin-left: 0.75rem !important;
   position: relative;
   vertical-align: middle;
+}
+
+.horizontal-line {
+  margin: 0.5rem 1rem !important;
+  border-top: 4px solid white;
+  border-radius: 5px;
+  opacity: 1;
 }
 
 #sidebar .sidebar-header {
