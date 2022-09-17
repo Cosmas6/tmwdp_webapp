@@ -15,8 +15,10 @@
 
       @media (max-width: 768px) {
         display: block;
+        width: 100%;
         background-color: #1976d2;
         border-color: #1976d2;
+        text-align: right;
         color: white;
         border-radius: 0;
       }
@@ -37,6 +39,7 @@
   display: block;
   position: fixed;
   width: 100%;
+  height:inherit;
   z-index: 9999;
   top: 0;
   bottom: 0;
@@ -47,6 +50,10 @@
   overflow-anchor: none;
   touch-action: auto;
   transition: all 0.3s;
+
+  @media (max-width: 768px) {
+    position: fixed;
+  }
 }
 
 #sidebar.active {

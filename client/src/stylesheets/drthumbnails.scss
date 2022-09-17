@@ -2,4 +2,8 @@
 
 .DRThumbnail_Container {
   @extend .Display_Inline_Block;
+
+  @media (min-width: 768px) {
+    margin-left: 250px;
+  }
 }
