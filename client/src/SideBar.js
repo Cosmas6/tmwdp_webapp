@@ -1,16 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import {
-  CDBSidebar,
-  CDBSidebarContent,
-  CDBSidebarFooter,
-  CDBSidebarHeader,
-  CDBSidebarMenu,
-  CDBSidebarMenuItem,
-} from "cdbreact";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import db from "../firebase.config";
-
 import "./stylesheets/sidebar.scss";
 
 const SideBar = () => {
@@ -44,79 +35,48 @@ const SideBar = () => {
   }, []);
 
   return (
-    <div className="Sidebar_Container">
-      <div
-        style={{
-          display: "inline-flex",
-          height: "100%",
-          overflow: "auto",
-          float: "left",
-          zIndex: "1032",
-        }}
-      >
-        <CDBSidebar textColor="#fff" backgroundColor="#333">
-          <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
-            <a
-              href="/"
-              className="text-decoration-none"
-              style={{ color: "inherit" }}
-            >
-              TMWDP
-            </a>
-          </CDBSidebarHeader>
-          <CDBSidebarContent className="sidebar-content">
-            <CDBSidebarMenu>
-              <NavLink
-                to="createDReport"
-                className={(navData) =>
-                  navData.isActive ? "nav-link active" : "nav-link"
-                }
-              >
-                <CDBSidebarMenuItem icon="columns">
-                  Daily Report
-                </CDBSidebarMenuItem>
-              </NavLink>
-              {/* <NavLink  to="/tables" activeClassName="activeClicked">
-                <CDBSidebarMenuItem icon="table">Tables</CDBSidebarMenuItem>
-              </NavLink>
-              <NavLink to="/profile" activeClassName="activeClicked">
-                <CDBSidebarMenuItem icon="user">
-                  Profile page
-                </CDBSidebarMenuItem>
-              </NavLink>
-              <NavLink  to="/analytics" activeClassName="activeClicked">
-                <CDBSidebarMenuItem icon="chart-line">
-                  Analytics
-                </CDBSidebarMenuItem>
-              </NavLink>
+    <>
+      <div className="sidenav-main">
+        <div className="sidenav-header">
+          <a className="sidebar-brand" href="">
+            <img
+              src="https://uxwing.com/wp-content/themes/uxwing/download/buildings-architecture-real-estate/construction-worker-icon.png"
+              alt=""
+            />
+            <span className="sidebar-brand-text">TMWDP</span>
+          </a>
+        </div>
 
-              <NavLink
-                
-                to="/hero404"
-                target="_blank"
-                activeClassName="activeClicked"
-              >
-                <CDBSidebarMenuItem icon="exclamation-circle">
-                  404 page
-                </CDBSidebarMenuItem>
-              </NavLink> */}
-            </CDBSidebarMenu>
-          </CDBSidebarContent>
-          <CDBSidebarFooter style={{ textAlign: "center" }}>
-            <div
-              className="sidebar-btn-wrapper"
-              style={{
-                padding: "20px 5px",
-              }}
+        <hr className="horizontal-line" />
+        <div className="sidebar-collapse">
+          <ul className="sidebar-nav">
+            <NavLink
+              className={(navData) =>
+                navData.isActive ? "nav-link active" : "nav-link"
+              }
+              to="createDReport"
             >
-              <button className="dropdown-item" onClick={logOut}>
-                Sign out
-              </button>
-            </div>
-          </CDBSidebarFooter>
-        </CDBSidebar>
+              Daily Report
+            </NavLink>
+            <li className="nav-item">
+              <a className="nav-link" href="#services">
+                D Report List
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#clients">
+                Clients
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#contact">
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

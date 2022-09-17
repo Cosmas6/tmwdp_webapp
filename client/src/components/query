@@ -1,5 +1,0 @@
-query{Date:{req.body.something}}
-
-This is to use the retrieval endpoint in question to retrieve data based on selected dates
-
-there still needs to be a way to display the immediate data submitted.

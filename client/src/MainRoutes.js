@@ -13,7 +13,7 @@ import DRThumbnails from "./components/DRThumbnails";
 
 const MainRoutes = () => (
   <Suspense fallback={<Loading />}>
-    <Routes>
+    <Routes forceRefresh>
       <Route path="/" element={<MainContent />}>
         <Route path="/" element={<Navigate replace to="login" />} />
         <Route path="loading" element={<Loading />} />

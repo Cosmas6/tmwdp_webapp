@@ -1,10 +1,10 @@
 @import "./main.scss";
 @import "./loading.scss";
+@import "~include-media/dist/_include-media.scss";
 
 .DRCreate_Container {
-  float: right;
-  position: inherit;
-  height: 100vh;
+  @extend .Display_Inline_Block;
+
 
   .Date_Container {
     margin-top: 40px;

@@ -2,5 +2,157 @@
 
 .Dashboard_Container {
   display: flex;
-  flex-direction: row;
+
+  .nav-toggle-button {
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 999;
+    width: 20%;
+
+    .btn {
+      display: none;
+
+      @media (max-width: 768px) {
+        display: block;
+        background-color: #1976d2;
+        border-color: #1976d2;
+        color: white;
+        border-radius: 0;
+      }
+    }
+  }
+}
+
+.NavBar_Container {
+  display: inline-block;
+  position: absolute;
+  justify-content: space-between;
+  margin-left: 250px;
+}
+
+#sidebar {
+  min-width: 250px;
+  max-width: 250px;
+  display: block;
+  position: fixed;
+  width: 100%;
+  z-index: 9999;
+  top: 0;
+  bottom: 0;
+  background: black;
+  overflow-x: hidden;
+  padding: 0;
+  overflow: hidden !important;
+  overflow-anchor: none;
+  touch-action: auto;
+  transition: all 0.3s;
+}
+
+#sidebar.active {
+  margin-left: -250px;
+}
+
+.sidebar-brand {
+  padding: 12px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  display: block;
+  img {
+    filter: invert(97%) sepia(97%) saturate(14%) hue-rotate(224deg)
+      brightness(105%) contrast(104%);
+    width: 50px;
+    height: 50px;
+  }
+}
+
+.sidebar-brand-text {
+  font-weight: 600 !important;
+  font-size: 30px;
+  color: #fff !important;
+  margin-left: 0.75rem !important;
+  position: relative;
+  vertical-align: middle;
+}
+
+#sidebar .sidebar-header {
+  padding: 20px;
+  background: #6d7fcc;
+}
+
+#sidebar ul.components {
+  padding: 20px 0;
+  border-bottom: 1px solid #47748b;
+}
+
+#sidebar ul p {
+  color: #fff;
+  padding: 10px;
+}
+
+#sidebar ul li a {
+  padding: 10px;
+  font-size: 1.1em;
+  display: block;
+}
+
+#sidebar ul li a:hover {
+  color: #7386d5;
+  background: #fff;
+}
+
+#sidebar ul li.active > a,
+a[aria-expanded="true"] {
+  color: #fff;
+  background: #6d7fcc;
+}
+
+a[data-toggle="collapse"] {
+  position: relative;
+}
+
+.dropdown-toggle::after {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+
+ul ul a {
+  font-size: 0.9em !important;
+  padding-left: 30px !important;
+  background: #6d7fcc;
+}
+
+ul.CTAs {
+  padding: 20px;
+}
+
+ul.CTAs a {
+  text-align: center;
+  font-size: 0.9em !important;
+  display: block;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+a.download {
+  background: #fff;
+  color: #7386d5;
+}
+
+a.article,
+a.article:hover {
+  background: #6d7fcc !important;
+  color: #fff !important;
+}
+
+@media (max-width: 768px) {
+  #sidebar {
+    margin-left: -250px;
+  }
+  #sidebar.active {
+    margin-left: 0;
+  }
 }

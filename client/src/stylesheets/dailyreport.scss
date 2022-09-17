@@ -2,8 +2,7 @@
 @import "./main.scss";
 
 .DailyReport_Container {
-  float: right;
-  position: inherit;
+  @extend .Display_Inline_Block;
   height: 100vh;
   margin-bottom: 30px;
   padding-left: 20px;

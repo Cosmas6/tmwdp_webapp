@@ -174,7 +174,10 @@ const DRCreate = () => {
           />
         </div>
         <label className="Input_Label daily-report-form-block">
-          <p>Press space then enter to go to a new line (Android Users)</p>
+          <p>
+            Press space then enter to go to a new line
+            <strong>(Phone Users)</strong>
+          </p>
         </label>
         <div className="ActandPlant_Container daily-report-form-block">
           <Controller
