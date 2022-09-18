@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import SideBar from "../SideBar";
 import { Outlet } from "react-router-dom";
 import "../stylesheets/dashboard.scss";
+import { getAuth, signOut } from "firebase/auth";
+import db from "../../firebase.config";
 
 export function useWindowDimensions() {
   function getWindowDimensions() {
@@ -51,6 +52,19 @@ export default function Dashboard() {
     }
   }, []);
 
+  const auth = getAuth();
+
+  const logOut = () => {
+    signOut(auth)
+      .then(() => {
+        sessionStorage.removeItem("Auth Token");
+        navigate("/login");
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  };
+
   return (
     <div className="Dashboard_Container">
       <nav id="sidebar">
@@ -73,7 +87,8 @@ export default function Dashboard() {
             to="createDReport"
             onClick={ToggleSidebarSecond}
           >
-            Daily Report
+            <i className="fa fa-clipboard" aria-hidden="true"></i>
+            <span>Daily Report</span>
           </NavLink>
           <NavLink
             className={(navData) =>
@@ -82,7 +97,8 @@ export default function Dashboard() {
             to="readingDReport"
             onClick={ToggleSidebarSecond}
           >
-            D Report List
+            <i className="fa fa-clipboard" aria-hidden="true"></i>
+            <span>D Report List</span>
           </NavLink>
           {/* <li className="active">
             <a
@@ -155,6 +171,18 @@ export default function Dashboard() {
             </a>
           </li>
         </ul> */}
+
+        <div className="sidenav-footer">
+          <NavLink
+            className={(navData) =>
+              navData.isActive ? "nav-link active" : "nav-link"
+            }
+            onClick={logOut}
+          >
+            <i className="fa fa-sign-out" aria-hidden="true"></i>
+            <span>Log Out</span>
+          </NavLink>
+        </div>
       </nav>
       <div className="nav-toggle-button">
         <button
@@ -163,7 +191,7 @@ export default function Dashboard() {
           onClick={ToggleSidebar}
         >
           <i className="fas fa-align-left"></i>
-          <span>Menu</span>
+          <span> Menu</span>
         </button>
       </div>
 

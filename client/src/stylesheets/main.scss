@@ -1,6 +1,7 @@
 @import "~include-media/dist/_include-media.scss";
 $primaryMargin: 0 auto;
 $navMargin: 20px;
+$navPadding: 20px;
 $topMargin: 60px;
 $primaryBorder: 1px solid black;
 $primaryBorderRadius: 3px;
@@ -43,6 +44,7 @@ $layout-breakpoint-small: 960px;
   @include displayInlineBlock();
   margin-left: $navMargin;
   margin-top: $topMargin;
+  margin-bottom: $navMargin;
   float: right;
   position: inherit;
 
@@ -50,6 +52,20 @@ $layout-breakpoint-small: 960px;
     margin: $primaryMargin;
     text-align: center;
   }
+}
+
+.Shadow {
+  box-shadow: 1px -1px 11px -2px rgba(199,238,255,0.66);
+  border-radius: 0.75rem;
+  background-color: white;
+}
+
+.Container_Margin {
+  margin: $navMargin;
+}
+
+.Container_Padding {
+  padding: $navPadding;
 }
 
 .Container_Nav_Width {

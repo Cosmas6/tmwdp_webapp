@@ -1,21 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import db from "../firebase.config";
+
 import "./stylesheets/sidebar.scss";
 
 const SideBar = () => {
   const navigate = useNavigate();
-  const logOut = () => {
-    signOut(auth)
-      .then(() => {
-        sessionStorage.removeItem("Auth Token");
-        navigate("/login");
-      })
-      .catch((error) => {
-        // An error happened.
-      });
-  };
+ 
   const auth = getAuth();
   const [email, setEmail] = useState("");
 

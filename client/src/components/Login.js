@@ -47,10 +47,6 @@ function Login() {
       });
   };
 
-  const createReport = () => {
-    navigate("/generatereport");
-  };
-
   return (
     <>
       <div className="Login_Container">

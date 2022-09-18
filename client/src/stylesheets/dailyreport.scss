@@ -5,7 +5,7 @@
   @extend .Display_Inline_Block;
 
   @media (min-width: 768px) {
-    margin-left: 250px;
+    margin-left: 270px;
   }
   height: 100vh;
   margin-bottom: 30px;
@@ -19,6 +19,9 @@
   }
 
   .DailyReportTable_Container {
+    @extend .Shadow;
+    @extend .Container_Padding;
+    margin-bottom: 20px;
     @include media(">=phone", "<=tablet") {
       float: right;
       position: inherit;

@@ -1,4 +1,3 @@
-import { PDFDownloadLink } from "@react-pdf/renderer";
 import ReactMustache from "react-mustache";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
@@ -174,9 +173,11 @@ const DailyReport = () => {
       });
   };
 
+
+
   return (
     <>
-      <div className="DailyReport_Container">
+      <div className="DailyReport_Container" id="DailyReport_Container">
         <div className="DailyReportTable_Container">
           <h1 className="title drf-title">Daily Report Form</h1>
           <table>
