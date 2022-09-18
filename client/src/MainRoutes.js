@@ -22,7 +22,7 @@ const MainRoutes = () => (
         <Route path="register" element={<Register />} />
         {/* </Route> */}
         <Route path="dashboard" element={<Dashboard />}>
-          {/* {CMRoutes} */}
+          {CMRoutes}
           <Route path="createDReport" element={<DRCreate />} />
           <Route path="editDReport/:id" element={<DREdit />} />
           <Route path="viewDReport/:id" element={<DailyReport />} />

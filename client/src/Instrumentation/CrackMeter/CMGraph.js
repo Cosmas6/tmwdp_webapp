@@ -98,9 +98,11 @@ const CMGraph = (props) => {
         <Line type="monotone" dataKey="Z" stroke="#00FF00" strokeWidth={2} />
       </LineChart>
       {defandcumulList()}
-      <Link className="Extra_Button" to={props.dataLink}>
-        View Data
-      </Link>
+      <div className="view-data daily-report-form-flex">
+        <Link className="Submit_Button" to={props.dataLink}>
+          View Data
+        </Link>
+      </div>
     </div>
   );
 };

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Outlet } from "react-router-dom";
+import SimpleBar from "simplebar-react";
 import "../stylesheets/dashboard.scss";
 import { getAuth, signOut } from "firebase/auth";
+
 import db from "../../firebase.config";
 
 export function useWindowDimensions() {
@@ -80,79 +82,261 @@ export default function Dashboard() {
         <hr className="horizontal-line" />
         <ul className="list-unstyled components">
           {/* <p>Dummy Heading</p> */}
-          <NavLink
-            className={(navData) =>
-              navData.isActive ? "nav-link active" : "nav-link"
-            }
-            to="createDReport"
-            onClick={ToggleSidebarSecond}
-          >
-            <i className="fa fa-clipboard" aria-hidden="true"></i>
-            <span>Daily Report</span>
-          </NavLink>
-          <NavLink
-            className={(navData) =>
-              navData.isActive ? "nav-link active" : "nav-link"
-            }
-            to="readingDReport"
-            onClick={ToggleSidebarSecond}
-          >
-            <i className="fa fa-clipboard" aria-hidden="true"></i>
-            <span>D Report List</span>
-          </NavLink>
-          {/* <li className="active">
-            <a
-              href="/createDReport"
-              data-toggle="collapse"
-              aria-expanded="false"
-              className="dropdown-toggle"
+          <li>
+            <NavLink
+              className={(navData) =>
+                navData.isActive ? "nav-link active" : "nav-link"
+              }
+              to="createDReport"
+              onClick={ToggleSidebarSecond}
             >
-              Home
-            </a>
-            <ul className="collapse list-unstyled" id="homeSubmenu">
-              <li>
-                <a href="/element">Home 1</a>
-              </li>
-              <li>
-                <a href="/element">Home 2</a>
-              </li>
-              <li>
-                <a href="/element">Home 3</a>
-              </li>
-            </ul>
+              <i className="fa fa-clipboard" aria-hidden="true"></i>
+              <span>Daily Report</span>
+            </NavLink>
           </li>
           <li>
-            <a href="/element">About</a>
-          </li>
-          <li>
-            <a
-              href="#pageSubmenu"
-              data-toggle="collapse"
-              aria-expanded="false"
-              className="dropdown-toggle"
+            <NavLink
+              className={(navData) =>
+                navData.isActive ? "nav-link active" : "nav-link"
+              }
+              to="readingDReport"
+              onClick={ToggleSidebarSecond}
             >
-              Pages
-            </a>
-            <ul className="collapse list-unstyled" id="pageSubmenu">
-              <li>
-                <a href="/element">Page 1</a>
-              </li>
-              <li>
-                <a href="/element">Page 2</a>
-              </li>
-              <li>
-                <a href="/element">Page 3</a>
-              </li>
+              <i className="fa fa-clipboard" aria-hidden="true"></i>
+              <span>Daily Report List</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className={(navData) =>
+                navData.isActive
+                  ? "nav-link rounded active"
+                  : "nav-link rounded"
+              }
+              data-bs-toggle="collapse"
+              data-bs-target="#dashboard-collapse"
+              aria-expanded="true"
+              to="instrumentation"
+            >
+              <i className="fa-solid fa-clock"></i>
+              <span>Crack Meter Reading</span>
+            </NavLink>
+          </li>
+          <div className="collapse hide" id="dashboard-collapse">
+            <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small sidebar-dropdowns">
+              <SimpleBar style={{ height: "200px" }}>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="createReadingC1"
+                    onClick={ToggleSidebarSecond}
+                  >
+                    C1
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="createReadingC2"
+                    onClick={ToggleSidebarSecond}
+                  >
+                    C2
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="createReadingC3"
+                    onClick={ToggleSidebarSecond}
+                  >
+                    C3
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="createReadingC4"
+                    onClick={ToggleSidebarSecond}
+                  >
+                    C4
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="createReadingC5"
+                    onClick={ToggleSidebarSecond}
+                  >
+                    C5
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="createReadingC6"
+                    onClick={ToggleSidebarSecond}
+                  >
+                    C6
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="createReadingC7"
+                    onClick={ToggleSidebarSecond}
+                  >
+                    C7
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="createReadingC8"
+                    onClick={ToggleSidebarSecond}
+                  >
+                    C8
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="createReadingC9"
+                    onClick={ToggleSidebarSecond}
+                  >
+                    C9
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="createReadingC10"
+                    onClick={ToggleSidebarSecond}
+                  >
+                    C10
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="createReadingC11"
+                    onClick={ToggleSidebarSecond}
+                  >
+                    C11
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="createReadingC12"
+                    onClick={ToggleSidebarSecond}
+                  >
+                    C12
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="createReadingC13"
+                    onClick={ToggleSidebarSecond}
+                  >
+                    C13
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="createReadingC14"
+                    onClick={ToggleSidebarSecond}
+                  >
+                    C14
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="createReadingC15"
+                    onClick={ToggleSidebarSecond}
+                  >
+                    C15
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="createReadingC16"
+                    onClick={ToggleSidebarSecond}
+                  >
+                    C16
+                  </NavLink>
+                </li>
+              </SimpleBar>
             </ul>
-          </li>
-          <li>
-            <a href="/element">Portfolio</a>
-          </li>
-          <li>
-            <a href="/element">Contact</a>
-          </li> */}
+          </div>
         </ul>
-
         {/* <ul className="list-unstyled CTAs">
           <li>
             <a

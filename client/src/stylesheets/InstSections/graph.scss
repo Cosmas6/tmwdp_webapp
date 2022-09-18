@@ -2,13 +2,26 @@
 
 .ReactGraph_Container {
   @extend .Display_Inline_Block;
-  float: right;
+  @extend .Shadow;
+  @extend .Container_Padding;
+  @extend .Container_Left_Margin;
 
   table {
     th,
     tr,
     td {
       border: 1px solid;
+    }
+  }
+
+  .daily-report-form-flex {
+    display: inline-block;
+    margin: 20px 20px 20px 80px;
+  }
+
+  .view-data {
+    a {
+      text-decoration: none;
     }
   }
 }

@@ -1,6 +1,7 @@
 import ReactMustache from "react-mustache";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
+
 import "../stylesheets/dailyreport.scss";
 
 const DailyReport = () => {
@@ -172,8 +173,6 @@ const DailyReport = () => {
         ).innerHTML = `<a className="Download_Button" href="${res.pdf}" >Download PDF</a>`;
       });
   };
-
-
 
   return (
     <>

@@ -11,7 +11,7 @@ export default function CreateReadingC3() {
       <CMFormCreate
         defaultValue={3}
         cmName={"C3"}
-        fetchLink={`http://localhost:4000/C3Router/add`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/C3Router/add`}
         dataLink={`/dashboard/readingC3`}
         graphLink={`/dashboard/graphC3`}
       />
@@ -25,8 +25,8 @@ export function EditReadingC3() {
     <div className="C3_Edit">
       <CMFormEdit
         cmName={"C3"}
-        fetchLink={`http://localhost:4000/C3Router/${params.id.toString()}`}
-        fetchLinkPost={`http://localhost:4000/C3Router/update/${params.id}`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/C3Router/${params.id.toString()}`}
+        fetchLinkPost={`https://nodejs.tmwdp.co.ke/C3Router/update/${params.id}`}
         navigateLink={`/dashboard/readingC3`}
       />
     </div>
@@ -38,8 +38,8 @@ export function ReadingListC3() {
     <div className="C3_Reading">
       <CMReading
         cmName={`C3`}
-        fetchLink={`http://localhost:4000/C3Router`}
-        deleteFetch={`http://localhost:4000/C3Router`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/C3Router`}
+        deleteFetch={`https://nodejs.tmwdp.co.ke/C3Router`}
         graphLink={`/dashboard/graphC3`}
         createLink={`/dashboard/createReadingC3`}
       />
@@ -52,7 +52,7 @@ export function GraphC3() {
     <div className="C3_Graph">
       <CMGraph
         cmName={"C3"}
-        fetchLink={`http://localhost:4000/C3Router/graphC3`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/C3Router/graphC3`}
         dataLink={`/dashboard/readingC3`}
         defX={27.40}
         defY={25.03}

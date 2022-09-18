@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+
 import "../stylesheets/drthumbnails.scss";
 // import db from "../firebase.config";
 
@@ -102,6 +103,7 @@ const DRThumbnails = () => {
 
   return (
     <div className="DRThumbnail_Container">
+      
       <div className="Report_Table_Container">
         <h3>Report List</h3>
         <table className="table table-striped" style={{ marginTop: 20 }}>
@@ -115,14 +117,6 @@ const DRThumbnails = () => {
           </thead>
           <tbody>{reportList()}</tbody>
         </table>
-        {/* <div className="view-graph">
-          <Link className="Extra_Button" to={props.graphLink}>
-            View Graph
-          </Link>
-        </div>
-        <Link className="graph-link" to={props.createLink}>
-          Create Reading
-        </Link>{" "} */}
       </div>
     </div>
   );

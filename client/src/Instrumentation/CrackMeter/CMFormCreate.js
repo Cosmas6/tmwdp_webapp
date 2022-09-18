@@ -38,10 +38,10 @@ const CMFormCreate = (props) => {
   };
 
   return (
-    <div className="C1_Container">
+    <div className="CM_Container">
       <h1>{props.cmName}</h1>
       <form className="Form_Container" onSubmit={handleSubmit(onSubmit)}>
-        <div className="Crack_Meter_Input">
+        <div className="Crack_Meter_Input daily-report-form-flex">
           <TextField
             id="crack-meter"
             label="Crack Meter"
@@ -55,7 +55,7 @@ const CMFormCreate = (props) => {
             {...register("CrackMeter", { required: true })}
           />
         </div>
-        <div className="Date_Input">
+        <div className="Date_Input daily-report-form-flex">
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <Controller
               control={control}
@@ -83,7 +83,7 @@ const CMFormCreate = (props) => {
             InputLabelProps={{
               shrink: true,
             }}
-            className="X1"
+            className="X1 daily-report-form-flex"
             {...register("X1", { required: true })}
           />
           <TextField
@@ -93,7 +93,7 @@ const CMFormCreate = (props) => {
             InputLabelProps={{
               shrink: true,
             }}
-            className="X2"
+            className="X2 daily-report-form-flex"
             {...register("X2", { required: true })}
           />
         </div>
@@ -106,7 +106,7 @@ const CMFormCreate = (props) => {
             InputLabelProps={{
               shrink: true,
             }}
-            className="Y1"
+            className="Y1 daily-report-form-flex"
             {...register("Y1", { required: true })}
           />
           <TextField
@@ -116,7 +116,7 @@ const CMFormCreate = (props) => {
             InputLabelProps={{
               shrink: true,
             }}
-            className="Y2"
+            className="Y2 daily-report-form-flex"
             {...register("Y2", { required: true })}
           />
         </div>
@@ -129,7 +129,7 @@ const CMFormCreate = (props) => {
             InputLabelProps={{
               shrink: true,
             }}
-            className="Z1"
+            className="Z1 daily-report-form-flex"
             {...register("Z1", { required: true })}
           />
           <TextField
@@ -139,21 +139,21 @@ const CMFormCreate = (props) => {
             InputLabelProps={{
               shrink: true,
             }}
-            className="Z2"
+            className="Z2 daily-report-form-flex"
             {...register("Z2", { required: true })}
           />
         </div>
-        <div className="form-group">
+        <div className="form-group daily-report-form-flex">
           <input type="submit" value="Submit" className="Submit_Button" />
         </div>
       </form>
-      <div className="view-data">
-        <Link className="Extra_Button" to={props.dataLink}>
+      <div className="view-data daily-report-form-flex">
+        <Link className="Submit_Button" to={props.dataLink}>
           View Data
         </Link>
       </div>
-      <div className="view-graph">
-        <Link className="Extra_Button" to={props.graphLink}>
+      <div className="view-graph daily-report-form-flex">
+        <Link className="Submit_Button" to={props.graphLink}>
           View Graph
         </Link>
       </div>

@@ -11,7 +11,7 @@ export default function CreateReadingC8() {
       <CMFormCreate
         defaultValue={8}
         cmName={"C8"}
-        fetchLink={`http://localhost:4000/C8Router/add`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/C8Router/add`}
         dataLink={`/dashboard/readingC8`}
         graphLink={`/dashboard/graphC8`}
       />
@@ -25,8 +25,8 @@ export function EditReadingC8() {
     <div className="C8_Edit">
       <CMFormEdit
         cmName={"C8"}
-        fetchLink={`http://localhost:4000/C8Router/${params.id.toString()}`}
-        fetchLinkPost={`http://localhost:4000/C8Router/update/${params.id}`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/C8Router/${params.id.toString()}`}
+        fetchLinkPost={`https://nodejs.tmwdp.co.ke/C8Router/update/${params.id}`}
         navigateLink={`/dashboard/readingC8`}
       />
     </div>
@@ -38,8 +38,8 @@ export function ReadingListC8() {
     <div className="C8_Reading">
       <CMReading
         cmName={`C8`}
-        fetchLink={`http://localhost:4000/C8Router`}
-        deleteFetch={`http://localhost:4000/C8Router`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/C8Router`}
+        deleteFetch={`https://nodejs.tmwdp.co.ke/C8Router`}
         graphLink={`/dashboard/graphC8`}
         createLink={`/dashboard/createReadingC8`}
       />
@@ -52,7 +52,7 @@ export function GraphC8() {
     <div className="C8_Graph">
       <CMGraph
         cmName={"C8"}
-        fetchLink={`http://localhost:4000/C8Router/graphC8`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/C8Router/graphC8`}
         dataLink={`/dashboard/readingC8`}
         defX={23.56}
         defY={26.49}

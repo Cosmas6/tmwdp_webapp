@@ -11,7 +11,7 @@ export default function CreateReadingC5() {
       <CMFormCreate
         defaultValue={5}
         cmName={"C5"}
-        fetchLink={`http://localhost:4000/C5Router/add`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/C5Router/add`}
         dataLink={`/dashboard/readingC5`}
         graphLink={`/dashboard/graphC5`}
       />
@@ -25,8 +25,8 @@ export function EditReadingC5() {
     <div className="C5_Edit">
       <CMFormEdit
         cmName={"C5"}
-        fetchLink={`http://localhost:4000/C5Router/${params.id.toString()}`}
-        fetchLinkPost={`http://localhost:4000/C5Router/update/${params.id}`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/C5Router/${params.id.toString()}`}
+        fetchLinkPost={`https://nodejs.tmwdp.co.ke/C5Router/update/${params.id}`}
         navigateLink={`/dashboard/readingC5`}
       />
     </div>
@@ -38,8 +38,8 @@ export function ReadingListC5() {
     <div className="C5_Reading">
       <CMReading
         cmName={`C5`}
-        fetchLink={`http://localhost:4000/C5Router`}
-        deleteFetch={`http://localhost:4000/C5Router`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/C5Router`}
+        deleteFetch={`https://nodejs.tmwdp.co.ke/C5Router`}
         graphLink={`/dashboard/graphC5`}
         createLink={`/dashboard/createReadingC5`}
       />
@@ -52,7 +52,7 @@ export function GraphC5() {
     <div className="C5_Graph">
       <CMGraph
         cmName={"C5"}
-        fetchLink={`http://localhost:4000/C5Router/graphC5`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/C5Router/graphC5`}
         dataLink={`/dashboard/readingC5`}
         defX={22.68}
         defY={25.41}

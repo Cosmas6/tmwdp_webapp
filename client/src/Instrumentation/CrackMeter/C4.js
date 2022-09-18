@@ -11,7 +11,7 @@ export default function CreateReadingC4() {
       <CMFormCreate
         defaultValue={4}
         cmName={"C4"}
-        fetchLink={`http://localhost:4000/C4Router/add`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/C4Router/add`}
         dataLink={`/dashboard/readingC4`}
         graphLink={`/dashboard/graphC4`}
       />
@@ -25,8 +25,8 @@ export function EditReadingC4() {
     <div className="C4_Edit">
       <CMFormEdit
         cmName={"C4"}
-        fetchLink={`http://localhost:4000/C4Router/${params.id.toString()}`}
-        fetchLinkPost={`http://localhost:4000/C4Router/update/${params.id}`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/C4Router/${params.id.toString()}`}
+        fetchLinkPost={`https://nodejs.tmwdp.co.ke/C4Router/update/${params.id}`}
         navigateLink={`/dashboard/readingC4`}
       />
     </div>
@@ -38,8 +38,8 @@ export function ReadingListC4() {
     <div className="C4_Reading">
       <CMReading
         cmName={`C4`}
-        fetchLink={`http://localhost:4000/C4Router`}
-        deleteFetch={`http://localhost:4000/C4Router`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/C4Router`}
+        deleteFetch={`https://nodejs.tmwdp.co.ke/C4Router`}
         graphLink={`/dashboard/graphC4`}
         createLink={`/dashboard/createReadingC4`}
       />
@@ -52,7 +52,7 @@ export function GraphC4() {
     <div className="C4_Graph">
       <CMGraph
         cmName={"C4"}
-        fetchLink={`http://localhost:4000/C4Router/graphC4`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/C4Router/graphC4`}
         dataLink={`/dashboard/readingC4`}
         defX={23.33}
         defY={25.95}

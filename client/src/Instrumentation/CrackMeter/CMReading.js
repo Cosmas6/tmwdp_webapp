@@ -103,14 +103,16 @@ const CMReading = (props) => {
         </thead>
         <tbody>{readingList()}</tbody>
       </table>
-      <div className="view-graph">
-        <Link className="Extra_Button" to={props.graphLink}>
+      <div className="view-graph daily-report-form-flex">
+        <Link className="Submit_Button" to={props.graphLink}>
           View Graph
         </Link>
       </div>
-      <Link className="graph-link" to={props.createLink}>
-        Create Reading
-      </Link>{" "}
+      <div className="create-reading daily-report-form-flex">
+        <Link className="Submit_Button" to={props.createLink}>
+          Create Reading
+        </Link>
+      </div>
     </div>
   );
 };

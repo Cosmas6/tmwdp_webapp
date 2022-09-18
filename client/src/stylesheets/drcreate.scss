@@ -5,9 +5,8 @@
 .DRCreate_Container {
   @extend .Display_Inline_Block;
   @extend .Shadow;
-  @media (min-width: 768px) {
-    margin-left: 270px;
-  }
+  @extend .Container_Left_Margin;
+  @extend .Sidebar_Black_Color;
 
   .Date_Container {
     margin-top: 40px;

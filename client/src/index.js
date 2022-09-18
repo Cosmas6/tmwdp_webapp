@@ -9,6 +9,7 @@ import storage from "redux-persist/lib/storage";
 import reportData from "./store/reducers/reportData";
 import { BrowserRouter } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import 'simplebar/dist/simplebar.min.css';
 
 
 const persistConfig = {

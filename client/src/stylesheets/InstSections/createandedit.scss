@@ -1,16 +1,35 @@
 @import "../main.scss";
 
-.C1_Container {
+.CM_Container {
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
   @extend .Display_Inline_Block;
+  @extend .Shadow;
+  @extend .Container_Padding;
+  @extend .Container_Left_Margin;
+
+  .daily-report-form-flex {
+    display: inline-block;
+    margin: 20px 20px;
+  }
 
   .Form_Input {
     margin: 5px 0;
   }
+
+  .view-data,
+  .view-graph {
+    a {
+      text-decoration: none;
+    }
+  }
+
+  @media (max-width: 473px) {
+    .view-graph {
+      margin-top: 30px;
+    }
+  }
 }
-
-

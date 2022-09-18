@@ -2,7 +2,7 @@
 $primaryMargin: 0 auto;
 $navMargin: 20px;
 $navPadding: 20px;
-$topMargin: 60px;
+$topMargin: 80px;
 $primaryBorder: 1px solid black;
 $primaryBorderRadius: 3px;
 $layout-breakpoint-small: 960px;
@@ -45,19 +45,37 @@ $layout-breakpoint-small: 960px;
   margin-left: $navMargin;
   margin-top: $topMargin;
   margin-bottom: $navMargin;
+  height: 90vh;
   float: right;
   position: inherit;
+  overflow-y: scroll;
 
   .title {
     margin: $primaryMargin;
     text-align: center;
   }
+
+  @media (max-width: 768px) {
+    margin-top: 100px;
+  }
 }
 
 .Shadow {
-  box-shadow: 1px -1px 11px -2px rgba(199,238,255,0.66);
+  box-shadow: 1px -1px 11px -2px rgba(199, 238, 255, 0.66);
   border-radius: 0.75rem;
   background-color: white;
+}
+
+.Sidebar_White_Color {
+  .simplebar-track.simplebar-vertical .simplebar-scrollbar:before {
+    background-color: white;
+  }
+}
+
+.Sidebar_Black_Color {
+  .simplebar-track.simplebar-vertical .simplebar-scrollbar:before {
+    background-color: black;
+  }
 }
 
 .Container_Margin {
@@ -66,6 +84,12 @@ $layout-breakpoint-small: 960px;
 
 .Container_Padding {
   padding: $navPadding;
+}
+
+.Container_Left_Margin {
+  @media (min-width: 768px) {
+    margin-left: 270px;
+  }
 }
 
 .Container_Nav_Width {

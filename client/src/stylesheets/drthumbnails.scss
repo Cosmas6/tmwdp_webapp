@@ -3,10 +3,6 @@
 .DRThumbnail_Container {
   @extend .Display_Inline_Block;
   @extend .Shadow;
-
   @extend .Container_Padding;
-
-  @media (min-width: 768px) {
-    margin-left: 270px;
-  }
+  @extend .Container_Left_Margin;
 }

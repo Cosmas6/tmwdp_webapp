@@ -11,7 +11,7 @@ export default function CreateReadingC12() {
       <CMFormCreate
         defaultValue={12}
         cmName={"C12"}
-        fetchLink={`http://localhost:4000/C12Router/add`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/C12Router/add`}
         dataLink={`/dashboard/readingC12`}
         graphLink={`/dashboard/graphC12`}
       />
@@ -25,8 +25,8 @@ export function EditReadingC12() {
     <div className="C12_Edit">
       <CMFormEdit
         cmName={"C12"}
-        fetchLink={`http://localhost:4000/C12Router/${params.id.toString()}`}
-        fetchLinkPost={`http://localhost:4000/C12Router/update/${params.id}`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/C12Router/${params.id.toString()}`}
+        fetchLinkPost={`https://nodejs.tmwdp.co.ke/C12Router/update/${params.id}`}
         navigateLink={`/dashboard/readingC12`}
       />
     </div>
@@ -38,8 +38,8 @@ export function ReadingListC12() {
     <div className="C12_Reading">
       <CMReading
         cmName={`C12`}
-        fetchLink={`http://localhost:4000/C12Router`}
-        deleteFetch={`http://localhost:4000/C12Router`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/C12Router`}
+        deleteFetch={`https://nodejs.tmwdp.co.ke/C12Router`}
         graphLink={`/dashboard/graphC12`}
         createLink={`/dashboard/createReadingC12`}
       />
@@ -52,7 +52,7 @@ export function GraphC12() {
     <div className="C12_Graph">
       <CMGraph
         cmName={"C12"}
-        fetchLink={`http://localhost:4000/C12Router/graphC12`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/C12Router/graphC12`}
         dataLink={`/dashboard/readingC12`}
         defX={19.36}
         defY={26.30}
