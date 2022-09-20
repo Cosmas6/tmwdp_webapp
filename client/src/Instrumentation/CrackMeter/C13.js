@@ -7,7 +7,7 @@ import CMGraph from "./CMGraph";
 
 export default function CreateReadingC13() {
   return (
-    <div className="C13_Create">
+    <div className="CM_Create">
       <CMFormCreate
         defaultValue={13}
         cmName={"C13"}
@@ -22,7 +22,7 @@ export default function CreateReadingC13() {
 export function EditReadingC13() {
   const params = useParams();
   return (
-    <div className="C13_Edit">
+    <div className="CM_Edit">
       <CMFormEdit
         cmName={"C13"}
         fetchLink={`https://nodejs.tmwdp.co.ke/C13Router/${params.id.toString()}`}
@@ -35,7 +35,7 @@ export function EditReadingC13() {
 
 export function ReadingListC13() {
   return (
-    <div className="C13_Reading">
+    <div className="CM_Reading">
       <CMReading
         cmName={`C13`}
         fetchLink={`https://nodejs.tmwdp.co.ke/C13Router`}
@@ -49,7 +49,7 @@ export function ReadingListC13() {
 
 export function GraphC13() {
   return (
-    <div className="C13_Graph">
+    <div className="CM_Graph">
       <CMGraph
         cmName={"C13"}
         fetchLink={`https://nodejs.tmwdp.co.ke/C13Router/graphC13`}

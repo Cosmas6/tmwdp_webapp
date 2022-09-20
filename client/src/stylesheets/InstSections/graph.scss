@@ -1,11 +1,13 @@
 @import "../main.scss";
 
-.ReactGraph_Container {
+.CM_Graph {
   @extend .Display_Inline_Block;
   @extend .Shadow;
   @extend .Container_Padding;
   @extend .Container_Left_Margin;
+}
 
+.ReactGraph_Container {
   table {
     th,
     tr,

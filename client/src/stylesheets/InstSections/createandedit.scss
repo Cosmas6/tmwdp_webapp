@@ -1,11 +1,6 @@
 @import "../main.scss";
 
 .CM_Container {
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
   @extend .Display_Inline_Block;
   @extend .Shadow;
   @extend .Container_Padding;

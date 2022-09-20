@@ -85,7 +85,7 @@ const CMReading = (props) => {
   }
 
   return (
-    <div className="C1_Table_Container">
+    <div className="CM_Table_Container">
       <h3>Reading List</h3>
       <table className="table table-striped" style={{ marginTop: 20 }}>
         <thead>

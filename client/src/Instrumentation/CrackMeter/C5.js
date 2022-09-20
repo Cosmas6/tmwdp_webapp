@@ -7,7 +7,7 @@ import CMGraph from "./CMGraph";
 
 export default function CreateReadingC5() {
   return (
-    <div className="C5_Create">
+    <div className="CM_Create">
       <CMFormCreate
         defaultValue={5}
         cmName={"C5"}
@@ -22,7 +22,7 @@ export default function CreateReadingC5() {
 export function EditReadingC5() {
   const params = useParams();
   return (
-    <div className="C5_Edit">
+    <div className="CM_Edit">
       <CMFormEdit
         cmName={"C5"}
         fetchLink={`https://nodejs.tmwdp.co.ke/C5Router/${params.id.toString()}`}
@@ -35,7 +35,7 @@ export function EditReadingC5() {
 
 export function ReadingListC5() {
   return (
-    <div className="C5_Reading">
+    <div className="CM_Reading">
       <CMReading
         cmName={`C5`}
         fetchLink={`https://nodejs.tmwdp.co.ke/C5Router`}
@@ -49,7 +49,7 @@ export function ReadingListC5() {
 
 export function GraphC5() {
   return (
-    <div className="C5_Graph">
+    <div className="CM_Graph">
       <CMGraph
         cmName={"C5"}
         fetchLink={`https://nodejs.tmwdp.co.ke/C5Router/graphC5`}

@@ -46,9 +46,9 @@ $layout-breakpoint-small: 960px;
   margin-top: $topMargin;
   margin-bottom: $navMargin;
   height: 90vh;
-  float: right;
   position: inherit;
-  overflow-y: scroll;
+  overflow: auto;
+  white-space: initial;
 
   .title {
     margin: $primaryMargin;
@@ -118,19 +118,21 @@ $layout-breakpoint-small: 960px;
 }
 
 .Submit_Button {
-  background: black;
-  border: 1px solid black;
-  color: white;
+  background: #1976d2;
+  color: #ffffff;
   text-transform: uppercase;
   padding: 20px;
   width: 100%;
   margin-top: 40px;
   font-size: 16px;
   letter-spacing: 3px;
+  font-weight: 600;
+  border-radius: 0.35rem;
+  border-style:none;
 }
 .Submit_Button:hover {
   transition: 0.3s;
-  background: white;
-  color: black;
-  border: 1px solid black;
+  background: #ffffff;
+  color: #1976d2;
+  border: 1px solid #1976d2;
 }
