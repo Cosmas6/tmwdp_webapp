@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,7 @@ import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import TextField from "@mui/material/TextField";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 import db from "../../firebase.config";
 import "../stylesheets/drcreate.scss";
@@ -20,6 +21,20 @@ const DRCreate = () => {
     formState: { errors, isSubmitted },
   } = useForm();
   const navigate = useNavigate();
+
+  const [emailAddr, setEmailAddr] = useState("");
+  const auth = getAuth();
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const emailAddress = user.email;
+        setEmailAddr(emailAddress);
+        console.log(emailAddress);
+      } else {
+      }
+    });
+  }, []);
 
   useEffect(() => {
     let authToken = sessionStorage.getItem("Auth Token");
@@ -69,6 +84,26 @@ const DRCreate = () => {
   return (
     <div className="DRCreate_Container">
       <form className="Form_Container" onSubmit={handleSubmit(onSubmit)}>
+        <div className="Email_Container daily-report-form-flex">
+          <Controller
+            control={control}
+            rules={{ required: true }}
+            name="Email"
+            defaultValue={emailAddr}
+            render={({ field }) => (
+              <TextField
+                id="outlined-read-only-input"
+                label="Email"
+                type="text"
+                InputProps={{
+                  readOnly: true,
+                }}
+                className="email-input"
+              />
+            )}
+          />
+        </div>
+
         <div className="Section_Container daily-report-form-flex">
           <label className="Input_Label">Section</label>
 

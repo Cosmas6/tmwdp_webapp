@@ -128,11 +128,33 @@ $layout-breakpoint-small: 960px;
   letter-spacing: 3px;
   font-weight: 600;
   border-radius: 0.35rem;
-  border-style:none;
+  border-style: none;
 }
 .Submit_Button:hover {
   transition: 0.3s;
   background: #ffffff;
   color: #1976d2;
-  border: 1px solid #1976d2;
+  border: 0.5px solid #1976d2;
+}
+
+.Button_Edits {
+  .edit-button,
+  .view-button {
+    background: #1976d2;
+    color: #ffffff;
+    border-radius: 0.35rem;
+    text-decoration: none;
+  }
+
+  .delete-button {
+    background: #ff0000;
+    color: #ffffff;
+    margin: 0 5px;
+    border-radius: 0.35rem;
+    text-decoration: none;
+  }
+
+  span {
+    margin-left: 5px;
+  }
 }

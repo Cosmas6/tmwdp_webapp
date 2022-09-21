@@ -22,21 +22,22 @@ const CMReading = (props) => {
         <td>{parseFloat(props.reading.Z2).toFixed(2)}</td>
         <td>
           <Link
-            className="btn btn-link"
+            className="btn btn-link edit-button"
             to={`/dashboard/editReadingC${parseInt(props.reading.CrackMeter)}/${
               props.reading._id
             }`}
           >
-            Edit
-          </Link>{" "}
-          |
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+            <span>Edit</span>
+          </Link>
           <button
-            className="btn btn-link"
+            className="btn btn-link delete-button"
             onClick={() => {
               props.deleteRecord(props.reading._id);
             }}
           >
-            Delete
+            <i class="fa fa-trash" aria-hidden="true"></i>
+            <span>Delete</span>
           </button>
         </td>
       </tr>

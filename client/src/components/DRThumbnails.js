@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-
 import "../stylesheets/drthumbnails.scss";
 // import db from "../firebase.config";
 
@@ -54,27 +53,28 @@ const DRThumbnails = () => {
         <td>{props.report.Shift}</td>
         <td>
           <Link
-            className="btn btn-link"
+            className="btn btn-link edit-button"
             to={`/dashboard/editDReport/${props.report._id}`}
           >
-            Edit
-          </Link>{" "}
-          |
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+            <span>Edit</span>
+          </Link>
           <button
-            className="btn btn-link"
+            className="btn btn-link delete-button"
             onClick={() => {
               props.deleteReport(props.report._id);
             }}
           >
-            Delete
+            <i class="fa fa-trash" aria-hidden="true"></i>
+            <span>Delete</span>
           </button>
-          |
           <Link
-            className="btn btn-link"
+            className="btn btn-link view-button"
             to={`/dashboard/viewDReport/${props.report._id}`}
           >
-            View
-          </Link>{" "}
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            <span>View</span>
+          </Link>
         </td>
       </tr>
     );
@@ -103,7 +103,6 @@ const DRThumbnails = () => {
 
   return (
     <div className="DRThumbnail_Container">
-      
       <div className="Report_Table_Container">
         <h3>Report List</h3>
         <table className="table table-striped" style={{ marginTop: 20 }}>

@@ -4,7 +4,6 @@ import { Outlet } from "react-router-dom";
 import SimpleBar from "simplebar-react";
 import "../stylesheets/dashboard.scss";
 import { getAuth, signOut } from "firebase/auth";
-
 import db from "../../firebase.config";
 
 export function useWindowDimensions() {
