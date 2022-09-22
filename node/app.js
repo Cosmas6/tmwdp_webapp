@@ -11,6 +11,7 @@ var crackmeterDbo = require("./mongoDB/crackmeterConn");
 var dailyreportDbo = require("./mongoDB/dailyreportConn.js");
 var nodeMailerRouter = require("./routes/nodeMailer");
 var DailyRSpillway = require("./routes/DailyReport/Spillway");
+var DailyRTunnels = require("./routes/DailyReport/Tunnels");
 var C1Router = require("./routes/Instrumentation/CrackMeters/C1");
 var C2Router = require("./routes/Instrumentation/CrackMeters/C2");
 var C3Router = require("./routes/Instrumentation/CrackMeters/C3");
@@ -32,7 +33,6 @@ var express = require("express");
 var cors = require("cors");
 var app = express();
 app.use(cors());
-
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -64,6 +64,7 @@ app.use("/C14Router", C14Router);
 app.use("/C15Router", C15Router);
 app.use("/C16Router", C16Router);
 app.use("/DailyRSpillwayRouter", DailyRSpillway);
+app.use("/DailyRTunnelsRouter", DailyRTunnels);
 
 // perform a database connection when server starts
 
@@ -81,8 +82,8 @@ app.use(function (req, res, next) {
 });
 
 app.listen(5000, function () {
-  console.log('CORS-enabled web server listening on port 5000')
-})
+  console.log("CORS-enabled web server listening on port 5000");
+});
 
 // error handler
 // app.use(function (err, req, res, next) {

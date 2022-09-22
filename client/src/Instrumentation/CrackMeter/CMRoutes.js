@@ -1,53 +1,49 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import CreateReadingC1, { GraphC1 } from "./C1";
-import { EditReadingC1 } from "./C1";
-import { ReadingListC1 } from "./C1";
-import CreateReadingC2, { GraphC2 } from "./C2";
-import { EditReadingC2 } from "./C2";
-import { ReadingListC2 } from "./C2";
-import CreateReadingC3, { GraphC3 } from "./C3";
-import { EditReadingC3 } from "./C3";
-import { ReadingListC3 } from "./C3";
-import CreateReadingC4, { GraphC4 } from "./C4";
-import { EditReadingC4 } from "./C4";
-import { ReadingListC4 } from "./C4";
-import CreateReadingC5, { GraphC5 } from "./C5";
-import { EditReadingC5 } from "./C5";
-import { ReadingListC5 } from "./C5";
-import CreateReadingC6, { GraphC6 } from "./C6";
-import { EditReadingC6 } from "./C6";
-import { ReadingListC6 } from "./C6";
-import CreateReadingC7, { GraphC7 } from "./C7";
-import { EditReadingC7 } from "./C7";
-import { ReadingListC7 } from "./C7";
-import CreateReadingC8, { GraphC8 } from "./C8";
-import { EditReadingC8 } from "./C8";
-import { ReadingListC8 } from "./C8";
-import CreateReadingC9, { GraphC9 } from "./C9";
-import { EditReadingC9 } from "./C9";
-import { ReadingListC9 } from "./C9";
-import CreateReadingC10, { GraphC10 } from "./C10";
-import { EditReadingC10 } from "./C10";
-import { ReadingListC10 } from "./C10";
-import CreateReadingC11, { GraphC11 } from "./C11";
-import { EditReadingC11 } from "./C11";
-import { ReadingListC11 } from "./C11";
-import CreateReadingC12, { GraphC12 } from "./C12";
-import { EditReadingC12 } from "./C12";
-import { ReadingListC12 } from "./C12";
-import CreateReadingC13, { GraphC13 } from "./C13";
-import { EditReadingC13 } from "./C13";
-import { ReadingListC13 } from "./C13";
-import CreateReadingC14, { GraphC14 } from "./C14";
-import { EditReadingC14 } from "./C14";
-import { ReadingListC14 } from "./C14";
-import CreateReadingC15, { GraphC15 } from "./C15";
-import { EditReadingC15 } from "./C15";
-import { ReadingListC15 } from "./C15";
-import CreateReadingC16, { GraphC16 } from "./C16";
-import { EditReadingC16 } from "./C16";
-import { ReadingListC16 } from "./C16";
+import CreateReadingC1, { GraphC1, EditReadingC1, ReadingListC1 } from "./C1";
+import CreateReadingC2, { GraphC2, EditReadingC2, ReadingListC2 } from "./C2";
+import CreateReadingC3, { GraphC3, EditReadingC3, ReadingListC3 } from "./C3";
+import CreateReadingC4, { GraphC4, EditReadingC4, ReadingListC4 } from "./C4";
+import CreateReadingC5, { GraphC5, EditReadingC5, ReadingListC5 } from "./C5";
+import CreateReadingC6, { GraphC6, EditReadingC6, ReadingListC6 } from "./C6";
+import CreateReadingC7, { GraphC7, EditReadingC7, ReadingListC7 } from "./C7";
+import CreateReadingC8, { GraphC8, EditReadingC8, ReadingListC8 } from "./C8";
+import CreateReadingC9, { GraphC9, EditReadingC9, ReadingListC9 } from "./C9";
+import CreateReadingC10, {
+  GraphC10,
+  EditReadingC10,
+  ReadingListC10,
+} from "./C10";
+import CreateReadingC11, {
+  GraphC11,
+  EditReadingC11,
+  ReadingListC11,
+} from "./C11";
+import CreateReadingC12, {
+  GraphC12,
+  EditReadingC12,
+  ReadingListC12,
+} from "./C12";
+import CreateReadingC13, {
+  GraphC13,
+  EditReadingC13,
+  ReadingListC13,
+} from "./C13";
+import CreateReadingC14, {
+  GraphC14,
+  EditReadingC14,
+  ReadingListC14,
+} from "./C14";
+import CreateReadingC15, {
+  GraphC15,
+  EditReadingC15,
+  ReadingListC15,
+} from "./C15";
+import CreateReadingC16, {
+  GraphC16,
+  EditReadingC16,
+  ReadingListC16,
+} from "./C16";
 
 export default [
   <>

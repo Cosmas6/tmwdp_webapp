@@ -4,7 +4,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import "../stylesheets/drthumbnails.scss";
 // import db from "../firebase.config";
 
-const DRThumbnails = () => {
+const DRReading = (props) => {
   const [email, setEmail] = useState("");
   const auth = getAuth();
   useEffect(() => {
@@ -20,9 +20,7 @@ const DRThumbnails = () => {
   const [reports, setReports] = useState([]);
   useEffect(() => {
     async function getReports() {
-      const response = await fetch(
-        `https://nodejs.tmwdp.co.ke/DailyRSpillwayRouter`
-      );
+      const response = await fetch(props.fetchLink);
 
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
@@ -54,7 +52,7 @@ const DRThumbnails = () => {
         <td>
           <Link
             className="btn btn-link edit-button"
-            to={`/dashboard/editDReport/${props.report._id}`}
+            to={`/dashboard/${props.editRoute}/${props.report._id}`}
           >
             <i class="fa fa-pencil" aria-hidden="true"></i>
             <span>Edit</span>
@@ -70,7 +68,7 @@ const DRThumbnails = () => {
           </button>
           <Link
             className="btn btn-link view-button"
-            to={`/dashboard/viewDReport/${props.report._id}`}
+            to={`/dashboard/${props.viewRoute}/${props.report._id}`}
           >
             <i class="fa fa-eye" aria-hidden="true"></i>
             <span>View</span>
@@ -81,7 +79,7 @@ const DRThumbnails = () => {
   };
 
   async function deleteReport(id) {
-    await fetch(`https://nodejs.tmwdp.co.ke/DailyRSpillwayRouter/${id}`, {
+    await fetch(`${props.deleteFetch}` + `/` + id, {
       method: "DELETE",
     });
 
@@ -121,4 +119,4 @@ const DRThumbnails = () => {
   );
 };
 
-export default DRThumbnails;
+export default DRReading;

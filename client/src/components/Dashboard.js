@@ -81,18 +81,55 @@ export default function Dashboard() {
         <hr className="horizontal-line" />
         <ul className="list-unstyled components">
           {/* <p>Dummy Heading</p> */}
+
           <li>
             <NavLink
               className={(navData) =>
-                navData.isActive ? "nav-link active" : "nav-link"
+                navData.isActive
+                  ? "nav-link rounded active"
+                  : "nav-link rounded"
               }
-              to="createDReport"
-              onClick={ToggleSidebarSecond}
+              data-bs-toggle="collapse"
+              data-bs-target="#dailyreport-collapse"
+              aria-expanded="true"
+              to="instrumentation"
             >
               <i className="fa fa-clipboard" aria-hidden="true"></i>
               <span>Daily Report</span>
             </NavLink>
           </li>
+          <div className="collapse hide" id="dailyreport-collapse">
+            <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small sidebar-dropdowns">
+              <SimpleBar style={{ height: "200px" }}>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="createSpillwayDReport"
+                    onClick={ToggleSidebarSecond}
+                  >
+                    Spillway
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={(navData) =>
+                      navData.isActive
+                        ? "link-white rounded active"
+                        : "link-white rounded"
+                    }
+                    to="createTunnelsDReport"
+                    onClick={ToggleSidebarSecond}
+                  >
+                    Tunnels
+                  </NavLink>
+                </li>
+              </SimpleBar>
+            </ul>
+          </div>
           <li>
             <NavLink
               className={(navData) =>

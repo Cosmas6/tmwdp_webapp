@@ -1,7 +1,7 @@
 const { MongoClient } = require("mongodb");
 require("dotenv").config();
 const Db =
-  "mongodb+srv://cosmas:mongodbcosmas123@tmwdp.hbt0i.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://cosmas:mongodbcosmas123@cluster0.w5hfgxy.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(Db, {
   useNewUrlParser: true,
   useUnifiedTopology: true,

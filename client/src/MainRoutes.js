@@ -4,12 +4,9 @@ import MainContent from "./components/MainContent";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
-import DailyReport from "./components/DailyReport";
 import Loading from "./components/Loading";
 import CMRoutes from "./Instrumentation/CrackMeter/CMRoutes";
-import DRCreate from "./components/DRCreate";
-import DREdit from "./components/DREdit";
-import DRThumbnails from "./components/DRThumbnails";
+import DRRoutes from "./DailyReport/DRRoutes";
 
 const MainRoutes = () => (
   <Suspense fallback={<Loading />}>
@@ -23,11 +20,7 @@ const MainRoutes = () => (
         {/* </Route> */}
         <Route path="dashboard" element={<Dashboard />}>
           {CMRoutes}
-          <Route path="createDReport" element={<DRCreate />} />
-          <Route path="editDReport/:id" element={<DREdit />} />
-          <Route path="viewDReport/:id" element={<DailyReport />} />
-          <Route path="readingDReport" element={<DRThumbnails />} />
-          <Route path="dailyreport" element={<DailyReport />} />
+          {DRRoutes}
         </Route>
       </Route>
     </Routes>
