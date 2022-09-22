@@ -24,16 +24,16 @@ const DRCreate = (props) => {
   // const [emailAddr, setEmailAddr] = useState("");
   const auth = getAuth();
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const emailAddress = user.email;
-        setEmailAddr(emailAddress);
-        console.log(emailAddress);
-      } else {
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       const emailAddress = user.email;
+  //       setEmailAddr(emailAddress);
+  //       console.log(emailAddress);
+  //     } else {
+  //     }
+  //   });
+  // }, []);
 
   useEffect(() => {
     let authToken = sessionStorage.getItem("Auth Token");
@@ -104,11 +104,9 @@ const DRCreate = (props) => {
         </div> */}
 
         <div className="Section_Container daily-report-form-flex">
-          <label className="Input_Label">Section</label>
-
           <TextField
             id="outlined-read-only-input"
-            label="Read Only"
+            label="Section"
             defaultValue={props.sectionValue}
             {...register("Section", { required: true })}
             InputProps={{

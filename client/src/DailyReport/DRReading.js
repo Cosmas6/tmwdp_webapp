@@ -7,6 +7,7 @@ import "../stylesheets/drthumbnails.scss";
 const DRReading = (props) => {
   const [email, setEmail] = useState("");
   const auth = getAuth();
+
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -52,9 +53,9 @@ const DRReading = (props) => {
         <td>
           <Link
             className="btn btn-link edit-button"
-            to={`/dashboard/${props.editRoute}/${props.report._id}`}
+            to={`/dashboard/DREdit${props.report.Section}/${props.report._id}`}
           >
-            <i class="fa fa-pencil" aria-hidden="true"></i>
+            <i className="fa fa-pencil" aria-hidden="true"></i>
             <span>Edit</span>
           </Link>
           <button
@@ -63,14 +64,14 @@ const DRReading = (props) => {
               props.deleteReport(props.report._id);
             }}
           >
-            <i class="fa fa-trash" aria-hidden="true"></i>
+            <i className="fa fa-trash" aria-hidden="true"></i>
             <span>Delete</span>
           </button>
           <Link
             className="btn btn-link view-button"
-            to={`/dashboard/${props.viewRoute}/${props.report._id}`}
+            to={`/dashboard/DR${props.report.Section}Display/${props.report._id}`}
           >
-            <i class="fa fa-eye" aria-hidden="true"></i>
+            <i className="fa fa-eye" aria-hidden="true"></i>
             <span>View</span>
           </Link>
         </td>

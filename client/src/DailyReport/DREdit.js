@@ -3,10 +3,6 @@ import ReactQuill from "react-quill";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import { RadioGroup, Radio, FormControlLabel } from "@mui/material";
-import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
-import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import TextField from "@mui/material/TextField";
 import "../stylesheets/dredit.scss";
 
@@ -80,7 +76,6 @@ const DREdit = (props) => {
     e.preventDefault();
     const editedReport = {
       UserEmail: data.UserEmail,
-      Section: data.Section,
       Weather: data.Weather,
       Shift: data.Shift,
       Activities: data.Activities,
@@ -102,14 +97,10 @@ const DREdit = (props) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-    })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        window.alert(error);
-        return;
-      });
+    }).catch((error) => {
+      window.alert(error);
+      return;
+    });
 
     navigate(props.navigateLink);
   };
@@ -117,34 +108,6 @@ const DREdit = (props) => {
   return (
     <div className="DREdit_Container">
       <form className="Form_Container" onSubmit={handleSubmit(onSubmit)}>
-        <div className="Section_Container daily-report-form-flex">
-          <label className="Input_Label">Section</label>
-          <Controller
-            control={control}
-            rules={{ required: true }}
-            name="Section"
-            defaultValue="Spillway"
-            render={({ field }) => (
-              <RadioGroup
-                {...field}
-                aria-labelledby="Section"
-                defaultValue="Spillway"
-                name="radio-buttons-group"
-              >
-                <FormControlLabel
-                  value="Spillway"
-                  control={<Radio />}
-                  label="Spillway"
-                />
-                <FormControlLabel
-                  value="Tunnels"
-                  control={<Radio />}
-                  label="Tunnels"
-                />
-              </RadioGroup>
-            )}
-          />
-        </div>
         <div className="Weather_Container daily-report-form-flex">
           <label className="Input_Label">Weather</label>
           <Controller

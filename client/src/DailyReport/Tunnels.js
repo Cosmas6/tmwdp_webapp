@@ -18,6 +18,7 @@ export default function CreateDRTunnels() {
 }
 
 export function EditDRTunnels() {
+  const params = useParams();
   return (
     <div className="DR_Edit">
       <DREdit
@@ -46,7 +47,7 @@ export function ReadingDRTunnels() {
 export function DRTunnelsDisplay() {
   return (
     <div className="DR_Spillway_And_Tunnels">
-      <DRSpillwayAndTunnels viewRoute={`DRTunnelsDisplay`} />
+      <DRSpillwayAndTunnels viewRoute={`DailyRTunnelRouter`} />
     </div>
   );
 }

@@ -18,6 +18,7 @@ export default function CreateDRSpillway() {
 }
 
 export function EditDRSpillway() {
+    const params = useParams();
   return (
     <div className="DR_Edit">
       <DREdit
@@ -36,8 +37,7 @@ export function ReadingDRSpillway() {
         drName={"Spillway"}
         fetchLink={`https://nodejs.tmwdp.co.ke/DailyRSpillwayRouter`}
         deleteFetch={`https://nodejs.tmwdp.co.ke/DailyRSpillwayRouter`}
-        editRoute={`DREditSpillway`}
-        viewRoute={`DRSpillwayDisplay`}
+        viewRoute={`/dashboard/DRSpillwayDisplay`}
       />
     </div>
   );
@@ -46,7 +46,7 @@ export function ReadingDRSpillway() {
 export function DRSpillwayDisplay() {
   return (
     <div className="DR_Spillway_And_Tunnels">
-      <DRSpillwayAndTunnels viewRoute={`DRSpillwayDisplay`} />
+      <DRSpillwayAndTunnels viewRoute={`DailyRSpillwayRouter`} />
     </div>
   );
 }

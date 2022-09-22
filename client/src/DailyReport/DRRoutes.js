@@ -1,4 +1,5 @@
 import React from "react";
+import { Route } from "react-router-dom";
 import CreateDRSpillway, {
   EditDRSpillway,
   ReadingDRSpillway,
@@ -15,10 +16,10 @@ export default [
     <Route path="DRCreateSpillway" element={<CreateDRSpillway />} />
     <Route path="DREditSpillway/:id" element={<EditDRSpillway />} />
     <Route path="DRReadingSpillway" element={<ReadingDRSpillway />} />
-    <Route path="DRSpillwayDisplay" element={<DRSpillwayDisplay />} />
+    <Route path="DRSpillwayDisplay/:id" element={<DRSpillwayDisplay />} />
     <Route path="DRCreateTunnels" element={<CreateDRTunnels />} />
     <Route path="DREditTunnels/:id" element={<EditDRTunnels />} />
     <Route path="DRReadingTunnels" element={<ReadingDRTunnels />} />
-    <Route path="DRTunnelsDisplay" element={<DRTunnelsDisplay />} />
+    <Route path="DRTunnelsDisplay/:id" element={<DRTunnelsDisplay />} />
   </>,
 ];

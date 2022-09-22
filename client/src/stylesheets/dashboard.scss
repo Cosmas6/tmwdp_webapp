@@ -103,7 +103,9 @@
   bottom: 0 !important;
   position: absolute !important;
 
-  @extend .nav-link;
+  .nav-link {
+    @extend .nav-link;
+  }
 }
 
 .nav-link {
@@ -112,6 +114,7 @@
   margin: 1.5px 16px;
   display: flex;
   align-items: center;
+  justify-content: center;
   white-space: nowrap;
   font-weight: 400;
   border-radius: 0.375rem;
@@ -155,8 +158,6 @@ ul ul a {
   margin: 0 16px;
   border-radius: 0.375rem;
 }
-
-
 
 @media (max-width: 768px) {
   #sidebar {
