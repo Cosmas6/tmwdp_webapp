@@ -21,4 +21,4 @@ async function dbConnect() {
     });
 }
 
-module.exports = authConnect;
+module.exports = authConn;
