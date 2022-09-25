@@ -56,14 +56,18 @@ export default function Dashboard() {
   const auth = getAuth();
 
   const logOut = () => {
-    signOut(auth)
-      .then(() => {
-        sessionStorage.removeItem("Auth Token");
-        navigate("/login");
-      })
-      .catch((error) => {
-        // An error happened.
-      });
+    cookies.remove("TOKEN", { path: "/" });
+    // window.location.href = "/login";
+    navigate("/login");
+
+    // signOut(auth)
+    //   .then(() => {
+    //     sessionStorage.removeItem("Auth Token");
+    //     navigate("/login");
+    //   })
+    //   .catch((error) => {
+    //     // An error happened.
+    //   });
   };
 
   return (

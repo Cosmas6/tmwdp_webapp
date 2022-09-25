@@ -9,6 +9,8 @@ var bodyParser = require("body-parser");
 var indexRouter = require("./routes/index");
 var crackmeterDbo = require("./mongoDB/crackmeterConn");
 var dailyreportDbo = require("./mongoDB/dailyreportConn.js");
+var registerRouter = require("./routes/auth/Register");
+var loginRouter = require("./routes/auth/Login");
 var nodeMailerRouter = require("./routes/nodeMailer");
 var DailyRSpillway = require("./routes/DailyReport/Spillway");
 var DailyRTunnels = require("./routes/DailyReport/Tunnels");
@@ -46,6 +48,8 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use(fileUpload());
 
 app.use("/", indexRouter);
+app.use("/register", registerRouter);
+app.use("/login", loginRouter);
 app.use("/nodeMailer", nodeMailerRouter);
 app.use("/C1Router", C1Router);
 app.use("/C2Router", C2Router);

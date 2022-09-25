@@ -1,55 +1,64 @@
-import React, { useRef } from "react";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
-} from "firebase/auth";
+import React, { useRef, useState } from "react";
+import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import "../stylesheets/register.scss";
-import db from "../../firebase.config";
 
 const Register = () => {
   const navigate = useNavigate();
-  const errorRef = useRef();
   const formRef = useRef();
   const { register, errors, handleSubmit, reset } = useForm();
+  const [registered, setRegistered] = useState(false);
 
   const onSubmit = (data) => {
-    const errorElement = errorRef.current;
     const formElement = formRef.current;
+    const firstName = data.First_Name;
+    const lastName = data.Last_Name;
     const email = data.Email;
     const password = data.Password;
 
-    const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
+    const configuration = {
+      method: "post",
+      url: "https://nodejs.tmwdp.co.ke/register",
+      data: {
+        firstName,
+        lastName,
+        email,
+        password,
+      },
+    };
+
+    axios(configuration)
+      .then((result) => {
+        setRegistered(true);
         navigate("/dashboard");
-        sessionStorage.setItem(
-          "Auth Token",
-          userCredential._tokenResponse.refreshToken
-        );
-        const user = userCredential.user;
-        console.log(user);
-        formElement.reset();
-        // ...
+        // formElement.reset();
       })
       .catch((error) => {
-        console.log(error.message);
-        errorElement.textContent = error.message;
-        // ..
+        //initialize error
+        error = new Error();
       });
-    // console.log("RESULT", data, email, password);
+
+    console.log(firstName);
+
+    // const auth = getAuth();
+    // createUserWithEmailAndPassword(auth, email, password)
+    //   .then((userCredential) => {
+    //     navigate("/dashboard");
+    //     sessionStorage.setItem(
+    //       "Auth Token",
+    //       userCredential._tokenResponse.refreshToken
+    //     );
+    //     const user = userCredential.user;
+    //     console.log(user);
+    //     formElement.reset();
+    //   })
+    //   .catch((error) => {
+    //     console.log(error.message);
+    //     errorElement.textContent = error.message;
+    //   });
   };
 
-  const auth = getAuth();
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      const uid = user.uid;
-    } else {
-    }
-  });
   return (
     <div className="Register_Container">
       <div className="Form_Container">
@@ -61,7 +70,7 @@ const Register = () => {
               className="Form_Input"
               type="text"
               id="register-firstName"
-              {...register("First Name", {
+              {...register("First_Name", {
                 required: true,
               })}
             />
@@ -70,7 +79,7 @@ const Register = () => {
               className="Form_Input"
               type="text"
               id="register-lastName"
-              {...register("Last Name", {
+              {...register("Last_Name", {
                 required: true,
               })}
             />
@@ -95,8 +104,12 @@ const Register = () => {
             <button className="Submit_Button" type="submit">
               Register
             </button>
-            <div className="error-div">
-              <p ref={errorRef}></p>
+            <div className="feedback-div">
+              {registered ? (
+                <p className="text-success">You Are Registered Successfully</p>
+              ) : (
+                <p className="text-danger">You Are Not Registered</p>
+              )}
             </div>
             <p>
               Already a Member? <Link to="/login">Login Instead</Link>
