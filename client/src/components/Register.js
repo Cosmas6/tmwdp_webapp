@@ -11,7 +11,6 @@ const Register = () => {
   const [registered, setRegistered] = useState(false);
 
   const onSubmit = (data) => {
-    e.preventDefault();
     const formElement = formRef.current;
     const firstName = data.First_Name;
     const lastName = data.Last_Name;
