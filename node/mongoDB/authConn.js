@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-async function dbConnect() {
+async function authConn() {
   // use mongoose to connect this app to our database on mongoDB using the DB_URL (connection string)
   mongoose
     .connect(
@@ -13,7 +13,7 @@ async function dbConnect() {
       }
     )
     .then(() => {
-      console.log("Successfully connected to MongoDB Atlas!");
+      console.log("Successfully connected to Auth in MongoDB!");
     })
     .catch((error) => {
       console.log("Unable to connect to MongoDB Atlas!");

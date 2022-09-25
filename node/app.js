@@ -39,20 +39,6 @@ app.use(cors());
 
 authConn();
 
-// Curb Cores Error by adding a header here
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PUT, DELETE, PATCH, OPTIONS"
-  );
-  next();
-});
-
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
@@ -102,10 +88,6 @@ app.use(function (req, res, next) {
   next(createError(404));
 });
 
-app.listen(5000, function () {
-  console.log("CORS-enabled web server listening on port 5000");
-});
-
 // error handler
 // app.use(function (err, req, res, next) {
 //   // set locals, only providing error in development
@@ -125,5 +107,19 @@ app.listen(5000, function () {
 //   );
 //   next();
 // });
+
+// Curb Cores Error by adding a header here
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, PATCH, OPTIONS"
+  );
+  next();
+});
 
 module.exports = app;

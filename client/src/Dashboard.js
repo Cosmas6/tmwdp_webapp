@@ -3,8 +3,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import SimpleBar from "simplebar-react";
 import "./stylesheets/dashboard.scss";
-import { getAuth, signOut } from "firebase/auth";
-import db from "../firebase.config";
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
 export function useWindowDimensions() {
   function getWindowDimensions() {
@@ -32,6 +32,7 @@ export function useWindowDimensions() {
 }
 
 export default function Dashboard() {
+  const token = cookies.get("TOKEN");
   const navigate = useNavigate();
   const ToggleSidebar = () => {
     document.getElementById("sidebar").classList.toggle("active");
@@ -46,19 +47,14 @@ export default function Dashboard() {
   const { height, width } = useWindowDimensions();
 
   useEffect(() => {
-    let authToken = sessionStorage.getItem("Auth Token");
-
-    if (!authToken) {
+    if (!token) {
       navigate("/login");
     }
   }, []);
 
-  const auth = getAuth();
-
   const logOut = () => {
     cookies.remove("TOKEN", { path: "/" });
-    // window.location.href = "/login";
-    navigate("/login");
+    window.location.href = "/login";
 
     // signOut(auth)
     //   .then(() => {

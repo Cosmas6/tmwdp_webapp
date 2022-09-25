@@ -33,7 +33,7 @@ function Login() {
 
     const configuration = {
       method: "post",
-      url: "https://nodejs.tmwdp.co.ke/login",
+      url: "http://localhost:4000/login",
       data: {
         email,
         password,
@@ -42,14 +42,14 @@ function Login() {
 
     axios(configuration)
       .then((result) => {
-        setLoginStatus(true);
-        // formElement.reset();
+        setLoginState(true);
+        formElement.reset();
         // set the cookie
         cookies.set("TOKEN", result.data.token, {
           path: "/",
         });
-        navigate("/dashboard");
-        // window.location.href = "/dashboard";
+        // navigate("/dashboard");
+        window.location.href = "/dashboard";
       })
       .catch((error) => {
         //initialize error
@@ -107,7 +107,7 @@ function Login() {
               LOGIN
             </button>
             <div className="error-div">
-              {login ? (
+              {loginState ? (
                 <p className="text-success">You Are Logged in Successfully</p>
               ) : (
                 <p className="text-danger">You Are Not Logged in</p>
