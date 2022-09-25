@@ -9,6 +9,7 @@ var bodyParser = require("body-parser");
 var indexRouter = require("./routes/index");
 var crackmeterDbo = require("./mongoDB/crackmeterConn");
 var dailyreportDbo = require("./mongoDB/dailyreportConn.js");
+var authConn = require("./mongoDB/authConn");
 var registerRouter = require("./routes/auth/Register");
 var loginRouter = require("./routes/auth/Login");
 var nodeMailerRouter = require("./routes/nodeMailer");
@@ -35,6 +36,8 @@ var express = require("express");
 var cors = require("cors");
 var app = express();
 app.use(cors());
+
+authConn();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
