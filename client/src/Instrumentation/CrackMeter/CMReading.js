@@ -12,6 +12,7 @@ const CMReading = (props) => {
     });
     return (
       <tr>
+        <td>{props.reading.User}</td>
         <td>{props.reading.CrackMeter}</td>
         <td>{[enUSFormatter.format(dateString)].sort()}</td>
         <td>{parseFloat(props.reading.X1).toFixed(2)}</td>
@@ -91,6 +92,7 @@ const CMReading = (props) => {
       <table className="table table-striped" style={{ marginTop: 20 }}>
         <thead>
           <tr>
+            <th>Submitted By</th>
             <th>Crack Meter</th>
             <th>Date Of Reading</th>
             <th>X1</th>

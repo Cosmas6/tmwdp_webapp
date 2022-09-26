@@ -27,6 +27,8 @@ router.post("/", (request, response) => {
             {
               userId: user._id,
               userEmail: user.email,
+              userFirstName: user.firstName,
+              userLastName: user.lastName,
             },
             "RANDOM-TOKEN",
             { expiresIn: "24h" }
@@ -52,6 +54,23 @@ router.post("/", (request, response) => {
         e,
       });
     });
+});
+
+router.get("/currentUser", async (req, res) => {
+  try {
+    //   get the token from the authorization header
+    const token = await req.headers.authorization.split(" ")[1];
+    console.log(token);
+    //   check if the token matches the supposed origin
+    const decodedToken = await jwt.verify(token, "RANDOM-TOKEN");
+    //   retrieve the user details of the logged in user
+    const user = await decodedToken;
+    res.json(user);
+  } catch (error) {
+    response.status(401).json({
+      error: new Error("Invalid request!"),
+    });
+  }
 });
 
 module.exports = router;

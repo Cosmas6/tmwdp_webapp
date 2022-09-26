@@ -3,7 +3,6 @@ const router = express.Router();
 const CMdbo = require("../../../mongoDB/crackmeterConn");
 const ObjectId = require("mongodb").ObjectId;
 
-
 // This section will help you get a list of all the records.
 
 router.get("/", function (req, res) {
@@ -49,6 +48,7 @@ router.get("/:id", function (req, res) {
 router.post("/add", function (req, response) {
   let db_connect = CMdbo.getDb();
   let myobj = {
+    User: req.body.User,
     CrackMeter: req.body.CrackMeter,
     DateOfReading: req.body.DateOfReading,
     X1: req.body.X1,

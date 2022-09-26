@@ -35,7 +35,7 @@ router.get("/:id", function (req, res) {
 router.post("/add", function (req, response) {
   let db_connect = CMdbo.getDb();
   let myobj = {
-    UserEmail: req.body.UserEmail,
+    User: req.body.User,
     Section: req.body.Section,
     Weather: req.body.Weather,
     Date: moment(req.body.Date).format("MMMM Do YYYY"),
@@ -67,7 +67,6 @@ router.post("/update/:id", function (req, response) {
   let myquery = { _id: ObjectId(req.params.id) };
   let newvalues = {
     $set: {
-      UserEmail: req.body.UserEmail,
       Section: req.body.Section,
       Weather: req.body.Weather,
       // Date: moment(req.body.Date).format("MMMM Do YYYY, h:mm:ss a"),

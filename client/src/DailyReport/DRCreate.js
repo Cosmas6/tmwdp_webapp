@@ -8,9 +8,10 @@ import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import TextField from "@mui/material/TextField";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import db from "../../firebase.config";
 import "../stylesheets/drcreate.scss";
+import axios from "axios";
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
 const DRCreate = (props) => {
   const {
@@ -21,27 +22,31 @@ const DRCreate = (props) => {
   } = useForm();
   const navigate = useNavigate();
 
-  // const [emailAddr, setEmailAddr] = useState("");
-  const auth = getAuth();
-
-  // useEffect(() => {
-  //   onAuthStateChanged(auth, (user) => {
-  //     if (user) {
-  //       const emailAddress = user.email;
-  //       setEmailAddr(emailAddress);
-  //       console.log(emailAddress);
-  //     } else {
-  //     }
-  //   });
-  // }, []);
+  const [userInfo, setUserInfo] = useState("");
 
   useEffect(() => {
-    let authToken = sessionStorage.getItem("Auth Token");
+    const token = cookies.get("TOKEN");
+    const configuration = {
+      method: "get",
+      url: "https://nodejs.tmwdp.co.ke/login/currentUser",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
 
-    if (!authToken) {
-      navigate("/signin");
-    }
+    axios(configuration)
+      .then((result) => {
+        const userResult =
+          `${result.data.userFirstName}` + ` ` + `${result.data.userLastName}`;
+        setUserInfo(userResult);
+      })
+      .catch((error) => {
+        //initialize error
+        error = new Error();
+      });
   }, []);
+
+  console.log(userInfo, "result");
 
   const onSubmit = async (data, e) => {
     e.preventDefault();
@@ -83,25 +88,19 @@ const DRCreate = (props) => {
   return (
     <div className="DRCreate_Container">
       <form className="Form_Container" onSubmit={handleSubmit(onSubmit)}>
-        {/* <div className="Email_Container daily-report-form-flex">
-          <Controller
-            control={control}
-            rules={{ required: true }}
-            name="Email"
-            defaultValue={emailAddr}
-            render={({ field }) => (
-              <TextField
-                id="outlined-read-only-input"
-                label="Email"
-                type="text"
-                InputProps={{
-                  readOnly: true,
-                }}
-                className="email-input"
-              />
-            )}
+        <div className="Email_Container daily-report-form-flex">
+          <TextField
+            id="outlined-read-only-input"
+            label="User"
+            type="text"
+            value={userInfo}
+            InputProps={{
+              readOnly: true,
+            }}
+            {...register("User", { required: true })}
+            className="user-input"
           />
-        </div> */}
+        </div>
 
         <div className="Section_Container daily-report-form-flex">
           <TextField

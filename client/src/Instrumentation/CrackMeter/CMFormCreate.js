@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import TextField from "@mui/material/TextField";
@@ -7,6 +7,9 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { useForm, Controller } from "react-hook-form";
 import "../../stylesheets/InstSections/createandedit.scss";
+import axios from "axios";
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
 const CMFormCreate = (props) => {
   const {
@@ -17,6 +20,30 @@ const CMFormCreate = (props) => {
   } = useForm();
 
   const navigate = useNavigate();
+
+  const [userInfo, setUserInfo] = useState("");
+
+  useEffect(() => {
+    const token = cookies.get("TOKEN");
+    const configuration = {
+      method: "get",
+      url: "https://nodejs.tmwdp.co.ke/login/currentUser",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    axios(configuration)
+      .then((result) => {
+        const userResult =
+          `${result.data.userFirstName}` + ` ` + `${result.data.userLastName}`;
+        setUserInfo(userResult);
+      })
+      .catch((error) => {
+        //initialize error
+        error = new Error();
+      });
+  }, []);
 
   // This function will handle the submission.
   const onSubmit = async (data, e) => {
@@ -41,6 +68,19 @@ const CMFormCreate = (props) => {
     <div className="CM_Container">
       <h1>{props.cmName}</h1>
       <form className="Form_Container" onSubmit={handleSubmit(onSubmit)}>
+        <div className="Email_Container daily-report-form-flex">
+          <TextField
+            id="outlined-read-only-input"
+            label="User"
+            type="text"
+            value={userInfo}
+            InputProps={{
+              readOnly: true,
+            }}
+            {...register("User", { required: true })}
+            className="user-input"
+          />
+        </div>
         <div className="Crack_Meter_Input daily-report-form-flex">
           <TextField
             id="crack-meter"

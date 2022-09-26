@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import SimpleBar from "simplebar-react";
 import "./stylesheets/dashboard.scss";
+import axios from "axios";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 

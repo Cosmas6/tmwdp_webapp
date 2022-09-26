@@ -1,23 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 import "../stylesheets/drthumbnails.scss";
-// import db from "../firebase.config";
 
 const DRReading = (props) => {
-  const [email, setEmail] = useState("");
-  const auth = getAuth();
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const emailAddress = user.email;
-        setEmail(emailAddress);
-      } else {
-      }
-    });
-  }, []);
-
   const [reports, setReports] = useState([]);
   useEffect(() => {
     async function getReports() {
@@ -47,6 +32,7 @@ const DRReading = (props) => {
     });
     return (
       <tr>
+        <td>{props.report.User}</td>
         <td>{props.report.Date}</td>
         <td>{props.report.Section}</td>
         <td>{props.report.Shift}</td>
@@ -107,6 +93,7 @@ const DRReading = (props) => {
         <table className="table table-striped" style={{ marginTop: 20 }}>
           <thead>
             <tr>
+              <th>Submitted By</th>
               <th>Date</th>
               <th>Section</th>
               <th>Shift</th>

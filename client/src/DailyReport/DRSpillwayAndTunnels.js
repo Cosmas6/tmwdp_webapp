@@ -72,8 +72,8 @@ const DRSpillwayAndTunnels = (props) => {
                     </th>
                   </tr>
                   <tr>
-                    <th>INSPECTOR'S</th>
-                    <td colspan="1"></td>
+                    <th>INSPECTOR</th>
+                    <td colspan="1">${report.User}</td>
                     <th>SECTION:</th>
                     <td colspan="4" style="padding-left: 10px">${report.Section}</td>
                   </tr>
@@ -187,8 +187,8 @@ const DRSpillwayAndTunnels = (props) => {
                 </th>
               </tr>
               <tr>
-                <th>INSPECTOR'S</th>
-                <td colSpan="1"></td>
+                <th>INSPECTOR</th>
+                <td colSpan="1">{report.User}</td>
                 <th>SECTION:</th>
                 <td colSpan="4">{report.Section}</td>
               </tr>
