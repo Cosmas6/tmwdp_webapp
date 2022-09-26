@@ -1,24 +1,14 @@
 @import "../main.scss";
 
-.CM_Reading {
-  @extend .Display_Inline_Block;
-  @extend .Shadow;
-  @extend .Container_Padding;
-  @extend .Container_Left_Margin;
-  @extend .Button_Edits;
-}
 
-.CM_Table_Container {
-  display: inline-block;
-  table {
-    @include media(">=phone", "<=tablet") {
-      float: right;
-      position: inherit;
-      width: 100%;
-      overflow: auto;
-      margin: 0 auto;
-      height: 100%;
-    }
+.CM_Reading_Container {
+  @extend .Display_Inline_Block;
+  @extend .Container_Left_Margin;
+
+  .Reading_Table_Container {
+    @extend .Shadow;
+    @extend .Container_Padding;
+    @extend .Button_Edits;
   }
 
   .create-reading,

@@ -175,114 +175,121 @@ const DRSpillwayAndTunnels = (props) => {
 
   return (
     <>
-      <div className="DailyReport_Container" id="DailyReport_Container">
-        <div className="DailyReportTable_Container">
-          <h1 className="title drf-title">Daily Report Form</h1>
-          <table>
-            <tbody>
-              <tr>
-                <th colSpan="6">
-                  CIVIL WORKS FOR CONSTRUCTION OF THWAKE DAM EMBARKMENT AND
-                  ASSOCIATED WORK
-                </th>
-              </tr>
-              <tr>
-                <th>INSPECTOR</th>
-                <td colSpan="1">{report.User}</td>
-                <th>SECTION:</th>
-                <td colSpan="4">{report.Section}</td>
-              </tr>
-              <tr>
-                <th>WEATHER:</th>
-                <td>{report.Weather}</td>
-                <th>DATE:</th>
-                <td>{report.Date}</td>
-                <th>SHIFT:</th>
-                <td>{report.Shift}</td>
-              </tr>
-              <tr></tr>
-              <tr></tr>
-              <tr>
-                <th colSpan="6">ACTIVITIES:</th>
-              </tr>
-              <tr>
-                <td colSpan="6">
-                  <ReactMustache template={report.Activities} />
-                </td>
-              </tr>
-              <tr>
-                <th colSpan="6">PLANT AND EQUIPMENT:</th>
-              </tr>
-              <tr>
-                <td colSpan="6">
-                  <ReactMustache template={report.PlantEQ} />
-                </td>
-              </tr>
-              <tr>
-                <th colSpan="6">LABOUR</th>
-              </tr>
-              <tr></tr>
-              <tr>
-                <th>DESCRIPTION</th>
-                <th>NO</th>
-                <th>DESCRIPTION</th>
-                <th colSpan="3">NO</th>
-              </tr>
-              <tr>
-                <td width="40%">SMEC INSPECTORS</td>
-                <td>{report.SMEC_Ins}</td>
-                <td>SMEC ENGINEER</td>
-                <td colSpan="3">{report.SMEC_Eng}</td>
-              </tr>
-              <tr>
-                <td>CGGC INSPECTORS</td>
-                <td>{report.CGGC_Ins}</td>
-                <td>SITE FOREMAN</td>
-                <td colSpan="3">{report.Site_Foreman}</td>
-              </tr>
-              <tr>
-                <td>SAFETY OFFICER</td>
-                <td>{report.Safety_Officer}</td>
-                <td>PLANT OPERATOR</td>
-                <td colSpan="3">{report.Plant_Operator}</td>
-              </tr>
-              <tr>
-                <td>DRIVERS</td>
-                <td>{report.Drivers}</td>
-                <td>UNSKILLED LABOUR</td>
-                <td colSpan="3">{report.Unskilled_Labour}</td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td>WELDER</td>
-                <td colSpan="3">{report.Welder}</td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td>CHINESE STAFF</td>
-                <td colSpan="3">{report.Chinese_Staff}</td>
-              </tr>
-              <tr>
-                <th colSpan="6">REMARKS/OBSERVATION:</th>
-              </tr>
-              <tr>
-                <td>SMEC</td>
-                <td colSpan="5">CGGC</td>
-              </tr>
-            </tbody>
-          </table>
-          <button className="Download_Link" onClick={fetchReportPdf}>
-            Generate Link
-          </button>
-          <div id="Download_Button"></div>
-          <Link
-            className="Download_Link"
-            to={`/dashboard/editDReport/${editBtn}`}
-          >
-            Edit Pdf
-          </Link>{" "}
+      <div
+        className="DailyReport_Container container-fluid"
+        id="DailyReport_Container"
+      >
+        <div className="row">
+          <div className="col-12">
+            <div className="DailyReportTable_Container card">
+              <h1 className="title drf-title">Daily Report Form</h1>
+              <table>
+                <tbody>
+                  <tr>
+                    <th colSpan="6">
+                      CIVIL WORKS FOR CONSTRUCTION OF THWAKE DAM EMBARKMENT AND
+                      ASSOCIATED WORK
+                    </th>
+                  </tr>
+                  <tr>
+                    <th>INSPECTOR</th>
+                    <td colSpan="1">{report.User}</td>
+                    <th>SECTION:</th>
+                    <td colSpan="4">{report.Section}</td>
+                  </tr>
+                  <tr>
+                    <th>WEATHER:</th>
+                    <td>{report.Weather}</td>
+                    <th>DATE:</th>
+                    <td>{report.Date}</td>
+                    <th>SHIFT:</th>
+                    <td>{report.Shift}</td>
+                  </tr>
+                  <tr></tr>
+                  <tr></tr>
+                  <tr>
+                    <th colSpan="6">ACTIVITIES:</th>
+                  </tr>
+                  <tr>
+                    <td colSpan="6">
+                      <ReactMustache template={report.Activities} />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th colSpan="6">PLANT AND EQUIPMENT:</th>
+                  </tr>
+                  <tr>
+                    <td colSpan="6">
+                      <ReactMustache template={report.PlantEQ} />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th colSpan="6">LABOUR</th>
+                  </tr>
+                  <tr></tr>
+                  <tr>
+                    <th>DESCRIPTION</th>
+                    <th>NO</th>
+                    <th>DESCRIPTION</th>
+                    <th colSpan="3">NO</th>
+                  </tr>
+                  <tr>
+                    <td width="40%">SMEC INSPECTORS</td>
+                    <td>{report.SMEC_Ins}</td>
+                    <td>SMEC ENGINEER</td>
+                    <td colSpan="3">{report.SMEC_Eng}</td>
+                  </tr>
+                  <tr>
+                    <td>CGGC INSPECTORS</td>
+                    <td>{report.CGGC_Ins}</td>
+                    <td>SITE FOREMAN</td>
+                    <td colSpan="3">{report.Site_Foreman}</td>
+                  </tr>
+                  <tr>
+                    <td>SAFETY OFFICER</td>
+                    <td>{report.Safety_Officer}</td>
+                    <td>PLANT OPERATOR</td>
+                    <td colSpan="3">{report.Plant_Operator}</td>
+                  </tr>
+                  <tr>
+                    <td>DRIVERS</td>
+                    <td>{report.Drivers}</td>
+                    <td>UNSKILLED LABOUR</td>
+                    <td colSpan="3">{report.Unskilled_Labour}</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>WELDER</td>
+                    <td colSpan="3">{report.Welder}</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>CHINESE STAFF</td>
+                    <td colSpan="3">{report.Chinese_Staff}</td>
+                  </tr>
+                  <tr>
+                    <th colSpan="6">REMARKS/OBSERVATION:</th>
+                  </tr>
+                  <tr>
+                    <td>SMEC</td>
+                    <td colSpan="5">CGGC</td>
+                  </tr>
+                </tbody>
+              </table>
+              <button className="Download_Link" onClick={fetchReportPdf}>
+                Generate Link
+              </button>
+              <div id="Download_Button"></div>
+              <Link
+                className="Download_Link"
+                to={`/dashboard/editDReport/${editBtn}`}
+              >
+                Edit Pdf
+              </Link>{" "}
+            </div>
+          </div>
         </div>
       </div>
     </>

@@ -1,13 +1,14 @@
 @import "../main.scss";
 
-.CM_Graph {
+.ReadingGraph_Container {
   @extend .Display_Inline_Block;
-  @extend .Shadow;
-  @extend .Container_Padding;
   @extend .Container_Left_Margin;
-}
 
-.ReactGraph_Container {
+  .Graph_Container {
+    @extend .Shadow;
+    @extend .Container_Padding;
+  }
+
   table {
     th,
     tr,

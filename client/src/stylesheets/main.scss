@@ -14,6 +14,8 @@ $layout-breakpoint-small: 960px;
 
 @mixin displayFlex() {
   display: flex;
+  flex-direction: column;
+  position: relative;
 }
 @mixin displayInlineBlock() {
   display: inline-block;
@@ -31,9 +33,11 @@ $layout-breakpoint-small: 960px;
 
 .Display_Flex {
   @include displayFlex();
-  margin: $navMargin $navMargin;
+  margin-left: $navMargin;
+  margin-top: $topMargin;
+  margin-bottom: $navMargin;
+  margin-right: $navMargin;
   float: right;
-  position: inherit;
   .title {
     margin: $primaryMargin;
     text-align: center;
@@ -41,14 +45,10 @@ $layout-breakpoint-small: 960px;
 }
 
 .Display_Inline_Block {
-  @include displayInlineBlock();
-  margin-left: $navMargin;
   margin-top: $topMargin;
   margin-bottom: $navMargin;
-  height: 90vh;
-  position: inherit;
+  margin-right: $navMargin;
   overflow: auto;
-  white-space: initial;
 
   .title {
     margin: $primaryMargin;
@@ -57,6 +57,7 @@ $layout-breakpoint-small: 960px;
 
   @media (max-width: 768px) {
     margin-top: 100px;
+    height: calc(100% - 100px);
   }
 }
 
@@ -84,11 +85,14 @@ $layout-breakpoint-small: 960px;
 
 .Container_Padding {
   padding: $navPadding;
+  overflow: auto;
+  overflow-y: scroll
 }
 
 .Container_Left_Margin {
   @media (min-width: 768px) {
     margin-left: 270px;
+    width: calc(100% - 280px);
   }
 }
 
@@ -156,5 +160,25 @@ $layout-breakpoint-small: 960px;
 
   span {
     margin-left: 5px;
+  }
+
+  @include media(">=918px", "<=1048px") {
+    .view-button {
+      margin-top: 5px;
+    }
+  }
+
+  @include media("<918px") {
+    .delete-button {
+      margin-left: 0;
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+  }
+
+  @include media(">=663px", "<=767px") {
+    .delete-button {
+      margin-left: 5px;
+    }
   }
 }

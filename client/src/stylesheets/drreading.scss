@@ -1,0 +1,12 @@
+@import "./main.scss";
+
+.DRReading_Container {
+  @extend .Display_Inline_Block;
+  @extend .Container_Left_Margin;
+
+  .Report_Table_Container {
+    @extend .Shadow;
+    @extend .Container_Padding;
+    @extend .Button_Edits;
+  }
+}

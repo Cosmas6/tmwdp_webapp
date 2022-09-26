@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "../stylesheets/drthumbnails.scss";
+import "../stylesheets/drreading.scss";
 
 const DRReading = (props) => {
   const [reports, setReports] = useState([]);
@@ -87,21 +87,28 @@ const DRReading = (props) => {
   }
 
   return (
-    <div className="DRThumbnail_Container">
-      <div className="Report_Table_Container">
-        <h3>Report List</h3>
-        <table className="table table-striped" style={{ marginTop: 20 }}>
-          <thead>
-            <tr>
-              <th>Submitted By</th>
-              <th>Date</th>
-              <th>Section</th>
-              <th>Shift</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>{reportList()}</tbody>
-        </table>
+    <div className="DRReading_Container container-fluid">
+      <div className="row">
+        <div className="col-12">
+          <div className="Report_Table_Container card ">
+            <h3>Report List</h3>
+            <table
+              className="table table-striped table-responsive"
+              style={{ marginTop: 20 }}
+            >
+              <thead>
+                <tr>
+                  <th>Submitted By</th>
+                  <th>Date</th>
+                  <th>Section</th>
+                  <th>Shift</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>{reportList()}</tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   );

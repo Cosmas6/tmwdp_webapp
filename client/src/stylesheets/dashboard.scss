@@ -1,10 +1,11 @@
 @import "./main.scss";
 
 .Dashboard_Container {
-  background-color: #f0f2f5 !important;
-  display: flex;
-  height: 100%;
-  width: 100%;
+  overflow: hidden !important;
+  overflow-anchor: none;
+  touch-action: auto;
+  position: relative !important;
+  
   @extend .Sidebar_White_Color;
 
   .nav-toggle-button {

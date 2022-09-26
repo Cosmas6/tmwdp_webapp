@@ -65,137 +65,144 @@ const CMFormCreate = (props) => {
   };
 
   return (
-    <div className="CM_Container">
-      <h1>{props.cmName}</h1>
-      <form className="Form_Container" onSubmit={handleSubmit(onSubmit)}>
-        <div className="Email_Container daily-report-form-flex">
-          <TextField
-            id="outlined-read-only-input"
-            label="User"
-            type="text"
-            value={userInfo}
-            InputProps={{
-              readOnly: true,
-            }}
-            {...register("User", { required: true })}
-            className="user-input"
-          />
-        </div>
-        <div className="Crack_Meter_Input daily-report-form-flex">
-          <TextField
-            id="crack-meter"
-            label="Crack Meter"
-            type="number"
-            defaultValue={props.defaultValue}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            inputProps={{ readOnly: true }}
-            className="crack-meter"
-            {...register("CrackMeter", { required: true })}
-          />
-        </div>
-        <div className="Date_Input daily-report-form-flex">
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <Controller
-              control={control}
-              name="DateOfReading"
-              defaultValue={new Date()}
-              render={({ field: { onChange, value } }) => (
-                <DesktopDatePicker
-                  label="Date Of Reading"
-                  inputFormat="dd/MMM/yyyy"
-                  disableMaskedInput
-                  value={value}
-                  onChange={onChange}
-                  renderInput={(params) => <TextField {...params} />}
+    <div className="CM_Container container-fluid">
+      <div className="row">
+        <div className="col-12">
+          <form
+            className="Form_Container card"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <h1>{props.cmName}</h1>
+            <div className="Email_Container daily-report-form-flex">
+              <TextField
+                id="outlined-read-only-input"
+                label="User"
+                type="text"
+                value={userInfo}
+                InputProps={{
+                  readOnly: true,
+                }}
+                {...register("User")}
+                className="user-input"
+              />
+            </div>
+            <div className="Crack_Meter_Input daily-report-form-flex">
+              <TextField
+                id="crack-meter"
+                label="Crack Meter"
+                type="number"
+                defaultValue={props.defaultValue}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                inputProps={{ readOnly: true }}
+                className="crack-meter"
+                {...register("CrackMeter", { required: true })}
+              />
+            </div>
+            <div className="Date_Input daily-report-form-flex">
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <Controller
+                  control={control}
+                  name="DateOfReading"
+                  defaultValue={new Date()}
+                  render={({ field: { onChange, value } }) => (
+                    <DesktopDatePicker
+                      label="Date Of Reading"
+                      inputFormat="dd/MMM/yyyy"
+                      disableMaskedInput
+                      value={value}
+                      onChange={onChange}
+                      renderInput={(params) => <TextField {...params} />}
+                    />
+                  )}
                 />
-              )}
-            />
-          </LocalizationProvider>
-        </div>
+              </LocalizationProvider>
+            </div>
 
-        <div className="X-group">
-          <TextField
-            id="X1"
-            label="X1"
-            type="text"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            className="X1 daily-report-form-flex"
-            {...register("X1", { required: true })}
-          />
-          <TextField
-            id="X2"
-            label="X2"
-            type="text"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            className="X2 daily-report-form-flex"
-            {...register("X2", { required: true })}
-          />
-        </div>
+            <div className="X-group">
+              <TextField
+                id="X1"
+                label="X1"
+                type="text"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                className="X1 daily-report-form-flex"
+                {...register("X1", { required: true })}
+              />
+              <TextField
+                id="X2"
+                label="X2"
+                type="text"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                className="X2 daily-report-form-flex"
+                {...register("X2", { required: true })}
+              />
+            </div>
 
-        <div className="Y-group">
-          <TextField
-            id="Y1"
-            label="Y1"
-            type="text"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            className="Y1 daily-report-form-flex"
-            {...register("Y1", { required: true })}
-          />
-          <TextField
-            id="Y2"
-            label="Y2"
-            type="text"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            className="Y2 daily-report-form-flex"
-            {...register("Y2", { required: true })}
-          />
-        </div>
+            <div className="Y-group">
+              <TextField
+                id="Y1"
+                label="Y1"
+                type="text"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                className="Y1 daily-report-form-flex"
+                {...register("Y1", { required: true })}
+              />
+              <TextField
+                id="Y2"
+                label="Y2"
+                type="text"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                className="Y2 daily-report-form-flex"
+                {...register("Y2", { required: true })}
+              />
+            </div>
 
-        <div className="Z-group">
-          <TextField
-            id="Z1"
-            label="Z1"
-            type="text"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            className="Z1 daily-report-form-flex"
-            {...register("Z1", { required: true })}
-          />
-          <TextField
-            id="Z2"
-            label="Z2"
-            type="text"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            className="Z2 daily-report-form-flex"
-            {...register("Z2", { required: true })}
-          />
+            <div className="Z-group">
+              <TextField
+                id="Z1"
+                label="Z1"
+                type="text"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                className="Z1 daily-report-form-flex"
+                {...register("Z1", { required: true })}
+              />
+              <TextField
+                id="Z2"
+                label="Z2"
+                type="text"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                className="Z2 daily-report-form-flex"
+                {...register("Z2", { required: true })}
+              />
+            </div>
+            <div className="form-group daily-report-form-flex">
+              <input type="submit" value="Submit" className="Submit_Button" />
+            </div>
+            <div className="view-data daily-report-form-flex">
+              <Link className="Submit_Button" to={props.dataLink}>
+                View Data
+              </Link>
+            </div>
+            <div className="view-graph daily-report-form-flex">
+              <Link className="Submit_Button" to={props.graphLink}>
+                View Graph
+              </Link>
+            </div>
+          </form>
         </div>
-        <div className="form-group daily-report-form-flex">
-          <input type="submit" value="Submit" className="Submit_Button" />
-        </div>
-      </form>
-      <div className="view-data daily-report-form-flex">
-        <Link className="Submit_Button" to={props.dataLink}>
-          View Data
-        </Link>
-      </div>
-      <div className="view-graph daily-report-form-flex">
-        <Link className="Submit_Button" to={props.graphLink}>
-          View Graph
-        </Link>
       </div>
     </div>
   );

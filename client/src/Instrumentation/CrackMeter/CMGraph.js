@@ -69,39 +69,55 @@ const CMGraph = (props) => {
   }
 
   return (
-    <div className="ReactGraph_Container">
-      <h1>{props.cmName} Graphical Layout</h1>
-      <LineChart
-        width={1200}
-        height={600}
-        data={data}
-        margin={{
-          top: 15,
-          right: 30,
-          left: 20,
-          bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="date" />
-        <YAxis domain={[props.YaxisN, props.YaxisP]} />
-        <Tooltip />
-        <Legend />
-        <Line
-          type="monotone"
-          dataKey="X"
-          stroke="#0000FF"
-          strokeWidth={2}
-          activeDot={{ r: 8 }}
-        />
-        <Line type="monotone" dataKey="Y" stroke="#ff0000" strokeWidth={2} />
-        <Line type="monotone" dataKey="Z" stroke="#00FF00" strokeWidth={2} />
-      </LineChart>
-      {defandcumulList()}
-      <div className="view-data daily-report-form-flex">
-        <Link className="Submit_Button" to={props.dataLink}>
-          View Data
-        </Link>
+    <div className="ReadingGraph_Container container-fluid">
+      <div className="row">
+        <div className="col-12">
+          <div className="Graph_Container card">
+            <h1>{props.cmName} Graphical Layout</h1>
+            <LineChart
+              width={1200}
+              height={600}
+              data={data}
+              margin={{
+                top: 15,
+                right: 30,
+                left: 20,
+                bottom: 5,
+              }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="date" />
+              <YAxis domain={[props.YaxisN, props.YaxisP]} />
+              <Tooltip />
+              <Legend />
+              <Line
+                type="monotone"
+                dataKey="X"
+                stroke="#0000FF"
+                strokeWidth={2}
+                activeDot={{ r: 8 }}
+              />
+              <Line
+                type="monotone"
+                dataKey="Y"
+                stroke="#ff0000"
+                strokeWidth={2}
+              />
+              <Line
+                type="monotone"
+                dataKey="Z"
+                stroke="#00FF00"
+                strokeWidth={2}
+              />
+            </LineChart>
+            {defandcumulList()}
+            <div className="view-data daily-report-form-flex">
+              <Link className="Submit_Button" to={props.dataLink}>
+                View Data
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

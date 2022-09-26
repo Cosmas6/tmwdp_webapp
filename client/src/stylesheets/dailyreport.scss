@@ -5,34 +5,9 @@
   @extend .Display_Inline_Block;
   @extend .Container_Left_Margin;
 
-  @include media(">=phone", "<=tablet") {
-    overflow: auto;
-    height: 100%;
-  }
-
   .DailyReportTable_Container {
     @extend .Shadow;
     @extend .Container_Padding;
-    margin-bottom: 20px;
-    @include media(">=phone", "<=tablet") {
-      float: right;
-      position: inherit;
-      width: 100%;
-      overflow: auto;
-      margin: 0 auto;
-      height: 100%;
-    }
-    @include media("<phone") {
-      float: right;
-      position: inherit;
-      width: 100%;
-      overflow: auto;
-      margin: 0 auto;
-      height: 100%;
-    }
-    .drf-title {
-      margin-bottom: 20px;
-    }
   }
 
   .Submit_Button {
@@ -87,11 +62,14 @@
     border-style: none;
   }
 
-  .Download_Button {
+  #Download_Button {
     display: flex;
     align-items: center;
     justify-content: center;
-    text-decoration: none;
+    a {
+      @extend .Download_Link;
+      background: black;
+    }
   }
 
   .Download_Link:hover {

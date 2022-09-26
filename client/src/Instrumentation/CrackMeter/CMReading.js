@@ -87,34 +87,43 @@ const CMReading = (props) => {
   }
 
   return (
-    <div className="CM_Table_Container">
-      <h3>Reading List</h3>
-      <table className="table table-striped" style={{ marginTop: 20 }}>
-        <thead>
-          <tr>
-            <th>Submitted By</th>
-            <th>Crack Meter</th>
-            <th>Date Of Reading</th>
-            <th>X1</th>
-            <th>X2</th>
-            <th>Y1</th>
-            <th>Y2</th>
-            <th>Z1</th>
-            <th>Z2</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>{readingList()}</tbody>
-      </table>
-      <div className="view-graph daily-report-form-flex">
-        <Link className="Submit_Button" to={props.graphLink}>
-          View Graph
-        </Link>
-      </div>
-      <div className="create-reading daily-report-form-flex">
-        <Link className="Submit_Button" to={props.createLink}>
-          Create Reading
-        </Link>
+    <div className="CM_Reading_Container container-fluid">
+      <div className="row">
+        <div className="col-12">
+          <div className="Reading_Table_Container card">
+            <h3>Reading List</h3>
+            <table
+              className="table table-striped table-responsive"
+              style={{ marginTop: 20 }}
+            >
+              <thead>
+                <tr>
+                  <th>Submitted By</th>
+                  <th>Crack Meter</th>
+                  <th>Date Of Reading</th>
+                  <th>X1</th>
+                  <th>X2</th>
+                  <th>Y1</th>
+                  <th>Y2</th>
+                  <th>Z1</th>
+                  <th>Z2</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>{readingList()}</tbody>
+            </table>
+            <div className="view-graph daily-report-form-flex">
+              <Link className="Submit_Button" to={props.graphLink}>
+                View Graph
+              </Link>
+            </div>
+            <div className="create-reading daily-report-form-flex">
+              <Link className="Submit_Button" to={props.createLink}>
+                Create Reading
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

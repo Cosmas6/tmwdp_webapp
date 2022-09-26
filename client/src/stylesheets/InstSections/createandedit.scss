@@ -2,9 +2,12 @@
 
 .CM_Container {
   @extend .Display_Inline_Block;
-  @extend .Shadow;
-  @extend .Container_Padding;
   @extend .Container_Left_Margin;
+
+  .Form_Container {
+    @extend .Shadow;
+    @extend .Container_Padding;
+  }
 
   .daily-report-form-flex {
     display: inline-block;
