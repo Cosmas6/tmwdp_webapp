@@ -49,6 +49,7 @@ $layout-breakpoint-small: 960px;
   margin-bottom: $navMargin;
   margin-right: $navMargin;
   overflow: auto;
+  touch-action: auto;
 
   .title {
     margin: $primaryMargin;

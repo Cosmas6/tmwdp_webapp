@@ -4,6 +4,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import { RadioGroup, Radio, FormControlLabel } from "@mui/material";
 import TextField from "@mui/material/TextField";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import "../stylesheets/dredit.scss";
 
 const DREdit = (props) => {
@@ -15,8 +18,8 @@ const DREdit = (props) => {
     formState: { errors, isSubmitted },
   } = useForm({
     defaultValues: {
-      Section: "",
       Weather: "",
+      Date: "",
       Shift: "",
       Activities: "",
       PlantEQ: "",
@@ -49,6 +52,8 @@ const DREdit = (props) => {
 
       const report = await response.json();
 
+
+
       if (!report) {
         window.alert(`Reading with id ${id} not found`);
         navigate(props.navigateLink);
@@ -65,22 +70,6 @@ const DREdit = (props) => {
 
   const onSubmit = async (data, e) => {
     e.preventDefault();
-    const editedReport = {
-      Weather: data.Weather,
-      Shift: data.Shift,
-      Activities: data.Activities,
-      PlantEQ: data.PlantEQ,
-      SMEC_Ins: data.SMEC_Ins,
-      CGGC_Ins: data.CGGC_Ins,
-      Safety_Officer: data.Safety_Officer,
-      Drivers: data.Drivers,
-      SMEC_Eng: data.SMEC_Eng,
-      Site_Foreman: data.Site_Foreman,
-      Plant_Operator: data.Plant_Operator,
-      Unskilled_Labour: data.Unskilled_Labour,
-      Welder: data.Welder,
-      Chinese_Staff: data.Chinese_Staff,
-    };
     await fetch(props.fetchLinkPost, {
       method: "POST",
       headers: {
@@ -99,7 +88,10 @@ const DREdit = (props) => {
     <div className="DREdit_Container container-fluid">
       <div className="row">
         <div className="col-12">
-          <form className="Form_Container card" onSubmit={handleSubmit(onSubmit)}>
+          <form
+            className="Form_Container card"
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <div className="Weather_Container daily-report-form-flex">
               <label className="Input_Label">Weather</label>
               <Controller
@@ -128,24 +120,25 @@ const DREdit = (props) => {
                 )}
               />
             </div>
-            {/* <div className="Date_Container daily-report-form-flex">
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <Controller
-              control={control}
-              name="Date"
-              defaultValue={new Date()}
-              render={({ field: { onChange, value, field } }) => (
-                <DesktopDatePicker
-                  {...field}
-                  label="Date"
-                  value={new Date(value)}
-                  onChange={onChange}
-                  renderInput={(params) => <TextField {...params} />}
+            <div className="Date_Container daily-report-form-flex">
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <Controller
+                  control={control}
+                  name="Date"
+                  render={({ field: { onChange, value, field } }) => (
+                    <DesktopDatePicker
+                      {...field}
+                      label="Date"
+                      value={value}
+                      onChange={onChange}
+                      disableMaskedInput
+                      inputFormat="dd MMMM yyyy"
+                      renderInput={(params) => <TextField {...params} />}
+                    />
+                  )}
                 />
-              )}
-            />
-          </LocalizationProvider>
-        </div> */}
+              </LocalizationProvider>
+            </div>
             <div className="Shift_Container daily-report-form-flex">
               <label className="Input_Label">Shift</label>
               <Controller

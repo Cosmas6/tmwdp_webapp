@@ -33,7 +33,7 @@ const DRReading = (props) => {
     return (
       <tr>
         <td>{props.report.User}</td>
-        <td>{props.report.Date}</td>
+        <td>{enUSFormatter.format(dateString)}</td>
         <td>{props.report.Section}</td>
         <td>{props.report.Shift}</td>
         <td>

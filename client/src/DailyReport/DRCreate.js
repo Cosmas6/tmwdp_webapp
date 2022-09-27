@@ -44,16 +44,21 @@ const DRCreate = (props) => {
         //initialize error
         error = new Error();
       });
-  }, [userInfo]);
+  }, []);
 
   const onSubmit = async (data, e) => {
     e.preventDefault();
+    const output = {
+      ...data,
+      User: userInfo,
+    };
+    console.log(output, "output");
     await fetch(props.fetchLink, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(output),
     }).catch((error) => {
       window.alert(error);
       return;
@@ -87,8 +92,11 @@ const DRCreate = (props) => {
     <div className="DRCreate_Container container-fluid">
       <div className="row">
         <div className="col-12">
-          <form className="Form_Container card" onSubmit={handleSubmit(onSubmit)}>
-            <div className="User_Container daily-report-form-flex">
+          <form
+            className="Form_Container card"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            {/* <div className="User_Container daily-report-form-flex">
               <TextField
                 id="outlined-read-only-input"
                 label="User"
@@ -96,11 +104,12 @@ const DRCreate = (props) => {
                 value={userInfo}
                 InputProps={{
                   readOnly: true,
+                  shrink: false,
                 }}
-                {...register("User")}
+                {...register("User", { required: true })}
                 className="user-input"
               />
-            </div>
+            </div> */}
 
             <div className="Section_Container daily-report-form-flex">
               <TextField
@@ -150,7 +159,7 @@ const DRCreate = (props) => {
                   render={({ field: { onChange, value } }) => (
                     <DesktopDatePicker
                       label="Date"
-                      inputFormat="dd/MMM/yyyy"
+                      inputFormat="dd MMMM yyyy"
                       disableMaskedInput
                       value={value}
                       onChange={onChange}

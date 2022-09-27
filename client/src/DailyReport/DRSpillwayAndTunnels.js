@@ -8,6 +8,7 @@ const DRSpillwayAndTunnels = (props) => {
   const navigate = useNavigate();
 
   const [report, setReport] = useState([]);
+  const [newDate, setNewDate] = useState();
   const [editBtn, setEditBtn] = useState();
   useEffect(() => {
     async function fetchReport() {
@@ -31,6 +32,13 @@ const DRSpillwayAndTunnels = (props) => {
       }
 
       setReport(reportData);
+      const dateString = new Date(String(reportData.Date));
+      const enUSFormatter = new Intl.DateTimeFormat("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+      setNewDate(enUSFormatter.format(dateString));
     }
 
     fetchReport();
@@ -50,7 +58,7 @@ const DRSpillwayAndTunnels = (props) => {
         html: `
           <html style="color: green" lang="en">
           <head>
-            <title>Daily Report for ${report.Date}</title>
+            <title>Daily Report for ${newDate}</title>
             <link
               href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
               rel="stylesheet"
@@ -81,7 +89,7 @@ const DRSpillwayAndTunnels = (props) => {
                     <th>WEATHER:</th>
                     <td style="padding-left: 10px">${report.Weather}</td>
                     <th>DATE:</th>
-                    <td style="padding-left: 10px">${report.Date}</td>
+                    <td style="padding-left: 10px">${newDate}</td>
                     <th>SHIFT:</th>
                     <td style="padding-left: 10px">${report.Shift}</td>
                   </tr>
@@ -158,7 +166,7 @@ const DRSpillwayAndTunnels = (props) => {
           </body>
           </html>
           `,
-        fileName: `${report.Date} ${report.Section} ${report.Shift}.pdf`,
+        fileName: `${newDate} ${report.Section} ${report.Shift}.pdf`,
         options: {
           textAlign: "left",
           height: "11in",
@@ -183,7 +191,7 @@ const DRSpillwayAndTunnels = (props) => {
           <div className="col-12">
             <div className="DailyReportTable_Container card">
               <h1 className="title drf-title">Daily Report Form</h1>
-              <table>
+              <table className="table-responsive">
                 <tbody>
                   <tr>
                     <th colSpan="6">
@@ -201,7 +209,7 @@ const DRSpillwayAndTunnels = (props) => {
                     <th>WEATHER:</th>
                     <td>{report.Weather}</td>
                     <th>DATE:</th>
-                    <td>{report.Date}</td>
+                    <td>{newDate}</td>
                     <th>SHIFT:</th>
                     <td>{report.Shift}</td>
                   </tr>

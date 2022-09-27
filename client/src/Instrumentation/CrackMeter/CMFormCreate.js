@@ -48,6 +48,10 @@ const CMFormCreate = (props) => {
   // This function will handle the submission.
   const onSubmit = async (data, e) => {
     e.preventDefault();
+    const output = {
+      ...data,
+      User: userInfo,
+    };
     // When a post request is sent to the create url, we'll add a new record to the database.
 
     await fetch(props.fetchLink, {
@@ -55,7 +59,7 @@ const CMFormCreate = (props) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(output),
     }).catch((error) => {
       window.alert(error);
       return;
@@ -73,19 +77,6 @@ const CMFormCreate = (props) => {
             onSubmit={handleSubmit(onSubmit)}
           >
             <h1>{props.cmName}</h1>
-            <div className="Email_Container daily-report-form-flex">
-              <TextField
-                id="outlined-read-only-input"
-                label="User"
-                type="text"
-                value={userInfo}
-                InputProps={{
-                  readOnly: true,
-                }}
-                {...register("User")}
-                className="user-input"
-              />
-            </div>
             <div className="Crack_Meter_Input daily-report-form-flex">
               <TextField
                 id="crack-meter"

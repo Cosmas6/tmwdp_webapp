@@ -25,9 +25,16 @@ router.get("/:id", function (req, res) {
   let myquery = {
     _id: ObjectId(req.params.id),
   };
+
   db_connect.collection("Spillway").findOne(myquery, function (err, result) {
     if (err) throw err;
     res.json(result);
+    const str = result.Date;
+    const newDate = new Date("September 18 2022");
+    console.log(newDate);
+
+    // let newerDate = newDate.toISOString();
+    // console.log(newerDate);
   });
 });
 
@@ -38,7 +45,7 @@ router.post("/add", function (req, response) {
     User: req.body.User,
     Section: req.body.Section,
     Weather: req.body.Weather,
-    Date: moment(req.body.Date).format("MMMM Do YYYY"),
+    Date: req.body.Date,
     Shift: req.body.Shift,
     Activities: req.body.Activities,
     PlantEQ: req.body.PlantEQ,
@@ -69,7 +76,7 @@ router.post("/update/:id", function (req, response) {
     $set: {
       Section: req.body.Section,
       Weather: req.body.Weather,
-      // Date: moment(req.body.Date).format("MMMM Do YYYY, h:mm:ss a"),
+      Date: moment(req.body.Date).format(),
       Shift: req.body.Shift,
       Activities: req.body.Activities,
       PlantEQ: req.body.PlantEQ,
