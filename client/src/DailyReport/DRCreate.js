@@ -26,6 +26,7 @@ const DRCreate = (props) => {
 
   useEffect(() => {
     const token = cookies.get("TOKEN");
+    console.log(token);
     const configuration = {
       method: "get",
       url: "https://nodejs.tmwdp.co.ke/login/currentUser",
@@ -36,6 +37,9 @@ const DRCreate = (props) => {
 
     axios(configuration)
       .then((result) => {
+        if (!result) {
+          navigate("/login");
+        }
         const userResult =
           `${result.data.userFirstName}` + ` ` + `${result.data.userLastName}`;
         setUserInfo(userResult);
