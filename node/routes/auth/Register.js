@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../../mongoDB/userModel");
+const Schema = require("../../mongoDB/userModel");
 const bcrypt = require("bcrypt");
 
 router.post("/", (request, response) => {
   bcrypt
     .hash(request.body.password, 10)
     .then((hashedPassword) => {
-      const user = new User({
+      const user = new Schema({
         firstName: request.body.firstName,
         lastName: request.body.lastName,
         email: request.body.email,

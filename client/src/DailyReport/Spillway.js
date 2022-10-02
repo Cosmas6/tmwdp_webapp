@@ -37,7 +37,6 @@ export function ReadingDRSpillway() {
         drName={"Spillway"}
         fetchLink={`http://localhost:4000/DailyRSpillwayRouter`}
         deleteFetch={`http://localhost:4000/DailyRSpillwayRouter`}
-        viewRoute={`/dashboard/DRSpillwayDisplay`}
       />
     </div>
   );

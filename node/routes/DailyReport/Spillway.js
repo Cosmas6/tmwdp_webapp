@@ -1,64 +1,10 @@
 const express = require("express");
 const router = express.Router();
 var moment = require("moment");
-const CMdbo = require("../../mongoDB/dailyreportConn");
 const ObjectId = require("mongodb").ObjectId;
 const mongoose = require("mongoose");
 
-const ReportSchema = new mongoose.Schema({
-  User: {
-    type: String,
-  },
-  Section: {
-    type: String,
-  },
-  Weather: {
-    type: String,
-  },
-  Date: {
-    type: Date,
-  },
-  Shift: {
-    type: String,
-  },
-  Activities: {
-    type: String,
-  },
-  PlantEQ: {
-    type: String,
-  },
-  SMEC_Ins: {
-    type: Number,
-  },
-  CGGC_Ins: {
-    type: Number,
-  },
-  Safety_Officer: {
-    type: Number,
-  },
-  Drivers: {
-    type: Number,
-  },
-  SMEC_Eng: {
-    type: Number,
-  },
-  Site_Foreman: {
-    type: Number,
-  },
-  Plant_Operator: {
-    type: Number,
-  },
-  Unskilled_Labour: {
-    type: Number,
-  },
-  Welder: {
-    type: Number,
-  },
-  Chinese_Staff: {
-    type: Number,
-  },
-});
-
+const ReportSchema = require("../../mongoDB/reportModel");
 const DailyReportDB = mongoose.connection.useDb("DailyReport");
 const Schema = DailyReportDB.model("spillways", ReportSchema);
 
@@ -76,7 +22,6 @@ router.get("/", async (req, response) => {
 
 // This section will help you get a single record by id
 router.get("/:id", async (req, response) => {
-  // let db_connect = CMdbo.getDb();
   let myquery = {
     _id: ObjectId(req.params.id),
   };
@@ -124,7 +69,6 @@ router.post("/add", async (req, response) => {
 
 // This section will help you update a record by id.
 router.post("/update/:id", async (req, response) => {
-  // let db_connect = CMdbo.getDb();
   let myquery = { _id: ObjectId(req.params.id) };
   var newvalues = {
     $set: {

@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import MainContent from "./components/MainContent";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import Dashboard from "./Dashboard";
+import Dashboard from "./Dashboard/Dashboard";
 import CMRoutes from "./Instrumentation/CrackMeter/CMRoutes";
 import DRRoutes from "./DailyReport/DRRoutes";
 import Cookies from "universal-cookie";

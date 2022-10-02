@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../../mongoDB/userModel");
+const Schema = require("../../mongoDB/userModel");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 router.post("/", (request, response) => {
   // check if email exists
-  User.findOne({ email: request.body.email })
+  Schema.findOne({ email: request.body.email })
     .then((user) => {
       // compare the password entered and the hashed password found
       bcrypt

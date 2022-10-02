@@ -22,4 +22,7 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model.Users || mongoose.model("Users", UserSchema);
+const userDB = mongoose.connection.useDb("auth");
+const Schema = userDB.model("users", UserSchema);
+
+module.exports = Schema;
