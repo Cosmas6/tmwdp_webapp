@@ -4,12 +4,21 @@ const Schema = require("../../mongoDB/userModel");
 const bcrypt = require("bcrypt");
 
 router.post("/", (request, response) => {
+  const dept = request.body.department;
+  const deptNew = dept.map((obj) => {
+    return obj.value;
+  });
+
+  // const deptNewString = deptNew.toString();
+  // console.log(deptNewString);
+
   bcrypt
     .hash(request.body.password, 10)
     .then((hashedPassword) => {
       const user = new Schema({
         firstName: request.body.firstName,
         lastName: request.body.lastName,
+        department: deptNew,
         email: request.body.email,
         password: hashedPassword,
       });

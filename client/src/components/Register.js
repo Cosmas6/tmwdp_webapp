@@ -1,28 +1,53 @@
 import React, { useRef, useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { components } from "react-select";
+import { default as ReactSelect } from "react-select";
+import { Link } from "react-router-dom";
+import { useForm, Controller } from "react-hook-form";
 import "../stylesheets/register.scss";
 
+export const colourOptions = [
+  { value: "Spillway&Tunnels", label: "Spillway & Tunnels" },
+  { value: "Instrumentation", label: "Instrumentation" },
+  { value: "Dams", label: "Dams" },
+];
+
 const Register = () => {
-  const navigate = useNavigate();
   const formRef = useRef();
-  const { register, errors, handleSubmit, reset } = useForm();
+  const { register, errors, handleSubmit, reset, control } = useForm();
   const [registered, setRegistered] = useState(false);
+
+  const Option = (props) => {
+    return (
+      <div>
+        <components.Option {...props}>
+          <input
+            type="checkbox"
+            checked={props.isSelected}
+            onChange={() => null}
+          />{" "}
+          <label>{props.label}</label>
+        </components.Option>
+      </div>
+    );
+  };
 
   const onSubmit = (data) => {
     const formElement = formRef.current;
     const firstName = data.First_Name;
     const lastName = data.Last_Name;
+    const department = data.Department;
     const email = data.Email;
     const password = data.Password;
 
+    
     const configuration = {
       method: "post",
       url: "http://localhost:4000/register",
       data: {
         firstName,
         lastName,
+        department,
         email,
         password,
       },
@@ -38,25 +63,6 @@ const Register = () => {
         //initialize error
         error = new Error();
       });
-
-    console.log(firstName);
-
-    // const auth = getAuth();
-    // createUserWithEmailAndPassword(auth, email, password)
-    //   .then((userCredential) => {
-    //     navigate("/dashboard");
-    //     sessionStorage.setItem(
-    //       "Auth Token",
-    //       userCredential._tokenResponse.refreshToken
-    //     );
-    //     const user = userCredential.user;
-    //     console.log(user);
-    //     formElement.reset();
-    //   })
-    //   .catch((error) => {
-    //     console.log(error.message);
-    //     errorElement.textContent = error.message;
-    //   });
   };
 
   return (
@@ -82,6 +88,26 @@ const Register = () => {
               {...register("Last_Name", {
                 required: true,
               })}
+            />
+            <label className="Input_Label">Department</label>
+            <Controller
+              control={control}
+              rules={{ required: true }}
+              name="Department"
+              render={({ field: { onChange, value } }) => (
+                <ReactSelect
+                  options={colourOptions}
+                  isMulti
+                  closeMenuOnSelect={false}
+                  hideSelectedOptions={false}
+                  components={{
+                    Option,
+                  }}
+                  onChange={onChange}
+                  allowSelectAll={true}
+                  value={value}
+                />
+              )}
             />
             <label className="Input_Label">Email</label>
             <input

@@ -27,6 +27,7 @@ router.post("/", (request, response) => {
             {
               userId: user._id,
               userEmail: user.email,
+              userDepartment: user.department,
               userFirstName: user.firstName,
               userLastName: user.lastName,
             },
