@@ -15,6 +15,7 @@ var loginRouter = require("./routes/auth/Login");
 var nodeMailerRouter = require("./routes/nodeMailer");
 var DailyRSpillway = require("./routes/DailyReport/Spillway");
 var DailyRTunnels = require("./routes/DailyReport/Tunnels");
+var DailyRDams = require("./routes/DailyReport/Dams");
 var C1Router = require("./routes/Instrumentation/CrackMeters/C1");
 var C2Router = require("./routes/Instrumentation/CrackMeters/C2");
 var C3Router = require("./routes/Instrumentation/CrackMeters/C3");
@@ -72,6 +73,7 @@ app.use("/C15Router", C15Router);
 app.use("/C16Router", C16Router);
 app.use("/DailyRSpillwayRouter", DailyRSpillway);
 app.use("/DailyRTunnelsRouter", DailyRTunnels);
+app.use("/DailyRDamsRouter", DailyRDams);
 
 // perform a database connection when server starts
 

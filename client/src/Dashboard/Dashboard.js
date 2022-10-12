@@ -1,37 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Outlet } from "react-router-dom";
-import SimpleBar from "simplebar-react";
 import "../stylesheets/dashboard.scss";
 import Cookies from "universal-cookie";
-import SpillwayandTunnelNav from "./SpillwayandTunnelNav";
+import DRNav from "./DRNav";
 import InstNav from "./InstNav";
+import axios from "axios";
 const cookies = new Cookies();
-
-export function useWindowDimensions() {
-  function getWindowDimensions() {
-    const { innerWidth: width, innerHeight: height } = window;
-    return {
-      width,
-      height,
-    };
-  }
-
-  const [windowDimensions, setWindowDimensions] = useState(
-    getWindowDimensions()
-  );
-
-  useEffect(() => {
-    function handleResize() {
-      setWindowDimensions(getWindowDimensions());
-    }
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  return windowDimensions;
-}
 
 export default function Dashboard() {
   const token = cookies.get("TOKEN");
@@ -40,18 +15,53 @@ export default function Dashboard() {
     document.getElementById("sidebar").classList.toggle("active");
   };
 
-  const ToggleSidebarSecond = () => {
-    if (width < 768) {
-      document.getElementById("sidebar").classList.toggle("active");
-    }
-  };
-
-  const { height, width } = useWindowDimensions();
-
   useEffect(() => {
     if (!token) {
       navigate("/login");
     }
+  }, []);
+
+  const [userInfo, setUserInfo] = useState();
+  console.log(userInfo);
+
+  // function checkDept() {
+  //   switch (userInfo) {
+  //     case "Spillway&Tunnels":
+  //       return <SpillwayandTunnelNav />;
+  //     case "Instrumentation":
+  //       return <InstNav />;
+  //     default:
+  //       return "foo";
+  //   }
+  // }
+
+  useEffect(() => {
+    const token = cookies.get("TOKEN");
+    const configuration = {
+      method: "get",
+      url: "https://nodejs.tmwdp.co.ke/login/currentUser",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    axios(configuration)
+      .then((result) => {
+        if (!result) {
+          navigate("/login");
+        }
+        const userInfoArray = result.data.userDepartment;
+
+        // const userResult = userInfoArray.map((obj) => {
+        //   return obj;
+        // });
+
+        setUserInfo(userInfoArray.toString());
+      })
+      .catch((error) => {
+        //initialize error
+        error = new Error();
+      });
   }, []);
 
   const logOut = () => {
@@ -73,11 +83,10 @@ export default function Dashboard() {
         </div>
         <hr className="horizontal-line" />
         <ul className="list-unstyled components">
-          {/* <p>Dummy Heading</p> */}
-
-          <SpillwayandTunnelNav />
+          <DRNav />
           <InstNav />
         </ul>
+
         <div className="sidenav-footer">
           <NavLink
             className={(navData) =>

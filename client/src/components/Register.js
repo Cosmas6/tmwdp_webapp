@@ -40,7 +40,6 @@ const Register = () => {
     const email = data.Email;
     const password = data.Password;
 
-    
     const configuration = {
       method: "post",
       url: "http://localhost:4000/register",
@@ -61,7 +60,8 @@ const Register = () => {
       })
       .catch((error) => {
         //initialize error
-        error = new Error();
+        // error = new Error();
+        console.log(error);
       });
   };
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
+import CreateDRDams, { EditDRDams, ReadingDRDams, DRDamsDisplay } from "./Dams";
 import CreateDRSpillway, {
   EditDRSpillway,
   ReadingDRSpillway,
@@ -21,5 +22,9 @@ export default [
     <Route path="DREditTunnels/:id" element={<EditDRTunnels />} />
     <Route path="DRReadingTunnels" element={<ReadingDRTunnels />} />
     <Route path="DRTunnelsDisplay/:id" element={<DRTunnelsDisplay />} />
+    <Route path="DRCreateDams" element={<CreateDRDams />} />
+    <Route path="DREditDams/:id" element={<EditDRDams />} />
+    <Route path="DRReadingDams" element={<ReadingDRDams />} />
+    <Route path="DRDamsDisplay/:id" element={<DRDamsDisplay />} />
   </>,
 ];

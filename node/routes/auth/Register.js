@@ -32,6 +32,7 @@ router.post("/", (request, response) => {
           });
         })
         .catch((error) => {
+          console.log(error,"ERROR");
           response.status(500).send({
             message: "Error creating user",
             error,

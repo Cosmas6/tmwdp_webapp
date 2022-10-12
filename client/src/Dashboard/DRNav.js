@@ -50,7 +50,7 @@ export default function SpillwayandTunnelNav() {
       </li>
       <div className="collapse hide" id="dailyreport-collapse">
         <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small sidebar-dropdowns">
-          <SimpleBar style={{ height: "100px" }}>
+          <SimpleBar style={{ height: "200px" }}>
             <li>
               <NavLink
                 className={(navData) =>
@@ -77,6 +77,19 @@ export default function SpillwayandTunnelNav() {
                 Tunnels
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                className={(navData) =>
+                  navData.isActive
+                    ? "link-white rounded active"
+                    : "link-white rounded"
+                }
+                to="DRCreateDams"
+                onClick={ToggleSidebarSecond}
+              >
+                Dams
+              </NavLink>
+            </li>
           </SimpleBar>
         </ul>
       </div>
@@ -95,7 +108,7 @@ export default function SpillwayandTunnelNav() {
       </li>
       <div className="collapse hide" id="dailyreportlist-collapse">
         <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small sidebar-dropdowns">
-          <SimpleBar style={{ height: "100px" }}>
+          <SimpleBar style={{ height: "200px" }}>
             <li>
               <NavLink
                 className={(navData) =>
@@ -120,6 +133,19 @@ export default function SpillwayandTunnelNav() {
                 onClick={ToggleSidebarSecond}
               >
                 Tunnels
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className={(navData) =>
+                  navData.isActive
+                    ? "link-white rounded active"
+                    : "link-white rounded"
+                }
+                to="DRReadingDams"
+                onClick={ToggleSidebarSecond}
+              >
+                Dams
               </NavLink>
             </li>
           </SimpleBar>
