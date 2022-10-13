@@ -52,8 +52,6 @@ const DREdit = (props) => {
 
       const report = await response.json();
 
-
-
       if (!report) {
         window.alert(`Reading with id ${id} not found`);
         navigate(props.navigateLink);
@@ -168,6 +166,7 @@ const DREdit = (props) => {
               />
             </div>
             <div className="ActandPlant_Container daily-report-form-block">
+              <label className="Input_Label">Activities</label>
               <Controller
                 name="Activities"
                 control={control}
@@ -187,6 +186,7 @@ const DREdit = (props) => {
               />
             </div>
             <div className="ActandPlant_Container daily-report-form-block">
+              <label className="Input_Label">Plant & Equipment</label>
               <Controller
                 name="PlantEQ"
                 control={control}
@@ -205,6 +205,7 @@ const DREdit = (props) => {
                 )}
               />
             </div>
+            
             <div className="numbers">
               <TextField
                 id="outlined-number"

@@ -7,6 +7,10 @@ import { RadioGroup, Radio, FormControlLabel } from "@mui/material";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
 import "../stylesheets/drcreate.scss";
 import axios from "axios";
@@ -26,7 +30,6 @@ const DRCreateDams = (props) => {
 
   useEffect(() => {
     const token = cookies.get("TOKEN");
-    console.log(token);
     const configuration = {
       method: "get",
       url: "https://nodejs.tmwdp.co.ke/login/currentUser",
@@ -56,7 +59,6 @@ const DRCreateDams = (props) => {
       ...data,
       User: userInfo,
     };
-    console.log(output, "output");
     await fetch(props.fetchLink, {
       method: "POST",
       headers: {
@@ -100,21 +102,6 @@ const DRCreateDams = (props) => {
             className="Form_Container card"
             onSubmit={handleSubmit(onSubmit)}
           >
-            {/* <div className="User_Container daily-report-form-flex">
-              <TextField
-                id="outlined-read-only-input"
-                label="User"
-                type="text"
-                value={userInfo}
-                InputProps={{
-                  readOnly: true,
-                  shrink: false,
-                }}
-                {...register("User", { required: true })}
-                className="user-input"
-              />
-            </div> */}
-
             <div className="Section_Container daily-report-form-flex">
               <TextField
                 id="outlined-read-only-input"
@@ -126,7 +113,7 @@ const DRCreateDams = (props) => {
                 }}
               />
             </div>
-            <div className="Weather_Container daily-report-form-flex">
+            <div className="Weather_Container daily-report-form-block">
               <label className="Input_Label">Weather</label>
               <Controller
                 control={control}
@@ -174,7 +161,7 @@ const DRCreateDams = (props) => {
               </LocalizationProvider>
             </div>
 
-            <div className="Shift_Container daily-report-form-flex">
+            <div className="Shift_Container daily-report-form-block">
               <label className="Input_Label">Shift</label>
               <Controller
                 control={control}
@@ -202,7 +189,7 @@ const DRCreateDams = (props) => {
                 )}
               />
             </div>
-            <label className="Input_Label daily-report-form-block">
+            <label className="Input_Label daily-report-form-block Bold_Text">
               <p>
                 Press space then enter to go to a new line
                 <strong>(Phone Users)</strong>
@@ -248,6 +235,47 @@ const DRCreateDams = (props) => {
                 )}
               />
             </div>
+
+            <div className="Rocktype_Container daily-report-form-flex">
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Rock type</InputLabel>
+                <Controller
+                  control={control}
+                  name="RockType"
+                  defaultValue={""}
+                  render={({ field: { onChange, value } }) => (
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={value}
+                      label="RockType"
+                      onChange={onChange}
+                    >
+                      <MenuItem value={"2A2"}>2A2</MenuItem>
+                      <MenuItem value={"3A"}>3A</MenuItem>
+                      <MenuItem value={"3B"}>3B</MenuItem>
+                      <MenuItem value={"3C"}>3C</MenuItem>
+                      <MenuItem value={"Oversize Rocks"}>
+                        Oversize Rocks
+                      </MenuItem>
+                    </Select>
+                  )}
+                />
+              </FormControl>
+            </div>
+            <label className="Input_Label daily-report-form-block Bold_Text">
+              Labour Force count
+            </label>
+            <TextField
+              id="outlined-number"
+              {...register("Number_Of_Trips", { required: true })}
+              label="NUMBER OF TRIPS"
+              type="number"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              className="daily-report-form-flex"
+            />
             <div className="numbers">
               <TextField
                 id="outlined-number"

@@ -42,7 +42,7 @@ const Register = () => {
 
     const configuration = {
       method: "post",
-      url: "http://localhost:4000/register",
+      url: "https://nodejs.tmwdp.co.ke/register",
       data: {
         firstName,
         lastName,
@@ -55,7 +55,7 @@ const Register = () => {
     axios(configuration)
       .then((result) => {
         setRegistered(true);
-        window.location.href = "/dashboard";
+        window.location.href = "/login";
         formElement.reset();
       })
       .catch((error) => {

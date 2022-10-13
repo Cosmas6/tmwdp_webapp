@@ -6,6 +6,7 @@ import Register from "./components/Register";
 import Dashboard from "./Dashboard/Dashboard";
 import CMRoutes from "./Instrumentation/CrackMeter/CMRoutes";
 import DRRoutes from "./DailyReport/DRRoutes";
+import GanttRoutes from "./components/Gantt/GanttRoutes";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 const token = cookies.get("TOKEN");
@@ -22,6 +23,7 @@ const MainRoutes = () => (
       >
         {CMRoutes}
         {DRRoutes}
+        {GanttRoutes}
       </Route>
     </Route>
   </Routes>

@@ -4,9 +4,9 @@ var moment = require("moment");
 const ObjectId = require("mongodb").ObjectId;
 const mongoose = require("mongoose");
 
-const ReportSchema = require("../../mongoDB/reportModel");
+const DamReportSchema = require("../../mongoDB/DamReportModel");
 const DailyReportDB = mongoose.connection.useDb("DailyReport");
-const Schema = DailyReportDB.model("dams", ReportSchema);
+const Schema = DailyReportDB.model("dams", DamReportSchema);
 
 // This section will help you get a list of all the records.
 
@@ -45,6 +45,8 @@ router.post("/add", async (req, response) => {
     Shift: req.body.Shift,
     Activities: req.body.Activities,
     PlantEQ: req.body.PlantEQ,
+    RockType: req.body.RockType,
+    Number_Of_Trips: req.body.Number_Of_Trips,
     SMEC_Ins: req.body.SMEC_Ins,
     CGGC_Ins: req.body.CGGC_Ins,
     Safety_Officer: req.body.Safety_Officer,
@@ -78,6 +80,8 @@ router.post("/update/:id", async (req, response) => {
       Shift: req.body.Shift,
       Activities: req.body.Activities,
       PlantEQ: req.body.PlantEQ,
+      RockType: req.body.RockType,
+      Number_Of_Trips: req.body.Number_Of_Trips,
       SMEC_Ins: req.body.SMEC_Ins,
       CGGC_Ins: req.body.CGGC_Ins,
       Safety_Officer: req.body.Safety_Officer,

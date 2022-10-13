@@ -115,7 +115,7 @@ const DRCreate = (props) => {
               />
             </div> */}
 
-            <div className="Section_Container daily-report-form-flex">
+            <div className="Section_Container daily-report-form-block">
               <TextField
                 id="outlined-read-only-input"
                 label="Section"
@@ -126,7 +126,7 @@ const DRCreate = (props) => {
                 }}
               />
             </div>
-            <div className="Weather_Container daily-report-form-flex">
+            <div className="Weather_Container daily-report-form-block">
               <label className="Input_Label">Weather</label>
               <Controller
                 control={control}
@@ -174,7 +174,7 @@ const DRCreate = (props) => {
               </LocalizationProvider>
             </div>
 
-            <div className="Shift_Container daily-report-form-flex">
+            <div className="Shift_Container daily-report-form-block">
               <label className="Input_Label">Shift</label>
               <Controller
                 control={control}
@@ -202,7 +202,7 @@ const DRCreate = (props) => {
                 )}
               />
             </div>
-            <label className="Input_Label daily-report-form-block">
+            <label className="Input_Label daily-report-form-block Bold_Text">
               <p>
                 Press space then enter to go to a new line
                 <strong>(Phone Users)</strong>
@@ -248,6 +248,9 @@ const DRCreate = (props) => {
                 )}
               />
             </div>
+            <label className="Input_Label daily-report-form-block Bold_Text">
+              Labour Force count
+            </label>
             <div className="numbers">
               <TextField
                 id="outlined-number"

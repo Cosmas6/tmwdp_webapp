@@ -15,7 +15,7 @@ const DRSpillwayAndTunnels = (props) => {
       const id = params.id.toString();
       setEditBtn(id);
       const response = await fetch(
-        `http://localhost:4000/${props.viewRoute}/${params.id.toString()}`
+        `https://nodejs.tmwdp.co.ke/${props.viewRoute}/${params.id.toString()}`
       );
 
       if (!response.ok) {

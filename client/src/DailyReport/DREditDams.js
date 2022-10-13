@@ -7,6 +7,10 @@ import TextField from "@mui/material/TextField";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 import "../stylesheets/dredit.scss";
 
 const DREditDams = (props) => {
@@ -23,6 +27,8 @@ const DREditDams = (props) => {
       Shift: "",
       Activities: "",
       PlantEQ: "",
+      RockType: "",
+      Number_Of_Trips: "",
       SMEC_Ins: "",
       CGGC_Ins: "",
       Safety_Officer: "",
@@ -90,7 +96,7 @@ const DREditDams = (props) => {
             className="Form_Container card"
             onSubmit={handleSubmit(onSubmit)}
           >
-            <div className="Weather_Container daily-report-form-flex">
+            <div className="Weather_Container daily-report-form-block">
               <label className="Input_Label">Weather</label>
               <Controller
                 control={control}
@@ -137,7 +143,7 @@ const DREditDams = (props) => {
                 />
               </LocalizationProvider>
             </div>
-            <div className="Shift_Container daily-report-form-flex">
+            <div className="Shift_Container daily-report-form-block">
               <label className="Input_Label">Shift</label>
               <Controller
                 control={control}
@@ -166,6 +172,7 @@ const DREditDams = (props) => {
               />
             </div>
             <div className="ActandPlant_Container daily-report-form-block">
+              <label className="Input_Label">Activities</label>
               <Controller
                 name="Activities"
                 control={control}
@@ -185,6 +192,7 @@ const DREditDams = (props) => {
               />
             </div>
             <div className="ActandPlant_Container daily-report-form-block">
+              <label className="Input_Label">Plant & Equipment</label>
               <Controller
                 name="PlantEQ"
                 control={control}
@@ -203,6 +211,43 @@ const DREditDams = (props) => {
                 )}
               />
             </div>
+            <div className="Rocktype_Container daily-report-form-flex">
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Rock type</InputLabel>
+                <Controller
+                  control={control}
+                  name="RockType"
+                  defaultValue={""}
+                  render={({ field: { onChange, value } }) => (
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={value}
+                      label="RockType"
+                      onChange={onChange}
+                    >
+                      <MenuItem value={"2A2"}>2A2</MenuItem>
+                      <MenuItem value={"3A"}>3A</MenuItem>
+                      <MenuItem value={"3B"}>3B</MenuItem>
+                      <MenuItem value={"3C"}>3C</MenuItem>
+                      <MenuItem value={"Oversize Rocks"}>
+                        Oversize Rocks
+                      </MenuItem>
+                    </Select>
+                  )}
+                />
+              </FormControl>
+            </div>
+            <TextField
+              id="outlined-number"
+              {...register("Number_Of_Trips", { required: true })}
+              label="NUMBER OF TRIPS"
+              type="number"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              className="daily-report-form-flex"
+            />
             <div className="numbers">
               <TextField
                 id="outlined-number"

@@ -6,6 +6,7 @@ import Cookies from "universal-cookie";
 import DRNav from "./DRNav";
 import InstNav from "./InstNav";
 import axios from "axios";
+import GanttNav from "./GanttNav";
 const cookies = new Cookies();
 
 export default function Dashboard() {
@@ -85,6 +86,7 @@ export default function Dashboard() {
         <ul className="list-unstyled components">
           <DRNav />
           <InstNav />
+          <GanttNav />
         </ul>
 
         <div className="sidenav-footer">

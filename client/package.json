@@ -37,6 +37,7 @@
     "react": "^18.2.0",
     "react-component-export-image": "^1.0.6",
     "react-dom": "^18.2.0",
+    "react-google-charts": "^4.0.0",
     "react-hook-form": "^7.36.0",
     "react-mustache": "^0.1.5",
     "react-perfect-scrollbar": "^1.5.8",

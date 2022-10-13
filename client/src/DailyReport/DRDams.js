@@ -56,115 +56,129 @@ const DRDams = (props) => {
       },
       body: JSON.stringify({
         html: `
-          <html style="color: green" lang="en">
-          <head>
-            <title>Daily Report for ${newDate}</title>
-            <link
-              href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-              rel="stylesheet"
-              integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-              crossorigin="anonymous"
-            />
-          </head>
-          <body>
-            <div className="DailyReportTable_Container ">
-              <table
-                class="table table-bordered border-dark table-sm"
-                style="width: 900px;"
-              >
-                <tbody>
-                  <tr>
-                    <th colspan="6" class="text-center">
-                      CIVIL WORKS FOR CONSTRUCTION OF THWAKE DAM EMBARKMENT AND
-                      ASSOCIATED WORKS
-                    </th>
-                  </tr>
-                  <tr>
-                    <th>INSPECTOR</th>
-                    <td colspan="1">${report.User}</td>
-                    <th>SECTION:</th>
-                    <td colspan="4" style="padding-left: 10px">${report.Section}</td>
-                  </tr>
-                  <tr>
-                    <th>WEATHER:</th>
-                    <td style="padding-left: 10px">${report.Weather}</td>
-                    <th>DATE:</th>
-                    <td style="padding-left: 10px">${newDate}</td>
-                    <th>SHIFT:</th>
-                    <td style="padding-left: 10px">${report.Shift}</td>
-                  </tr>
-                  <tr></tr>
-                  <tr></tr>
-                  <tr>
-                    <th colspan="6">ACTIVITIES:</th>
-                  </tr>
-                  <tr>
-                    <td colspan="6" style="padding-left: 10px">${report.Activities}</td>
-                  </tr>
-                  <tr>
-                    <th colspan="6">PLANT AND EQUIPMENT:</th>
-                  </tr>
-                  <tr>
-                    <td colspan="6" style="padding-left: 10px">${report.PlantEQ}</td>
-                  </tr>
-                  <tr>
-                    <th colspan="6">LABOUR</th>
-                  </tr>
-                  <tr></tr>
-                  <tr>
-                    <th>DESCRIPTION</th>
-                    <th>NO</th>
-                    <th>DESCRIPTION</th>
-                    <th colspan="3">NO</th>
-                  </tr>
-                  <tr>
-                    <td width="40%">SMEC INSPECTORS</td>
-                    <td style="padding-left: 10px">${report.SMEC_Ins}</td>
-                    <td>SMEC ENGINEER</td>
-                    <td colspan="3" style="padding-left: 10px">${report.SMEC_Eng}</td>
-                  </tr>
-                  <tr>
-                    <td>CGGC INSPECTORS</td>
-                    <td style="padding-left: 10px">${report.CGGC_Ins}</td>
-                    <td>SITE FOREMAN</td>
-                    <td colspan="3" style="padding-left: 10px">${report.Site_Foreman}</td>
-                  </tr>
-                  <tr>
-                    <td>SAFETY OFFICER</td>
-                    <td style="padding-left: 10px">${report.Safety_Officer}</td>
-                    <td>PLANT OPERATOR</td>
-                    <td colspan="3" style="padding-left: 10px">${report.Plant_Operator}</td>
-                  </tr>
-                  <tr>
-                    <td>DRIVERS</td>
-                    <td style="padding-left: 10px">${report.Drivers}</td>
-                    <td>UNSKILLED LABOUR</td>
-                    <td colspan="3" style="padding-left: 10px">${report.Unskilled_Labour}</td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td>WELDER</td>
-                    <td colspan="3" style="padding-left: 10px">${report.Welder}</td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td>CHINESE STAFF</td>
-                    <td colspan="3" style="padding-left: 10px">${report.Chinese_Staff}</td>
-                  </tr>
-                  <tr>
-                    <th colspan="6">REMARKS/OBSERVATION:</th>
-                  </tr>
-                  <tr>
-                    <td style="height: 100px">SMEC</td>
-                    <td colspan="5" style="height: 100px">CGGC</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </body>
-          </html>
+        <html style="color: green" lang="en">
+        <head>
+          <title>Daily Report for ${newDate}</title>
+          <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous"
+          />
+        </head>
+        <body>
+          <div className="DailyReportTable_Container ">
+            <table
+              class="table table-bordered border-dark table-sm"
+              style="width: 900px"
+            >
+              <tbody>
+                <tr>
+                  <th colspan="6" class="text-center">
+                    CIVIL WORKS FOR CONSTRUCTION OF THWAKE DAM EMBARKMENT AND
+                    ASSOCIATED WORKS
+                  </th>
+                </tr>
+                <tr>
+                  <th>INSPECTOR</th>
+                  <td colspan="1">${report.User}</td>
+                  <th>SECTION:</th>
+                  <td colspan="4" style="padding-left: 10px">${report.Section}</td>
+                </tr>
+                <tr>
+                  <th>WEATHER:</th>
+                  <td style="padding-left: 10px">${report.Weather}</td>
+                  <th>DATE:</th>
+                  <td style="padding-left: 10px">${newDate}</td>
+                  <th>SHIFT:</th>
+                  <td style="padding-left: 10px">${report.Shift}</td>
+                </tr>
+                <tr></tr>
+                <tr></tr>
+                <tr>
+                  <th colspan="6">ACTIVITIES:</th>
+                </tr>
+                <tr>
+                  <td colspan="6" style="padding-left: 10px">${report.Activities}</td>
+                </tr>
+                <tr>
+                  <th colspan="6">PLANT AND EQUIPMENT:</th>
+                </tr>
+                <tr>
+                  <td colspan="6" style="padding-left: 10px">${report.PlantEQ}</td>
+                </tr>
+                <tr>
+                  <th colspan="6">LABOUR</th>
+                </tr>
+                <tr></tr>
+                <tr>
+                  <th>DESCRIPTION</th>
+                  <th>NO</th>
+                  <th>DESCRIPTION</th>
+                  <th colspan="3">NO</th>
+                </tr>
+                <tr>
+                  <td width="40%">SMEC INSPECTORS</td>
+                  <td style="padding-left: 10px">${report.SMEC_Ins}</td>
+                  <td>SMEC ENGINEER</td>
+                  <td colspan="3" style="padding-left: 10px">${report.SMEC_Eng}</td>
+                </tr>
+                <tr>
+                  <td>CGGC INSPECTORS</td>
+                  <td style="padding-left: 10px">${report.CGGC_Ins}</td>
+                  <td>SITE FOREMAN</td>
+                  <td colspan="3" style="padding-left: 10px">
+                    ${report.Site_Foreman}
+                  </td>
+                </tr>
+                <tr>
+                  <td>SAFETY OFFICER</td>
+                  <td style="padding-left: 10px">${report.Safety_Officer}</td>
+                  <td>PLANT OPERATOR</td>
+                  <td colspan="3" style="padding-left: 10px">
+                    ${report.Plant_Operator}
+                  </td>
+                </tr>
+                <tr>
+                  <td>DRIVERS</td>
+                  <td style="padding-left: 10px">${report.Drivers}</td>
+                  <td>UNSKILLED LABOUR</td>
+                  <td colspan="3" style="padding-left: 10px">
+                    ${report.Unskilled_Labour}
+                  </td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>WELDER</td>
+                  <td colspan="3" style="padding-left: 10px">${report.Welder}</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>CHINESE STAFF</td>
+                  <td colspan="3" style="padding-left: 10px">
+                    ${report.Chinese_Staff}
+                  </td>
+                </tr>
+                <tr>
+                  <th colspan="6">REMARKS/OBSERVATION:</th>
+                </tr>
+                <tr>
+                  <td colspan="6">
+                    ${report.Number_Of_Trips} trips made for Rock Type ${report.RockType} during ${report.Shift}
+                  </td>
+                </tr>
+                <tr>
+                  <td style="height: 100px">SMEC</td>
+                  <td colspan="5" style="height: 100px">CGGC</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </body>
+      </html>
+      
           `,
         fileName: `${newDate} ${report.Section} ${report.Shift}.pdf`,
         options: {
@@ -279,6 +293,12 @@ const DRDams = (props) => {
                   </tr>
                   <tr>
                     <th colSpan="6">REMARKS/OBSERVATION:</th>
+                  </tr>
+                  <tr>
+                    <td colspan="6">
+                      {report.Number_Of_Trips} trips made for Rock Type{" "}
+                      {report.RockType} during {report.Shift}
+                    </td>
                   </tr>
                   <tr>
                     <td>SMEC</td>
