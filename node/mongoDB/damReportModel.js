@@ -22,11 +22,8 @@ const DamReportSchema = new mongoose.Schema({
   PlantEQ: {
     type: String,
   },
-  RockType: {
-    type: String,
-  },
-  Number_Of_Trips: {
-    type: Number,
+  rocktrip: {
+    type: Array,
   },
   SMEC_Ins: {
     type: Number,

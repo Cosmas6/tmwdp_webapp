@@ -46,6 +46,26 @@
     margin: 20px 20px;
   }
 
+  .no-of-trips {
+    margin-left: 20px;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  @media (max-width: 955px) {
+    .Rocktype_Container {
+      display: block;
+    }
+
+    .no-of-trips {
+      display: block;
+      margin: 20px 20px 20px 0;
+    }
+  }
+
   .Submit_Button {
     width: 200px;
     padding-bottom: 20px;

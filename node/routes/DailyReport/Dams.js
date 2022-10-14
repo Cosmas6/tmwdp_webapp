@@ -4,7 +4,7 @@ var moment = require("moment");
 const ObjectId = require("mongodb").ObjectId;
 const mongoose = require("mongoose");
 
-const DamReportSchema = require("../../mongoDB/DamReportModel");
+const DamReportSchema = require("../../mongoDB/damReportModel");
 const DailyReportDB = mongoose.connection.useDb("DailyReport");
 const Schema = DailyReportDB.model("dams", DamReportSchema);
 
@@ -45,8 +45,7 @@ router.post("/add", async (req, response) => {
     Shift: req.body.Shift,
     Activities: req.body.Activities,
     PlantEQ: req.body.PlantEQ,
-    RockType: req.body.RockType,
-    Number_Of_Trips: req.body.Number_Of_Trips,
+    rocktrip: req.body.rocktrip,
     SMEC_Ins: req.body.SMEC_Ins,
     CGGC_Ins: req.body.CGGC_Ins,
     Safety_Officer: req.body.Safety_Officer,
@@ -80,8 +79,7 @@ router.post("/update/:id", async (req, response) => {
       Shift: req.body.Shift,
       Activities: req.body.Activities,
       PlantEQ: req.body.PlantEQ,
-      RockType: req.body.RockType,
-      Number_Of_Trips: req.body.Number_Of_Trips,
+      rocktrip: req.body.rocktrip,
       SMEC_Ins: req.body.SMEC_Ins,
       CGGC_Ins: req.body.CGGC_Ins,
       Safety_Officer: req.body.Safety_Officer,

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useNavigate } from "react-router-dom";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { RadioGroup, Radio, FormControlLabel } from "@mui/material";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -24,6 +24,11 @@ const DRCreateDams = (props) => {
     control,
     formState: { errors, isSubmitted },
   } = useForm();
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "rocktrip",
+  });
   const navigate = useNavigate();
 
   const [userInfo, setUserInfo] = useState("");
@@ -55,6 +60,8 @@ const DRCreateDams = (props) => {
 
   const onSubmit = async (data, e) => {
     e.preventDefault();
+
+    console.log(data);
     const output = {
       ...data,
       User: userInfo,
@@ -236,46 +243,73 @@ const DRCreateDams = (props) => {
               />
             </div>
 
-            <div className="Rocktype_Container daily-report-form-flex">
-              <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Rock type</InputLabel>
-                <Controller
-                  control={control}
-                  name="RockType"
-                  defaultValue={""}
-                  render={({ field: { onChange, value } }) => (
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={value}
-                      label="RockType"
-                      onChange={onChange}
+            <ul>
+              {fields.map((item, index) => {
+                return (
+                  <li key={item.id}>
+                    <div className="Rocktype_Container daily-report-form-flex">
+                      <FormControl fullWidth>
+                        <InputLabel id="demo-simple-select-label">
+                          Rock type
+                        </InputLabel>
+                        <Controller
+                          control={control}
+                          name={`rocktrip.${index}.RockType`}
+                          defaultValue={"None"}
+                          render={({ field: { onChange, value } }) => (
+                            <Select
+                              labelId="demo-simple-select-label"
+                              id="demo-simple-select"
+                              value={value}
+                              label="RockType"
+                              onChange={onChange}
+                            >
+                              <MenuItem value={"2A2"}>2A2</MenuItem>
+                              <MenuItem value={"3A"}>3A</MenuItem>
+                              <MenuItem value={"3B"}>3B</MenuItem>
+                              <MenuItem value={"3C"}>3C</MenuItem>
+                              <MenuItem value={"Oversize Rocks"}>
+                                Oversize Rocks
+                              </MenuItem>
+                            </Select>
+                          )}
+                        />
+                      </FormControl>
+                      <TextField
+                        id="outlined-number"
+                        {...register(`rocktrip.${index}.Number_Of_Trips`, {
+                          required: true,
+                        })}
+                        label="NO. OF TRIPS"
+                        type="number"
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                        className="no-of-trips"
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      className="Submit_Button daily-report-form-block"
+                      onClick={() => remove(index)}
                     >
-                      <MenuItem value={"2A2"}>2A2</MenuItem>
-                      <MenuItem value={"3A"}>3A</MenuItem>
-                      <MenuItem value={"3B"}>3B</MenuItem>
-                      <MenuItem value={"3C"}>3C</MenuItem>
-                      <MenuItem value={"Oversize Rocks"}>
-                        Oversize Rocks
-                      </MenuItem>
-                    </Select>
-                  )}
-                />
-              </FormControl>
-            </div>
+                      Delete
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+
+            <button
+              type="button"
+              className="Submit_Button daily-report-form-block"
+              onClick={() => append()}
+            >
+              Add no. of trips for rocks
+            </button>
             <label className="Input_Label daily-report-form-block Bold_Text">
               Labour Force count
             </label>
-            <TextField
-              id="outlined-number"
-              {...register("Number_Of_Trips", { required: true })}
-              label="NUMBER OF TRIPS"
-              type="number"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              className="daily-report-form-flex"
-            />
             <div className="numbers">
               <TextField
                 id="outlined-number"
@@ -381,7 +415,7 @@ const DRCreateDams = (props) => {
 
             <div className="submit-div">
               <button
-                className="Submit_Button daily-report-form-flex"
+                className="Submit_Button daily-report-form-block"
                 type="submit"
               >
                 <span className="submit-span">Submit Form</span>

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import ReactQuill from "react-quill";
 import { useNavigate, useParams } from "react-router-dom";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { RadioGroup, Radio, FormControlLabel } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -27,8 +27,9 @@ const DREditDams = (props) => {
       Shift: "",
       Activities: "",
       PlantEQ: "",
-      RockType: "",
-      Number_Of_Trips: "",
+      // RockType: "",
+      // Number_Of_Trips: "",
+      rocktrip: "",
       SMEC_Ins: "",
       CGGC_Ins: "",
       Safety_Officer: "",
@@ -40,6 +41,11 @@ const DREditDams = (props) => {
       Welder: "",
       Chinese_Staff: "",
     },
+  });
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "rocktrip",
   });
 
   const params = useParams();
@@ -171,6 +177,12 @@ const DREditDams = (props) => {
                 )}
               />
             </div>
+            <label className="Input_Label daily-report-form-block Bold_Text">
+              <p>
+                Press space then enter to go to a new line
+                <strong>(Phone Users)</strong>
+              </p>
+            </label>
             <div className="ActandPlant_Container daily-report-form-block">
               <label className="Input_Label">Activities</label>
               <Controller
@@ -211,43 +223,74 @@ const DREditDams = (props) => {
                 )}
               />
             </div>
-            <div className="Rocktype_Container daily-report-form-flex">
-              <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Rock type</InputLabel>
-                <Controller
-                  control={control}
-                  name="RockType"
-                  defaultValue={""}
-                  render={({ field: { onChange, value } }) => (
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={value}
-                      label="RockType"
-                      onChange={onChange}
+
+            <ul>
+              {fields.map((item, index) => {
+                return (
+                  <li key={item.id}>
+                    <div className="Rocktype_Container daily-report-form-flex">
+                      <FormControl fullWidth>
+                        <InputLabel id="demo-simple-select-label">
+                          Rock type
+                        </InputLabel>
+                        <Controller
+                          control={control}
+                          name={`rocktrip.${index}.RockType`}
+                          defaultValue={"None"}
+                          render={({ field: { onChange, value } }) => (
+                            <Select
+                              labelId="demo-simple-select-label"
+                              id="demo-simple-select"
+                              value={value}
+                              label="RockType"
+                              onChange={onChange}
+                            >
+                              <MenuItem value={"2A2"}>2A2</MenuItem>
+                              <MenuItem value={"3A"}>3A</MenuItem>
+                              <MenuItem value={"3B"}>3B</MenuItem>
+                              <MenuItem value={"3C"}>3C</MenuItem>
+                              <MenuItem value={"Oversize Rocks"}>
+                                Oversize Rocks
+                              </MenuItem>
+                            </Select>
+                          )}
+                        />
+                      </FormControl>
+                      <TextField
+                        id="outlined-number"
+                        {...register(`rocktrip.${index}.Number_Of_Trips`, {
+                          required: true,
+                        })}
+                        label="NO. OF TRIPS"
+                        type="number"
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                        className="no-of-trips"
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      className="Submit_Button daily-report-form-block"
+                      onClick={() => remove(index)}
                     >
-                      <MenuItem value={"2A2"}>2A2</MenuItem>
-                      <MenuItem value={"3A"}>3A</MenuItem>
-                      <MenuItem value={"3B"}>3B</MenuItem>
-                      <MenuItem value={"3C"}>3C</MenuItem>
-                      <MenuItem value={"Oversize Rocks"}>
-                        Oversize Rocks
-                      </MenuItem>
-                    </Select>
-                  )}
-                />
-              </FormControl>
-            </div>
-            <TextField
-              id="outlined-number"
-              {...register("Number_Of_Trips", { required: true })}
-              label="NUMBER OF TRIPS"
-              type="number"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              className="daily-report-form-flex"
-            />
+                      Delete
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+
+            <button
+              type="button"
+              className="Submit_Button daily-report-form-block"
+              onClick={() => append()}
+            >
+              Add no. of trips for rocks
+            </button>
+            <label className="Input_Label daily-report-form-block Bold_Text">
+              Labour Force count
+            </label>
             <div className="numbers">
               <TextField
                 id="outlined-number"
@@ -362,7 +405,7 @@ const DREditDams = (props) => {
         <input className="Form_Input" type="text" id="activities" /> */}
             <div className="submit-div">
               <button
-                className="Submit_Button daily-report-form-flex"
+                className="Submit_Button daily-report-form-block"
                 type="submit"
               >
                 <span className="submit-span">Submit Form</span>

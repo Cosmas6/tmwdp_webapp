@@ -127,11 +127,13 @@ $layout-breakpoint-small: 960px;
 }
 
 .Submit_Button {
+  display: inline-block;
+  text-align: center;
   background: #1976d2;
   color: #ffffff;
   text-transform: uppercase;
   padding: 20px;
-  width: 100%;
+  width: fit-content;
   margin-top: 40px;
   font-size: 16px;
   letter-spacing: 3px;

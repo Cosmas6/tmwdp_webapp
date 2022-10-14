@@ -48,7 +48,7 @@ export default function Dashboard() {
 
     axios(configuration)
       .then((result) => {
-        if (!result) {
+        if (!result.data) {
           navigate("/login");
         }
         const userInfoArray = result.data.userDepartment;

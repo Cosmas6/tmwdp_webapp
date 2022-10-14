@@ -46,6 +46,8 @@ const DRDams = (props) => {
     return;
   }, [params.id, navigate]);
 
+  console.log(report.rocktrip);
+
   const fetchReportPdf = async () => {
     await fetch("https://v2018.api2pdf.com/chrome/html", {
       method: "post",
@@ -83,7 +85,9 @@ const DRDams = (props) => {
                   <th>INSPECTOR</th>
                   <td colspan="1">${report.User}</td>
                   <th>SECTION:</th>
-                  <td colspan="4" style="padding-left: 10px">${report.Section}</td>
+                  <td colspan="4" style="padding-left: 10px">${
+                    report.Section
+                  }</td>
                 </tr>
                 <tr>
                   <th>WEATHER:</th>
@@ -99,13 +103,17 @@ const DRDams = (props) => {
                   <th colspan="6">ACTIVITIES:</th>
                 </tr>
                 <tr>
-                  <td colspan="6" style="padding-left: 10px">${report.Activities}</td>
+                  <td colspan="6" style="padding-left: 10px">${
+                    report.Activities
+                  }</td>
                 </tr>
                 <tr>
                   <th colspan="6">PLANT AND EQUIPMENT:</th>
                 </tr>
                 <tr>
-                  <td colspan="6" style="padding-left: 10px">${report.PlantEQ}</td>
+                  <td colspan="6" style="padding-left: 10px">${
+                    report.PlantEQ
+                  }</td>
                 </tr>
                 <tr>
                   <th colspan="6">LABOUR</th>
@@ -121,7 +129,9 @@ const DRDams = (props) => {
                   <td width="40%">SMEC INSPECTORS</td>
                   <td style="padding-left: 10px">${report.SMEC_Ins}</td>
                   <td>SMEC ENGINEER</td>
-                  <td colspan="3" style="padding-left: 10px">${report.SMEC_Eng}</td>
+                  <td colspan="3" style="padding-left: 10px">${
+                    report.SMEC_Eng
+                  }</td>
                 </tr>
                 <tr>
                   <td>CGGC INSPECTORS</td>
@@ -151,7 +161,9 @@ const DRDams = (props) => {
                   <td></td>
                   <td></td>
                   <td>WELDER</td>
-                  <td colspan="3" style="padding-left: 10px">${report.Welder}</td>
+                  <td colspan="3" style="padding-left: 10px">${
+                    report.Welder
+                  }</td>
                 </tr>
                 <tr>
                   <td></td>
@@ -166,7 +178,16 @@ const DRDams = (props) => {
                 </tr>
                 <tr>
                   <td colspan="6">
-                    ${report.Number_Of_Trips} trips made for Rock Type ${report.RockType} during ${report.Shift}
+                  <ul>
+                  ${report.rocktrip.map((item, index) => {
+                    return (
+                      <li key={index}>
+                        {item.Number_Of_Trips} trips made for Rock Type{" "}
+                        {item.RockType} during {report.Shift}
+                      </li>
+                    );
+                  })}
+                </ul>
                   </td>
                 </tr>
                 <tr>
@@ -295,9 +316,19 @@ const DRDams = (props) => {
                     <th colSpan="6">REMARKS/OBSERVATION:</th>
                   </tr>
                   <tr>
-                    <td colspan="6">
-                      {report.Number_Of_Trips} trips made for Rock Type{" "}
-                      {report.RockType} during {report.Shift}
+                    <td colSpan="6">
+                      <ul>
+                        {report.rocktrip &&
+                          report.rocktrip?.map((item, index) => {
+                            console.log(item.RockType);
+                            return (
+                              <li key={index}>
+                                {item.Number_Of_Trips} trips made for Rock Type{" "}
+                                {item.RockType} during {report.Shift}
+                              </li>
+                            );
+                          })}
+                      </ul>
                     </td>
                   </tr>
                   <tr>
