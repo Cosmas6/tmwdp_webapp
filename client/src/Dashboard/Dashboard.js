@@ -5,7 +5,6 @@ import "../stylesheets/dashboard.scss";
 import Cookies from "universal-cookie";
 import DRNav from "./DRNav";
 import InstNav from "./InstNav";
-import axios from "axios";
 import GanttNav from "./GanttNav";
 const cookies = new Cookies();
 
@@ -17,52 +16,11 @@ export default function Dashboard() {
   };
 
   useEffect(() => {
+    const token = cookies.get("TOKEN");
+    console.log(token);
     if (!token) {
       navigate("/login");
     }
-  }, []);
-
-  const [userInfo, setUserInfo] = useState();
-  console.log(userInfo);
-
-  // function checkDept() {
-  //   switch (userInfo) {
-  //     case "Spillway&Tunnels":
-  //       return <SpillwayandTunnelNav />;
-  //     case "Instrumentation":
-  //       return <InstNav />;
-  //     default:
-  //       return "foo";
-  //   }
-  // }
-
-  useEffect(() => {
-    const token = cookies.get("TOKEN");
-    const configuration = {
-      method: "get",
-      url: "https://nodejs.tmwdp.co.ke/login/currentUser",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-
-    axios(configuration)
-      .then((result) => {
-        if (!result.data) {
-          navigate("/login");
-        }
-        const userInfoArray = result.data.userDepartment;
-
-        // const userResult = userInfoArray.map((obj) => {
-        //   return obj;
-        // });
-
-        setUserInfo(userInfoArray.toString());
-      })
-      .catch((error) => {
-        //initialize error
-        error = new Error();
-      });
   }, []);
 
   const logOut = () => {

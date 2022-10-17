@@ -1,4 +1,5 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useState } from "react";
+import { TailSpin } from "react-loader-spinner";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { Link } from "react-router-dom";
@@ -10,9 +11,11 @@ const cookies = new Cookies();
 function Login() {
   const formRef = useRef();
   const [loginState, setLoginState] = useState(false);
+  const [loading, setLoading] = useState();
   const { register, errors, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
+    setLoading(true);
     const formElement = formRef.current;
     const email = data.Email;
     const password = data.Password;
@@ -28,7 +31,10 @@ function Login() {
 
     axios(configuration)
       .then((result) => {
-        setLoginState(true);
+        if (result.data.token) {
+          setLoginState(true);
+          setLoading(false);
+        }
         formElement.reset();
         // set the cookie
         cookies.set("TOKEN", result.data.token, {
@@ -72,7 +78,22 @@ function Login() {
               })}
             />
             <button className="Submit_Button" type="submit">
-              LOGIN
+              {loading ? (
+                <div className="Loading_Div_Buttons">
+                  <TailSpin
+                    height="50"
+                    width="50"
+                    color="#ffffff"
+                    ariaLabel="tail-spin-loading"
+                    radius="1"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                    visible={true}
+                  />
+                </div>
+              ) : (
+                `LOGIN`
+              )}
             </button>
             <div className="error-div">
               {loginState ? (

@@ -25,15 +25,6 @@
     width: 100%;
   }
 
-  li {
-    list-style-type: none;
-  }
-
-  ul {
-    list-style: none;
-    padding-left: 0;
-  }
-
   td,
   tr,
   th {
@@ -75,12 +66,5 @@
       @extend .Download_Link;
       background: black;
     }
-  }
-
-  .Download_Link:hover {
-    transition: 0.3s;
-    background: #ffffff;
-    color: #1976d2;
-    border: 1px solid #1976d2;
   }
 }

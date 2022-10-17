@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { TailSpin } from "react-loader-spinner";
 import axios from "axios";
 import { components } from "react-select";
 import { default as ReactSelect } from "react-select";
@@ -15,6 +16,7 @@ export const colourOptions = [
 const Register = () => {
   const formRef = useRef();
   const { register, errors, handleSubmit, reset, control } = useForm();
+  const [loading, setLoading] = useState();
   const [registered, setRegistered] = useState(false);
 
   const Option = (props) => {
@@ -33,6 +35,7 @@ const Register = () => {
   };
 
   const onSubmit = (data) => {
+    setLoading(true);
     const formElement = formRef.current;
     const firstName = data.First_Name;
     const lastName = data.Last_Name;
@@ -54,7 +57,9 @@ const Register = () => {
 
     axios(configuration)
       .then((result) => {
+        //if result is status 200
         setRegistered(true);
+        setLoading(false);
         window.location.href = "/login";
         formElement.reset();
       })
@@ -128,7 +133,22 @@ const Register = () => {
               })}
             />
             <button className="Submit_Button" type="submit">
-              Register
+              {loading ? (
+                <div className="Loading_Div_Buttons">
+                  <TailSpin
+                    height="50"
+                    width="50"
+                    color="#ffffff"
+                    ariaLabel="tail-spin-loading"
+                    radius="1"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                    visible={true}
+                  />
+                </div>
+              ) : (
+                `REGISTER`
+              )}
             </button>
             <div className="feedback-div">
               {registered ? (

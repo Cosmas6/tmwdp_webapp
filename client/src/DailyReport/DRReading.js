@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { TailSpin } from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import "../stylesheets/drreading.scss";
 
@@ -24,6 +25,7 @@ const DRReading = (props) => {
   }, [reports.length]);
 
   const Report = (props) => {
+    const [loading, setLoading] = useState(false);
     const dateString = new Date(String(props.report.Date));
     const enUSFormatter = new Intl.DateTimeFormat("en-US", {
       year: "numeric",
@@ -47,11 +49,29 @@ const DRReading = (props) => {
           <button
             className="btn btn-link delete-button"
             onClick={() => {
+              setLoading(true);
               props.deleteReport(props.report._id);
             }}
           >
-            <i className="fa fa-trash" aria-hidden="true"></i>
-            <span>Delete</span>
+            {loading ? (
+              <div className="Loading_Div_Buttons">
+                <TailSpin
+                  height="30"
+                  width="40"
+                  color="#ffffff"
+                  ariaLabel="tail-spin-loading"
+                  radius="1"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                  visible={true}
+                />
+              </div>
+            ) : (
+              <>
+                <i className="fa fa-trash" aria-hidden="true"></i>
+                <span>Delete</span>
+              </>
+            )}
           </button>
           <Link
             className="btn btn-link view-button"

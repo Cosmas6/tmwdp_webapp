@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { TailSpin } from "react-loader-spinner";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useNavigate } from "react-router-dom";
@@ -23,6 +24,7 @@ const DRCreate = (props) => {
   const navigate = useNavigate();
 
   const [userInfo, setUserInfo] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const token = cookies.get("TOKEN");
@@ -51,6 +53,7 @@ const DRCreate = (props) => {
   }, []);
 
   const onSubmit = async (data, e) => {
+    setLoading(true);
     e.preventDefault();
     const output = {
       ...data,
@@ -64,6 +67,7 @@ const DRCreate = (props) => {
       },
       body: JSON.stringify(output),
     }).catch((error) => {
+      setLoading(false);
       window.alert(error);
       return;
     });
@@ -359,7 +363,22 @@ const DRCreate = (props) => {
                 className="Submit_Button daily-report-form-flex"
                 type="submit"
               >
-                <span className="submit-span">Submit Form</span>
+                {loading ? (
+                  <div className="Loading_Div_Buttons">
+                    <TailSpin
+                      height="30"
+                      width="40"
+                      color="#ffffff"
+                      ariaLabel="tail-spin-loading"
+                      radius="1"
+                      wrapperStyle={{}}
+                      wrapperClass=""
+                      visible={true}
+                    />
+                  </div>
+                ) : (
+                  <span className="submit-span">Submit Form</span>
+                )}
               </button>
             </div>
           </form>

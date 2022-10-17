@@ -39,6 +39,7 @@
     "react-dom": "^18.2.0",
     "react-google-charts": "^4.0.0",
     "react-hook-form": "^7.36.0",
+    "react-loader-spinner": "^5.3.4",
     "react-mustache": "^0.1.5",
     "react-perfect-scrollbar": "^1.5.8",
     "react-quill": "^2.0.0",

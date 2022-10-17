@@ -1,12 +1,14 @@
 import ReactMustache from "react-mustache";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
+import { ProgressBar } from "react-loader-spinner";
 import "../stylesheets/dailyreport.scss";
 
 const DRSpillwayAndTunnels = (props) => {
   const params = useParams();
   const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(false);
   const [report, setReport] = useState([]);
   const [newDate, setNewDate] = useState();
   const [editBtn, setEditBtn] = useState();
@@ -47,6 +49,7 @@ const DRSpillwayAndTunnels = (props) => {
   }, [params.id, navigate]);
 
   const fetchReportPdf = async () => {
+    setLoading(true);
     await fetch("https://v2018.api2pdf.com/chrome/html", {
       method: "post",
       headers: {
@@ -175,6 +178,7 @@ const DRSpillwayAndTunnels = (props) => {
     })
       .then((res) => res.json())
       .then((res) => {
+        setLoading(false);
         document.getElementById(
           "Download_Button"
         ).innerHTML = `<a className="Download_Button" href="${res.pdf}" >Download PDF</a>`;
@@ -289,6 +293,22 @@ const DRSpillwayAndTunnels = (props) => {
               <button className="Download_Link" onClick={fetchReportPdf}>
                 Generate Link
               </button>
+              {loading ? (
+                <div className="Loading_Div">
+                  <ProgressBar
+                    height="60"
+                    width="60"
+                    ariaLabel="progress-bar-loading"
+                    wrapperStyle={{}}
+                    wrapperClass="progress-bar-wrapper"
+                    borderColor="#F4442E"
+                    barColor="#1976d2"
+                  />
+                  <p>Generating Download Link.....</p>
+                </div>
+              ) : (
+                ``
+              )}
               <div id="Download_Button"></div>
               <Link
                 className="Download_Link"

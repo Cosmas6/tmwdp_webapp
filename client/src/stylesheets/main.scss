@@ -141,11 +141,26 @@ $layout-breakpoint-small: 960px;
   border-radius: 0.35rem;
   border-style: none;
 }
-.Submit_Button:hover {
-  transition: 0.3s;
-  background: #ffffff;
-  color: #1976d2;
-  border: 0.5px solid #1976d2;
+
+.Loading_Div_Buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  p {
+    margin: 0 0 0 10px;
+  }
+}
+
+.Loading_Div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+
+  p {
+    margin: 0 0 0 10px;
+  }
 }
 
 .Button_Edits {
