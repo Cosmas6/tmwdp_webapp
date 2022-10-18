@@ -8,9 +8,9 @@ import { PersistGate } from "redux-persist/integration/react";
 import storage from "redux-persist/lib/storage";
 import reportData from "./store/reducers/reportData";
 import { BrowserRouter } from "react-router-dom";
+import "../public/index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import 'simplebar/dist/simplebar.min.css';
-
+import "simplebar/dist/simplebar.min.css";
 
 const persistConfig = {
   key: "root",
@@ -34,6 +34,12 @@ let persistor = persistStore(store);
 //   console.log(store.getState().lastAction);
 // });
 
+const loader = document.querySelector(".loader");
+
+const showLoader = () => loader.classList.remove("loader--hide");
+
+const hideLoader = () => loader.classList.add("loader--hide");
+
 const container = document.getElementById("root");
 const root = createRoot(container);
 
@@ -42,7 +48,7 @@ root.render(
     <BrowserRouter>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <App tab="home" />
+          <App tab="home" hideLoader={hideLoader} showLoader={showLoader} />
         </PersistGate>
       </Provider>
     </BrowserRouter>

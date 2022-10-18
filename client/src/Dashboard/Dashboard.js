@@ -17,7 +17,6 @@ export default function Dashboard() {
 
   useEffect(() => {
     const token = cookies.get("TOKEN");
-    console.log(token);
     if (!token) {
       navigate("/login");
     }

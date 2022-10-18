@@ -17,7 +17,7 @@ router.post("/", (request, response) => {
           // check if password matches
           if (!passwordCheck) {
             return response.status(400).send({
-              message: "Passwords inner block does not match",
+              message: "Incorrect password. Please try again",
               error,
             });
           }
@@ -32,10 +32,10 @@ router.post("/", (request, response) => {
               userLastName: user.lastName,
             },
             "RANDOM-TOKEN",
-            { expiresIn: "24h" }
+            { expiresIn: "12h" }
           );
           response.status(200).send({
-            message: "Login Successful",
+            message: "Login Successful, redirecting....",
             email: user.email,
             token,
           });
@@ -43,7 +43,7 @@ router.post("/", (request, response) => {
         // catch error if password does not match
         .catch((error) => {
           response.status(400).send({
-            message: "Passwords does not match",
+            message: "Incorrect password. Please try again",
             error,
           });
         });

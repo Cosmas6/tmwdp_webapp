@@ -17,7 +17,7 @@ const Register = () => {
   const formRef = useRef();
   const { register, errors, handleSubmit, reset, control } = useForm();
   const [loading, setLoading] = useState();
-  const [registered, setRegistered] = useState(false);
+  const [registerStatus, setRegisterStatus] = useState();
 
   const Option = (props) => {
     return (
@@ -58,15 +58,14 @@ const Register = () => {
     axios(configuration)
       .then((result) => {
         //if result is status 200
-        setRegistered(true);
+        setRegisterStatus(``);
         setLoading(false);
         window.location.href = "/login";
         formElement.reset();
       })
       .catch((error) => {
-        //initialize error
-        // error = new Error();
-        console.log(error);
+        setLoading(false);
+        setRegisterStatus(error.response.data.message);
       });
   };
 
@@ -151,11 +150,7 @@ const Register = () => {
               )}
             </button>
             <div className="feedback-div">
-              {registered ? (
-                <p className="text-success">You Are Registered Successfully</p>
-              ) : (
-                <p className="text-danger">You Are Not Registered</p>
-              )}
+              <p className="text-danger">{registerStatus}</p>
             </div>
             <p>
               Already a Member? <Link to="/login">Login Instead</Link>

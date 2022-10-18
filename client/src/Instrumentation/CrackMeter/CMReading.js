@@ -58,7 +58,6 @@ const CMReading = (props) => {
       const readings = await response.json();
       setReadings(readings);
     }
-    console.log(readings);
 
     getReadings();
 

@@ -4,6 +4,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useNavigate } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
 import { RadioGroup, Radio, FormControlLabel } from "@mui/material";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -28,7 +29,6 @@ const DRCreate = (props) => {
 
   useEffect(() => {
     const token = cookies.get("TOKEN");
-    console.log(token);
     const configuration = {
       method: "get",
       url: "https://nodejs.tmwdp.co.ke/login/currentUser",
@@ -59,7 +59,6 @@ const DRCreate = (props) => {
       ...data,
       User: userInfo,
     };
-    console.log(output, "output");
     await fetch(props.fetchLink, {
       method: "POST",
       headers: {
@@ -104,21 +103,6 @@ const DRCreate = (props) => {
             className="Form_Container card"
             onSubmit={handleSubmit(onSubmit)}
           >
-            {/* <div className="User_Container daily-report-form-flex">
-              <TextField
-                id="outlined-read-only-input"
-                label="User"
-                type="text"
-                value={userInfo}
-                InputProps={{
-                  readOnly: true,
-                  shrink: false,
-                }}
-                {...register("User", { required: true })}
-                className="user-input"
-              />
-            </div> */}
-
             <div className="Section_Container daily-report-form-block">
               <TextField
                 id="outlined-read-only-input"
@@ -217,7 +201,7 @@ const DRCreate = (props) => {
                 name="Activities"
                 control={control}
                 rules={{
-                  required: true,
+                  required: "This field is required",
                 }}
                 theme="snow"
                 render={({ field }) => (
@@ -231,13 +215,20 @@ const DRCreate = (props) => {
                   />
                 )}
               />
+              <ErrorMessage
+                errors={errors}
+                name="Activities"
+                render={({ message }) => (
+                  <p className="text-danger mt-2">{message}</p>
+                )}
+              />
             </div>
             <div className="ActandPlant_Container daily-report-form-block">
               <Controller
                 name="PlantEQ"
                 control={control}
                 rules={{
-                  required: true,
+                  required: "This field is required",
                 }}
                 theme="snow"
                 render={({ field }) => (
@@ -249,6 +240,13 @@ const DRCreate = (props) => {
                       field.onChange(text);
                     }}
                   />
+                )}
+              />
+              <ErrorMessage
+                errors={errors}
+                name="PlantEQ"
+                render={({ message }) => (
+                  <p className="text-danger mt-2">{message}</p>
                 )}
               />
             </div>

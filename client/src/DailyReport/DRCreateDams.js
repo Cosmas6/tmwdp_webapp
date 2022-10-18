@@ -4,6 +4,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useNavigate } from "react-router-dom";
 import { useForm, Controller, useFieldArray } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
 import { RadioGroup, Radio, FormControlLabel } from "@mui/material";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -208,7 +209,7 @@ const DRCreateDams = (props) => {
                 name="Activities"
                 control={control}
                 rules={{
-                  required: true,
+                  required: "This field is required",
                 }}
                 theme="snow"
                 render={({ field }) => (
@@ -222,13 +223,21 @@ const DRCreateDams = (props) => {
                   />
                 )}
               />
+              <ErrorMessage
+                errors={errors}
+                name="Activities"
+                render={({ message }) => (
+                  <p className="text-danger mt-2">{message}</p>
+                )}
+              />
             </div>
+
             <div className="ActandPlant_Container daily-report-form-block">
               <Controller
                 name="PlantEQ"
                 control={control}
                 rules={{
-                  required: true,
+                  required: "This field is required",
                 }}
                 theme="snow"
                 render={({ field }) => (
@@ -240,6 +249,13 @@ const DRCreateDams = (props) => {
                       field.onChange(text);
                     }}
                   />
+                )}
+              />
+              <ErrorMessage
+                errors={errors}
+                name="PlantEQ"
+                render={({ message }) => (
+                  <p className="text-danger mt-2">{message}</p>
                 )}
               />
             </div>
@@ -265,7 +281,9 @@ const DRCreateDams = (props) => {
                               label="RockType"
                               onChange={onChange}
                             >
+                              <MenuItem value={"2A1"}>2A1</MenuItem>
                               <MenuItem value={"2A2"}>2A2</MenuItem>
+                              <MenuItem value={"2B"}>2B</MenuItem>
                               <MenuItem value={"3A"}>3A</MenuItem>
                               <MenuItem value={"3B"}>3B</MenuItem>
                               <MenuItem value={"3C"}>3C</MenuItem>
@@ -314,9 +332,10 @@ const DRCreateDams = (props) => {
             <div className="numbers">
               <TextField
                 id="outlined-number"
-                {...register("SMEC_Ins", { required: true })}
+                {...register("SMEC_Ins", { required: "A value is required" })}
                 label="SMEC INSPECTORS"
                 type="number"
+                onWheel={(e) => e.target.blur()}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -324,9 +343,10 @@ const DRCreateDams = (props) => {
               />
               <TextField
                 id="outlined-number"
-                {...register("CGGC_Ins", { required: true })}
+                {...register("CGGC_Ins", { required: "A value is required" })}
                 label="CGGC INSPECTORS"
                 type="number"
+                onWheel={(e) => e.target.blur()}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -334,9 +354,12 @@ const DRCreateDams = (props) => {
               />
               <TextField
                 id="outlined-number"
-                {...register("Safety_Officer", { required: true })}
+                {...register("Safety_Officer", {
+                  required: "A value is required",
+                })}
                 label="SAFETY OFFICER"
                 type="number"
+                onWheel={(e) => e.target.blur()}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -344,7 +367,7 @@ const DRCreateDams = (props) => {
               />
               <TextField
                 id="outlined-number"
-                {...register("Drivers", { required: true })}
+                {...register("Drivers", { required: "A value is required" })}
                 label="DRIVERS"
                 type="number"
                 InputLabelProps={{
@@ -354,7 +377,7 @@ const DRCreateDams = (props) => {
               />
               <TextField
                 id="outlined-number"
-                {...register("SMEC_Eng", { required: true })}
+                {...register("SMEC_Eng", { required: "A value is required" })}
                 label="SMEC ENGINEER"
                 type="number"
                 InputLabelProps={{
@@ -364,9 +387,12 @@ const DRCreateDams = (props) => {
               />
               <TextField
                 id="outlined-number"
-                {...register("Site_Foreman", { required: true })}
+                {...register("Site_Foreman", {
+                  required: "A value is required",
+                })}
                 label="SITE FOREMAN"
                 type="number"
+                onWheel={(e) => e.target.blur()}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -374,9 +400,12 @@ const DRCreateDams = (props) => {
               />
               <TextField
                 id="outlined-number"
-                {...register("Plant_Operator", { required: true })}
+                {...register("Plant_Operator", {
+                  required: "A value is required",
+                })}
                 label="PLANT OPERATOR"
                 type="number"
+                onWheel={(e) => e.target.blur()}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -384,9 +413,12 @@ const DRCreateDams = (props) => {
               />
               <TextField
                 id="outlined-number"
-                {...register("Unskilled_Labour", { required: true })}
+                {...register("Unskilled_Labour", {
+                  required: "A value is required",
+                })}
                 label="UNSKILLED LABOUR"
                 type="number"
+                onWheel={(e) => e.target.blur()}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -394,9 +426,10 @@ const DRCreateDams = (props) => {
               />
               <TextField
                 id="outlined-number"
-                {...register("Welder", { required: true })}
+                {...register("Welder", { required: "A value is required" })}
                 label="WELDER"
                 type="number"
+                onWheel={(e) => e.target.blur()}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -404,9 +437,12 @@ const DRCreateDams = (props) => {
               />
               <TextField
                 id="outlined-number"
-                {...register("Chinese_Staff", { required: true })}
+                {...register("Chinese_Staff", {
+                  required: "A value is required",
+                })}
                 label="CHINESE STAFF"
                 type="number"
+                onWheel={(e) => e.target.blur()}
                 InputLabelProps={{
                   shrink: true,
                 }}

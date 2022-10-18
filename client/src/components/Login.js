@@ -10,7 +10,7 @@ const cookies = new Cookies();
 
 function Login() {
   const formRef = useRef();
-  const [loginState, setLoginState] = useState(false);
+  const [loginStatus, setLoginStatus] = useState();
   const [loading, setLoading] = useState();
   const { register, errors, handleSubmit } = useForm();
 
@@ -32,7 +32,7 @@ function Login() {
     axios(configuration)
       .then((result) => {
         if (result.data.token) {
-          setLoginState(true);
+          setLoginStatus(``);
           setLoading(false);
         }
         formElement.reset();
@@ -43,6 +43,8 @@ function Login() {
         window.location.href = "/dashboard";
       })
       .catch((error) => {
+        setLoginStatus(error.response.data.message);
+        setLoading(false);
         error = new Error();
       });
   };
@@ -96,11 +98,7 @@ function Login() {
               )}
             </button>
             <div className="error-div">
-              {loginState ? (
-                <p className="text-success">You Are Logged in Successfully</p>
-              ) : (
-                <p className="text-danger">You Are Not Logged in</p>
-              )}
+              <p className="text-danger">{loginStatus}</p>
             </div>
             <p>
               Not Registered? <Link to="/register">Register Instead</Link>

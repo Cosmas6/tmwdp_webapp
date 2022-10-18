@@ -32,9 +32,9 @@ router.post("/", (request, response) => {
           });
         })
         .catch((error) => {
-          console.log(error,"ERROR");
+          console.log(error, "ERROR");
           response.status(500).send({
-            message: "Error creating user",
+            message: "User already registered. Please login instead",
             error,
           });
         });
