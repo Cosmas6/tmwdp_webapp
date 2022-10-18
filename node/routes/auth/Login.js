@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Schema = require("../../mongoDB/userModel");
+const Schema = require("../../mongoDB/authModel");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 

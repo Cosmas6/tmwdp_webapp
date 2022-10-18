@@ -56,7 +56,7 @@
   background: #1976d2;
   overflow-x: hidden;
   padding: 0;
-  overflow: hidden !important;
+  overflow: hidden;
   overflow-anchor: none;
   touch-action: auto;
   transition: all 0.3s;
@@ -84,25 +84,25 @@
 }
 
 .sidebar-brand-text {
-  font-weight: 600 !important;
+  font-weight: 600 ;
   font-size: 30px;
-  color: #fff !important;
-  margin-left: 0.75rem !important;
+  color: #fff ;
+  margin-left: 0.75rem ;
   position: relative;
   vertical-align: middle;
 }
 
 .horizontal-line {
-  margin: 0.5rem 1rem !important;
+  margin: 0.5rem 1rem;
   border-top: 4px solid white;
   border-radius: 5px;
   opacity: 1;
 }
 
 .sidenav-footer {
-  width: 100% !important;
-  bottom: 0 !important;
-  position: absolute !important;
+  width: 100%;
+  bottom: 0;
+  position: absolute;
 
   .nav-link {
     @extend .nav-link;

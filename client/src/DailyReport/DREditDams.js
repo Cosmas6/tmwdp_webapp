@@ -27,8 +27,6 @@ const DREditDams = (props) => {
       Shift: "",
       Activities: "",
       PlantEQ: "",
-      // RockType: "",
-      // Number_Of_Trips: "",
       rocktrip: "",
       SMEC_Ins: "",
       CGGC_Ins: "",
@@ -55,7 +53,7 @@ const DREditDams = (props) => {
     async function fetchReport() {
       const id = params.id.toString();
       const response = await fetch(props.fetchLink);
-
+      
       if (!response.ok) {
         const message = `An error has occurred: ${response.statusText}`;
         window.alert(message);
@@ -65,7 +63,7 @@ const DREditDams = (props) => {
       const report = await response.json();
 
       if (!report) {
-        window.alert(`Reading with id ${id} not found`);
+        window.alert(`Report with id ${id} not found`);
         navigate(props.navigateLink);
         return;
       }

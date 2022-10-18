@@ -28,7 +28,7 @@ const CMReading = (props) => {
               props.reading._id
             }`}
           >
-            <i class="fa fa-pencil" aria-hidden="true"></i>
+            <i className="fa fa-pencil" aria-hidden="true"></i>
             <span>Edit</span>
           </Link>
           <button
@@ -37,7 +37,7 @@ const CMReading = (props) => {
               props.deleteRecord(props.reading._id);
             }}
           >
-            <i class="fa fa-trash" aria-hidden="true"></i>
+            <i className="fa fa-trash" aria-hidden="true"></i>
             <span>Delete</span>
           </button>
         </td>

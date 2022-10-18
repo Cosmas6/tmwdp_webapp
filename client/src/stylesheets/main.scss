@@ -92,8 +92,8 @@ $layout-breakpoint-small: 960px;
 
 .Container_Left_Margin {
   @media (min-width: 768px) {
-    margin-left: 270px;
-    width: calc(100% - 280px);
+    margin-left: 270px !important;
+    width: calc(100% - 280px) !important;
   }
 }
 

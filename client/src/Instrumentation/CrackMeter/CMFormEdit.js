@@ -110,11 +110,11 @@ const CMFormEdit = (props) => {
                 <Controller
                   control={control}
                   name="DateOfReading"
-                  defaultValue={new Date()}
-                  render={({ field: { onChange, value } }) => (
+                  render={({ field: { onChange, value, field } }) => (
                     <DesktopDatePicker
+                      {...field}
                       label="Date Of Reading"
-                      inputFormat="dd/MMM/yyyy"
+                      inputFormat="dd MMMM yyyy"
                       disableMaskedInput
                       value={value}
                       onChange={onChange}
@@ -127,9 +127,10 @@ const CMFormEdit = (props) => {
 
             <div className="X-group">
               <TextField
-                id="X1"
+                id="outlined-number"
                 label="X1"
                 type="text"
+                step="any"
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -137,9 +138,10 @@ const CMFormEdit = (props) => {
                 {...register("X1", { required: true })}
               />
               <TextField
-                id="X2"
+                id="outlined-number"
                 label="X2"
                 type="text"
+                step="any"
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -150,9 +152,10 @@ const CMFormEdit = (props) => {
 
             <div className="Y-group">
               <TextField
-                id="Y1"
+                id="outlined-number"
                 label="Y1"
                 type="text"
+                step="any"
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -160,9 +163,10 @@ const CMFormEdit = (props) => {
                 {...register("Y1", { required: true })}
               />
               <TextField
-                id="Y2"
+                id="outlined-number"
                 label="Y2"
                 type="text"
+                step="any"
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -173,9 +177,10 @@ const CMFormEdit = (props) => {
 
             <div className="Z-group">
               <TextField
-                id="Z1"
+                id="outlined-number"
                 label="Z1"
                 type="text"
+                step="any"
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -183,9 +188,10 @@ const CMFormEdit = (props) => {
                 {...register("Z1", { required: true })}
               />
               <TextField
-                id="Z2"
+                id="outlined-number"
                 label="Z2"
                 type="text"
+                step="any"
                 InputLabelProps={{
                   shrink: true,
                 }}

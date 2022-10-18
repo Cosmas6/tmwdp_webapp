@@ -1,53 +1,50 @@
 const express = require("express");
 const router = express.Router();
-const CMdbo = require("../../../mongoDB/crackmeterConn");
 const ObjectId = require("mongodb").ObjectId;
+const mongoose = require("mongoose");
+const CMSchema = require("../../../mongoDB/crackMeterModel");
 
 // This section will help you get a list of all the records.
 
-router.get("/", function (req, res) {
-  let db_connect = CMdbo.getDb();
+router.get("/", async (req, response) => {
   var query = { CrackMeter: "7" };
-  db_connect
-    .collection("C1toC16")
-    .find(query)
-    .sort({ DateOfReading: -1 })
-    .limit(10)
-    .toArray(function (err, result) {
-      if (err) throw err;
-      console.log(err);
-      res.json(result);
-    });
+  try {
+    const res = await CMSchema.find(query).sort({ DateOfReading: -1 }).limit(10);
+    response.json(res);
+  } catch (error) {
+    console.error(error);
+    // handle the error
+  }
 });
 
-router.get("/graphC7", function (req, res) {
-  let db_connect = CMdbo.getDb();
+router.get("/graphC1", async (req, response) => {
   var query = { CrackMeter: "7" };
-  db_connect
-    .collection("C1toC16")
-    .find(query)
-    .sort({ DateOfReading: 1 })
-    .toArray(function (err, result) {
-      if (err) throw err;
-      console.log(err);
-      res.json(result);
-    });
+  try {
+    const res = await CMSchema.find(query).sort({ DateOfReading: 1 });
+    response.json(res);
+  } catch (error) {
+    console.error(error);
+    // handle the error
+  }
 });
 
 // This section will help you get a single record by id
-router.get("/:id", function (req, res) {
-  let db_connect = CMdbo.getDb();
+router.get("/:id", async (req, response) => {
   let myquery = { _id: ObjectId(req.params.id), CrackMeter: "7" };
-  db_connect.collection("C1toC16").findOne(myquery, function (err, result) {
-    if (err) throw err;
-    res.json(result);
-  });
+
+  try {
+    const res = await CMSchema.findById(myquery);
+    response.json(res);
+    console.log(res);
+  } catch (error) {
+    console.error(error);
+    // handle the error
+  }
 });
 
 // This section will help you create a new record.
-router.post("/add", function (req, response) {
-  let db_connect = CMdbo.getDb();
-  let myobj = {
+router.post("/add", async (req, response) => {
+  var myobj = new CMSchema({
     User: req.body.User,
     CrackMeter: req.body.CrackMeter,
     DateOfReading: req.body.DateOfReading,
@@ -57,17 +54,20 @@ router.post("/add", function (req, response) {
     Y2: req.body.Y2,
     Z1: req.body.Z1,
     Z2: req.body.Z2,
-  };
-  console.log(req.body, "myobj");
-  db_connect.collection("C1toC16").insertOne(myobj, function (err, res) {
-    if (err) throw err;
-    response.json(res);
   });
+  console.log(req.body, "myobj");
+
+  try {
+    const res = await CMSchema.create(myobj);
+    response.json(res);
+  } catch (error) {
+    console.error(error);
+    // handle the error
+  }
 });
 
 // This section will help you update a record by id.
-router.post("/update/:id", function (req, response) {
-  let db_connect = CMdbo.getDb();
+router.post("/update/:id", async (req, response) => {
   let myquery = { _id: ObjectId(req.params.id), CrackMeter: "7" };
   let newvalues = {
     $set: {
@@ -81,24 +81,26 @@ router.post("/update/:id", function (req, response) {
       Z2: req.body.Z2,
     },
   };
-  db_connect
-    .collection("C1toC16")
-    .updateOne(myquery, newvalues, function (err, res) {
-      if (err) throw err;
-      console.log("1 document updated");
-      response.json(res);
-    });
+
+  try {
+    const res = await CMSchema.findByIdAndUpdate(myquery, newvalues);
+    response.json(res);
+  } catch (error) {
+    console.error(error);
+    // handle the error
+  }
 });
 
 // This section will help you delete a record
-router.delete("/:id", (req, response) => {
-  let db_connect = CMdbo.getDb();
+router.delete("/:id", async (req, response) => {
   let myquery = { _id: ObjectId(req.params.id), CrackMeter: "7" };
-  db_connect.collection("C1toC16").deleteOne(myquery, function (err, obj) {
-    if (err) throw err;
-    console.log("1 document deleted");
-    response.json(obj);
-  });
+  try {
+    const res = await CMSchema.deleteOne(myquery);
+    response.json(res);
+  } catch (error) {
+    console.error(error);
+    // handle the error
+  }
 });
 
 module.exports = router;
