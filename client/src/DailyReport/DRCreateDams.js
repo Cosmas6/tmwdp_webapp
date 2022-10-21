@@ -332,7 +332,7 @@ const DRCreateDams = (props) => {
             <div className="numbers">
               <TextField
                 id="outlined-number"
-                {...register("SMEC_Ins", { required: "A value is required" })}
+                {...register("SMEC_Ins")}
                 label="SMEC INSPECTORS"
                 type="number"
                 onWheel={(e) => e.target.blur()}
@@ -343,7 +343,7 @@ const DRCreateDams = (props) => {
               />
               <TextField
                 id="outlined-number"
-                {...register("CGGC_Ins", { required: "A value is required" })}
+                {...register("CGGC_Ins")}
                 label="CGGC INSPECTORS"
                 type="number"
                 onWheel={(e) => e.target.blur()}
@@ -354,9 +354,7 @@ const DRCreateDams = (props) => {
               />
               <TextField
                 id="outlined-number"
-                {...register("Safety_Officer", {
-                  required: "A value is required",
-                })}
+                {...register("Safety_Officer")}
                 label="SAFETY OFFICER"
                 type="number"
                 onWheel={(e) => e.target.blur()}
@@ -367,7 +365,7 @@ const DRCreateDams = (props) => {
               />
               <TextField
                 id="outlined-number"
-                {...register("Drivers", { required: "A value is required" })}
+                {...register("Drivers")}
                 label="DRIVERS"
                 type="number"
                 InputLabelProps={{
@@ -377,7 +375,7 @@ const DRCreateDams = (props) => {
               />
               <TextField
                 id="outlined-number"
-                {...register("SMEC_Eng", { required: "A value is required" })}
+                {...register("SMEC_Eng")}
                 label="SMEC ENGINEER"
                 type="number"
                 InputLabelProps={{
@@ -387,10 +385,8 @@ const DRCreateDams = (props) => {
               />
               <TextField
                 id="outlined-number"
-                {...register("Site_Foreman", {
-                  required: "A value is required",
-                })}
-                label="SITE FOREMAN"
+                {...register("Site_Foreman")}
+                label="SITE FOREMEN"
                 type="number"
                 onWheel={(e) => e.target.blur()}
                 InputLabelProps={{
@@ -400,9 +396,7 @@ const DRCreateDams = (props) => {
               />
               <TextField
                 id="outlined-number"
-                {...register("Plant_Operator", {
-                  required: "A value is required",
-                })}
+                {...register("Plant_Operator")}
                 label="PLANT OPERATOR"
                 type="number"
                 onWheel={(e) => e.target.blur()}
@@ -413,9 +407,7 @@ const DRCreateDams = (props) => {
               />
               <TextField
                 id="outlined-number"
-                {...register("Unskilled_Labour", {
-                  required: "A value is required",
-                })}
+                {...register("Unskilled_Labour")}
                 label="UNSKILLED LABOUR"
                 type="number"
                 onWheel={(e) => e.target.blur()}
@@ -426,7 +418,7 @@ const DRCreateDams = (props) => {
               />
               <TextField
                 id="outlined-number"
-                {...register("Welder", { required: "A value is required" })}
+                {...register("Welder")}
                 label="WELDER"
                 type="number"
                 onWheel={(e) => e.target.blur()}
@@ -437,9 +429,7 @@ const DRCreateDams = (props) => {
               />
               <TextField
                 id="outlined-number"
-                {...register("Chinese_Staff", {
-                  required: "A value is required",
-                })}
+                {...register("Chinese_Staff")}
                 label="CHINESE STAFF"
                 type="number"
                 onWheel={(e) => e.target.blur()}
