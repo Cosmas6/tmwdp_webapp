@@ -1,0 +1,19 @@
+@import "./main.scss";
+
+.DamRockTripContainer {
+  @extend .Display_Inline_Block;
+  @extend .Container_Left_Margin;
+  @extend .Sidebar_Black_Color;
+
+  .RockTrip_Container {
+    @extend .Shadow;
+    @extend .Container_Padding;
+
+    th[colspan="2"] {
+      text-align: center;
+    }
+    th {
+      text-align: center;
+    }
+  }
+}

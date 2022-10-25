@@ -26,7 +26,7 @@ export function useWindowDimensions() {
   return windowDimensions;
 }
 
-export default function GanttNav() {
+export default function PlacementNav() {
   const ToggleSidebarSecond = () => {
     if (width < 768) {
       document.getElementById("sidebar").classList.toggle("active");
@@ -39,11 +39,11 @@ export default function GanttNav() {
           className={(navData) =>
             navData.isActive ? "nav-link rounded active" : "nav-link rounded"
           }
-          to="ganttChart"
+          to="damRockTrips"
           onClick={ToggleSidebarSecond}
         >
-          <i className="fa-solid fa-chart-gantt"></i>
-          <span>Gantt Chart</span>
+          <i className="fa-solid fa-truck"></i>
+          <span>Material Data</span>
         </NavLink>
       </li>
     </>

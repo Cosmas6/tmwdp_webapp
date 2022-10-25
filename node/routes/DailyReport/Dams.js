@@ -20,6 +20,30 @@ router.get("/", async (req, response) => {
   }
 });
 
+router.get("/rocktripsDay", async (req, response) => {
+  var query = { Shift: "Dayshift" };
+  try {
+    const res = await Schema.find(query);
+    response.json(res);
+    console.log(res);
+  } catch (error) {
+    console.error(error);
+    // handle the error
+  }
+});
+
+router.get("/rocktripsNight", async (req, response) => {
+  var query = { Shift: "Nightshift" };
+  try {
+    const res = await Schema.find(query);
+    response.json(res);
+    console.log(res);
+  } catch (error) {
+    console.error(error);
+    // handle the error
+  }
+});
+
 // This section will help you get a single record by id
 router.get("/:id", async (req, response) => {
   let myquery = {

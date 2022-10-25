@@ -6,6 +6,7 @@ import Cookies from "universal-cookie";
 import DRNav from "./DRNav";
 import InstNav from "./InstNav";
 import GanttNav from "./GanttNav";
+import PlacementNav from "./PlacementNav";
 const cookies = new Cookies();
 
 export default function Dashboard() {
@@ -44,6 +45,7 @@ export default function Dashboard() {
           <DRNav />
           <InstNav />
           <GanttNav />
+          <PlacementNav />
         </ul>
 
         <div className="sidenav-footer">
@@ -68,7 +70,6 @@ export default function Dashboard() {
           <span> Menu</span>
         </button>
       </div>
-
       <Outlet />
     </div>
   );
