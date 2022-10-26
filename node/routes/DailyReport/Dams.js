@@ -20,24 +20,15 @@ router.get("/", async (req, response) => {
   }
 });
 
-router.get("/rocktripsDay", async (req, response) => {
-  var query = { Shift: "Dayshift" };
+router.get("/dateAscending", async (req, response) => {
+  //Date range will have to be applied to ensure simplicity
   try {
-    const res = await Schema.find(query);
+    const res = await Schema.find({
+      Date: { $gte: "2022-10-01", $lte: "2022-10-30" },
+    }).sort({
+      Date: 1,
+    });
     response.json(res);
-    console.log(res);
-  } catch (error) {
-    console.error(error);
-    // handle the error
-  }
-});
-
-router.get("/rocktripsNight", async (req, response) => {
-  var query = { Shift: "Nightshift" };
-  try {
-    const res = await Schema.find(query);
-    response.json(res);
-    console.log(res);
   } catch (error) {
     console.error(error);
     // handle the error
