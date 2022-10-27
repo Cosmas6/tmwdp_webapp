@@ -20,11 +20,13 @@ router.get("/", async (req, response) => {
   }
 });
 
-router.get("/dateAscending", async (req, response) => {
+router.post("/dateAscending", async (req, response) => {
+  const newStartDate = moment(req.body.date[0].startDate).format("YYYY-MM-DD");
+  const newEndDate = moment(req.body.date[0].endDate).format("YYYY-MM-DD");
   //Date range will have to be applied to ensure simplicity
   try {
     const res = await Schema.find({
-      Date: { $gte: "2022-10-01", $lte: "2022-10-30" },
+      Date: { $gte: newStartDate, $lte: newEndDate },
     }).sort({
       Date: 1,
     });

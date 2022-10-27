@@ -1,76 +1,79 @@
 import React, { useState, useEffect } from "react";
-import Stack from "@mui/material/Stack";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import dayjs from "dayjs";
-import { MonthPicker } from "@mui/x-date-pickers";
+import axios from "axios";
+import { addDays } from "date-fns";
+import { DateRangePicker } from "react-date-range";
 import Rocktrip from "./RockTrip";
 import "../stylesheets/damrocktrips.scss";
 
 const DamRockTrips = () => {
   const [rockTrips, setRockTrips] = useState([]);
-  useEffect(() => {
-    async function getRockTrip() {
-      const response = await fetch(
-        `http://localhost:4000/DailyRDamsRouter/dateAscending`
-      );
 
-      if (!response.ok) {
-        const message = `An error occurred: ${response.statusText}`;
-        window.alert(message);
-        return;
-      }
+  const [date, setDate] = useState([
+    {
+      startDate: new Date(),
+      endDate: addDays(new Date(), 7),
+      key: "selection",
+    },
+  ]);
 
-      const rockTripJson = await response.json();
-      setRockTrips(rockTripJson);
-    }
+  console.log(date);
 
-    getRockTrip();
+  const dateRangePost = () => {
+    const configuration = {
+      method: "post",
+      url: "http://localhost:4000/DailyRDamsRouter/dateAscending",
+      data: {
+        date,
+      },
+    };
 
-    return;
-  }, [rockTrips.length]);
-  const [monthValue, setMonthValue] = useState(new Date());
-  // console.log(monthValue.getMonth() + 1);
+    axios(configuration)
+      .then((result) => {
+        setRockTrips(result.data);
+      })
+      .catch((error) => {
+        error = new Error();
+      });
+  };
 
-  // {rockTrip.rocktrip &&
-  //   rockTrip.rocktrip?.map((item, index) => {
-  //     return (
-  //       <li key={index}>
-  //         {item.Number_Of_Trips} trips made for Rock Type{" "}
-  //         {item.RockType}
-  //       </li>
-  //     );
-  //   })}
+  console.log(rockTrips, "rocktrips");
 
   function rocktripList() {
     return rockTrips.map((rocktrip) => {
-      return (
-        <Rocktrip
-          key={rocktrip._id}
-          rocktrip={rocktrip}
-        />
-      );
+      return <Rocktrip key={rocktrip._id} rocktrip={rocktrip} />;
     });
   }
+  // function getTotal() {
+  //   const table = document.getElementById("table"),
+  //     sumVal = 0;
+  //   for (var i = 1; i < table.rows.length; i++) {
+  //     sumVal = sumVal + parseInt(table.columns[i].cells[2].innerHTML);
+  //   }
+  //   console.log(sumVal);
+  // }
+
   return (
     <div className="DamRockTripContainer container-fluid">
       <div className="row">
         <div className="col-12">
           <div className="RockTrip_Container">
             <h1>Material Placemenet Data</h1>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <Stack spacing={3}>
-                <MonthPicker
-                  minDate={dayjs("2022-08-01")}
-                  maxDate={dayjs("2023-12-01")}
-                  value={monthValue}
-                  onChange={(newValue) => {
-                    setMonthValue(newValue);
-                  }}
-                />
-              </Stack>
-            </LocalizationProvider>
+            <DateRangePicker
+              className="my-demo"
+              onChange={(item) => setDate([item.selection])}
+              moveRangeOnFirstSelection={false}
+              ranges={date}
+              months={2}
+              direction="horizontal"
+            />
+            <button
+              className="Submit_Button Placement_Button"
+              onClick={dateRangePost}
+            >
+              Generate Data
+            </button>
             <table
+              id="table"
               className="table table-bordered table-responsive"
               style={{ marginTop: 20 }}
             >
@@ -104,8 +107,19 @@ const DamRockTrips = () => {
                 </tr>
               </thead>
               {/* Is state undefined? (display loader) otherwise display function */}
-              <tbody>{rocktripList()}</tbody>
+              <tbody>
+                {rocktripList()}
+                <tr>
+                  <td>Sum</td>
+                </tr>
+              </tbody>
             </table>
+            {/* <button
+              className="Submit_Button Placement_Button"
+              onClick={getTotal}
+            >
+              Calculate sum
+            </button> */}
           </div>
         </div>
       </div>

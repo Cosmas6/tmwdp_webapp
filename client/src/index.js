@@ -11,6 +11,8 @@ import { BrowserRouter } from "react-router-dom";
 import "../public/index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "simplebar/dist/simplebar.min.css";
+import "react-date-range/dist/styles.css";
+import "react-date-range/dist/theme/default.css";
 
 const persistConfig = {
   key: "root",
