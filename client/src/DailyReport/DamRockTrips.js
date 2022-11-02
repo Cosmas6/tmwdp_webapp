@@ -21,7 +21,7 @@ const DamRockTrips = () => {
   const dateRangePost = () => {
     const configuration = {
       method: "post",
-      url: "http://localhost:4000/DailyRDamsRouter/dateAscending",
+      url: "https://nodejs.tmwdp.co.ke/DailyRDamsRouter/dateAscending",
       data: {
         date,
       },

@@ -3,10 +3,10 @@ import { TailSpin } from "react-loader-spinner";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { Link } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { useForm } from "react-hook-form";
 import "../stylesheets/login.scss";
 const cookies = new Cookies();
+
 
 function Login() {
   const formRef = useRef();
