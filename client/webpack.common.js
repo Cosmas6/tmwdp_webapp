@@ -3,36 +3,26 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
-// const BundleAnalyzerPlugin =
-//   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
-const mode = "production";
 
 module.exports = {
   stats: "errors-warnings",
   entry: ["@babel/polyfill", "./src/index.js"],
-  mode: mode,
   output: {
     filename: "[name]-[contenthash].bundle.js",
+    chunkFilename: "[name]-[contenthash].bundle.js",
     path: path.resolve(__dirname, "build"),
     publicPath: "/",
-  },
-  optimization: {
-    minimize: true,
-    minimizer: [new TerserPlugin()],
   },
   plugins: [
     new HtmlWebpackPlugin(
       { template: "./public/index.html" },
       { inject: true }
     ),
-
-    new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: "[name]-[contenthash].bundle.css",
+      filename: "[name].css",
     }),
+    new CleanWebpackPlugin(),
     new NodePolyfillPlugin(),
-    // new BundleAnalyzerPlugin(),
   ],
   module: {
     rules: [
@@ -74,6 +64,17 @@ module.exports = {
             presets: ["@babel/preset-env"],
           },
         },
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: "svg-url-loader",
+            options: {
+              limit: 10000,
+            },
+          },
+        ],
       },
       {
         test: /\.(jpe?g|png|gif|svg|jpg)$/i,
