@@ -6,7 +6,6 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var bodyParser = require("body-parser");
 var indexRouter = require("./routes/index");
-var crackmeterDbo = require("./mongoDB/crackmeterConn");
 var dbConn = require("./mongoDB/dbConn");
 var registerRouter = require("./routes/auth/Register");
 var loginRouter = require("./routes/auth/Login");

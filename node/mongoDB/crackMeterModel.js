@@ -31,7 +31,7 @@ const CrackMeterSchema = new Schema({
   },
 });
 
-const CrackMeterDB = mongoose.connection.useDb("CrackMeter");
+const CrackMeterDB = mongoose.connection.useDb("Instrumentation");
 const CMSchema = CrackMeterDB.model("c1toc16s", CrackMeterSchema);
 
 module.exports = CMSchema;

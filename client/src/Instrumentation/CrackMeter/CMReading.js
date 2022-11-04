@@ -45,6 +45,7 @@ const CMReading = (props) => {
     );
   };
   const [readings, setReadings] = useState([]);
+  console.log(readings);
   useEffect(() => {
     async function getReadings() {
       const response = await fetch(props.fetchLink);

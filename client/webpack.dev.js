@@ -1,6 +1,6 @@
 const path = require("path");
-const BundleAnalyzerPlugin =
-  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin =
+//   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const mode = "development";
 const { merge } = require("webpack-merge");
 const common = require("./webpack.common.js");
@@ -17,6 +17,6 @@ module.exports = merge(common, {
   },
   plugins: [
     
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
   ],
 });

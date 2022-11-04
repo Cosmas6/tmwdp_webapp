@@ -27,7 +27,6 @@ module.exports = merge(common, {
       algorithm: "gzip",
       test: /.js$|.css$.scss$/,
       threshold: 249856,
-      deleteOriginalAssets: true,
     }),
   ],
 });
