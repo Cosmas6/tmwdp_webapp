@@ -12,7 +12,7 @@ export default function CreateReadingC3() {
         defaultValue={3}
         cmName={"C3"}
         fetchLink={`https://nodejs.tmwdp.co.ke/C3Router/add`}
-        readingLink={`http://localhost:4000/C3Router/readingReview`}
+        readingLink={`https://nodejs.tmwdp.co.ke/C3Router/readingReview`}
         dataLink={`/dashboard/readingC3`}
         graphLink={`/dashboard/graphC3`}
       />
@@ -55,9 +55,9 @@ export function GraphC3() {
         cmName={"C3"}
         fetchLink={`https://nodejs.tmwdp.co.ke/C3Router/graphC3`}
         dataLink={`/dashboard/readingC3`}
-        defX={27.40}
+        defX={27.4}
         defY={25.03}
-        defZ={15.50}
+        defZ={15.5}
         YaxisN={-0.5}
         YaxisP={1.5}
       />

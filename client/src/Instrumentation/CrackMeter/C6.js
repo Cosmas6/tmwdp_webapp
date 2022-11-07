@@ -12,7 +12,7 @@ export default function CreateReadingC6() {
         defaultValue={6}
         cmName={"C6"}
         fetchLink={`https://nodejs.tmwdp.co.ke/C6Router/add`}
-        readingLink={`http://localhost:4000/C6Router/readingReview`}
+        readingLink={`https://nodejs.tmwdp.co.ke/C6Router/readingReview`}
         dataLink={`/dashboard/readingC6`}
         graphLink={`/dashboard/graphC6`}
       />
@@ -55,7 +55,7 @@ export function GraphC6() {
         cmName={"C6"}
         fetchLink={`https://nodejs.tmwdp.co.ke/C6Router/graphC6`}
         dataLink={`/dashboard/readingC6`}
-        defX={26.00}
+        defX={26.0}
         defY={26.25}
         defZ={12.73}
         YaxisN={-0.5}

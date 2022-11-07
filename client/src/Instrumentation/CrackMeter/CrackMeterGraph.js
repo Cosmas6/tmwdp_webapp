@@ -3,7 +3,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import "../../stylesheets/InstSections/crackmetercreate.scss";
+import "../../stylesheets/InstSections/crackmeter.scss";
 import { GraphC1 } from "./C1";
 import { GraphC2 } from "./C2";
 import { GraphC3 } from "./C3";

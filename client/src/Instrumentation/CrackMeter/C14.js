@@ -12,7 +12,7 @@ export default function CreateReadingC14() {
         defaultValue={14}
         cmName={"C14"}
         fetchLink={`https://nodejs.tmwdp.co.ke/C14Router/add`}
-        readingLink={`http://localhost:4000/C14Router/readingReview`}
+        readingLink={`https://nodejs.tmwdp.co.ke/C14Router/readingReview`}
         dataLink={`/dashboard/readingC14`}
         graphLink={`/dashboard/graphC14`}
       />
