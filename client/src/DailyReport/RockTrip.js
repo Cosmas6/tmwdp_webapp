@@ -13,7 +13,7 @@ const Rocktrip = (props) => {
 
   //Only render date if it has the month selected by user
   return (
-    <tr>
+    <tr className="Rocktrip_TR">
       <td>{enUSFormatter.format(dateString)}</td>
       <td>
         {props.rocktrip.Shift === "Dayshift" ? (

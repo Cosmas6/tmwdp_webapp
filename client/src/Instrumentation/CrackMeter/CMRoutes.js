@@ -44,9 +44,16 @@ import CreateReadingC16, {
   EditReadingC16,
   ReadingListC16,
 } from "./C16";
+import CrackMeterCreate from "./CrackMeterCreate";
+import CrackMeterList from "./CrackMeterList";
+import CrackMeterGraph from "./CrackMeterGraph";
 
 export default [
   <>
+    <Route path="crackMeterCreate" element={<CrackMeterCreate />} />
+    <Route path="crackMeterList" element={<CrackMeterList />} />
+    <Route path="crackMeterGraph" element={<CrackMeterGraph />} />
+
     <Route path="createReadingC1" element={<CreateReadingC1 />} />
     <Route path="editReadingC1/:id" element={<EditReadingC1 />} />
     <Route path="readingC1" element={<ReadingListC1 />} />

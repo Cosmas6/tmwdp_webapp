@@ -1,17 +1,24 @@
 @import "../main.scss";
 
-.CM_Container {
+.CM_Edit_Container {
   @extend .Display_Inline_Block;
   @extend .Container_Left_Margin;
-
   .Form_Container {
     @extend .Shadow;
     @extend .Container_Padding;
   }
 
+  .X-group,
+  .Y-group,
+  .Z-group {
+    li {
+      text-decoration: none;
+    }
+  }
+
   .daily-report-form-flex {
     display: inline-block;
-    margin: 20px 20px;
+    margin: 10px 10px;
   }
 
   .Form_Input {
@@ -22,12 +29,6 @@
   .view-graph {
     a {
       text-decoration: none;
-    }
-  }
-
-  @media (max-width: 473px) {
-    .view-graph {
-      margin-top: 30px;
     }
   }
 }

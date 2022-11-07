@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
+import { TailSpin } from "react-loader-spinner";
 import { useNavigate, useParams } from "react-router-dom";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { useForm, Controller } from "react-hook-form";
-import "../../stylesheets/InstSections/createandedit.scss";
+import "../../stylesheets/InstSections/edit.scss";
 
 const CMFormEdit = (props) => {
   const {
@@ -28,6 +29,7 @@ const CMFormEdit = (props) => {
 
   const params = useParams();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -58,6 +60,7 @@ const CMFormEdit = (props) => {
   // These methods will update the state properties.
 
   async function onSubmit(data, e) {
+    setLoading(true);
     e.preventDefault();
     const editedReading = {
       CrackMeter: data.CrackMeter,
@@ -77,13 +80,30 @@ const CMFormEdit = (props) => {
       headers: {
         "Content-Type": "application/json",
       },
-    });
+    })
+      .then((result) => {
+        setLoading(false);
+        if (result.status == 200) {
+          document.getElementById(
+            "Status_Div"
+          ).innerHTML = `<span style="color:green;">Data Changed successfully</span>`;
+        } else {
+          document.getElementById(
+            "Status_Div"
+          ).innerHTML = `<span style="color:red;">Data not changed</span>`;
+        }
+      })
+      .catch((error) => {
+        setLoading(false);
+        window.alert(error);
+        return;
+      });
 
-    navigate(props.navigateLink);
+    // navigate(props.navigateLink);
   }
 
   return (
-    <div className="CM_Container container-fluid">
+    <div className="CM_Edit_Container container-fluid">
       <div className="row">
         <div className="col-12">
           <form
@@ -201,7 +221,28 @@ const CMFormEdit = (props) => {
             </div>
 
             <div className="form-group daily-report-form-flex">
-              <input type="submit" value="Submit" className="Submit_Button" />
+              <div id="Status_Div"></div>
+              <button
+                className="Submit_Button daily-report-form-block"
+                type="submit"
+              >
+                {loading ? (
+                  <div className="Loading_Div_Buttons">
+                    <TailSpin
+                      height="30"
+                      width="40"
+                      color="#ffffff"
+                      ariaLabel="tail-spin-loading"
+                      radius="1"
+                      wrapperStyle={{}}
+                      wrapperClass=""
+                      visible={true}
+                    />
+                  </div>
+                ) : (
+                  <span className="submit-span">Submit</span>
+                )}
+              </button>
             </div>
           </form>
         </div>

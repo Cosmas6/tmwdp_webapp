@@ -12,6 +12,7 @@ export default function CreateReadingC1() {
         defaultValue={1}
         cmName={"C1"}
         fetchLink={`http://localhost:4000/C1Router/add`}
+        readingLink={`http://localhost:4000/C1Router/readingReview`}
         dataLink={`/dashboard/readingC1`}
         graphLink={`/dashboard/graphC1`}
       />

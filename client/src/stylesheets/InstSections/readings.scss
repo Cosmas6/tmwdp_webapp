@@ -1,10 +1,6 @@
 @import "../main.scss";
 
 .CM_Reading_Container {
- 
-  @extend .Display_Inline_Block;
-  @extend .Container_Left_Margin;
-
   .Reading_Table_Container {
     @extend .Shadow;
     @extend .Container_Padding;
@@ -20,7 +16,6 @@
 
   .daily-report-form-flex {
     display: inline-block;
-    margin: 20px 20px;
   }
 
   @media (max-width: 473px) {

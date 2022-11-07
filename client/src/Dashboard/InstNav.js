@@ -50,7 +50,7 @@ export default function InstNav() {
       </li>
       <div className="collapse hide" id="dashboard-collapse">
         <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small sidebar-dropdowns">
-          <SimpleBar style={{ height: "200px" }}>
+          <SimpleBar style={{ height: "150px" }}>
             <li>
               <NavLink
                 className={(navData) =>
@@ -58,205 +58,32 @@ export default function InstNav() {
                     ? "link-white rounded active"
                     : "link-white rounded"
                 }
-                to="createReadingC1"
+                to="crackMeterCreate"
                 onClick={ToggleSidebarSecond}
               >
-                C1
+                Create Reading
               </NavLink>
-            </li>
-            <li>
               <NavLink
                 className={(navData) =>
                   navData.isActive
                     ? "link-white rounded active"
                     : "link-white rounded"
                 }
-                to="createReadingC2"
+                to="crackMeterList"
                 onClick={ToggleSidebarSecond}
               >
-                C2
+                Edit List of Data
               </NavLink>
-            </li>
-            <li>
               <NavLink
                 className={(navData) =>
                   navData.isActive
                     ? "link-white rounded active"
                     : "link-white rounded"
                 }
-                to="createReadingC3"
+                to="crackMeterGraph"
                 onClick={ToggleSidebarSecond}
               >
-                C3
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className={(navData) =>
-                  navData.isActive
-                    ? "link-white rounded active"
-                    : "link-white rounded"
-                }
-                to="createReadingC4"
-                onClick={ToggleSidebarSecond}
-              >
-                C4
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className={(navData) =>
-                  navData.isActive
-                    ? "link-white rounded active"
-                    : "link-white rounded"
-                }
-                to="createReadingC5"
-                onClick={ToggleSidebarSecond}
-              >
-                C5
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className={(navData) =>
-                  navData.isActive
-                    ? "link-white rounded active"
-                    : "link-white rounded"
-                }
-                to="createReadingC6"
-                onClick={ToggleSidebarSecond}
-              >
-                C6
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className={(navData) =>
-                  navData.isActive
-                    ? "link-white rounded active"
-                    : "link-white rounded"
-                }
-                to="createReadingC7"
-                onClick={ToggleSidebarSecond}
-              >
-                C7
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className={(navData) =>
-                  navData.isActive
-                    ? "link-white rounded active"
-                    : "link-white rounded"
-                }
-                to="createReadingC8"
-                onClick={ToggleSidebarSecond}
-              >
-                C8
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className={(navData) =>
-                  navData.isActive
-                    ? "link-white rounded active"
-                    : "link-white rounded"
-                }
-                to="createReadingC9"
-                onClick={ToggleSidebarSecond}
-              >
-                C9
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className={(navData) =>
-                  navData.isActive
-                    ? "link-white rounded active"
-                    : "link-white rounded"
-                }
-                to="createReadingC10"
-                onClick={ToggleSidebarSecond}
-              >
-                C10
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className={(navData) =>
-                  navData.isActive
-                    ? "link-white rounded active"
-                    : "link-white rounded"
-                }
-                to="createReadingC11"
-                onClick={ToggleSidebarSecond}
-              >
-                C11
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className={(navData) =>
-                  navData.isActive
-                    ? "link-white rounded active"
-                    : "link-white rounded"
-                }
-                to="createReadingC12"
-                onClick={ToggleSidebarSecond}
-              >
-                C12
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className={(navData) =>
-                  navData.isActive
-                    ? "link-white rounded active"
-                    : "link-white rounded"
-                }
-                to="createReadingC13"
-                onClick={ToggleSidebarSecond}
-              >
-                C13
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className={(navData) =>
-                  navData.isActive
-                    ? "link-white rounded active"
-                    : "link-white rounded"
-                }
-                to="createReadingC14"
-                onClick={ToggleSidebarSecond}
-              >
-                C14
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className={(navData) =>
-                  navData.isActive
-                    ? "link-white rounded active"
-                    : "link-white rounded"
-                }
-                to="createReadingC15"
-                onClick={ToggleSidebarSecond}
-              >
-                C15
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className={(navData) =>
-                  navData.isActive
-                    ? "link-white rounded active"
-                    : "link-white rounded"
-                }
-                to="createReadingC16"
-                onClick={ToggleSidebarSecond}
-              >
-                C16
+                View Graph
               </NavLink>
             </li>
           </SimpleBar>

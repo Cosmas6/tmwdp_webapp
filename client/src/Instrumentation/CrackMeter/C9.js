@@ -12,6 +12,7 @@ export default function CreateReadingC9() {
         defaultValue={9}
         cmName={"C9"}
         fetchLink={`https://nodejs.tmwdp.co.ke/C9Router/add`}
+        readingLink={`http://localhost:4000/C9Router/readingReview`}
         dataLink={`/dashboard/readingC9`}
         graphLink={`/dashboard/graphC9`}
       />

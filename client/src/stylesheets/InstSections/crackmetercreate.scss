@@ -1,0 +1,30 @@
+@import "../main.scss";
+
+.CMCreate_Container {
+  @extend .Display_Inline_Block;
+  @extend .Container_Left_Margin;
+
+  .Create_Container {
+    @extend .Shadow;
+    @extend .Container_Padding;
+  }
+  .Dropdown_Component {
+    margin-bottom: 50px;
+  }
+
+  .daily-report-form-flex {
+    display: inline-block;
+    margin: 10px 10px;
+  }
+
+  .Form_Input {
+    margin: 5px 0;
+  }
+
+  .view-data,
+  .view-graph {
+    a {
+      text-decoration: none;
+    }
+  }
+}

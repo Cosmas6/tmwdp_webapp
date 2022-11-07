@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { TailSpin } from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import "../../stylesheets/InstSections/readings.scss";
 
 const CMReading = (props) => {
   const Reading = (props) => {
+    const [loading, setLoading] = useState(false);
     const dateString = new Date(String(props.reading.DateOfReading));
     const enUSFormatter = new Intl.DateTimeFormat("en-US", {
       year: "numeric",
@@ -34,11 +36,29 @@ const CMReading = (props) => {
           <button
             className="btn btn-link delete-button"
             onClick={() => {
+              setLoading(true);
               props.deleteRecord(props.reading._id);
             }}
           >
-            <i className="fa fa-trash" aria-hidden="true"></i>
-            <span>Delete</span>
+            {loading ? (
+              <div className="Loading_Div_Buttons">
+                <TailSpin
+                  height="30"
+                  width="40"
+                  color="#ffffff"
+                  ariaLabel="tail-spin-loading"
+                  radius="1"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                  visible={true}
+                />
+              </div>
+            ) : (
+              <>
+                <i className="fa fa-trash" aria-hidden="true"></i>
+                <span>Delete</span>
+              </>
+            )}
           </button>
         </td>
       </tr>
@@ -112,7 +132,7 @@ const CMReading = (props) => {
               </thead>
               <tbody>{readingList()}</tbody>
             </table>
-            <div className="view-graph daily-report-form-flex">
+            {/* <div className="view-graph daily-report-form-flex">
               <Link className="Submit_Button" to={props.graphLink}>
                 View Graph
               </Link>
@@ -121,7 +141,7 @@ const CMReading = (props) => {
               <Link className="Submit_Button" to={props.createLink}>
                 Create Reading
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

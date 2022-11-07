@@ -3,13 +3,25 @@ const router = express.Router();
 const ObjectId = require("mongodb").ObjectId;
 const CMSchema = require("../../../mongoDB/crackMeterModel");
 
-
 // This section will help you get a list of all the records.
 
 router.get("/", async (req, response) => {
   var query = { CrackMeter: "1" };
   try {
-    const res = await CMSchema.find(query).sort({ DateOfReading: -1 }).limit(10);
+    const res = await CMSchema.find(query)
+      .sort({ DateOfReading: -1 })
+      .limit(10);
+    response.json(res);
+  } catch (error) {
+    console.error(error);
+    // handle the error
+  }
+});
+
+router.get("/readingReview", async (req, response) => {
+  var query = { CrackMeter: "1" };
+  try {
+    const res = await CMSchema.find(query).sort({ DateOfReading: -1 }).limit(3);
     response.json(res);
   } catch (error) {
     console.error(error);

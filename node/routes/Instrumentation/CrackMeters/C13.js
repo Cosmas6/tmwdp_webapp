@@ -17,6 +17,17 @@ router.get("/", async (req, response) => {
   }
 });
 
+router.get("/readingReview", async (req, response) => {
+  var query = { CrackMeter: "13" };
+  try {
+    const res = await CMSchema.find(query).sort({ DateOfReading: -1 }).limit(3);
+    response.json(res);
+  } catch (error) {
+    console.error(error);
+    // handle the error
+  }
+});
+
 router.get("/graphC1", async (req, response) => {
   var query = { CrackMeter: "13" };
   try {

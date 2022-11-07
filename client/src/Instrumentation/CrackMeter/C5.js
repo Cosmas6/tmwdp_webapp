@@ -12,6 +12,7 @@ export default function CreateReadingC5() {
         defaultValue={5}
         cmName={"C5"}
         fetchLink={`https://nodejs.tmwdp.co.ke/C5Router/add`}
+        readingLink={`http://localhost:4000/C5Router/readingReview`}
         dataLink={`/dashboard/readingC5`}
         graphLink={`/dashboard/graphC5`}
       />

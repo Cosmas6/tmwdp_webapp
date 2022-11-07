@@ -1,9 +1,6 @@
 @import "../main.scss";
 
 .ReadingGraph_Container {
-  @extend .Display_Inline_Block;
-  @extend .Container_Left_Margin;
-
   .Graph_Container {
     @extend .Shadow;
     @extend .Container_Padding;

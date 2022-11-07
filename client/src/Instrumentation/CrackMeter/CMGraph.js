@@ -111,11 +111,11 @@ const CMGraph = (props) => {
               />
             </LineChart>
             {defandcumulList()}
-            <div className="view-data daily-report-form-flex">
+            {/* <div className="view-data daily-report-form-flex">
               <Link className="Submit_Button" to={props.dataLink}>
                 View Data
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
