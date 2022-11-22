@@ -1,16 +1,12 @@
 .Login_Container {
   box-sizing: border-box;
-  background-image: url('../../public/tmwdp.jpg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  height: 100vh;
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20vh;
+  height: 50vh;
 
   .Form_Container {
-    position: absolute;
-    right: 0;
-    height: 100vh;
     padding: 50px;
     max-width: 500px;
     background-color: white;
@@ -50,7 +46,7 @@
     letter-spacing: 3px;
     font-weight: 600;
     border-radius: 0.35rem;
-    border-style:none;
+    border-style: none;
   }
 
   .Loading_Div {
