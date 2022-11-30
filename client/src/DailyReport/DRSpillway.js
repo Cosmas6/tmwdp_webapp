@@ -2,23 +2,35 @@ import ReactMustache from "react-mustache";
 import React, { useEffect, useState, useRef } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { ProgressBar } from "react-loader-spinner";
+import { TailSpin } from "react-loader-spinner";
 import "../stylesheets/dailyreport.scss";
 
-const DRSpillwayAndTunnels = (props) => {
+const DRSpillway = (props) => {
   const params = useParams();
   const navigate = useNavigate();
   const reportRef = useRef();
+  const reportId = params.id.toString();
 
   const [loading, setLoading] = useState(false);
+  const [loadingDelete, setLoadingDelete] = useState(false);
   const [report, setReport] = useState([]);
   const [newDate, setNewDate] = useState();
   const [editBtn, setEditBtn] = useState();
+
+  async function deleteReport(id) {
+    await fetch(`${props.deleteFetch}` + `/` + id, {
+      method: "DELETE",
+    });
+
+    navigate(`/dashboard/DRReadingSpillway`);
+  }
+
   useEffect(() => {
     async function fetchReport() {
       const id = params.id.toString();
       setEditBtn(id);
       const response = await fetch(
-        `https://nodejs.tmwdp.co.ke/${props.viewRoute}/${params.id.toString()}`
+        `http://localhost:4000/${props.viewRoute}/${params.id.toString()}`
       );
 
       if (!response.ok) {
@@ -84,7 +96,7 @@ const DRSpillwayAndTunnels = (props) => {
         </body>
       </html>
           `,
-        fileName: `${newDate} ${report.Section} ${report.Shift}.pdf`,
+        fileName: `${newDate}-${report.Section}-${report.Shift}.pdf`,
         options: {
           textAlign: "left",
           height: "11in",
@@ -227,10 +239,40 @@ const DRSpillwayAndTunnels = (props) => {
               <div id="Download_Button"></div>
               <Link
                 className="Download_Link"
-                to={`/dashboard/editDReport/${editBtn}`}
+                to={`/dashboard/DREditSpillway/${reportId}`}
               >
                 Edit Pdf
-              </Link>{" "}
+              </Link>
+              <button
+                className="btn btn-link delete-button Download_Link"
+                onClick={() => {
+                  setLoadingDelete(true);
+                  deleteReport(reportId);
+                }}
+              >
+                {loadingDelete ? (
+                  <div className="Loading_Div_Buttons">
+                    <TailSpin
+                      height="30"
+                      width="40"
+                      color="#ffffff"
+                      ariaLabel="tail-spin-loading"
+                      radius="1"
+                      wrapperStyle={{}}
+                      wrapperClass=""
+                      visible={true}
+                    />
+                  </div>
+                ) : (
+                  <>
+                    <i
+                      className="fa fa-trash delete-button"
+                      aria-hidden="true"
+                    ></i>
+                    <span>Delete</span>
+                  </>
+                )}
+              </button>
             </div>
           </div>
         </div>
@@ -239,4 +281,4 @@ const DRSpillwayAndTunnels = (props) => {
   );
 };
 
-export default DRSpillwayAndTunnels;
+export default DRSpillway;

@@ -8,6 +8,7 @@
   .DailyReportTable_Container {
     @extend .Shadow;
     @extend .Container_Padding;
+    @extend .Button_Edits;
   }
 
   .Submit_Button {

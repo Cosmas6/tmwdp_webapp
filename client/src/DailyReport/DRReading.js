@@ -5,6 +5,7 @@ import "../stylesheets/drreading.scss";
 
 const DRReading = (props) => {
   const [reports, setReports] = useState([]);
+  console.log(reports.length);
   useEffect(() => {
     async function getReports() {
       const response = await fetch(props.fetchLink);
@@ -39,14 +40,14 @@ const DRReading = (props) => {
         <td>{props.report.Section}</td>
         <td>{props.report.Shift}</td>
         <td>
-          <Link
+          {/* <Link
             className="btn btn-link edit-button"
             to={`/dashboard/DREdit${props.report.Section}/${props.report._id}`}
           >
             <i className="fa fa-pencil" aria-hidden="true"></i>
             <span>Edit</span>
-          </Link>
-          <button
+          </Link> */}
+          {/* <button
             className="btn btn-link delete-button"
             onClick={() => {
               setLoading(true);
@@ -72,7 +73,7 @@ const DRReading = (props) => {
                 <span>Delete</span>
               </>
             )}
-          </button>
+          </button> */}
           <Link
             className="btn btn-link view-button"
             to={`/dashboard/DR${props.report.Section}Display/${props.report._id}`}
@@ -85,14 +86,14 @@ const DRReading = (props) => {
     );
   };
 
-  async function deleteReport(id) {
-    await fetch(`${props.deleteFetch}` + `/` + id, {
-      method: "DELETE",
-    });
+  // async function deleteReport(id) {
+  //   await fetch(`${props.deleteFetch}` + `/` + id, {
+  //     method: "DELETE",
+  //   });
 
-    const newReport = reports.filter((el) => el._id !== id);
-    setReports(newReport);
-  }
+  //   const newReport = reports.filter((el) => el._id !== id);
+  //   setReports(newReport);
+  // }
 
   function reportList() {
     return reports.map((report) => {
@@ -125,7 +126,17 @@ const DRReading = (props) => {
                   <th>Action</th>
                 </tr>
               </thead>
-              <tbody>{reportList()}</tbody>
+              <tbody>
+                {reports.length == 0 ? (
+                  <tr>
+                    <td colSpan="5">
+                      <h1 className="no-report-header">No reports submitted</h1>
+                    </td>
+                  </tr>
+                ) : (
+                  reportList()
+                )}
+              </tbody>
             </table>
           </div>
         </div>

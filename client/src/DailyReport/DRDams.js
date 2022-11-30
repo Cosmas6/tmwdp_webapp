@@ -2,14 +2,25 @@ import ReactMustache from "react-mustache";
 import React, { useEffect, useState, useRef } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { ProgressBar } from "react-loader-spinner";
+import { TailSpin } from "react-loader-spinner";
 import "../stylesheets/dailyreport.scss";
 
 const DRDams = (props) => {
   const params = useParams();
   const navigate = useNavigate();
   const reportRef = useRef();
+  const reportId = params.id.toString();
+
+  async function deleteReport(id) {
+    await fetch(`${props.deleteFetch}` + `/` + id, {
+      method: "DELETE",
+    });
+
+    navigate(`/dashboard/DRReadingDams`);
+  }
 
   const [loading, setLoading] = useState(false);
+  const [loadingDelete, setLoadingDelete] = useState(false);
   const [report, setReport] = useState([]);
   const [newDate, setNewDate] = useState();
   const [editBtn, setEditBtn] = useState();
@@ -241,10 +252,40 @@ const DRDams = (props) => {
             <div id="Download_Button"></div>
             <Link
               className="Download_Link"
-              to={`/dashboard/editDReport/${editBtn}`}
+              to={`/dashboard/DREditDams/${reportId}`}
             >
               Edit Pdf
             </Link>{" "}
+            <button
+              className="btn btn-link delete-button Download_Link"
+              onClick={() => {
+                setLoadingDelete(true);
+                deleteReport(reportId);
+              }}
+            >
+              {loadingDelete ? (
+                <div className="Loading_Div_Buttons">
+                  <TailSpin
+                    height="30"
+                    width="40"
+                    color="#ffffff"
+                    ariaLabel="tail-spin-loading"
+                    radius="1"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                    visible={true}
+                  />
+                </div>
+              ) : (
+                <>
+                  <i
+                    className="fa fa-trash delete-button"
+                    aria-hidden="true"
+                  ></i>
+                  <span>Delete</span>
+                </>
+              )}
+            </button>
           </div>
         </div>
       </div>

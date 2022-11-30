@@ -11,6 +11,7 @@ var registerRouter = require("./routes/auth/Register");
 var loginRouter = require("./routes/auth/Login");
 var nodeMailerRouter = require("./routes/nodeMailer");
 var DailyRSpillway = require("./routes/DailyReport/Spillway");
+var DailyRInst = require("./routes/DailyReport/Instrumentation");
 var DailyRTunnels = require("./routes/DailyReport/Tunnels");
 var DailyRDams = require("./routes/DailyReport/Dams");
 var C1Router = require("./routes/Instrumentation/CrackMeters/C1");
@@ -69,6 +70,7 @@ app.use("/C14Router", C14Router);
 app.use("/C15Router", C15Router);
 app.use("/C16Router", C16Router);
 app.use("/DailyRSpillwayRouter", DailyRSpillway);
+app.use("/DailyRInstRouter", DailyRInst);
 app.use("/DailyRTunnelsRouter", DailyRTunnels);
 app.use("/DailyRDamsRouter", DailyRDams);
 

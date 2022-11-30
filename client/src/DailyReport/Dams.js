@@ -24,7 +24,7 @@ export function EditDRDams() {
       <DREditDams
         fetchLink={`https://nodejs.tmwdp.co.ke/DailyRDamsRouter/${params.id.toString()}`}
         fetchLinkPost={`https://nodejs.tmwdp.co.ke/DailyRDamsRouter/update/${params.id}`}
-        navigateLink={`/dashboard/DRReadingDams`}
+        navigateLink={`/dashboard/DRDamsDisplay/${params.id.toString()}`}
       />
     </div>
   );
@@ -45,7 +45,10 @@ export function ReadingDRDams() {
 export function DRDamsDisplay() {
   return (
     <div className="DR_Dams">
-      <DRDams viewRoute={`DailyRDamsRouter`} />
+      <DRDams
+        viewRoute={`DailyRDamsRouter`}
+        deleteFetch={`https://nodejs.tmwdp.co.ke/DailyRDamsRouter`}
+      />
     </div>
   );
 }

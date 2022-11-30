@@ -90,6 +90,19 @@ export default function SpillwayandTunnelNav() {
                 Dams
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                className={(navData) =>
+                  navData.isActive
+                    ? "link-white rounded active"
+                    : "link-white rounded"
+                }
+                to="DRCreateInstrumentation"
+                onClick={ToggleSidebarSecond}
+              >
+                Instrumentation
+              </NavLink>
+            </li>
           </SimpleBar>
         </ul>
       </div>
@@ -146,6 +159,19 @@ export default function SpillwayandTunnelNav() {
                 onClick={ToggleSidebarSecond}
               >
                 Dams
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className={(navData) =>
+                  navData.isActive
+                    ? "link-white rounded active"
+                    : "link-white rounded"
+                }
+                to="DRReadingInstrumentation"
+                onClick={ToggleSidebarSecond}
+              >
+                Instrumentation
               </NavLink>
             </li>
           </SimpleBar>

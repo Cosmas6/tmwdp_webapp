@@ -56,14 +56,14 @@ module.exports = {
         ],
       },
       {
-        test: /\.jsx?$/,
+        test: /\.m?js$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
-            presets: ["@babel/preset-env", ["es2015", { modules: false }]],
-          },
-        },
+            presets: ['@babel/preset-env']
+          }
+        }
       },
       {
         test: /\.svg$/,

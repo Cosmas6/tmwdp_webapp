@@ -8,5 +8,9 @@
     @extend .Shadow;
     @extend .Container_Padding;
     @extend .Button_Edits;
+
+    .no-report-header {
+      text-align: center;
+    }
   }
 }

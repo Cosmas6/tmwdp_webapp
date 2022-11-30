@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import DRCreate from "./DRCreate";
 import DREdit from "./DREdit";
 import DRReading from "./DRReading";
-import DRSpillwayAndTunnels from "./DRSpillwayAndTunnels";
+import DRSpillway from "./DRSpillway";
 
 export default function CreateDRSpillway() {
   return (
@@ -24,7 +24,7 @@ export function EditDRSpillway() {
       <DREdit
         fetchLink={`https://nodejs.tmwdp.co.ke/DailyRSpillwayRouter/${params.id.toString()}`}
         fetchLinkPost={`https://nodejs.tmwdp.co.ke/DailyRSpillwayRouter/update/${params.id}`}
-        navigateLink={`/dashboard/DRReadingSpillway`}
+        navigateLink={`/dashboard/DRSpillwayDisplay/${params.id.toString()}`}
       />
     </div>
   );
@@ -45,7 +45,10 @@ export function ReadingDRSpillway() {
 export function DRSpillwayDisplay() {
   return (
     <div className="DR_Spillway_And_Tunnels">
-      <DRSpillwayAndTunnels viewRoute={`DailyRSpillwayRouter`} />
+      <DRSpillway
+        viewRoute={`DailyRSpillwayRouter`}
+        deleteFetch={`https://nodejs.tmwdp.co.ke/DailyRSpillwayRouter`}
+      />
     </div>
   );
 }

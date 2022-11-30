@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { TailSpin } from "react-loader-spinner";
 import ReactQuill from "react-quill";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm, Controller, useFieldArray } from "react-hook-form";
@@ -48,12 +49,13 @@ const DREditDams = (props) => {
 
   const params = useParams();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function fetchReport() {
       const id = params.id.toString();
       const response = await fetch(props.fetchLink);
-      
+
       if (!response.ok) {
         const message = `An error has occurred: ${response.statusText}`;
         window.alert(message);
@@ -77,6 +79,7 @@ const DREditDams = (props) => {
   }, [params.id, navigate]);
 
   const onSubmit = async (data, e) => {
+    setLoading(true);
     e.preventDefault();
     await fetch(props.fetchLinkPost, {
       method: "POST",
@@ -85,6 +88,7 @@ const DREditDams = (props) => {
       },
       body: JSON.stringify(data),
     }).catch((error) => {
+      setLoading(false);
       window.alert(error);
       return;
     });
@@ -403,10 +407,25 @@ const DREditDams = (props) => {
         <input className="Form_Input" type="text" id="activities" /> */}
             <div className="submit-div">
               <button
-                className="Submit_Button daily-report-form-block"
+                className="Submit_Button daily-report-form-flex"
                 type="submit"
               >
-                <span className="submit-span">Submit Form</span>
+                {loading ? (
+                  <div className="Loading_Div_Buttons">
+                    <TailSpin
+                      height="30"
+                      width="40"
+                      color="#ffffff"
+                      ariaLabel="tail-spin-loading"
+                      radius="1"
+                      wrapperStyle={{}}
+                      wrapperClass=""
+                      visible={true}
+                    />
+                  </div>
+                ) : (
+                  <span className="submit-span">Submit Form</span>
+                )}
               </button>
             </div>
           </form>

@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { TailSpin } from "react-loader-spinner";
 import ReactQuill from "react-quill";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
@@ -38,6 +39,7 @@ const DREdit = (props) => {
 
   const params = useParams();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function fetchReport() {
@@ -67,6 +69,7 @@ const DREdit = (props) => {
   }, [params.id, navigate]);
 
   const onSubmit = async (data, e) => {
+    setLoading(true);
     e.preventDefault();
     await fetch(props.fetchLinkPost, {
       method: "POST",
@@ -75,6 +78,7 @@ const DREdit = (props) => {
       },
       body: JSON.stringify(data),
     }).catch((error) => {
+      setLoading(false);
       window.alert(error);
       return;
     });
@@ -90,7 +94,7 @@ const DREdit = (props) => {
             className="Form_Container card"
             onSubmit={handleSubmit(onSubmit)}
           >
-            <div className="Weather_Container daily-report-form-flex">
+            <div className="Weather_Container daily-report-form-block">
               <label className="Input_Label">Weather</label>
               <Controller
                 control={control}
@@ -137,7 +141,7 @@ const DREdit = (props) => {
                 />
               </LocalizationProvider>
             </div>
-            <div className="Shift_Container daily-report-form-flex">
+            <div className="Shift_Container daily-report-form-block">
               <label className="Input_Label">Shift</label>
               <Controller
                 control={control}
@@ -205,7 +209,7 @@ const DREdit = (props) => {
                 )}
               />
             </div>
-            
+
             <div className="numbers">
               <TextField
                 id="outlined-number"
@@ -323,7 +327,22 @@ const DREdit = (props) => {
                 className="Submit_Button daily-report-form-flex"
                 type="submit"
               >
-                <span className="submit-span">Submit Form</span>
+                {loading ? (
+                  <div className="Loading_Div_Buttons">
+                    <TailSpin
+                      height="30"
+                      width="40"
+                      color="#ffffff"
+                      ariaLabel="tail-spin-loading"
+                      radius="1"
+                      wrapperStyle={{}}
+                      wrapperClass=""
+                      visible={true}
+                    />
+                  </div>
+                ) : (
+                  <span className="submit-span">Submit Form</span>
+                )}
               </button>
             </div>
           </form>
