@@ -3,7 +3,7 @@ import axios from "axios";
 import { addDays } from "date-fns";
 import { DateRangePicker } from "react-date-range";
 import Rocktrip from "./RockTrip";
-import "../stylesheets/damrocktrips.scss";
+import "../../../stylesheets/damrocktrips.scss";
 
 const DamRockTrips = () => {
   const [rockTrips, setRockTrips] = useState([]);

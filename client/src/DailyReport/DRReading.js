@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 import "../stylesheets/drreading.scss";
 
 const DRReading = (props) => {
+  const [loading, setLoading] = useState(false);
   const [reports, setReports] = useState([]);
   console.log(reports.length);
   useEffect(() => {
     async function getReports() {
+      setLoading(true);
       const response = await fetch(props.fetchLink);
 
       if (!response.ok) {
@@ -17,6 +19,7 @@ const DRReading = (props) => {
       }
 
       const reportsJson = await response.json();
+      setLoading(false);
       setReports(reportsJson);
     }
 
@@ -26,7 +29,6 @@ const DRReading = (props) => {
   }, [reports.length]);
 
   const Report = (props) => {
-    const [loading, setLoading] = useState(false);
     const dateString = new Date(String(props.report.Date));
     const enUSFormatter = new Intl.DateTimeFormat("en-US", {
       year: "numeric",
@@ -127,10 +129,35 @@ const DRReading = (props) => {
                 </tr>
               </thead>
               <tbody>
-                {reports.length == 0 ? (
+                {loading ? (
                   <tr>
                     <td colSpan="5">
-                      <h1 className="no-report-header">No reports submitted</h1>
+                      <div className="Loading_Div_Buttons">
+                        <TailSpin
+                          height="50"
+                          width="50"
+                          color="#000000"
+                          ariaLabel="tail-spin-loading"
+                          radius="1"
+                          wrapperStyle={{}}
+                          wrapperClass=""
+                          visible={true}
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                ) : reports.length == 0 ? (
+                  <tr>
+                    <td colSpan="5">
+                      <h1 className="no-report-header">
+                        No reports submitted.
+                        <Link
+                          className="Download_Link"
+                          to={`/dashboard/${props.createReportLink}`}
+                        >
+                          Create Report
+                        </Link>{" "}
+                      </h1>
                     </td>
                   </tr>
                 ) : (

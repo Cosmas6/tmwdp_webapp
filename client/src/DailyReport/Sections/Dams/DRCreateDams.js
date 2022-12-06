@@ -14,7 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
-import "../stylesheets/drcreate.scss";
+import "../../../stylesheets/drcreate.scss";
 import axios from "axios";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();

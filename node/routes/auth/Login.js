@@ -34,6 +34,7 @@ router.post("/", (request, response) => {
             "RANDOM-TOKEN",
             { expiresIn: "12h" }
           );
+
           response.status(200).send({
             message: "Login Successful, redirecting....",
             email: user.email,

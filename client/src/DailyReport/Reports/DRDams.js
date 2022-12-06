@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { ProgressBar } from "react-loader-spinner";
 import { TailSpin } from "react-loader-spinner";
-import "../stylesheets/dailyreport.scss";
+import "../../stylesheets/dailyreport.scss";
 
 const DRDams = (props) => {
   const params = useParams();
@@ -62,6 +62,8 @@ const DRDams = (props) => {
 
   const fetchReportPdf = async () => {
     setLoading(true);
+    const reportSection = report.Section;
+    const reportShift = report.Shift;
     const reportHTML = reportRef.current.innerHTML;
     await fetch("https://v2018.api2pdf.com/chrome/html", {
       method: "post",
@@ -95,7 +97,7 @@ const DRDams = (props) => {
           </body>
         </html>
             `,
-        fileName: `${newDate} ${report.Section} ${report.Shift}.pdf`,
+        fileName: `${reportSection}-${reportShift}-${newDate}.pdf`,
         options: {
           textAlign: "left",
           height: "11in",

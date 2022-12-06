@@ -9,6 +9,7 @@ const cookies = new Cookies();
 const Login = React.lazy(() => import("./components/Login"));
 const Register = React.lazy(() => import("./components/Register"));
 const Dashboard = React.lazy(() => import("./Dashboard/Dashboard"));
+import ForgotPasswordEmail from "./components/forgotPassword";
 const token = cookies.get("TOKEN");
 
 const MainRoutes = () => (
@@ -18,6 +19,7 @@ const MainRoutes = () => (
         <Route path="/" element={<Navigate replace to="login" />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        {/* <Route path="forgotPasswordEmail" element={<ForgotPasswordEmail />} /> */}
         <Route
           path="dashboard"
           element={token ? <Dashboard /> : <Navigate to="/" />}

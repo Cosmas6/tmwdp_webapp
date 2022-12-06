@@ -3,9 +3,9 @@ import React, { useEffect, useState, useRef } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { ProgressBar } from "react-loader-spinner";
 import { TailSpin } from "react-loader-spinner";
-import "../stylesheets/dailyreport.scss";
+import "../../stylesheets/dailyreport.scss";
 
-const DRTunnels = (props) => {
+const DRInstrumentation = (props) => {
   const params = useParams();
   const navigate = useNavigate();
   const reportRef = useRef();
@@ -15,20 +15,19 @@ const DRTunnels = (props) => {
   const [loadingDelete, setLoadingDelete] = useState(false);
   const [report, setReport] = useState([]);
   const [newDate, setNewDate] = useState();
-  const [editBtn, setEditBtn] = useState();
 
   async function deleteReport(id) {
     await fetch(`${props.deleteFetch}` + `/` + id, {
       method: "DELETE",
     });
 
-    navigate(`/dashboard/DRReadingTunnels`);
+    navigate(`/dashboard/DRReadingInstrumentation`);
   }
 
   useEffect(() => {
     async function fetchReport() {
       const id = params.id.toString();
-      setEditBtn(id);
+
       const response = await fetch(
         `https://nodejs.tmwdp.co.ke/${props.viewRoute}/${params.id.toString()}`
       );
@@ -63,6 +62,8 @@ const DRTunnels = (props) => {
 
   const fetchReportPdf = async () => {
     setLoading(true);
+    const reportSection = report.Section;
+    const reportShift = report.Shift;
     const reportHTML = reportRef.current.innerHTML;
     await fetch("https://v2018.api2pdf.com/chrome/html", {
       method: "post",
@@ -96,7 +97,7 @@ const DRTunnels = (props) => {
         </body>
       </html>
           `,
-        fileName: `${newDate}-${report.Section}-${report.Shift}.pdf`,
+        fileName: `${reportSection}-${reportShift}-${newDate}.pdf`,
         options: {
           textAlign: "left",
           height: "11in",
@@ -239,7 +240,7 @@ const DRTunnels = (props) => {
               <div id="Download_Button"></div>
               <Link
                 className="Download_Link"
-                to={`/dashboard/DREditTunnels/${reportId}`}
+                to={`/dashboard/DREditInstrumentation/${reportId}`}
               >
                 Edit Pdf
               </Link>
@@ -281,4 +282,4 @@ const DRTunnels = (props) => {
   );
 };
 
-export default DRTunnels;
+export default DRInstrumentation;

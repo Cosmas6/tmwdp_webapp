@@ -1,15 +1,15 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import DRCreate from "./DRCreate";
-import DREdit from "./DREdit";
-import DRInstrumentation from "./DRInst";
-import DRReading from "./DRReading";
+import DRCreate from "../DRCreate";
+import DREdit from "../DREdit";
+import DRInstrumentation from "../Reports/DRInst";
+import DRReading from "../DRReading";
 
 export default function CreateDRInst() {
   return (
     <div className="DR_Create">
       <DRCreate
-        fetchLink={`http://localhost:4000/DailyRInstRouter/add`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/DailyRInstRouter/add`}
         dataLink={`/dashboard/DRReadingInstrumentation`}
         sectionValue={"Instrumentation"}
       />
@@ -22,8 +22,8 @@ export function EditDRInst() {
   return (
     <div className="DR_Edit">
       <DREdit
-        fetchLink={`http://localhost:4000/DailyRInstRouter/${params.id.toString()}`}
-        fetchLinkPost={`http://localhost:4000/DailyRInstRouter/update/${params.id}`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/DailyRInstRouter/${params.id.toString()}`}
+        fetchLinkPost={`https://nodejs.tmwdp.co.ke/DailyRInstRouter/update/${params.id}`}
         navigateLink={`/dashboard/DRInstrumentationDisplay/${params.id.toString()}`}
       />
     </div>
@@ -35,8 +35,9 @@ export function ReadingDRInst() {
     <div className="DR_Reading">
       <DRReading
         drName={"Instrumentation"}
-        fetchLink={`http://localhost:4000/DailyRInstRouter`}
-        deleteFetch={`http://localhost:4000/DailyRInstRouter`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/DailyRInstRouter`}
+        deleteFetch={`https://nodejs.tmwdp.co.ke/DailyRInstRouter`}
+        createReportLink={`DRCreateInstrumentation`}
       />
     </div>
   );
@@ -47,7 +48,7 @@ export function DRInstDisplay() {
     <div className="DR_Spillway_And_Tunnels">
       <DRInstrumentation
         viewRoute={`DailyRInstRouter`}
-        deleteFetch={`http://localhost:4000/DailyRInstRouter`}
+        deleteFetch={`https://nodejs.tmwdp.co.ke/DailyRInstRouter`}
       />
     </div>
   );

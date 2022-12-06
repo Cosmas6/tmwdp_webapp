@@ -9,6 +9,7 @@ var indexRouter = require("./routes/index");
 var dbConn = require("./mongoDB/dbConn");
 var registerRouter = require("./routes/auth/Register");
 var loginRouter = require("./routes/auth/Login");
+// var passwordResetRouter = require("./routes/auth/auth.service");
 var nodeMailerRouter = require("./routes/nodeMailer");
 var DailyRSpillway = require("./routes/DailyReport/Spillway");
 var DailyRInst = require("./routes/DailyReport/Instrumentation");
@@ -52,6 +53,7 @@ app.use(fileUpload());
 app.use("/", indexRouter);
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
+// app.use("/passwordReset", passwordResetRouter);
 app.use("/nodeMailer", nodeMailerRouter);
 app.use("/C1Router", C1Router);
 app.use("/C2Router", C2Router);
@@ -75,8 +77,6 @@ app.use("/DailyRTunnelsRouter", DailyRTunnels);
 app.use("/DailyRDamsRouter", DailyRDams);
 
 // perform a database connection when server starts
-
-
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

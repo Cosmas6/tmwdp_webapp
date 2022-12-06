@@ -1,23 +1,27 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import DamRockTrips from "./DamRockTrips";
-import CreateDRDams, { EditDRDams, ReadingDRDams, DRDamsDisplay } from "./Dams";
+import DamRockTrips from "./Sections/Dams/DamRockTrips";
+import CreateDRDams, {
+  EditDRDams,
+  ReadingDRDams,
+  DRDamsDisplay,
+} from "./Sections/Dams/Dams.js";
 import CreateDRSpillway, {
   EditDRSpillway,
   ReadingDRSpillway,
   DRSpillwayDisplay,
-} from "./Spillway";
+} from "./Sections/Spillway";
 
 import CreateDRInst, {
   EditDRInst,
   ReadingDRInst,
   DRInstDisplay,
-} from "./Instrumentation";
+} from "./Sections/Instrumentation";
 import CreateDRTunnels, {
   EditDRTunnels,
   ReadingDRTunnels,
   DRTunnelsDisplay,
-} from "./Tunnels";
+} from "./Sections/Tunnels";
 
 export default [
   <>

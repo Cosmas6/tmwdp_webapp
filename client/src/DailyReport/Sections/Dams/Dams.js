@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import DRReading from "./DRReading";
-import DRDams from "./DRDams";
+import DRReading from "../../DRReading";
+import DRDams from "../../Reports/DRDams";
 import DRCreateDams from "./DRCreateDams";
 import DREditDams from "./DREditDams";
 
@@ -37,6 +37,7 @@ export function ReadingDRDams() {
         drName={"Dams"}
         fetchLink={`https://nodejs.tmwdp.co.ke/DailyRDamsRouter`}
         deleteFetch={`https://nodejs.tmwdp.co.ke/DailyRDamsRouter`}
+        createReportLink={`DRCreateDams`}
       />
     </div>
   );

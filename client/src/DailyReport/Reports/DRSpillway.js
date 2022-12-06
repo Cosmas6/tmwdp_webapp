@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { ProgressBar } from "react-loader-spinner";
 import { TailSpin } from "react-loader-spinner";
-import "../stylesheets/dailyreport.scss";
+import "../../stylesheets/dailyreport.scss";
 
 const DRSpillway = (props) => {
   const params = useParams();
@@ -30,7 +30,7 @@ const DRSpillway = (props) => {
       const id = params.id.toString();
       setEditBtn(id);
       const response = await fetch(
-        `http://localhost:4000/${props.viewRoute}/${params.id.toString()}`
+        `https://nodejs.tmwdp.co.ke/${props.viewRoute}/${params.id.toString()}`
       );
 
       if (!response.ok) {
@@ -64,6 +64,8 @@ const DRSpillway = (props) => {
   const fetchReportPdf = async () => {
     setLoading(true);
     const reportHTML = reportRef.current.innerHTML;
+    const reportSection = report.Section;
+    const reportShift = report.Shift;
     await fetch("https://v2018.api2pdf.com/chrome/html", {
       method: "post",
       headers: {
@@ -96,7 +98,7 @@ const DRSpillway = (props) => {
         </body>
       </html>
           `,
-        fileName: `${newDate}-${report.Section}-${report.Shift}.pdf`,
+        fileName: `${reportSection}-${reportShift}-${newDate}.pdf`,
         options: {
           textAlign: "left",
           height: "11in",

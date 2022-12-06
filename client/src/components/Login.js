@@ -7,7 +7,6 @@ import { useForm } from "react-hook-form";
 import "../stylesheets/login.scss";
 const cookies = new Cookies();
 
-
 function Login() {
   const formRef = useRef();
   const [loginStatus, setLoginStatus] = useState();
@@ -103,6 +102,7 @@ function Login() {
             <p>
               Not Registered? <Link to="/register">Register Instead</Link>
             </p>
+            {/* <Link to="/forgotPasswordEmail">Forgot Password?</Link> */}
           </form>
         </div>
       </div>

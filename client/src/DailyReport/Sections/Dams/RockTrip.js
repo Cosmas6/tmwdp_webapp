@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "../stylesheets/rocktrip.scss";
+import "../../../stylesheets/rocktrip.scss";
 
 const Rocktrip = (props) => {
   //Month has to be filtered in the backend

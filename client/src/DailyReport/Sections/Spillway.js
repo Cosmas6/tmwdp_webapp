@@ -1,9 +1,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import DRCreate from "./DRCreate";
-import DREdit from "./DREdit";
-import DRReading from "./DRReading";
-import DRSpillway from "./DRSpillway";
+import DRCreate from "../DRCreate";
+import DREdit from "../DREdit";
+import DRReading from "../DRReading";
+import DRSpillway from "../Reports/DRSpillway";
 
 export default function CreateDRSpillway() {
   return (
@@ -37,6 +37,7 @@ export function ReadingDRSpillway() {
         drName={"Spillway"}
         fetchLink={`https://nodejs.tmwdp.co.ke/DailyRSpillwayRouter`}
         deleteFetch={`https://nodejs.tmwdp.co.ke/DailyRSpillwayRouter`}
+        createReportLink={`DRCreateSpillway`}
       />
     </div>
   );

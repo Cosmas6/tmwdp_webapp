@@ -12,7 +12,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import "../stylesheets/dredit.scss";
+import "../../../stylesheets/dredit.scss";
 
 const DREditDams = (props) => {
   const {
