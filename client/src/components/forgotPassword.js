@@ -19,7 +19,7 @@ export default function forgotPasswordEmail() {
 
     const configuration = {
       method: "post",
-      url: "http://localhost:4000/passwordReset",
+      url: "https://nodejs.tmwdp.co.ke/passwordReset",
       data: {
         email,
       },

@@ -9,9 +9,6 @@ router.post("/", (request, response) => {
     return obj.value;
   });
 
-  // const deptNewString = deptNew.toString();
-  // console.log(deptNewString);
-
   bcrypt
     .hash(request.body.password, 10)
     .then((hashedPassword) => {

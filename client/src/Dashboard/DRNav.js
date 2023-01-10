@@ -50,7 +50,7 @@ export default function SpillwayandTunnelNav() {
       </li>
       <div className="collapse hide" id="dailyreport-collapse">
         <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small sidebar-dropdowns">
-          <SimpleBar style={{ height: "200px" }}>
+          <SimpleBar style={{ height: "200px " }}>
             <li>
               <NavLink
                 className={(navData) =>
@@ -101,6 +101,19 @@ export default function SpillwayandTunnelNav() {
                 onClick={ToggleSidebarSecond}
               >
                 Instrumentation
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className={(navData) =>
+                  navData.isActive
+                    ? "link-white rounded active"
+                    : "link-white rounded"
+                }
+                to="DRCreateEmpCamp"
+                onClick={ToggleSidebarSecond}
+              >
+                Employer's Camp
               </NavLink>
             </li>
           </SimpleBar>
@@ -172,6 +185,19 @@ export default function SpillwayandTunnelNav() {
                 onClick={ToggleSidebarSecond}
               >
                 Instrumentation
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className={(navData) =>
+                  navData.isActive
+                    ? "link-white rounded active"
+                    : "link-white rounded"
+                }
+                to="DRReadingEmpCamp"
+                onClick={ToggleSidebarSecond}
+              >
+                Employer's Camp
               </NavLink>
             </li>
           </SimpleBar>

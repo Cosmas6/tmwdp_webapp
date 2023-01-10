@@ -22,10 +22,6 @@ const UserSchema = new mongoose.Schema({
     required: [true, "Please provide a password!"],
     unique: false,
   },
-  token: {
-    type: String,
-    required: true,
-  },
 });
 
 const userDB = mongoose.connection.useDb("auth");

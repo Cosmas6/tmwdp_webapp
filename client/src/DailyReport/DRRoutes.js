@@ -12,6 +12,12 @@ import CreateDRSpillway, {
   DRSpillwayDisplay,
 } from "./Sections/Spillway";
 
+import CreateDREmpCamp, {
+  EditDREmpCamp,
+  ReadingDREmpCamp,
+  DREmpCampDisplay,
+} from "./Sections/EmployersCamp";
+
 import CreateDRInst, {
   EditDRInst,
   ReadingDRInst,
@@ -29,6 +35,10 @@ export default [
     <Route path="DREditSpillway/:id" element={<EditDRSpillway />} />
     <Route path="DRReadingSpillway" element={<ReadingDRSpillway />} />
     <Route path="DRSpillwayDisplay/:id" element={<DRSpillwayDisplay />} />
+    <Route path="DRCreateEmpCamp" element={<CreateDREmpCamp />} />
+    <Route path="DREditEmpCamp/:id" element={<EditDREmpCamp />} />
+    <Route path="DRReadingEmpCamp" element={<ReadingDREmpCamp />} />
+    <Route path="DREmployersCampDisplay/:id" element={<DREmpCampDisplay />} />
     <Route path="DRCreateInstrumentation" element={<CreateDRInst />} />
     <Route path="DREditInstrumentation/:id" element={<EditDRInst />} />
     <Route path="DRReadingInstrumentation" element={<ReadingDRInst />} />
