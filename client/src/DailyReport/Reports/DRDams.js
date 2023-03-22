@@ -62,9 +62,8 @@ const DRDams = (props) => {
 
   const fetchReportPdf = async () => {
     setLoading(true);
-    const reportSection = report.Section;
-    const reportShift = report.Shift;
     const reportHTML = reportRef.current.innerHTML;
+    const pdfFileName = `${report.Section}-${report.Shift}-${newDate}.pdf`;
     await fetch("https://v2018.api2pdf.com/chrome/html", {
       method: "post",
       headers: {
@@ -97,7 +96,7 @@ const DRDams = (props) => {
           </body>
         </html>
             `,
-        fileName: `${reportSection}-${reportShift}-${newDate}.pdf`,
+        fileName: `${pdfFileName}`,
         options: {
           textAlign: "left",
           height: "11in",
@@ -106,10 +105,23 @@ const DRDams = (props) => {
     })
       .then((res) => res.json())
       .then((res) => {
-        setLoading(false);
-        document.getElementById(
-          "Download_Button"
-        ).innerHTML = `<a className="Download_Button" href="${res.pdf}" >Download PDF</a>`;
+        fetch(res.pdf)
+          .then((response) => response.blob())
+          .then((blob) => {
+            const downloadButton = document.getElementById("Download_Button");
+
+            // Create an anchor element
+            const downloadLink = document.createElement("a");
+            downloadLink.className = "Download_Button";
+            downloadLink.href = URL.createObjectURL(blob);
+            downloadLink.download = pdfFileName;
+            downloadLink.textContent = "Download PDF";
+
+            // Append the anchor element to the Download_Button element
+            downloadButton.appendChild(downloadLink);
+
+            setLoading(false);
+          });
       });
   };
 
