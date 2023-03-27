@@ -32,6 +32,8 @@ var C13Router = require("./routes/Instrumentation/CrackMeters/C13");
 var C14Router = require("./routes/Instrumentation/CrackMeters/C14");
 var C15Router = require("./routes/Instrumentation/CrackMeters/C15");
 var C16Router = require("./routes/Instrumentation/CrackMeters/C16");
+var flutterReportRoute = require("./routes/report.route");
+var flutterUserRoute = require("./routes/user.route");
 var fileUpload = require("express-fileupload");
 var express = require("express");
 var cors = require("cors");
@@ -77,6 +79,8 @@ app.use("/DailyREmpCampRouter", DailyREmpCamp);
 app.use("/DailyRInstRouter", DailyRInst);
 app.use("/DailyRTunnelsRouter", DailyRTunnels);
 app.use("/DailyRDamsRouter", DailyRDams);
+app.use("/FlutterReportRoute", flutterReportRoute);
+app.use("/FlutterUserRoute", flutterUserRoute);
 
 // perform a database connection when server starts
 
