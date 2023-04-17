@@ -5,9 +5,18 @@ const router = express.Router();
 router.post("/create-report", async (req, res) => {
   try {
     const report = new Schema({
-      name: req.body.name,
-      department: req.body.department,
-      activity: req.body.activity,
+      projectName: req.body.projectName,
+      siteLocation: req.body.siteLocation,
+      teamLeader: req.body.teamLeader,
+      date: req.body.date,
+      workHours: req.body.workHours,
+      completedTasks: req.body.completedTasks,
+      pendingTasks: req.body.pendingTasks,
+      materialsUsed: req.body.materialsUsed,
+      issuesChallenges: req.body.issuesChallenges,
+      safetyIncidents: req.body.safetyIncidents,
+      progressPhotos: req.body.progressPhotos,
+      nextDayPlan: req.body.nextDayPlan,
     });
     const savedReport = await report.save();
     console.log(savedReport);
