@@ -5,7 +5,7 @@ const UserSchema = new mongoose.Schema({
   password: { type: String, required: true },
 });
 
-const flutterAuthDB = mongoose.connection.useDb("flutterAuth");
-const Schema = flutterAuthDB.model("users", UserSchema);
+const flutterDB = mongoose.connection.useDb("flutterDB");
+const Schema = flutterDB.model("users", UserSchema);
 
 module.exports = Schema;
