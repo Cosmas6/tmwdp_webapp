@@ -72,8 +72,9 @@ const Register = () => {
   return (
     <div className="Register_Container">
       <div className="Form_Container">
-        <h1>TMWDP</h1>
+        
         <form onSubmit={handleSubmit(onSubmit)} ref={formRef}>
+        <h1>TMWDP</h1>
           <input
             className="Form_Input"
             type="text"

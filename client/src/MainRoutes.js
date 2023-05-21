@@ -1,16 +1,12 @@
 import React, { Suspense } from "react";
 import { useRoutes, Navigate, useLocation } from "react-router-dom";
 import Authentication from "./components/Authentication";
+import DashboardRoutes from "./Dashboard/DashboardRoutes";
 import Cookies from "universal-cookie";
-
-import CMRoutes from "./Instrumentation/CrackMeter/CMRoutes";
-import DRRoutes from "./DailyReport/DRRoutes";
-import GanttRoutes from "./components/Gantt/GanttRoutes";
 
 const cookies = new Cookies();
 const Login = React.lazy(() => import("./components/Login"));
 const Register = React.lazy(() => import("./components/Register"));
-const Dashboard = React.lazy(() => import("./Dashboard/Dashboard"));
 import ForgotPasswordEmail from "./components/forgotPassword";
 const token = cookies.get("TOKEN");
 
@@ -29,8 +25,7 @@ const MainRoutes = () => {
     },
     {
       path: "dashboard/*",
-      element: token ? <Dashboard /> : <Navigate to="/auth/login" />,
-      children: [...CMRoutes, ...DRRoutes, ...GanttRoutes],
+      children: DashboardRoutes,
     },
   ]);
 
