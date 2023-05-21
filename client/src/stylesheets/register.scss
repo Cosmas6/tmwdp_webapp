@@ -1,7 +1,5 @@
 @import "./login.scss";
 
 .Register_Container {
-  margin-top: 6vh;
-  height: 100vh;
   @extend .Login_Container;
 }

@@ -29,28 +29,91 @@ import CreateDRTunnels, {
   DRTunnelsDisplay,
 } from "./Sections/Tunnels";
 
-export default [
-  <>
-    <Route path="DRCreateSpillway" element={<CreateDRSpillway />} />
-    <Route path="DREditSpillway/:id" element={<EditDRSpillway />} />
-    <Route path="DRReadingSpillway" element={<ReadingDRSpillway />} />
-    <Route path="DRSpillwayDisplay/:id" element={<DRSpillwayDisplay />} />
-    <Route path="DRCreateEmpCamp" element={<CreateDREmpCamp />} />
-    <Route path="DREditEmpCamp/:id" element={<EditDREmpCamp />} />
-    <Route path="DRReadingEmpCamp" element={<ReadingDREmpCamp />} />
-    <Route path="DREmployersCampDisplay/:id" element={<DREmpCampDisplay />} />
-    <Route path="DRCreateInstrumentation" element={<CreateDRInst />} />
-    <Route path="DREditInstrumentation/:id" element={<EditDRInst />} />
-    <Route path="DRReadingInstrumentation" element={<ReadingDRInst />} />
-    <Route path="DRInstrumentationDisplay/:id" element={<DRInstDisplay />} />
-    <Route path="DRCreateTunnels" element={<CreateDRTunnels />} />
-    <Route path="DREditTunnels/:id" element={<EditDRTunnels />} />
-    <Route path="DRReadingTunnels" element={<ReadingDRTunnels />} />
-    <Route path="DRTunnelsDisplay/:id" element={<DRTunnelsDisplay />} />
-    <Route path="DRCreateDams" element={<CreateDRDams />} />
-    <Route path="DREditDams/:id" element={<EditDRDams />} />
-    <Route path="DRReadingDams" element={<ReadingDRDams />} />
-    <Route path="DRDamsDisplay/:id" element={<DRDamsDisplay />} />
-    <Route path="damRockTrips" element={<DamRockTrips />} />
-  </>,
+const DRRoutes = [
+  {
+    path: "DRCreateSpillway",
+    element: <CreateDRSpillway />,
+  },
+  {
+    path: "DREditSpillway/:id",
+    element: <EditDRSpillway />,
+  },
+  {
+    path: "DRReadingSpillway",
+    element: <ReadingDRSpillway />,
+  },
+  {
+    path: "DRSpillwayDisplay/:id",
+    element: <DRSpillwayDisplay />,
+  },
+  {
+    path: "DRCreateEmpCamp",
+    element: <CreateDREmpCamp />,
+  },
+  {
+    path: "DREditEmpCamp/:id",
+    element: <EditDREmpCamp />,
+  },
+  {
+    path: "DRReadingEmpCamp",
+    element: <ReadingDREmpCamp />,
+  },
+  {
+    path: "DREmployersCampDisplay/:id",
+    element: <DREmpCampDisplay />,
+  },
+  {
+    path: "DRCreateInstrumentation",
+    element: <CreateDRInst />,
+  },
+  {
+    path: "DREditInstrumentation/:id",
+    element: <EditDRInst />,
+  },
+  {
+    path: "DRReadingInstrumentation",
+    element: <ReadingDRInst />,
+  },
+  {
+    path: "DRInstrumentationDisplay/:id",
+    element: <DRInstDisplay />,
+  },
+  {
+    path: "DRCreateTunnels",
+    element: <CreateDRTunnels />,
+  },
+  {
+    path: "DREditTunnels/:id",
+    element: <EditDRTunnels />,
+  },
+  {
+    path: "DRReadingTunnels",
+    element: <ReadingDRTunnels />,
+  },
+  {
+    path: "DRTunnelsDisplay/:id",
+    element: <DRTunnelsDisplay />,
+  },
+  {
+    path: "DRCreateDams",
+    element: <CreateDRDams />,
+  },
+  {
+    path: "DREditDams/:id",
+    element: <EditDRDams />,
+  },
+  {
+    path: "DRReadingDams",
+    element: <ReadingDRDams />,
+  },
+  {
+    path: "DRDamsDisplay/:id",
+    element: <DRDamsDisplay />,
+  },
+  {
+    path: "damRockTrips",
+    element: <DamRockTrips />,
+  },
 ];
+
+export default DRRoutes;

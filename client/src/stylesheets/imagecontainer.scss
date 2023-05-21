@@ -1,0 +1,15 @@
+.Image_Container {
+  display: none;
+
+  @media (min-width: 768px) {
+    display: block;
+    height: 100vh;
+    flex-grow: 1;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}

@@ -4,13 +4,13 @@ import { Outlet } from "react-router-dom";
 import "../stylesheets/dashboard.scss";
 import Cookies from "universal-cookie";
 import DRNav from "./DRNav";
-import InstNav from "./InstNav";
-import GanttNav from "./GanttNav";
-import PlacementNav from "./PlacementNav";
-const cookies = new Cookies();
+import constructionIcon from "../../public/construction-engineer-line-icon.svg";
+// import InstNav from "./InstNav";
+// import GanttNav from "./GanttNav";
+// import PlacementNav from "./PlacementNav";
 
 export default function Dashboard() {
-  const token = cookies.get("TOKEN");
+  const cookies = new Cookies();
   const navigate = useNavigate();
   const ToggleSidebar = () => {
     document.getElementById("sidebar").classList.toggle("active");
@@ -19,13 +19,13 @@ export default function Dashboard() {
   useEffect(() => {
     const token = cookies.get("TOKEN");
     if (!token) {
-      navigate("/login");
+      navigate("/auth/login");
     }
   }, []);
 
   const logOut = () => {
     cookies.remove("TOKEN", { path: "/" });
-    window.location.href = "/login";
+    window.location.href = "/auth/login";
   };
 
   return (
@@ -33,19 +33,16 @@ export default function Dashboard() {
       <nav id="sidebar">
         <div className="sidenav-header">
           <a className="sidebar-brand" href="">
-            <img
-              src="https://uxwing.com/wp-content/themes/uxwing/download/buildings-architecture-real-estate/construction-worker-icon.png"
-              alt=""
-            />
+            <img src={constructionIcon} alt="" />
             <span className="sidebar-brand-text">TMWDP</span>
           </a>
         </div>
-        <hr className="horizontal-line" />
+        <hr className="horizontal light mt-0 mb-2" />
         <ul className="list-unstyled components">
           <DRNav />
-          <InstNav />
-          <GanttNav />
-          <PlacementNav />
+          {/* <InstNav /> */}
+          {/* <GanttNav />
+          <PlacementNav /> */}
         </ul>
 
         <div className="sidenav-footer">

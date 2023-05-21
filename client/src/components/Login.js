@@ -58,7 +58,7 @@ function Login() {
             onSubmit={handleSubmit(onSubmit)}
             ref={formRef}
           >
-            {/* <label className="Input_Label">Email</label> */}
+
             <input
               className="Form_Input"
               type="text"
@@ -68,7 +68,7 @@ function Login() {
                 required: true,
               })}
             />
-            {/* <label className="Input_Label">Password</label> */}
+
             <input
               className="Form_Input"
               type="password"
@@ -100,7 +100,7 @@ function Login() {
               <p className="text-danger">{loginStatus}</p>
             </div>
             <p>
-              Not Registered? <Link to="/register">Register Instead</Link>
+              Not Registered? <Link to="/auth/register">Register Instead</Link>
             </p>
             {/* <Link to="/forgotPasswordEmail">Forgot Password?</Link> */}
           </form>
