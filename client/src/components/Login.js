@@ -39,7 +39,7 @@ function Login() {
         cookies.set("TOKEN", result.data.token, {
           path: "/",
         });
-        window.location.href = "/dashboard";
+        window.location.href = "/dashboard/dashboard-overview";
       })
       .catch((error) => {
         setLoginStatus(error.response.data.message);
@@ -58,7 +58,6 @@ function Login() {
             onSubmit={handleSubmit(onSubmit)}
             ref={formRef}
           >
-
             <input
               className="Form_Input"
               type="text"

@@ -1,0 +1,12 @@
+@import "./main.scss";
+
+.HomePage_Container {
+  @extend .Display_Inline_Block;
+  @extend .Container_Left_Margin;
+  @extend .Sidebar_Black_Color;
+
+  .Welcome_Content {
+    @extend .Shadow;
+    @extend .Container_Padding;
+  }
+}

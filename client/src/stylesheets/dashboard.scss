@@ -5,13 +5,14 @@
   overflow-anchor: none;
   touch-action: auto;
   position: relative !important;
+  z-index: 9999;
 
   @extend .Sidebar_White_Color;
 
   .nav-toggle-button {
-    position: fixed;
-    right: 0;
-    top: 0;
+    position: absolute;
+    right: 5px;
+    top: 15px;
     z-index: 999;
     width: 20%;
 
@@ -20,15 +21,110 @@
 
       @media (max-width: 768px) {
         display: block;
-        width: 100%;
-        height: 80px;
-        background-color: #1976d2;
-        border-color: #1976d2;
+        width: 50%;
+        --bs-btn-bg: none;
+        --bs-btn-border-color: none;
+        --bs-btn-hover-color: none;
+        --bs-btn-hover-bg: none;
+        --bs-btn-hover-border-color: none;
+        --bs-btn-active-bg: none;
         text-align: right;
-        color: white;
+        color: #1976d2;
         border-radius: 0;
       }
     }
+  }
+
+  .profile-section {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    display: flex;
+    align-items: center;
+
+    @media (max-width: 768px) {
+      right: 80px;
+    }
+  }
+
+  .profile-picture {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1976d2;
+    color: #fff;
+    font-size: 30px;
+  }
+
+  .profile-name {
+    cursor: pointer;
+    i {
+      margin-left: 10px;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 15px;
+    }
+  }
+
+  .dropdown-menu {
+    @extend .Shadow;
+    display: none;
+    position: absolute;
+    right: -5%;
+    top: 110%;
+    background-color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 0;
+    width: 200px;
+
+    @media (max-width: 768px) {
+      width: 100px;
+      padding: 5px 0;
+    }
+  }
+
+  .dropdown-menu.show {
+    display: block;
+    z-index: 9999;
+  }
+
+  .profile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    color: #0a2e52 !important;
+  }
+
+  .log-out {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    color: #0a2e52 !important;
+  }
+
+  .dropdown-item {
+    padding: 5px 10px;
+    color: #0a2e52;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+      background-color: #1976d2;
+      color: #fff;
+    }
+  }
+
+  .dropdown-divider {
+    height: 1px;
+    background-color: #1976d2;
+    margin: 5px 0;
   }
 }
 
@@ -102,6 +198,13 @@
   border-top: 4px solid white;
   border-radius: 5px;
   opacity: 1;
+}
+
+.list-unstyled {
+  @media (max-height: 680px) {
+    max-height: 500px;
+    overflow-y: auto;
+  }
 }
 
 .sidenav-footer {

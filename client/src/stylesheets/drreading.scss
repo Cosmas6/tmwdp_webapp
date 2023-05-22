@@ -3,6 +3,8 @@
 .DRReading_Container {
   @extend .Display_Inline_Block;
   @extend .Container_Left_Margin;
+  position:relative;
+  z-index: -1;
 
   .Report_Table_Container {
     @extend .Shadow;

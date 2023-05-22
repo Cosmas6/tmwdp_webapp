@@ -28,8 +28,13 @@ import CreateDRTunnels, {
   ReadingDRTunnels,
   DRTunnelsDisplay,
 } from "./Sections/Tunnels";
+import HomePage from "../Dashboard/HomePage";
 
 const DRRoutes = [
+  {
+    path: "dashboard-overview",
+    element: <HomePage />,
+  },
   {
     path: "DRCreateSpillway",
     element: <CreateDRSpillway />,
