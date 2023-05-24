@@ -1,6 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
-import DamRockTrips from "./Sections/Dams/DamRockTrips";
+import HomePage from "../Dashboard/HomePage";
 import CreateDRDams, {
   EditDRDams,
   ReadingDRDams,
@@ -10,25 +9,24 @@ import CreateDRSpillway, {
   EditDRSpillway,
   ReadingDRSpillway,
   DRSpillwayDisplay,
-} from "./Sections/Spillway";
+} from "./Sections/Spillway.js";
 
 import CreateDREmpCamp, {
   EditDREmpCamp,
   ReadingDREmpCamp,
   DREmpCampDisplay,
-} from "./Sections/EmployersCamp";
+} from "./Sections/EmployersCamp.js";
 
 import CreateDRInst, {
   EditDRInst,
   ReadingDRInst,
   DRInstDisplay,
-} from "./Sections/Instrumentation";
+} from "./Sections/Instrumentation.js";
 import CreateDRTunnels, {
   EditDRTunnels,
   ReadingDRTunnels,
   DRTunnelsDisplay,
-} from "./Sections/Tunnels";
-import HomePage from "../Dashboard/HomePage";
+} from "./Sections/Tunnels.js";
 
 const DRRoutes = [
   {
@@ -36,88 +34,49 @@ const DRRoutes = [
     element: <HomePage />,
   },
   {
-    path: "DRCreateSpillway",
-    element: <CreateDRSpillway />,
+    path: "spillway",
+    children: [
+      { path: "create", element: <CreateDRSpillway /> },
+      { path: "edit/:id", element: <EditDRSpillway /> },
+      { path: "read", element: <ReadingDRSpillway /> },
+      { path: "display/:id", element: <DRSpillwayDisplay /> },
+    ],
   },
   {
-    path: "DREditSpillway/:id",
-    element: <EditDRSpillway />,
+    path: "employerscamp",
+    children: [
+      { path: "create", element: <CreateDREmpCamp /> },
+      { path: "edit/:id", element: <EditDREmpCamp /> },
+      { path: "read", element: <ReadingDREmpCamp /> },
+      { path: "display/:id", element: <DREmpCampDisplay /> },
+    ],
   },
   {
-    path: "DRReadingSpillway",
-    element: <ReadingDRSpillway />,
+    path: "instrumentation",
+    children: [
+      { path: "create", element: <CreateDRInst /> },
+      { path: "edit/:id", element: <EditDRInst /> },
+      { path: "read", element: <ReadingDRInst /> },
+      { path: "display/:id", element: <DRInstDisplay /> },
+    ],
   },
   {
-    path: "DRSpillwayDisplay/:id",
-    element: <DRSpillwayDisplay />,
+    path: "tunnels",
+    children: [
+      { path: "create", element: <CreateDRTunnels /> },
+      { path: "edit/:id", element: <EditDRTunnels /> },
+      { path: "read", element: <ReadingDRTunnels /> },
+      { path: "display/:id", element: <DRTunnelsDisplay /> },
+    ],
   },
   {
-    path: "DRCreateEmpCamp",
-    element: <CreateDREmpCamp />,
-  },
-  {
-    path: "DREditEmpCamp/:id",
-    element: <EditDREmpCamp />,
-  },
-  {
-    path: "DRReadingEmpCamp",
-    element: <ReadingDREmpCamp />,
-  },
-  {
-    path: "DREmployersCampDisplay/:id",
-    element: <DREmpCampDisplay />,
-  },
-  {
-    path: "DRCreateInstrumentation",
-    element: <CreateDRInst />,
-  },
-  {
-    path: "DREditInstrumentation/:id",
-    element: <EditDRInst />,
-  },
-  {
-    path: "DRReadingInstrumentation",
-    element: <ReadingDRInst />,
-  },
-  {
-    path: "DRInstrumentationDisplay/:id",
-    element: <DRInstDisplay />,
-  },
-  {
-    path: "DRCreateTunnels",
-    element: <CreateDRTunnels />,
-  },
-  {
-    path: "DREditTunnels/:id",
-    element: <EditDRTunnels />,
-  },
-  {
-    path: "DRReadingTunnels",
-    element: <ReadingDRTunnels />,
-  },
-  {
-    path: "DRTunnelsDisplay/:id",
-    element: <DRTunnelsDisplay />,
-  },
-  {
-    path: "DRCreateDams",
-    element: <CreateDRDams />,
-  },
-  {
-    path: "DREditDams/:id",
-    element: <EditDRDams />,
-  },
-  {
-    path: "DRReadingDams",
-    element: <ReadingDRDams />,
-  },
-  {
-    path: "DRDamsDisplay/:id",
-    element: <DRDamsDisplay />,
-  },
-  {
-    path: "damRockTrips",
-    element: <DamRockTrips />,
+    path: "dams",
+    children: [
+      { path: "create", element: <CreateDRDams /> },
+      { path: "edit/:id", element: <EditDRDams /> },
+      { path: "read", element: <ReadingDRDams /> },
+      { path: "display/:id", element: <DRDamsDisplay /> },
+    ],
   },
 ];
 

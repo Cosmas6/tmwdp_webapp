@@ -2,8 +2,8 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import DRCreate from "../DRCreate";
 import DREdit from "../DREdit";
-import DRInstrumentation from "../Reports/DRInst";
 import DRReading from "../DRReading";
+import ReportView from "../Reports/ReportView";
 
 export default function CreateDRInst() {
   return (
@@ -46,7 +46,8 @@ export function ReadingDRInst() {
 export function DRInstDisplay() {
   return (
     <div className="DR_Spillway_And_Tunnels">
-      <DRInstrumentation
+      <ReportView
+        department={`instrumentation`}
         viewRoute={`DailyRInstRouter`}
         deleteFetch={`https://nodejs.tmwdp.co.ke/DailyRInstRouter`}
       />

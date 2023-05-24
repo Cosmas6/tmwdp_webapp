@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
 import Cookies from "universal-cookie";
 import "../stylesheets/homepage.scss";
+import DRTrack from "../DailyReport/DRTrack";
 
 const HomePage = () => {
   const [username, setUsername] = useState("");
@@ -24,6 +25,9 @@ const HomePage = () => {
         <div className="col-12">
           <div className="Welcome_Content">
             <h1 className="welcome-title">Hello! Eng. {username}</h1>
+          </div>
+          <div className="DR_Calendar">
+            <DRTrack />
           </div>
         </div>
       </div>

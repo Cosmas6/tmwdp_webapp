@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import DRCreate from "../DRCreate";
 import DREdit from "../DREdit";
 import DRReading from "../DRReading";
-import DREmployersCamp from "../Reports/DREmployersCamp";
+import ReportView from "../Reports/ReportView";
 
 export default function CreateDREmpCamp() {
   return (
@@ -46,7 +46,8 @@ export function ReadingDREmpCamp() {
 export function DREmpCampDisplay() {
   return (
     <div className="DR_Employers_Camp">
-      <DREmployersCamp
+      <ReportView
+        department={`employerscamp`}
         viewRoute={`DailyREmpCampRouter`}
         deleteFetch={`https://nodejs.tmwdp.co.ke/DailyREmpCampRouter`}
       />

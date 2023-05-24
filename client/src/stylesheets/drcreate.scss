@@ -6,8 +6,7 @@
   @extend .Display_Inline_Block;
   @extend .Container_Left_Margin;
   @extend .Sidebar_Black_Color;
-  position:relative;
-  z-index: -1;
+  position: relative;
 
   .Form_Container {
     @extend .Shadow;

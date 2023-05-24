@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { ProgressBar } from "react-loader-spinner";
 import { TailSpin } from "react-loader-spinner";
-import "../../stylesheets/dailyreport.scss";
+import "../../stylesheets/reportview.scss";
 
 const DRDams = (props) => {
   const params = useParams();

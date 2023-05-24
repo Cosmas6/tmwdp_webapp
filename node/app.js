@@ -16,6 +16,7 @@ var DailyREmpCamp = require("./routes/DailyReport/EmployersCamp");
 var DailyRInst = require("./routes/DailyReport/Instrumentation");
 var DailyRTunnels = require("./routes/DailyReport/Tunnels");
 var DailyRDams = require("./routes/DailyReport/Dams");
+var UserReport = require("./routes/DailyReport/UserReport");
 var C1Router = require("./routes/Instrumentation/CrackMeters/C1");
 var C2Router = require("./routes/Instrumentation/CrackMeters/C2");
 var C3Router = require("./routes/Instrumentation/CrackMeters/C3");
@@ -79,6 +80,7 @@ app.use("/DailyREmpCampRouter", DailyREmpCamp);
 app.use("/DailyRInstRouter", DailyRInst);
 app.use("/DailyRTunnelsRouter", DailyRTunnels);
 app.use("/DailyRDamsRouter", DailyRDams);
+app.use("/UserReportRoute", UserReport);
 app.use("/FlutterReportRoute", flutterReportRoute);
 app.use("/FlutterUserRoute", flutterUserRoute);
 

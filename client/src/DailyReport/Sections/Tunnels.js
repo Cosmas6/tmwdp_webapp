@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import DRCreate from "../DRCreate";
 import DREdit from "../DREdit";
 import DRReading from "../DRReading";
-import DRTunnels from "../Reports/DRTunnels";
+import ReportView from "../Reports/ReportView";
 
 export default function CreateDRTunnels() {
   return (
@@ -46,7 +46,8 @@ export function ReadingDRTunnels() {
 export function DRTunnelsDisplay() {
   return (
     <div className="DR_Spillway_And_Tunnels">
-      <DRTunnels
+      <ReportView
+        department={`tunnels`}
         viewRoute={`DailyRTunnelsRouter`}
         deleteFetch={`https://nodejs.tmwdp.co.ke/DailyRTunnelsRouter`}
       />

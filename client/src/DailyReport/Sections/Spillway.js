@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import DRCreate from "../DRCreate";
 import DREdit from "../DREdit";
 import DRReading from "../DRReading";
-import DRSpillway from "../Reports/DRSpillway";
+import ReportView from "../Reports/ReportView";
 
 export default function CreateDRSpillway() {
   return (
@@ -46,7 +46,8 @@ export function ReadingDRSpillway() {
 export function DRSpillwayDisplay() {
   return (
     <div className="DR_Spillway_And_Tunnels">
-      <DRSpillway
+      <ReportView
+        department={`spillway`}
         viewRoute={`DailyRSpillwayRouter`}
         deleteFetch={`https://nodejs.tmwdp.co.ke/DailyRSpillwayRouter`}
       />
