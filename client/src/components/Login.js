@@ -101,7 +101,7 @@ function Login() {
             <p>
               Not Registered? <Link to="/auth/register">Register Instead</Link>
             </p>
-            {/* <Link to="/forgotPasswordEmail">Forgot Password?</Link> */}
+            <Link to="/auth/forgot-password">Forgot Password?</Link>
           </form>
         </div>
       </div>

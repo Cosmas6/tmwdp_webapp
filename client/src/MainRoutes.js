@@ -11,7 +11,7 @@ import ResetPassword from "./components/ResetPassword";
 // const Register = React.lazy(() => import("./components/Register"));
 
 const MainRoutes = () => {
-    let location = useLocation();
+  let location = useLocation();
 
   let routes = useRoutes([
     { path: "/", element: <Navigate replace to="/auth/login" /> },
@@ -22,7 +22,7 @@ const MainRoutes = () => {
         { path: "login", element: <Login /> },
         { path: "register", element: <Register /> },
         { path: "forgot-password", element: <ForgotPassword /> },
-        { path: "reset-password", element: <ResetPassword /> },
+        { path: "reset-password/:token", element: <ResetPassword /> },
       ],
     },
     {
