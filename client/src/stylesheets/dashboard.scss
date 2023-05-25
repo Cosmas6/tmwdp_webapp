@@ -226,12 +226,31 @@
     @extend .span-css;
     font-size: 15px;
   }
-
-  &:hover,
-  &:focus {
-    background-color: #5b9ad9;
-    color: black !important;
+  i {
+    font-size: 20px;
+    text-align: center;
   }
+}
+
+.nav-dropdown,
+.nav-link-custom {
+  @extend .nav-link;
+}
+
+.nav-dropdown {
+  cursor: pointer;
+}
+
+.nav-link.active {
+  /* Add your styles for the active state here */
+  background-color: #5b9ad9;
+  color: black !important;
+}
+
+.sub-nav-link {
+  padding: 10px;
+  font-size: 1.1em;
+  display: block;
 }
 
 .nav-link .arrow {
@@ -248,12 +267,6 @@
   &:after {
     transform: rotate(180deg);
   }
-}
-
-#sidebar ul li a {
-  padding: 10px;
-  font-size: 1.1em;
-  display: block;
 }
 
 #sidebar ul li.active > a,

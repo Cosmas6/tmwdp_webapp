@@ -2,16 +2,16 @@ import React, { Suspense } from "react";
 import { useRoutes, Navigate, useLocation } from "react-router-dom";
 import Authentication from "./components/Authentication";
 import DashboardRoutes from "./Dashboard/DashboardRoutes";
-import Cookies from "universal-cookie";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import ForgotPassword from "./components/ForgotPassword";
+import ResetPassword from "./components/ResetPassword";
 
-const cookies = new Cookies();
-const Login = React.lazy(() => import("./components/Login"));
-const Register = React.lazy(() => import("./components/Register"));
-import ForgotPasswordEmail from "./components/forgotPassword";
-const token = cookies.get("TOKEN");
+// const Login = React.lazy(() => import("./components/Login"));
+// const Register = React.lazy(() => import("./components/Register"));
 
 const MainRoutes = () => {
-  let location = useLocation();
+    let location = useLocation();
 
   let routes = useRoutes([
     { path: "/", element: <Navigate replace to="/auth/login" /> },
@@ -21,6 +21,8 @@ const MainRoutes = () => {
       children: [
         { path: "login", element: <Login /> },
         { path: "register", element: <Register /> },
+        { path: "forgot-password", element: <ForgotPassword /> },
+        { path: "reset-password", element: <ResetPassword /> },
       ],
     },
     {

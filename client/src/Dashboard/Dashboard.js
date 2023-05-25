@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import React, { useEffect, useState, useRef } from "react";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import "../stylesheets/dashboard.scss";
 import Cookies from "universal-cookie";
@@ -12,9 +12,13 @@ import useWindowDimensions from "../components/useWindowDimensions";
 export default function Dashboard() {
   const cookies = new Cookies();
   const navigate = useNavigate();
+  const location = useLocation();
   const { width } = useWindowDimensions();
   const [username, setUsername] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const dailyReportRef = useRef(null);
+  const dailyReportListRef = useRef(null);
 
   const ToggleSidebar = () => {
     document.getElementById("sidebar").classList.toggle("active");
@@ -61,7 +65,35 @@ export default function Dashboard() {
       setUsername(username);
       console.log(username);
     }
-  }, []);
+
+    const dailyReportRoutes = [
+      "/dashboard/spillway/create",
+      "/dashboard/tunnels/create",
+      "/dashboard/dams/create",
+      "/dashboard/instrumentation/create",
+      "/dashboard/employersCamp/create",
+    ];
+
+    const dailyReportListRoutes = [
+      "/dashboard/spillway/read",
+      "/dashboard/tunnels/read",
+      "/dashboard/dams/read",
+      "/dashboard/instrumentation/read",
+      "/dashboard/employersCamp/read",
+    ];
+
+    if (dailyReportRoutes.includes(location.pathname)) {
+      dailyReportRef.current.classList.add("show");
+    } else {
+      dailyReportRef.current.classList.remove("show");
+    }
+
+    if (dailyReportListRoutes.includes(location.pathname)) {
+      dailyReportListRef.current.classList.add("show");
+    } else {
+      dailyReportListRef.current.classList.remove("show");
+    }
+  }, [location.pathname]);
 
   const logOut = () => {
     cookies.remove("TOKEN", { path: "/" });
@@ -82,13 +114,7 @@ export default function Dashboard() {
       <nav id="sidebar">
         <div className="Nav_Container">
           <div className="sidenav-header">
-            <NavLink
-              className={(navData) =>
-                navData.isActive
-                  ? "sidebar-brand rounded active"
-                  : "sidebar-brand rounded"
-              }
-            >
+            <NavLink className="sidebar-brand rounded">
               <span className="sidebar-brand-text">TMWDP</span>
             </NavLink>
           </div>
@@ -96,10 +122,10 @@ export default function Dashboard() {
           <ul className="list-unstyled components">
             <li>
               <NavLink
-                className={(navData) =>
-                  navData.isActive
-                    ? "nav-link rounded active"
-                    : "nav-link rounded"
+                className={
+                  location.pathname === "/dashboard/dashboard-overview"
+                    ? "nav-link-custom rounded active"
+                    : "nav-link-custom rounded"
                 }
                 to="/dashboard/dashboard-overview"
                 onClick={ToggleSidebarSecond}
@@ -113,12 +139,8 @@ export default function Dashboard() {
               </NavLink>
             </li>
             <li>
-              <NavLink
-                className={(navData) =>
-                  navData.isActive
-                    ? "nav-link rounded active"
-                    : "nav-link rounded"
-                }
+              <div
+                className="nav-dropdown rounded"
                 data-bs-toggle="collapse"
                 data-bs-target="#dailyreport-collapse"
                 aria-expanded="false"
@@ -130,16 +152,20 @@ export default function Dashboard() {
                   </div>
                   <span className="arrow"></span>
                 </div>
-              </NavLink>
+              </div>
             </li>
-            <div className="collapse hide" id="dailyreport-collapse">
+            <div
+              className="collapse hide"
+              id="dailyreport-collapse"
+              ref={dailyReportRef}
+            >
               <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small sidebar-dropdowns">
                 <li>
                   <NavLink
-                    className={(navData) =>
-                      navData.isActive
-                        ? "link-white rounded active"
-                        : "link-white rounded"
+                    className={
+                      location.pathname === "/dashboard/spillway/create"
+                        ? "sub-nav-link rounded active"
+                        : "sub-nav-link rounded"
                     }
                     to="/dashboard/spillway/create"
                     onClick={ToggleSidebarSecond}
@@ -149,10 +175,10 @@ export default function Dashboard() {
                 </li>
                 <li>
                   <NavLink
-                    className={(navData) =>
-                      navData.isActive
-                        ? "link-white rounded active"
-                        : "link-white rounded"
+                    className={
+                      location.pathname === "/dashboard/tunnels/create"
+                        ? "sub-nav-link rounded active"
+                        : "sub-nav-link rounded"
                     }
                     to="/dashboard/tunnels/create"
                     onClick={ToggleSidebarSecond}
@@ -162,10 +188,10 @@ export default function Dashboard() {
                 </li>
                 <li>
                   <NavLink
-                    className={(navData) =>
-                      navData.isActive
-                        ? "link-white rounded active"
-                        : "link-white rounded"
+                    className={
+                      location.pathname === "/dashboard/dams/create"
+                        ? "sub-nav-link rounded active"
+                        : "sub-nav-link rounded"
                     }
                     to="/dashboard/dams/create"
                     onClick={ToggleSidebarSecond}
@@ -175,10 +201,10 @@ export default function Dashboard() {
                 </li>
                 <li>
                   <NavLink
-                    className={(navData) =>
-                      navData.isActive
-                        ? "link-white rounded active"
-                        : "link-white rounded"
+                    className={
+                      location.pathname === "/dashboard/instrumentation/create"
+                        ? "sub-nav-link rounded active"
+                        : "sub-nav-link rounded"
                     }
                     to="/dashboard/instrumentation/create"
                     onClick={ToggleSidebarSecond}
@@ -188,10 +214,10 @@ export default function Dashboard() {
                 </li>
                 <li>
                   <NavLink
-                    className={(navData) =>
-                      navData.isActive
-                        ? "link-white rounded active"
-                        : "link-white rounded"
+                    className={
+                      location.pathname === "/dashboard/employersCamp/create"
+                        ? "sub-nav-link rounded active"
+                        : "sub-nav-link rounded"
                     }
                     to="/dashboard/employersCamp/create"
                     onClick={ToggleSidebarSecond}
@@ -202,12 +228,8 @@ export default function Dashboard() {
               </ul>
             </div>
             <li>
-              <NavLink
-                className={(navData) =>
-                  navData.isActive
-                    ? "nav-link rounded active"
-                    : "nav-link rounded"
-                }
+              <div
+                className="nav-dropdown rounded"
                 data-bs-toggle="collapse"
                 data-bs-target="#dailyreportlist-collapse"
                 aria-expanded="false"
@@ -219,16 +241,20 @@ export default function Dashboard() {
                   </div>
                   <span className="arrow"></span>
                 </div>
-              </NavLink>
+              </div>
             </li>
-            <div className="collapse hide" id="dailyreportlist-collapse">
+            <div
+              className="collapse hide"
+              id="dailyreportlist-collapse"
+              ref={dailyReportListRef}
+            >
               <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small sidebar-dropdowns">
                 <li>
                   <NavLink
-                    className={(navData) =>
-                      navData.isActive
-                        ? "link-white rounded active"
-                        : "link-white rounded"
+                    className={
+                      location.pathname === "/dashboard/spillway/read"
+                        ? "sub-nav-link rounded active"
+                        : "sub-nav-link rounded"
                     }
                     to="/dashboard/spillway/read"
                     onClick={ToggleSidebarSecond}
@@ -238,10 +264,10 @@ export default function Dashboard() {
                 </li>
                 <li>
                   <NavLink
-                    className={(navData) =>
-                      navData.isActive
-                        ? "link-white rounded active"
-                        : "link-white rounded"
+                    className={
+                      location.pathname === "/dashboard/tunnels/read"
+                        ? "sub-nav-link rounded active"
+                        : "sub-nav-link rounded"
                     }
                     to="/dashboard/tunnels/read"
                     onClick={ToggleSidebarSecond}
@@ -251,10 +277,10 @@ export default function Dashboard() {
                 </li>
                 <li>
                   <NavLink
-                    className={(navData) =>
-                      navData.isActive
-                        ? "link-white rounded active"
-                        : "link-white rounded"
+                    className={
+                      location.pathname === "/dashboard/dams/read"
+                        ? "sub-nav-link rounded active"
+                        : "sub-nav-link rounded"
                     }
                     to="/dashboard/dams/read"
                     onClick={ToggleSidebarSecond}
@@ -264,10 +290,10 @@ export default function Dashboard() {
                 </li>
                 <li>
                   <NavLink
-                    className={(navData) =>
-                      navData.isActive
-                        ? "link-white rounded active"
-                        : "link-white rounded"
+                    className={
+                      location.pathname === "/dashboard/instrumentation/read"
+                        ? "sub-nav-link rounded active"
+                        : "sub-nav-link rounded"
                     }
                     to="/dashboard/instrumentation/read"
                     onClick={ToggleSidebarSecond}
@@ -277,10 +303,10 @@ export default function Dashboard() {
                 </li>
                 <li>
                   <NavLink
-                    className={(navData) =>
-                      navData.isActive
-                        ? "link-white rounded active"
-                        : "link-white rounded"
+                    className={
+                      location.pathname === "/dashboard/employersCamp/read"
+                        ? "sub-nav-link rounded active"
+                        : "sub-nav-link rounded"
                     }
                     to="/dashboard/employersCamp/read"
                     onClick={ToggleSidebarSecond}
