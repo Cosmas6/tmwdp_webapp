@@ -50,8 +50,8 @@ function Login() {
 
   return (
     <>
-      <div className="Login_Container">
-        <div className="Form_Container">
+      <div className="auth-container login-container">
+        <div className="form-container">
           <h1>TMWDP</h1>
           <form
             className="Form"
@@ -59,7 +59,7 @@ function Login() {
             ref={formRef}
           >
             <input
-              className="Form_Input"
+              className="form-input"
               type="text"
               placeholder="Email"
               id="login-email"
@@ -69,7 +69,7 @@ function Login() {
             />
 
             <input
-              className="Form_Input"
+              className="form-input"
               type="password"
               placeholder="Password"
               id="login-password"
@@ -77,7 +77,7 @@ function Login() {
                 required: true,
               })}
             />
-            <button className="Submit_Button" type="submit">
+            <button className="submit-button" type="submit">
               {loading ? (
                 <div className="Loading_Div_Buttons">
                   <TailSpin

@@ -112,7 +112,7 @@ const CMGraph = (props) => {
             </LineChart>
             {defandcumulList()}
             {/* <div className="view-data daily-report-form-flex">
-              <Link className="Submit_Button" to={props.dataLink}>
+              <Link className="submit-button" to={props.dataLink}>
                 View Data
               </Link>
             </div> */}

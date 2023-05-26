@@ -107,7 +107,7 @@ const CMFormEdit = (props) => {
       <div className="row">
         <div className="col-12">
           <form
-            className="Form_Container card"
+            className="form-container card"
             onSubmit={handleSubmit(onSubmit)}
           >
             <h1>{props.cmName}</h1>
@@ -223,7 +223,7 @@ const CMFormEdit = (props) => {
             <div className="form-group daily-report-form-flex">
               <div id="Status_Div"></div>
               <button
-                className="Submit_Button daily-report-form-block"
+                className="submit-button daily-report-form-block"
                 type="submit"
               >
                 {loading ? (

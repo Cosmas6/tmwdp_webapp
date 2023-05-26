@@ -24,7 +24,10 @@ router.post("/", (req, res) => {
     const resetLink = "http://localhost:8080/auth/reset-password/" + token;
 
     // Send reset link back to client
-    res.send({ resetLink });
+    res.send({
+      resetLink,
+      message: "A reset link has been sent to your email address.",
+    });
   });
 });
 

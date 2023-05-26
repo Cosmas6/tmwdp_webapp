@@ -100,7 +100,7 @@ const DRCreate = (props) => {
       <div className="row">
         <div className="col-12">
           <form
-            className="Form_Container card"
+            className="form-container card"
             onSubmit={handleSubmit(onSubmit)}
           >
             <div className="Section_Container daily-report-form-block">
@@ -115,7 +115,7 @@ const DRCreate = (props) => {
               />
             </div>
             <div className="Weather_Container daily-report-form-block">
-              <label className="Input_Label">Weather</label>
+              <label className="input-label">Weather</label>
               <Controller
                 control={control}
                 rules={{ required: true }}
@@ -163,7 +163,7 @@ const DRCreate = (props) => {
             </div>
 
             <div className="Shift_Container daily-report-form-block">
-              <label className="Input_Label">Shift</label>
+              <label className="input-label">Shift</label>
               <Controller
                 control={control}
                 rules={{ required: true }}
@@ -190,10 +190,10 @@ const DRCreate = (props) => {
                 )}
               />
             </div>
-            <label className="Input_Label daily-report-form-block Bold_Text">
+            <label className="input-label daily-report-form-block Bold_Text">
               <p>
                 Press space then enter to go to a new line
-                <strong>(Phone Users)</strong> 
+                <strong>(Phone Users)</strong>
               </p>
             </label>
             <div className="ActandPlant_Container daily-report-form-block">
@@ -250,7 +250,7 @@ const DRCreate = (props) => {
                 )}
               />
             </div>
-            <label className="Input_Label daily-report-form-block Bold_Text">
+            <label className="input-label daily-report-form-block Bold_Text">
               Labour Force count
             </label>
             <div className="numbers">
@@ -358,7 +358,7 @@ const DRCreate = (props) => {
 
             <div className="submit-div">
               <button
-                className="Submit_Button daily-report-form-flex"
+                className="submit-button daily-report-form-flex"
                 type="submit"
               >
                 {loading ? (

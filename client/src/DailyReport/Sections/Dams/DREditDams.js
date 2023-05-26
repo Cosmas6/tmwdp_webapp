@@ -101,11 +101,11 @@ const DREditDams = (props) => {
       <div className="row">
         <div className="col-12">
           <form
-            className="Form_Container card"
+            className="form-container card"
             onSubmit={handleSubmit(onSubmit)}
           >
             <div className="Weather_Container daily-report-form-block">
-              <label className="Input_Label">Weather</label>
+              <label className="input-label">Weather</label>
               <Controller
                 control={control}
                 rules={{ required: true }}
@@ -152,7 +152,7 @@ const DREditDams = (props) => {
               </LocalizationProvider>
             </div>
             <div className="Shift_Container daily-report-form-block">
-              <label className="Input_Label">Shift</label>
+              <label className="input-label">Shift</label>
               <Controller
                 control={control}
                 rules={{ required: true }}
@@ -179,14 +179,14 @@ const DREditDams = (props) => {
                 )}
               />
             </div>
-            <label className="Input_Label daily-report-form-block Bold_Text">
+            <label className="input-label daily-report-form-block Bold_Text">
               <p>
                 Press space then enter to go to a new line
                 <strong>(Phone Users)</strong>
               </p>
             </label>
             <div className="ActandPlant_Container daily-report-form-block">
-              <label className="Input_Label">Activities</label>
+              <label className="input-label">Activities</label>
               <Controller
                 name="Activities"
                 control={control}
@@ -206,7 +206,7 @@ const DREditDams = (props) => {
               />
             </div>
             <div className="ActandPlant_Container daily-report-form-block">
-              <label className="Input_Label">Plant & Equipment</label>
+              <label className="input-label">Plant & Equipment</label>
               <Controller
                 name="PlantEQ"
                 control={control}
@@ -273,7 +273,7 @@ const DREditDams = (props) => {
                     </div>
                     <button
                       type="button"
-                      className="Submit_Button daily-report-form-block"
+                      className="submit-button daily-report-form-block"
                       onClick={() => remove(index)}
                     >
                       Delete
@@ -285,12 +285,12 @@ const DREditDams = (props) => {
 
             <button
               type="button"
-              className="Submit_Button daily-report-form-block"
+              className="submit-button daily-report-form-block"
               onClick={() => append()}
             >
               Add no. of trips for rocks
             </button>
-            <label className="Input_Label daily-report-form-block Bold_Text">
+            <label className="input-label daily-report-form-block Bold_Text">
               Labour Force count
             </label>
             <div className="numbers">
@@ -395,19 +395,19 @@ const DREditDams = (props) => {
                 className="daily-report-form-flex"
               />
             </div>
-            {/* <label className="Input_Label">Email</label>
+            {/* <label className="input-label">Email</label>
         <input
-          className="Form_Input"
+          className="form-input"
           type="text"
           id="email"
           {...register("Email", {
             required: true,
           })}
         />
-        <input className="Form_Input" type="text" id="activities" /> */}
+        <input className="form-input" type="text" id="activities" /> */}
             <div className="submit-div">
               <button
-                className="Submit_Button daily-report-form-flex"
+                className="submit-button daily-report-form-flex"
                 type="submit"
               >
                 {loading ? (

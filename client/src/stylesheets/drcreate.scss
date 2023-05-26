@@ -8,7 +8,7 @@
   @extend .Sidebar_Black_Color;
   position: relative;
 
-  .Form_Container {
+  .form-container {
     @extend .Shadow;
     @extend .Container_Padding;
   }
@@ -67,7 +67,7 @@
     }
   }
 
-  .Submit_Button {
+  .submit-button {
     width: 200px;
     padding-bottom: 20px;
   }

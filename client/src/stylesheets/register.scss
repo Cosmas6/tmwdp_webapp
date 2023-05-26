@@ -1,5 +1,9 @@
 @import "./login.scss";
 
-.Register_Container {
-  @extend .Login_Container;
+.auth-container {
+  @extend .auth-container;
+
+  .css-b62m3t-container{
+    margin-top: 20px;
+  }
 }

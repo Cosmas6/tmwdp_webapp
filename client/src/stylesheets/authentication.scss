@@ -1,0 +1,27 @@
+.Auth_Container {
+  height: 100vh !important;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    margin-top: 0;
+  }
+
+  .login-container,
+  .register-container,
+  .forgot-password-container,
+  .reset-password-container {
+    width: 30%;
+
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+  }
+
+  .image-container {
+    width: 70%;
+  }
+}

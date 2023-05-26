@@ -67,7 +67,7 @@ const DamRockTrips = () => {
               direction="horizontal"
             />
             <button
-              className="Submit_Button Placement_Button"
+              className="submit-button Placement_Button"
               onClick={dateRangePost}
             >
               Generate Data
@@ -115,7 +115,7 @@ const DamRockTrips = () => {
               </tbody>
             </table>
             {/* <button
-              className="Submit_Button Placement_Button"
+              className="submit-button Placement_Button"
               onClick={getTotal}
             >
               Calculate sum

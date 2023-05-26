@@ -106,7 +106,7 @@ const CMFormCreate = (props) => {
       <div className="row">
         <div className="col-12">
           <form
-            className="Form_Container card"
+            className="form-container card"
             onSubmit={handleSubmit(onSubmit)}
           >
             <h1>{props.cmName}</h1>
@@ -293,7 +293,7 @@ const CMFormCreate = (props) => {
             <div className="form-group daily-report-form-flex">
               <div id="Status_Div"></div>
               <button
-                className="Submit_Button daily-report-form-block"
+                className="submit-button daily-report-form-block"
                 type="submit"
               >
                 {loading ? (
@@ -315,12 +315,12 @@ const CMFormCreate = (props) => {
               </button>
             </div>
             {/* <div className="view-data daily-report-form-flex">
-              <Link className="Submit_Button" to={props.dataLink}>
+              <Link className="submit-button" to={props.dataLink}>
                 View Data
               </Link>
             </div>
             <div className="view-graph daily-report-form-flex">
-              <Link className="Submit_Button" to={props.graphLink}>
+              <Link className="submit-button" to={props.graphLink}>
                 View Graph
               </Link>
             </div> */}

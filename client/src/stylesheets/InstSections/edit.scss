@@ -3,7 +3,7 @@
 .CM_Edit_Container {
   @extend .Display_Inline_Block;
   @extend .Container_Left_Margin;
-  .Form_Container {
+  .form-container {
     @extend .Shadow;
     @extend .Container_Padding;
   }
@@ -21,7 +21,7 @@
     margin: 10px 10px;
   }
 
-  .Form_Input {
+  .form-input {
     margin: 5px 0;
   }
 

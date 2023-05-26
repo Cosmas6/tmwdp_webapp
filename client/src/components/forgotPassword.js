@@ -41,8 +41,8 @@ export default function forgotPasswordEmail() {
       });
   };
   return (
-    <div className="Login_Container">
-      <div className="Form_Container">
+    <div className="auth-container">
+      <div className="form-container">
         <h1>TMWDP</h1>
         <p>
           Enter the email address that you used to register. We'll send you an
@@ -50,7 +50,7 @@ export default function forgotPasswordEmail() {
         </p>
         <form className="Form" onSubmit={handleSubmit(onSubmit)} ref={formRef}>
           <input
-            className="Form_Input"
+            className="form-input"
             type="text"
             placeholder="Email"
             id="login-email"
@@ -58,7 +58,7 @@ export default function forgotPasswordEmail() {
               required: true,
             })}
           />
-          <button className="Submit_Button" type="submit">
+          <button className="submit-button" type="submit">
             {loading ? (
               <div className="Loading_Div_Buttons">
                 <TailSpin

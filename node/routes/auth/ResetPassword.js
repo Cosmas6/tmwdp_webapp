@@ -31,7 +31,7 @@ router.post("/:token", (req, res) => {
             // Delete the password reset token
             passwordResetToken.delete();
 
-            res.send("Password reset successful");
+            res.send({ message: "Password reset successful" });
           })
           .catch((err) =>
             res.status(500).send("Password could not be updated.")

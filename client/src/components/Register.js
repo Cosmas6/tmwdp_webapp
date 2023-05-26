@@ -37,8 +37,8 @@ const Register = () => {
   const onSubmit = (data) => {
     setLoading(true);
     const formElement = formRef.current;
-    const firstName = data.First_Name;
-    const lastName = data.Last_Name;
+    const firstName = data.first - name;
+    const lastName = data.last - name;
     const department = data.Department;
     const email = data.Email;
     const password = data.Password;
@@ -70,30 +70,29 @@ const Register = () => {
   };
 
   return (
-    <div className="Register_Container">
-      <div className="Form_Container">
-        
+    <div className="auth-container register-container">
+      <div className="form-container">
         <form onSubmit={handleSubmit(onSubmit)} ref={formRef}>
-        <h1>TMWDP</h1>
+          <h1>TMWDP</h1>
           <input
-            className="Form_Input"
+            className="form-input"
             type="text"
             placeholder="First Name"
             id="register-firstName"
-            {...register("First_Name", {
+            {...register("first-name", {
               required: true,
             })}
           />
           <input
-            className="Form_Input"
+            className="form-input"
             type="text"
             placeholder="Last Name"
             id="register-lastName"
-            {...register("Last_Name", {
+            {...register("last-name", {
               required: true,
             })}
           />
-          <label className="Input_Label">Department</label>
+
           <Controller
             control={control}
             rules={{ required: true }}
@@ -101,6 +100,7 @@ const Register = () => {
             render={({ field: { onChange, value } }) => (
               <ReactSelect
                 options={colourOptions}
+                placeholder="Department..."
                 isMulti
                 closeMenuOnSelect={false}
                 hideSelectedOptions={false}
@@ -114,7 +114,7 @@ const Register = () => {
             )}
           />
           <input
-            className="Form_Input"
+            className="form-input"
             type="text"
             placeholder="Email"
             id="login-email"
@@ -123,7 +123,7 @@ const Register = () => {
             })}
           />
           <input
-            className="Form_Input"
+            className="form-input"
             type="password"
             placeholder="Password"
             id="login-password"
@@ -131,7 +131,7 @@ const Register = () => {
               required: true,
             })}
           />
-          <button className="Submit_Button" type="submit">
+          <button className="submit-button" type="submit">
             {loading ? (
               <div className="Loading_Div_Buttons">
                 <TailSpin

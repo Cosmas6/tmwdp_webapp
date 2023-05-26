@@ -1,9 +1,4 @@
-.Auth_Container {
-  height: 100vh !important;
-}
-
-.Login_Container,
-.Register_Container {
+.auth-container {
   box-sizing: border-box;
   display: flex;
   justify-content: center;
@@ -15,9 +10,14 @@
     margin-top: 0;
   }
 
-  .Form_Container {
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+
+  .form-container {
     padding: 50px;
-    max-width: 500px;
+    width: 100%;
+    min-width: 400px;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -29,6 +29,11 @@
       flex: 1;
     }
 
+    @media (max-width: 768px) {
+      width: 100%;
+      min-width: none;
+    }
+
     @media (max-height: 600px) {
       display: block;
     }
@@ -38,7 +43,7 @@
     }
   }
 
-  .Form_Input {
+  .form-input {
     padding: 10px 0;
     margin: 20px 0;
     margin-bottom: 0;
@@ -50,7 +55,7 @@
     }
   }
 
-  .Input_Label {
+  .input-label {
     line-height: 2;
     text-align: left;
     margin-top: 20px;
@@ -58,7 +63,7 @@
     font-weight: 200;
   }
 
-  .Submit_Button {
+  .submit-button {
     background: #1976d2;
     color: #ffffff;
     text-transform: uppercase;
