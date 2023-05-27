@@ -11,24 +11,23 @@ const DRDams = (props) => {
   const reportRef = useRef();
   const reportId = params.id.toString();
 
+  const [loading, setLoading] = useState(false);
+  const [loadingDelete, setLoadingDelete] = useState(false);
+  const [report, setReport] = useState([]);
+  const [newDate, setNewDate] = useState();
+  const [downloadLink, setDownloadLink] = useState(null);
+
   async function deleteReport(id) {
     await fetch(`${props.deleteFetch}` + `/` + id, {
       method: "DELETE",
     });
 
-    navigate(`/dashboard/DRReadingDams`);
+    navigate(`/dashboard/dashboard-overview`);
   }
-
-  const [loading, setLoading] = useState(false);
-  const [loadingDelete, setLoadingDelete] = useState(false);
-  const [report, setReport] = useState([]);
-  const [newDate, setNewDate] = useState();
-  const [editBtn, setEditBtn] = useState();
 
   useEffect(() => {
     async function fetchReport() {
       const id = params.id.toString();
-      setEditBtn(id);
       const response = await fetch(
         `https://nodejs.tmwdp.co.ke/${props.viewRoute}/${params.id.toString()}`
       );
@@ -42,7 +41,7 @@ const DRDams = (props) => {
       const reportData = await response.json();
       if (!reportData) {
         window.alert(`Reading with id ${id} not found`);
-        navigate(`/dashboard/readingDReport`);
+        navigate(`/dashboard/dashboard-overview`);
         return;
       }
       setReport(reportData);
@@ -62,8 +61,13 @@ const DRDams = (props) => {
 
   const fetchReportPdf = async () => {
     setLoading(true);
+    if (!report || Object.keys(report).length === 0) {
+      alert("The report data is not ready yet. Please try again later.");
+      return;
+    }
     const reportHTML = reportRef.current.innerHTML;
-    const pdfFileName = `${report.Section}-${report.Shift}-${newDate}.pdf`;
+    const reportSection = report.Section;
+    const reportShift = report.Shift;
     await fetch("https://v2018.api2pdf.com/chrome/html", {
       method: "post",
       headers: {
@@ -96,7 +100,7 @@ const DRDams = (props) => {
           </body>
         </html>
             `,
-        fileName: `${pdfFileName}`,
+        fileName: `${reportSection}-${reportShift}-${newDate}.pdf`,
         options: {
           textAlign: "left",
           height: "11in",
@@ -105,23 +109,8 @@ const DRDams = (props) => {
     })
       .then((res) => res.json())
       .then((res) => {
-        fetch(res.pdf)
-          .then((response) => response.blob())
-          .then((blob) => {
-            const downloadButton = document.getElementById("Download_Button");
-
-            // Create an anchor element
-            const downloadLink = document.createElement("a");
-            downloadLink.className = "Download_Button";
-            downloadLink.href = URL.createObjectURL(blob);
-            downloadLink.download = pdfFileName;
-            downloadLink.textContent = "Download PDF";
-
-            // Append the anchor element to the Download_Button element
-            downloadButton.appendChild(downloadLink);
-
-            setLoading(false);
-          });
+        setLoading(false);
+        setDownloadLink(res.pdf);
       });
   };
 
@@ -132,96 +121,104 @@ const DRDams = (props) => {
     >
       <div className="row">
         <div className="col-12">
+          <h1 className="title drf-title">Daily Report Form</h1>
           <div className="DailyReportTable_Container card">
-            <h1 className="title drf-title">Daily Report Form</h1>
             <table className="table-responsive">
               <tbody ref={reportRef}>
                 <tr>
-                  <th colSpan="6">
+                  <th colSpan="2">
                     CIVIL WORKS FOR CONSTRUCTION OF THWAKE DAM EMBARKMENT AND
                     ASSOCIATED WORK
                   </th>
                 </tr>
                 <tr>
                   <th>INSPECTOR</th>
-                  <td colSpan="1">{report.User}</td>
+                  <td>{report.User}</td>
+                </tr>
+                <tr>
                   <th>SECTION:</th>
-                  <td colSpan="4">{report.Section}</td>
+                  <td>{report.Section}</td>
                 </tr>
                 <tr>
                   <th>WEATHER:</th>
                   <td>{report.Weather}</td>
+                </tr>
+                <tr>
                   <th>DATE:</th>
                   <td>{newDate}</td>
+                </tr>
+                <tr>
                   <th>SHIFT:</th>
                   <td>{report.Shift}</td>
                 </tr>
                 <tr></tr>
                 <tr></tr>
                 <tr>
-                  <th colSpan="6">ACTIVITIES:</th>
+                  <th colSpan="2">ACTIVITIES:</th>
                 </tr>
                 <tr>
-                  <td colSpan="6">
+                  <td colSpan="2">
                     <ReactMustache template={report.Activities} />
                   </td>
                 </tr>
                 <tr>
-                  <th colSpan="6">PLANT AND EQUIPMENT:</th>
+                  <th colSpan="2">PLANT AND EQUIPMENT:</th>
                 </tr>
                 <tr>
-                  <td colSpan="6">
+                  <td colSpan="2">
                     <ReactMustache template={report.PlantEQ} />
                   </td>
                 </tr>
                 <tr>
-                  <th colSpan="6">LABOUR</th>
+                  <th colSpan="2">LABOUR</th>
                 </tr>
                 <tr></tr>
                 <tr>
                   <th>DESCRIPTION</th>
                   <th>NO</th>
-                  <th>DESCRIPTION</th>
-                  <th colSpan="3">NO</th>
                 </tr>
                 <tr>
-                  <td width="40%">SMEC INSPECTORS</td>
+                  <td>SMEC INSPECTORS</td>
                   <td>{report.SMEC_Ins}</td>
+                </tr>
+                <tr>
                   <td>SMEC ENGINEER</td>
-                  <td colSpan="3">{report.SMEC_Eng}</td>
+                  <td>{report.SMEC_Eng}</td>
                 </tr>
                 <tr>
                   <td>CGGC INSPECTORS</td>
                   <td>{report.CGGC_Ins}</td>
+                </tr>
+                <tr>
                   <td>SITE FOREMAN</td>
-                  <td colSpan="3">{report.Site_Foreman}</td>
+                  <td>{report.Site_Foreman}</td>
                 </tr>
                 <tr>
                   <td>SAFETY OFFICER</td>
                   <td>{report.Safety_Officer}</td>
+                </tr>
+                <tr>
                   <td>PLANT OPERATOR</td>
-                  <td colSpan="3">{report.Plant_Operator}</td>
+                  <td>{report.Plant_Operator}</td>
                 </tr>
                 <tr>
                   <td>DRIVERS</td>
                   <td>{report.Drivers}</td>
+                </tr>
+                <tr>
                   <td>UNSKILLED LABOUR</td>
-                  <td colSpan="3">{report.Unskilled_Labour}</td>
+                  <td>{report.Unskilled_Labour}</td>
                 </tr>
                 <tr>
-                  <td></td>
-                  <td></td>
                   <td>WELDER</td>
-                  <td colSpan="3">{report.Welder}</td>
+                  <td>{report.Welder}</td>
                 </tr>
                 <tr>
-                  <td></td>
-                  <td></td>
                   <td>CHINESE STAFF</td>
-                  <td colSpan="3">{report.Chinese_Staff}</td>
+                  <td>{report.Chinese_Staff}</td>
                 </tr>
                 <tr>
-                  <th colSpan="6">REMARKS/OBSERVATION:</th>
+                  <th colSpan="2">REMARKS/OBSERVATION:</th>
                 </tr>
                 <tr>
                   <td colSpan="6">
@@ -244,62 +241,87 @@ const DRDams = (props) => {
                 </tr>
               </tbody>
             </table>
-            <button className="Download_Link" onClick={fetchReportPdf}>
-              Generate Link
-            </button>
-            {loading ? (
-              <div className="Loading_Div">
-                <ProgressBar
-                  height="60"
-                  width="60"
-                  ariaLabel="progress-bar-loading"
-                  wrapperStyle={{}}
-                  wrapperClass="progress-bar-wrapper"
-                  borderColor="#F4442E"
-                  barColor="#1976d2"
-                />
-                <p>Generating Download Link.....</p>
-              </div>
-            ) : (
-              ``
-            )}
-            <div id="Download_Button"></div>
-            <Link
-              className="Download_Link"
-              to={`/dashboard/DREditDams/${reportId}`}
-            >
-              Edit Pdf
-            </Link>{" "}
-            <button
-              className="btn btn-link delete-button Download_Link"
-              onClick={() => {
-                setLoadingDelete(true);
-                deleteReport(reportId);
-              }}
-            >
-              {loadingDelete ? (
-                <div className="Loading_Div_Buttons">
-                  <TailSpin
-                    height="30"
-                    width="40"
-                    color="#ffffff"
-                    ariaLabel="tail-spin-loading"
-                    radius="1"
+            <div className="Button_Tasks">
+              <h1>OPTIONS</h1>
+              <button className="Download_Link" onClick={fetchReportPdf}>
+                Generate Link
+              </button>
+              {loading ? (
+                <div className="Loading_Div">
+                  <ProgressBar
+                    height="60"
+                    width="60"
+                    ariaLabel="progress-bar-loading"
                     wrapperStyle={{}}
-                    wrapperClass=""
-                    visible={true}
+                    wrapperClass="progress-bar-wrapper"
+                    borderColor="#F4442E"
+                    barColor="#1976d2"
                   />
                 </div>
-              ) : (
-                <>
-                  <i
-                    className="fa fa-trash delete-button"
-                    aria-hidden="true"
-                  ></i>
-                  <span>Delete</span>
-                </>
-              )}
-            </button>
+              ) : downloadLink ? (
+                <a
+                  className="Download_Button"
+                  id="Download_Button"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    background: "#0A2E52",
+                    color: "#ffffff",
+                    textTransform: "uppercase",
+                    padding: "10px",
+                    width: "100%",
+                    marginTop: "30px",
+                    fontSize: "16px",
+                    fontWeight: "600",
+                    letterSpacing: "3px",
+                    textDecoration: "none",
+                    borderRadius: "0.35rem",
+                    borderStyle: "none",
+                  }}
+                  href={downloadLink}
+                  download
+                >
+                  Download PDF
+                </a>
+              ) : null}
+              <Link
+                className="Download_Link"
+                to={`/dashboard/${props.department}/edit/${reportId}`}
+              >
+                Edit Pdf
+              </Link>
+              <button
+                className="btn btn-link delete-button Download_Link"
+                onClick={() => {
+                  setLoadingDelete(true);
+                  deleteReport(reportId);
+                }}
+              >
+                {loadingDelete ? (
+                  <div className="Loading_Div_Buttons">
+                    <TailSpin
+                      height="30"
+                      width="40"
+                      color="#ffffff"
+                      ariaLabel="tail-spin-loading"
+                      radius="1"
+                      wrapperStyle={{}}
+                      wrapperClass=""
+                      visible={true}
+                    />
+                  </div>
+                ) : (
+                  <>
+                    <i
+                      className="fa fa-trash delete-button"
+                      aria-hidden="true"
+                    ></i>
+                    <span>Delete</span>
+                  </>
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </div>

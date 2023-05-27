@@ -1,1 +1,11 @@
+@import "./login.scss";
 
+.submit-button {
+  @extend .auth-container;
+  display: block !important;
+  margin: 0 auto;
+}
+
+.rbc-btn-group {
+  white-space: pre-wrap;
+}

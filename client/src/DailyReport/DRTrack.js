@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import jwt_decode from "jwt-decode";
@@ -10,9 +10,12 @@ import moment from "moment";
 const localizer = momentLocalizer(moment);
 
 const DRTrack = () => {
-  const [reports, setReports] = useState([]);
   const [events, setEvents] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(null);
   const navigate = useNavigate();
+  const calendarRef = useRef(null);
+
+  console.log(selectedDate);
 
   useEffect(() => {
     async function getReports() {
@@ -41,7 +44,6 @@ const DRTrack = () => {
         }
 
         const reportsJson = await response.json();
-        setReports(reportsJson);
 
         const events = reportsJson.map((report) => {
           const eventDate = new Date(report.Date);
@@ -61,19 +63,53 @@ const DRTrack = () => {
     getReports();
   }, []);
 
+  useEffect(() => {
+    const ref = calendarRef.current;
+    const listenSlotClick = (event) => {
+      const elements = document.elementsFromPoint(event.clientX, event.clientY);
+      const dayElement = elements.find((element) =>
+        element.matches(".rbc-day-bg")
+      );
+      if (dayElement) {
+        const date = new Date(dayElement.getAttribute("data-date"));
+        setSelectedDate(date);
+      }
+    };
+    if (calendarRef && ref) {
+      ref.addEventListener("click", listenSlotClick);
+      return () => {
+        ref.removeEventListener("click", listenSlotClick);
+      };
+    }
+  }, []);
+
   return (
-    <div>
+    <div ref={calendarRef} className="drtrack-container">
+      {selectedDate && (
+        <button
+          className="submit-button"
+          onClick={() =>
+            navigate("/report-creation-path", { state: { selectedDate } })
+          }
+        >
+          Create Report
+        </button>
+      )}
       <Calendar
         localizer={localizer}
         events={events}
         startAccessor="start"
         endAccessor="end"
-        style={{ height: 500, margin: "50px" }}
+        selectable={true}
         messages={{
           month: "Month-View",
           week: "Week-View",
           day: "Day-View",
           agenda: "Details",
+        }}
+        components={{
+          dateCellWrapper: ({ children, value }) =>
+            React.cloneElement(children, { "data-date": value }),
         }}
         onSelectEvent={(event) => {
           navigate(`/dashboard/${event.section}/display/${event.id}`);
