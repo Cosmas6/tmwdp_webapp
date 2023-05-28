@@ -89,10 +89,17 @@
 
   .rbc-calendar {
     margin: 5px;
-    height: 750px;
+    height: 650px;
+    font-size: 10px;
   }
 
-  .rbc-toolbar .rbc-btn-group:last-child {
+  .rbc-date-cell {
+    height: 25px;
+  }
+
+  .rbc-toolbar .rbc-btn-group:last-child button:nth-last-child(1),
+  .rbc-toolbar .rbc-btn-group:last-child button:nth-last-child(2),
+  .rbc-toolbar .rbc-btn-group:last-child button:nth-last-child(3) {
     display: none;
   }
 
@@ -105,7 +112,7 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    width: 30%;
+    min-width: 30%;
     padding: 5px 15px;
   }
 

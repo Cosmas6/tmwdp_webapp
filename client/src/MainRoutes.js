@@ -1,17 +1,33 @@
-import React, { Suspense } from "react";
-import { useRoutes, Navigate, useLocation } from "react-router-dom";
+import React, { Suspense, useState } from "react";
+import { useRoutes, Navigate } from "react-router-dom";
 import Authentication from "./components/Authentication";
 import DashboardRoutes from "./Dashboard/DashboardRoutes";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import ForgotPassword from "./components/ForgotPassword";
 import ResetPassword from "./components/ResetPassword";
+import { ModalProvider } from "./DailyReport/ModalContext";
+import "./stylesheets/mainroutes.scss";
 
 // const Login = React.lazy(() => import("./components/Login"));
 // const Register = React.lazy(() => import("./components/Register"));
 
 const MainRoutes = () => {
-  let location = useLocation();
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState(null);
+
+  console.log(modalOpen, "modalOpen");
+
+  const openModal = (content) => {
+    console.log("Open modal called");
+    setModalContent(content);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    console.log("Close modal called");
+    setModalOpen(false);
+  };
 
   let routes = useRoutes([
     { path: "/", element: <Navigate replace to="/auth/login" /> },
@@ -32,9 +48,18 @@ const MainRoutes = () => {
   ]);
 
   return (
-    <Suspense>
-      <div>{routes}</div>
-    </Suspense>
+    <ModalProvider
+      value={{
+        modalOpen,
+        openModal,
+        closeModal,
+      }}
+    >
+      <Suspense>
+        <div>{routes}</div>
+        {modalOpen && <div className="modal">Modal is open</div>}
+      </Suspense>
+    </ModalProvider>
   );
 };
 

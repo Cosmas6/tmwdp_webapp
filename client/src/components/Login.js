@@ -1,17 +1,27 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { TailSpin } from "react-loader-spinner";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import "../stylesheets/login.scss";
-const cookies = new Cookies();
 
 function Login() {
   const formRef = useRef();
+  const cookies = new Cookies();
+  const navigate = useNavigate();
   const [loginStatus, setLoginStatus] = useState();
   const [loading, setLoading] = useState();
   const { register, errors, handleSubmit } = useForm();
+
+  useEffect(() => {
+    const token = cookies.get("TOKEN");
+    if (token) {
+      navigate("/dashboard/dashboard-overview");
+    } else {
+    }
+  }, []);
 
   const onSubmit = (data) => {
     setLoading(true);

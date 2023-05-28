@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import jwt_decode from "jwt-decode";
@@ -6,16 +6,49 @@ import Cookies from "universal-cookie";
 import "../stylesheets/drtrack.scss";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import moment from "moment";
+import ModalContext from "./ModalContext";
 
 const localizer = momentLocalizer(moment);
 
 const DRTrack = () => {
   const [events, setEvents] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
+  const [isMonthView, setIsMonthView] = useState(true);
   const navigate = useNavigate();
   const calendarRef = useRef(null);
+  const { openModal, closeModal } = useContext(ModalContext);
 
-  console.log(selectedDate);
+  const departments = [
+    { name: "Spillway", path: "/dashboard/spillway/create" },
+    { name: "Tunnels", path: "/dashboard/tunnels/create" },
+    // add more departments as needed...
+  ];
+
+  const openCreateReportModal = () => {
+    const content = (
+      <div className="modal">
+        <div className="modal-content">
+          <h2>Select Department</h2>
+          <ul>
+            {departments.map((department) => (
+              <li
+                key={department.name}
+                onClick={() =>
+                  navigate(department.path, { state: { selectedDate } })
+                }
+              >
+                {department.name}
+              </li>
+            ))}
+          </ul>
+          <button className="close" onClick={closeModal}>
+            Close
+          </button>
+        </div>
+      </div>
+    );
+    openModal(content);
+  };
 
   useEffect(() => {
     async function getReports() {
@@ -85,13 +118,8 @@ const DRTrack = () => {
 
   return (
     <div ref={calendarRef} className="drtrack-container">
-      {selectedDate && (
-        <button
-          className="submit-button"
-          onClick={() =>
-            navigate("/report-creation-path", { state: { selectedDate } })
-          }
-        >
+      {selectedDate && !isMonthView && (
+        <button className="submit-button" onClick={openCreateReportModal}>
           Create Report
         </button>
       )}
@@ -106,6 +134,9 @@ const DRTrack = () => {
           week: "Week-View",
           day: "Day-View",
           agenda: "Details",
+        }}
+        onView={(view) => {
+          setIsMonthView(view === "month");
         }}
         components={{
           dateCellWrapper: ({ children, value }) =>
