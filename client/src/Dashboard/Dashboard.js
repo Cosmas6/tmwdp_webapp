@@ -63,7 +63,6 @@ export default function Dashboard() {
       const decodedToken = jwt_decode(token); // Decodes the token
       const username = decodedToken.userFirstName; // Modify this as per your implementation
       setUsername(username);
-      console.log(username);
     }
 
     const dailyReportRoutes = [

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { TailSpin } from "react-loader-spinner";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { RadioGroup, Radio, FormControlLabel } from "@mui/material";
@@ -23,6 +23,11 @@ const DRCreate = (props) => {
     formState: { errors, isSubmitted },
   } = useForm();
   const navigate = useNavigate();
+
+  const location = useLocation();
+  const selectedDate = location.state
+    ? new Date(location.state.selectedDate).toISOString()
+    : new Date().toISOString();
 
   const [userInfo, setUserInfo] = useState("");
   const [loading, setLoading] = useState(false);
@@ -147,14 +152,14 @@ const DRCreate = (props) => {
                 <Controller
                   control={control}
                   name="Date"
-                  defaultValue={new Date()}
+                  defaultValue={selectedDate}
                   render={({ field: { onChange, value } }) => (
                     <DesktopDatePicker
                       label="Date"
                       inputFormat="dd MMMM yyyy"
                       disableMaskedInput
-                      value={value}
-                      onChange={onChange}
+                      value={new Date(value)}
+                      onChange={(date) => onChange(date.toISOString())}
                       renderInput={(params) => <TextField {...params} />}
                     />
                   )}

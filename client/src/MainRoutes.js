@@ -16,7 +16,7 @@ const MainRoutes = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState(null);
 
-  console.log(modalOpen, "modalOpen");
+  console.log(modalContent, "modalContent");
 
   const openModal = (content) => {
     console.log("Open modal called");
@@ -47,6 +47,7 @@ const MainRoutes = () => {
     },
   ]);
 
+  console.log(modalOpen, "modalOpen");
   return (
     <ModalProvider
       value={{
@@ -57,7 +58,7 @@ const MainRoutes = () => {
     >
       <Suspense>
         <div>{routes}</div>
-        {modalOpen && <div className="modal">Modal is open</div>}
+        {modalOpen && <div className="modal-custom">{modalContent}</div>}
       </Suspense>
     </ModalProvider>
   );

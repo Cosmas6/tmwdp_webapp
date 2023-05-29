@@ -18,33 +18,36 @@ const DRTrack = () => {
   const calendarRef = useRef(null);
   const { openModal, closeModal } = useContext(ModalContext);
 
+  console.log(selectedDate, "selectedDate");
+
   const departments = [
     { name: "Spillway", path: "/dashboard/spillway/create" },
     { name: "Tunnels", path: "/dashboard/tunnels/create" },
-    // add more departments as needed...
+    { name: "Dams", path: "/dashboard/dams/create" },
+    { name: "Employer's Camp", path: "/dashboard/employerscamp/create" },
+    { name: "Instrumentation", path: "/dashboard/instrumentation/create" },
   ];
 
   const openCreateReportModal = () => {
     const content = (
-      <div className="modal">
-        <div className="modal-content">
-          <h2>Select Department</h2>
-          <ul>
-            {departments.map((department) => (
-              <li
-                key={department.name}
-                onClick={() =>
-                  navigate(department.path, { state: { selectedDate } })
-                }
-              >
-                {department.name}
-              </li>
-            ))}
-          </ul>
-          <button className="close" onClick={closeModal}>
-            Close
-          </button>
-        </div>
+      <div className="report-modal-content">
+        <h2>Select Department</h2>
+        <ul>
+          {departments.map((department) => (
+            <li
+              key={department.name}
+              onClick={() => {
+                navigate(department.path, { state: { selectedDate } });
+                closeModal();
+              }}
+            >
+              {department.name}
+            </li>
+          ))}
+        </ul>
+        <button className="close" onClick={closeModal}>
+          Close
+        </button>
       </div>
     );
     openModal(content);
@@ -124,15 +127,15 @@ const DRTrack = () => {
         </button>
       )}
       <Calendar
+        className={selectedDate && !isMonthView ? "day-view" : ""}
         localizer={localizer}
         events={events}
         startAccessor="start"
         endAccessor="end"
         selectable={true}
+        views={["month", "day"]}
         messages={{
           month: "Month-View",
-          week: "Week-View",
-          day: "Day-View",
           agenda: "Details",
         }}
         onView={(view) => {

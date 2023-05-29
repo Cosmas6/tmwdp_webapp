@@ -37,6 +37,10 @@
   font-size: 40px;
 }
 
+.day-view .rbc-toolbar .rbc-toolbar-label {
+  width: 100%;
+}
+
 .rbc-toolbar button {
   background: #1976d2;
   color: #ffffff;
@@ -56,6 +60,14 @@
 .rbc-toolbar button:hover {
   background: #ffffff;
   color: #1976d2;
+}
+
+.rbc-toolbar .rbc-btn-group:last-child button:nth-last-child(1) {
+  display: none;
+}
+
+.day-view .rbc-toolbar .rbc-btn-group:first-child {
+  display: none; /* Hides Calendar Nav on day view */
 }
 
 .rbc-toolbar button:active,
@@ -95,12 +107,6 @@
 
   .rbc-date-cell {
     height: 25px;
-  }
-
-  .rbc-toolbar .rbc-btn-group:last-child button:nth-last-child(1),
-  .rbc-toolbar .rbc-btn-group:last-child button:nth-last-child(2),
-  .rbc-toolbar .rbc-btn-group:last-child button:nth-last-child(3) {
-    display: none;
   }
 
   .rbc-toolbar-label {

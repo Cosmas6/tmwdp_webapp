@@ -11,8 +11,6 @@ const DRReading = (props) => {
 
   console.log(reports.length);
   useEffect(() => {
-    console.log("ReadingDRSpillway mounted");
-
     async function getReports() {
       setLoading(true);
       const response = await fetch(props.fetchLink);
