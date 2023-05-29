@@ -10,7 +10,7 @@ export default function CreateDRInst() {
     <div className="DR_Create">
       <DRCreate
         fetchLink={`https://nodejs.tmwdp.co.ke/DailyRInstRouter/add`}
-        dataLink={`/dashboard/DRReadingInstrumentation`}
+        dataLink={`/dashboard/dashboard-overview`}
         sectionValue={"Instrumentation"}
       />
     </div>
@@ -24,7 +24,7 @@ export function EditDRInst() {
       <DREdit
         fetchLink={`https://nodejs.tmwdp.co.ke/DailyRInstRouter/${params.id.toString()}`}
         fetchLinkPost={`https://nodejs.tmwdp.co.ke/DailyRInstRouter/update/${params.id}`}
-        navigateLink={`/dashboard/DRInstrumentationDisplay/${params.id.toString()}`}
+        navigateLink={`/dashboard/instrumentation/display/${params.id.toString()}`}
       />
     </div>
   );
@@ -37,7 +37,7 @@ export function ReadingDRInst() {
         drName={"Instrumentation"}
         fetchLink={`https://nodejs.tmwdp.co.ke/DailyRInstRouter`}
         deleteFetch={`https://nodejs.tmwdp.co.ke/DailyRInstRouter`}
-        createReportLink={`DRCreateInstrumentation`}
+        createReportLink={`instrumentation`}
       />
     </div>
   );

@@ -1,6 +1,7 @@
 import React from "react";
 import ImageContainer from "./ImageContainer";
 import { Outlet } from "react-router-dom";
+
 import "../stylesheets/authentication.scss";
 
 function Authentication() {

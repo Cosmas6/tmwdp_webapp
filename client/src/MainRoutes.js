@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import React, { useState } from "react";
 import { useRoutes, Navigate } from "react-router-dom";
 import Authentication from "./components/Authentication";
 import DashboardRoutes from "./Dashboard/DashboardRoutes";
@@ -56,10 +56,8 @@ const MainRoutes = () => {
         closeModal,
       }}
     >
-      <Suspense>
-        <div>{routes}</div>
-        {modalOpen && <div className="modal-custom">{modalContent}</div>}
-      </Suspense>
+      <div>{routes}</div>
+      {modalOpen && <div className="modal-custom">{modalContent}</div>}
     </ModalProvider>
   );
 };

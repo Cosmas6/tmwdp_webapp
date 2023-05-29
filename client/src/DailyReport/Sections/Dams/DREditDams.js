@@ -247,7 +247,9 @@ const DREditDams = (props) => {
                               label="RockType"
                               onChange={onChange}
                             >
+                              <MenuItem value={"2A1"}>2A1</MenuItem>
                               <MenuItem value={"2A2"}>2A2</MenuItem>
+                              <MenuItem value={"2B"}>2B</MenuItem>
                               <MenuItem value={"3A"}>3A</MenuItem>
                               <MenuItem value={"3B"}>3B</MenuItem>
                               <MenuItem value={"3C"}>3C</MenuItem>

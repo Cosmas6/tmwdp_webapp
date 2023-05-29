@@ -10,7 +10,7 @@ export default function CreateDRSpillway() {
     <div className="DR_Create">
       <DRCreate
         fetchLink={`https://nodejs.tmwdp.co.ke/DailyRSpillwayRouter/add`}
-        dataLink={`/dashboard/DRReadingSpillway`}
+        dataLink={`/dashboard/dashboard-overview`}
         sectionValue={"Spillway"}
       />
     </div>
@@ -24,7 +24,7 @@ export function EditDRSpillway() {
       <DREdit
         fetchLink={`https://nodejs.tmwdp.co.ke/DailyRSpillwayRouter/${params.id.toString()}`}
         fetchLinkPost={`https://nodejs.tmwdp.co.ke/DailyRSpillwayRouter/update/${params.id}`}
-        navigateLink={`/dashboard/DRSpillwayDisplay/${params.id.toString()}`}
+        navigateLink={`/dashboard/spillway/display/${params.id.toString()}`}
       />
     </div>
   );
@@ -37,7 +37,7 @@ export function ReadingDRSpillway() {
         drName={"Spillway"}
         fetchLink={`https://nodejs.tmwdp.co.ke/DailyRSpillwayRouter`}
         deleteFetch={`https://nodejs.tmwdp.co.ke/DailyRSpillwayRouter`}
-        createReportLink={`DRCreateSpillway`}
+        createReportLink={`spillway`}
       />
     </div>
   );

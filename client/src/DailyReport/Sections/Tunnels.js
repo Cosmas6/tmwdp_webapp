@@ -10,7 +10,7 @@ export default function CreateDRTunnels() {
     <div className="DR_Create">
       <DRCreate
         fetchLink={`https://nodejs.tmwdp.co.ke/DailyRTunnelsRouter/add`}
-        dataLink={`/dashboard/DRReadingTunnels`}
+        dataLink={`/dashboard/dashboard-overview`}
         sectionValue={"Tunnels"}
       />
     </div>
@@ -24,7 +24,7 @@ export function EditDRTunnels() {
       <DREdit
         fetchLink={`https://nodejs.tmwdp.co.ke/DailyRTunnelsRouter/${params.id.toString()}`}
         fetchLinkPost={`https://nodejs.tmwdp.co.ke/DailyRTunnelsRouter/update/${params.id}`}
-        navigateLink={`/dashboard/DRTunnelsDisplay/${params.id.toString()}`}
+        navigateLink={`/dashboard/tunnels/display/${params.id.toString()}`}
       />
     </div>
   );
@@ -37,7 +37,7 @@ export function ReadingDRTunnels() {
         drName={"Tunnels"}
         fetchLink={`https://nodejs.tmwdp.co.ke/DailyRTunnelsRouter`}
         deleteFetch={`https://nodejs.tmwdp.co.ke/DailyRTunnelsRouter`}
-        createReportLink={`DRCreateTunnels`}
+        createReportLink={`tunnels`}
       />
     </div>
   );

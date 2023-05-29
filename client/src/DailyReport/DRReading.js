@@ -8,7 +8,7 @@ import "../stylesheets/drreading.scss";
 const DRReading = (props) => {
   const cookies = new Cookies();
   const token = cookies.get("TOKEN");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [reports, setReports] = useState([]);
   const [selectedReports, setSelectedReports] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
@@ -83,7 +83,7 @@ const DRReading = (props) => {
     getReports();
 
     return () => console.log("ReadingDRSpillway unmounted");
-  }, [reports.length, , filterMyReports]);
+  }, [filterMyReports]);
 
   const handleCheckboxChange = (event, id) => {
     if (event.target.checked) {
@@ -127,7 +127,7 @@ const DRReading = (props) => {
         <td>
           <Link
             className="btn btn-link view-button"
-            to={`/dashboard/DR${props.report.Section}Display/${props.report._id}`}
+            to={`/dashboard/${props.report.Section}/display/${props.report._id}`}
           >
             <i className="fa fa-eye" aria-hidden="true"></i>
             <span>View</span>
@@ -260,14 +260,14 @@ const DRReading = (props) => {
                       </div>
                     </td>
                   </tr>
-                ) : reports.length == 0 ? (
+                ) : reports.length === 0 ? (
                   <tr>
                     <td colSpan="5">
                       <h1 className="no-report-header">
                         No reports submitted.
                         <Link
                           className="Download_Link"
-                          to={`/dashboard/${props.createReportLink}`}
+                          to={`/dashboard/${props.createReportLink}/create`}
                         >
                           Create Report
                         </Link>

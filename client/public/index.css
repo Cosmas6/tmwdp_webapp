@@ -1,4 +1,7 @@
+/* Loader CSS */
+
 .loader {
+  display: block;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -14,15 +17,15 @@
 }
 
 .loader--hide {
-  opacity: 0;
+  display: none;
 }
+
+/* React Big Calendar CSS*/
 
 #tmwdp-calendar .rbc-toolbar-label {
   color: #ff0000;
   font-size: 20px;
 }
-
-/* React Big Calendar CSS*/
 
 .rbc-month-view {
   order: -1;

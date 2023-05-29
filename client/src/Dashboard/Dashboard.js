@@ -37,17 +37,17 @@ export default function Dashboard() {
   const renderDropdown = () => {
     return (
       <div className={`dropdown-menu ${dropdownOpen ? "show" : ""}`}>
-        <div className="profile">
+        {/* <div className="profile">
           <i className="fa fa-user" aria-hidden="true"></i>
           <a className="dropdown-item" href="/profile">
             My Profile
           </a>
-        </div>
+        </div> */}
 
-        <div className="dropdown-divider"></div>
+        {/* <div className="dropdown-divider"></div> */}
         <div className="log-out">
           <i className="fa fa-sign-out" aria-hidden="true"></i>
-          <a className="dropdown-item" onClick={logOut}>
+          <a className="dropdown-item-custom" onClick={logOut}>
             Logout
           </a>
         </div>

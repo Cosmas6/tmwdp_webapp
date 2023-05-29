@@ -78,10 +78,10 @@
     border: none;
     border-radius: 10px;
     padding: 10px 0;
-    width: 200px;
+    width: 110px;
+    --bs-dropdown-min-width: 0;
 
     @media (max-width: 768px) {
-      width: 100px;
       padding: 5px 0;
     }
   }
@@ -100,12 +100,11 @@
     color: #0a2e52 !important;
   }
 
-  .dropdown-item {
+  .dropdown-item-custom {
     padding: 5px 10px;
     color: #0a2e52;
     cursor: pointer;
     text-decoration: none;
-    --bs-dropdown-link-hover-bg: none;
   }
 
   .dropdown-divider {

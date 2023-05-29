@@ -10,7 +10,7 @@ export default function CreateDREmpCamp() {
     <div className="DR_Create">
       <DRCreate
         fetchLink={`https://nodejs.tmwdp.co.ke/DailyREmpCampRouter/add`}
-        dataLink={`/dashboard/DRReadingEmpCamp`}
+        dataLink={`/dashboard/dashboard-overview`}
         sectionValue={"EmployersCamp"}
       />
     </div>
@@ -24,7 +24,7 @@ export function EditDREmpCamp() {
       <DREdit
         fetchLink={`https://nodejs.tmwdp.co.ke/DailyREmpCampRouter/${params.id.toString()}`}
         fetchLinkPost={`https://nodejs.tmwdp.co.ke/DailyREmpCampRouter/update/${params.id}`}
-        navigateLink={`/dashboard/DREmployersCampDisplay/${params.id.toString()}`}
+        navigateLink={`/dashboard/employerscamp/display/${params.id.toString()}`}
       />
     </div>
   );
@@ -37,7 +37,7 @@ export function ReadingDREmpCamp() {
         drName={"Employer's Camp"}
         fetchLink={`https://nodejs.tmwdp.co.ke/DailyREmpCampRouter`}
         deleteFetch={`https://nodejs.tmwdp.co.ke/DailyREmpCampRouter`}
-        createReportLink={`DRCreateEmpCamp`}
+        createReportLink={`employersCamp`}
       />
     </div>
   );

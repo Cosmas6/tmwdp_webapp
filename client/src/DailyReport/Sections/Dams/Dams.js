@@ -10,7 +10,7 @@ export default function CreateDRDams() {
     <div className="DR_Create">
       <DRCreateDams
         fetchLink={`https://nodejs.tmwdp.co.ke/DailyRDamsRouter/add`}
-        dataLink={`/dashboard/DRReadingDams`}
+        dataLink={`/dashboard/dashboard-overview`}
         sectionValue={"Dams"}
       />
     </div>
@@ -24,7 +24,7 @@ export function EditDRDams() {
       <DREditDams
         fetchLink={`https://nodejs.tmwdp.co.ke/DailyRDamsRouter/${params.id.toString()}`}
         fetchLinkPost={`https://nodejs.tmwdp.co.ke/DailyRDamsRouter/update/${params.id}`}
-        navigateLink={`/dashboard/DRDamsDisplay/${params.id.toString()}`}
+        navigateLink={`/dashboard/dams/display/${params.id.toString()}`}
       />
     </div>
   );
@@ -37,7 +37,7 @@ export function ReadingDRDams() {
         drName={"Dams"}
         fetchLink={`https://nodejs.tmwdp.co.ke/DailyRDamsRouter`}
         deleteFetch={`https://nodejs.tmwdp.co.ke/DailyRDamsRouter`}
-        createReportLink={`DRCreateDams`}
+        createReportLink={`dams`}
       />
     </div>
   );
@@ -49,6 +49,7 @@ export function DRDamsDisplay() {
       <DRDams
         viewRoute={`DailyRDamsRouter`}
         deleteFetch={`https://nodejs.tmwdp.co.ke/DailyRDamsRouter`}
+        department={`dams`}
       />
     </div>
   );
