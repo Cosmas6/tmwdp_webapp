@@ -28,8 +28,20 @@
   order: -1;
 }
 
+.rbc-button-link:not(.rbc-show-more) {
+  font-size: 20px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 15px; /* This increases the clickable area */
+  text-align: center;
+}
+
 .rbc-calendar {
-  height: 600px;
+  height: 700px;
 }
 
 .rbc-toolbar .rbc-toolbar-label {
@@ -99,9 +111,17 @@
     order: 1;
   }
 
+  .rbc-button-link {
+    font-size: 18px;
+  }
+
   .rbc-calendar {
     margin: 5px;
     height: 650px;
+    font-size: 10px;
+  }
+
+  .rbc-show-more {
     font-size: 10px;
   }
 

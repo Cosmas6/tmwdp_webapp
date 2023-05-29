@@ -68,7 +68,7 @@ const DRTrack = () => {
 
         console.log(username);
         const response = await fetch(
-          `http://localhost:4000/UserReportRoute/user?user=${encodeURIComponent(
+          `http://localhost:4001/UserReportRoute/user?user=${encodeURIComponent(
             username
           )}`
         );
@@ -108,6 +108,13 @@ const DRTrack = () => {
       );
       if (dayElement) {
         const date = new Date(dayElement.getAttribute("data-date"));
+        const clickTime = new Date(); // Get current date and time
+        date.setHours(
+          clickTime.getHours(),
+          clickTime.getMinutes(),
+          clickTime.getSeconds(),
+          clickTime.getMilliseconds()
+        );
         setSelectedDate(date);
       }
     };

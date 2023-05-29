@@ -29,6 +29,8 @@ const DRCreate = (props) => {
     ? new Date(location.state.selectedDate).toISOString()
     : new Date().toISOString();
 
+  console.log(selectedDate, "selectedDate");
+
   const [userInfo, setUserInfo] = useState("");
   const [loading, setLoading] = useState(false);
 

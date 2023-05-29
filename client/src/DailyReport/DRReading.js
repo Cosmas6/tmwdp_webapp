@@ -1,15 +1,65 @@
 import React, { useEffect, useState } from "react";
 import { TailSpin } from "react-loader-spinner";
 import { Link } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+import Cookies from "universal-cookie";
 import "../stylesheets/drreading.scss";
 
 const DRReading = (props) => {
+  const cookies = new Cookies();
+  const token = cookies.get("TOKEN");
   const [loading, setLoading] = useState(false);
   const [reports, setReports] = useState([]);
+  const [selectedReports, setSelectedReports] = useState([]);
+  const [selectAll, setSelectAll] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
-  console.log(reports.length);
+  console.log(selectedReports);
+
+  const decodedToken = jwt_decode(token);
+  const userFirstName = decodedToken.userFirstName;
+  const userLastName = decodedToken.userLastName;
+  const userName = userFirstName + " " + userLastName;
+
+  const [filterMyReports, setFilterMyReports] = useState(false);
+  const [sortConfig, setSortConfig] = useState({
+    key: "Date",
+    direction: "descending",
+  });
+
+  const sortedReports = React.useMemo(() => {
+    let sortableReports = [...reports];
+    switch (sortConfig.key) {
+      case "User":
+        sortableReports.sort((a, b) => a.User.localeCompare(b.User));
+        break;
+      case "Date":
+        sortableReports.sort((a, b) => new Date(a.Date) - new Date(b.Date));
+        break;
+      case "Shift":
+        sortableReports.sort((a, b) => a.Shift.localeCompare(b.Shift));
+        break;
+      default:
+        break;
+    }
+    return sortConfig.direction === "ascending"
+      ? sortableReports
+      : sortableReports.reverse();
+  }, [reports, sortConfig]);
+
+  const requestSort = (key) => {
+    let direction = "ascending";
+    if (sortConfig.key === key && sortConfig.direction === "ascending") {
+      direction = "descending";
+    }
+    setSortConfig({ key, direction });
+  };
+
+  useEffect(() => {
+    setSelectedReports(selectAll ? reports.map((report) => report._id) : []);
+  }, [selectAll, reports]);
+
   useEffect(() => {
     async function getReports() {
       setLoading(true);
@@ -21,7 +71,11 @@ const DRReading = (props) => {
         return;
       }
 
-      const reportsJson = await response.json();
+      let reportsJson = await response.json();
+      if (filterMyReports) {
+        reportsJson = reportsJson.filter((report) => report.User === userName);
+      }
+
       setLoading(false);
       setReports(reportsJson);
     }
@@ -29,7 +83,26 @@ const DRReading = (props) => {
     getReports();
 
     return () => console.log("ReadingDRSpillway unmounted");
-  }, [reports.length]);
+  }, [reports.length, , filterMyReports]);
+
+  const handleCheckboxChange = (event, id) => {
+    if (event.target.checked) {
+      setSelectedReports((oldArray) => [...oldArray, id]);
+    } else {
+      setSelectedReports((oldArray) =>
+        oldArray.filter((reportId) => reportId !== id)
+      );
+      setSelectAll(false);
+    }
+  };
+
+  const handleFilterChange = (event) => {
+    setFilterMyReports(event.target.checked);
+  };
+
+  const handleSelectAllChange = (event) => {
+    setSelectAll(event.target.checked);
+  };
 
   const Report = (props) => {
     const dateString = new Date(String(props.report.Date));
@@ -38,11 +111,18 @@ const DRReading = (props) => {
       month: "long",
       day: "numeric",
     });
+
     return (
       <tr>
+        <td>
+          <input
+            type="checkbox"
+            checked={selectedReports.includes(props.report._id)}
+            onChange={(e) => handleCheckboxChange(e, props.report._id)}
+          />
+        </td>
         <td>{props.report.User}</td>
         <td>{enUSFormatter.format(dateString)}</td>
-        <td>{props.report.Section}</td>
         <td>{props.report.Shift}</td>
         <td>
           <Link
@@ -61,7 +141,7 @@ const DRReading = (props) => {
     // Slice the data array based on the current page and the number of items per page
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    const paginatedReports = reports.slice(startIndex, endIndex);
+    const paginatedReports = sortedReports.slice(startIndex, endIndex);
 
     return paginatedReports.map((report) => {
       return <Report key={report._id} report={report} />;
@@ -74,7 +154,7 @@ const DRReading = (props) => {
   }
 
   function renderPagination() {
-    const totalPages = Math.ceil(reports.length / itemsPerPage);
+    const totalPages = Math.ceil(sortedReports.length / itemsPerPage);
 
     return (
       <nav>
@@ -121,17 +201,44 @@ const DRReading = (props) => {
         <div className="col-12">
           <div className="Report_Table_Container card ">
             <h3>Report List</h3>
-
+            <label className="owner-report-only">
+              <input
+                className="owner-report-checkbox"
+                type="checkbox"
+                checked={filterMyReports}
+                onChange={handleFilterChange}
+              />
+              Display my records only
+            </label>
             <table
               className="table table-striped table-responsive"
               style={{ marginTop: 20 }}
             >
               <thead>
                 <tr>
-                  <th>Submitted By</th>
-                  <th>Date</th>
-                  <th>Section</th>
-                  <th>Shift</th>
+                  <th>
+                    <input
+                      type="checkbox"
+                      className="all-reports-checkbox"
+                      checked={selectAll}
+                      onChange={handleSelectAllChange}
+                    />
+                  </th>
+                  <th onClick={() => requestSort("User")}>
+                    Submitted By
+                    {sortConfig.key === "User" &&
+                      (sortConfig.direction === "ascending" ? " ↑" : " ↓")}
+                  </th>
+                  <th onClick={() => requestSort("Date")}>
+                    Date{" "}
+                    {sortConfig.key === "Date" &&
+                      (sortConfig.direction === "ascending" ? " ↑" : " ↓")}
+                  </th>
+                  <th onClick={() => requestSort("Shift")}>
+                    Shift{" "}
+                    {sortConfig.key === "Shift" &&
+                      (sortConfig.direction === "ascending" ? " ↑" : " ↓")}
+                  </th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -163,7 +270,7 @@ const DRReading = (props) => {
                           to={`/dashboard/${props.createReportLink}`}
                         >
                           Create Report
-                        </Link>{" "}
+                        </Link>
                       </h1>
                     </td>
                   </tr>

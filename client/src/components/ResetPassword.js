@@ -21,7 +21,7 @@ export default function ResetPassword() {
     setError("");
     setLoading(true);
     axios
-      .post(`http://localhost:4000/reset-password/${token}`, { password })
+      .post(`http://localhost:4001/reset-password/${token}`, { password })
       .then((res) => {
         setMessage(res.data.message);
         setLoading(false);

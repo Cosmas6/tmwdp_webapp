@@ -13,5 +13,20 @@
     .no-report-header {
       text-align: center;
     }
+
+    .owner-report-only {
+      display: inline-flex;
+      align-self: flex-start;
+      input {
+        margin-right: 10px;
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    .all-reports-checkbox {
+      width: 15px;
+      height: 15px;
+    }
   }
 }

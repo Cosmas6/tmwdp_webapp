@@ -81,11 +81,11 @@ export default function Dashboard() {
       "/dashboard/employersCamp/read",
     ];
 
-    if (dailyReportRoutes.includes(location.pathname)) {
-      dailyReportRef.current.classList.add("show");
-    } else {
-      dailyReportRef.current.classList.remove("show");
-    }
+    // if (dailyReportRoutes.includes(location.pathname)) {
+    //   dailyReportRef.current.classList.add("show");
+    // } else {
+    //   dailyReportRef.current.classList.remove("show");
+    // }
 
     if (dailyReportListRoutes.includes(location.pathname)) {
       dailyReportListRef.current.classList.add("show");
@@ -137,7 +137,7 @@ export default function Dashboard() {
                 </div>
               </NavLink>
             </li>
-            <li>
+            {/* <li>
               <div
                 className="nav-dropdown rounded"
                 data-bs-toggle="collapse"
@@ -225,7 +225,7 @@ export default function Dashboard() {
                   </NavLink>
                 </li>
               </ul>
-            </div>
+            </div> */}
             <li>
               <div
                 className="nav-dropdown rounded"
