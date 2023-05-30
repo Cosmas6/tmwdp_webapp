@@ -9,7 +9,7 @@ export default function CreateReportDams() {
   return (
     <div className="create-report-dam">
       <CreateReportDam
-        fetchLink={`http://localhost:4001/report-dams/add`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/report-dams/add`}
         dataLink={`/dashboard/dashboard-overview`}
         sectionValue={"Dams"}
       />
@@ -22,8 +22,8 @@ export function UpdateReportDams() {
   return (
     <div className="update-report-dam">
       <UpdateReportDam
-        fetchLink={`http://localhost:4001/report-dams/${params.id.toString()}`}
-        fetchLinkPost={`http://localhost:4001/report-dams/update/${params.id}`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/report-dams/${params.id.toString()}`}
+        fetchLinkPost={`https://nodejs.tmwdp.co.ke/report-dams/update/${params.id}`}
         navigateLink={`/dashboard/dams/display/${params.id.toString()}`}
       />
     </div>
@@ -35,8 +35,8 @@ export function ListReportsDams() {
     <div className="list-report-dam">
       <ListReports
         drName={"Dams"}
-        fetchLink={`http://localhost:4001/report-dams`}
-        deleteFetch={`http://localhost:4001/report-dams`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/report-dams`}
+        deleteFetch={`https://nodejs.tmwdp.co.ke/report-dams`}
         createReportLink={`dams`}
       />
     </div>
@@ -48,7 +48,7 @@ export function ReportViewDams() {
     <div className="report-view-dam">
       <ReportViewDam
         viewRoute={`report-dams`}
-        deleteFetch={`http://localhost:4001/report-dams`}
+        deleteFetch={`https://nodejs.tmwdp.co.ke/report-dams`}
         department={`dams`}
       />
     </div>

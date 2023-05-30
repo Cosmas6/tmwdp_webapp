@@ -33,7 +33,7 @@ const CreateReportDam = (props) => {
   });
   const navigate = useNavigate();
   const location = useLocation();
-  
+
   const selectedDate = location.state
     ? new Date(location.state.selectedDate).toISOString()
     : new Date().toISOString();
@@ -47,7 +47,7 @@ const CreateReportDam = (props) => {
     const token = cookies.get("TOKEN");
     const configuration = {
       method: "get",
-      url: "http://localhost:4001/login/currentUser",
+      url: "https://nodejs.tmwdp.co.ke/login/currentUser",
       headers: {
         Authorization: `Bearer ${token}`,
       },

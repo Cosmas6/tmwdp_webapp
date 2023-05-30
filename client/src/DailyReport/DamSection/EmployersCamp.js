@@ -9,7 +9,7 @@ export default function CreateReportEmployersCamp() {
   return (
     <div className="create-report-employers-camp">
       <CreateReport
-        fetchLink={`http://localhost:4001/report-employers-camp/add`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/report-employers-camp/add`}
         dataLink={`/dashboard/dashboard-overview`}
         sectionValue={"EmployersCamp"}
       />
@@ -22,8 +22,8 @@ export function UpdateReportEmployersCamp() {
   return (
     <div className="update-report-employers-camp">
       <UpdateReports
-        fetchLink={`http://localhost:4001/report-employers-camp/${params.id.toString()}`}
-        fetchLinkPost={`http://localhost:4001/report-employers-camp/update/${params.id}`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/report-employers-camp/${params.id.toString()}`}
+        fetchLinkPost={`https://nodejs.tmwdp.co.ke/report-employers-camp/update/${params.id}`}
         navigateLink={`/dashboard/employerscamp/display/${params.id.toString()}`}
       />
     </div>
@@ -35,8 +35,8 @@ export function ListReportEmployersCamp() {
     <div className="list-report-employers-camp">
       <ListReports
         drName={"Employer's Camp"}
-        fetchLink={`http://localhost:4001/report-employers-camp`}
-        deleteFetch={`http://localhost:4001/report-employers-camp`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/report-employers-camp`}
+        deleteFetch={`https://nodejs.tmwdp.co.ke/report-employers-camp`}
         createReportLink={`employersCamp`}
       />
     </div>
@@ -49,7 +49,7 @@ export function ReportViewEmployersCamp() {
       <ReportView
         department={`employerscamp`}
         viewRoute={`report-employers-camp`}
-        deleteFetch={`http://localhost:4001/report-employers-camp`}
+        deleteFetch={`https://nodejs.tmwdp.co.ke/report-employers-camp`}
       />
     </div>
   );

@@ -9,7 +9,7 @@ export default function CreateReportInstrumentation() {
   return (
     <div className="create-report-instrumentation">
       <CreateReport
-        fetchLink={`http://localhost:4001/report-instrumentation/add`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/report-instrumentation/add`}
         dataLink={`/dashboard/dashboard-overview`}
         sectionValue={"Instrumentation"}
       />
@@ -22,8 +22,8 @@ export function UpdateReportInstrumentation() {
   return (
     <div className="update-report-instrumentation">
       <UpdateReports
-        fetchLink={`http://localhost:4001/report-instrumentation/${params.id.toString()}`}
-        fetchLinkPost={`http://localhost:4001/report-instrumentation/update/${params.id}`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/report-instrumentation/${params.id.toString()}`}
+        fetchLinkPost={`https://nodejs.tmwdp.co.ke/report-instrumentation/update/${params.id}`}
         navigateLink={`/dashboard/instrumentation/display/${params.id.toString()}`}
       />
     </div>
@@ -35,8 +35,8 @@ export function ListReportInstrumentation() {
     <div className="list-report-instrumentation">
       <ListReports
         drName={"Instrumentation"}
-        fetchLink={`http://localhost:4001/report-instrumentation`}
-        deleteFetch={`http://localhost:4001/report-instrumentation`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/report-instrumentation`}
+        deleteFetch={`https://nodejs.tmwdp.co.ke/report-instrumentation`}
         createReportLink={`instrumentation`}
       />
     </div>
@@ -49,7 +49,7 @@ export function ReportViewInstrumentation() {
       <ReportView
         department={`instrumentation`}
         viewRoute={`report-instrumentation`}
-        deleteFetch={`http://localhost:4001/report-instrumentation`}
+        deleteFetch={`https://nodejs.tmwdp.co.ke/report-instrumentation`}
       />
     </div>
   );

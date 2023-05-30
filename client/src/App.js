@@ -5,7 +5,7 @@ import { AuthProvider } from "./auth/AuthContext";
 const App = ({ hideLoader }) => {
   useEffect(hideLoader, []);
   return (
-    <div className="App_Container">
+    <div className="app-container">
       <MainRoutes />
     </div>
   );

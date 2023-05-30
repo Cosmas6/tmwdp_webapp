@@ -29,7 +29,7 @@ const ReportViewDam = (props) => {
     async function fetchReport() {
       const id = params.id.toString();
       const response = await fetch(
-        `http://localhost:4001/${props.viewRoute}/${params.id.toString()}`
+        `https://nodejs.tmwdp.co.ke/${props.viewRoute}/${params.id.toString()}`
       );
 
       if (!response.ok) {

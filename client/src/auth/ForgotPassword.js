@@ -15,7 +15,7 @@ export default function ForgotPassword() {
   const onSubmit = () => {
     setLoading(true);
     axios
-      .post("http://localhost:4001/forgot-password", { email })
+      .post("https://nodejs.tmwdp.co.ke/forgot-password", { email })
       .then((res) => {
         // Get reset link from response
         const resetLink = res.data.resetLink;

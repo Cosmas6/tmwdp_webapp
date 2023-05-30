@@ -38,7 +38,7 @@ const CreateReport = (props) => {
     const token = cookies.get("TOKEN");
     const configuration = {
       method: "get",
-      url: "http://localhost:4001/login/currentUser",
+      url: "https://nodejs.tmwdp.co.ke/login/currentUser",
       headers: {
         Authorization: `Bearer ${token}`,
       },
