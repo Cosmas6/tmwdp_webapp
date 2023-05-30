@@ -4,7 +4,7 @@ var moment = require("moment");
 const ObjectId = require("mongodb").ObjectId;
 const mongoose = require("mongoose");
 
-const ReportSchema = require("../../mongoDB/reportModel");
+const ReportSchema = require("../../tmwdp-models/reportModel");
 const DailyReportDB = mongoose.connection.useDb("DailyReport");
 const Schema = DailyReportDB.model("spillways", ReportSchema);
 

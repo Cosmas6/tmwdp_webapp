@@ -1,7 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const Schema = require("../models/user.model");
+const Schema = require("../../flutter-models/user.model");
 const router = express.Router();
 const validator = require("validator");
 

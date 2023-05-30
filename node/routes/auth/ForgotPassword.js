@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const crypto = require("crypto");
-const UserSchema = require("../../mongoDB/authModel");
-const PasswordResetTokenSchema = require("../../mongoDB/passwordResetModel");
+const UserSchema = require("../../tmwdp-models/authModel");
+const PasswordResetTokenSchema = require("../../tmwdp-models/passwordResetModel");
 
 router.post("/", (req, res) => {
   // Get the user with the given email

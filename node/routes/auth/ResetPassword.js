@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const PasswordResetTokenSchema = require("../../mongoDB/passwordResetModel");
-const UserSchema = require("../../mongoDB/authModel");
+const PasswordResetTokenSchema = require("../../tmwdp-models/passwordResetModel");
+const UserSchema = require("../../tmwdp-models/authModel");
 const bcrypt = require("bcrypt");
 
 router.post("/:token", (req, res) => {

@@ -3,7 +3,7 @@ const router = express.Router();
 // var moment = require("moment");
 const mongoose = require("mongoose");
 
-const ReportSchema = require("../../mongoDB/reportModel");
+const ReportSchema = require("../../tmwdp-models/reportModel");
 const DailyReportDB = mongoose.connection.useDb("DailyReport");
 
 // This section will help you get a list of all the records.

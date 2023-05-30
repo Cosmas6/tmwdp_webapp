@@ -1,5 +1,5 @@
 const express = require("express");
-const Schema = require("../models/report.model");
+const Schema = require("../../flutter-models/report.model");
 const router = express.Router();
 
 router.post("/create-report", async (req, res) => {
