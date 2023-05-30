@@ -1,0 +1,24 @@
+@import "./main.scss";
+
+.home-page-container {
+  @extend .Display_Inline_Block;
+  @extend .Container_Left_Margin;
+  @extend .Sidebar_Black_Color;
+
+  .welcome-content {
+    @extend .Shadow;
+    @extend .Container_Padding;
+  }
+
+  .welcome-title {
+    margin-bottom: 20px;
+  }
+
+  .dr-calendar {
+    h1 {
+      font-weight: 600;
+      text-align: center;
+      margin-top: 50px;
+    }
+  }
+}

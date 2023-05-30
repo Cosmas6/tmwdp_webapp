@@ -1,8 +1,0 @@
-@import "./login.scss";
-@import "./dailyreport.scss";
-@import "./main.scss";
-
-.SubmitSuccess_Container {
-  @extend .Display_Flex;
-  width: calc(100% - 320px);
-}

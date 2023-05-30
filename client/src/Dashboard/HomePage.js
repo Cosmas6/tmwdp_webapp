@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import Cookies from "universal-cookie";
-import "../stylesheets/homepage.scss";
-import DRTrack from "../DailyReport/DRTrack";
+import "../stylesheets/home-page.scss";
+import ReportCalendar from "../DailyReport/ReportCalendar";
 
 const HomePage = () => {
   const [username, setUsername] = useState("");
@@ -22,14 +22,14 @@ const HomePage = () => {
     }
   }, []);
   return (
-    <div className="HomePage_Container container-fluid">
+    <div className="home-page-container container-fluid">
       <div className="row">
         <div className="col-12">
-          <div className="Welcome_Content">
+          <div className="welcome-content">
             <h1 className="welcome-title">Hello! Eng. {username}</h1>
             <div className="dr-calendar">
               <h1>Daily Report Calendar</h1>
-              <DRTrack />
+              <ReportCalendar />
             </div>
           </div>
         </div>

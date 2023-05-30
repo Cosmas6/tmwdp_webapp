@@ -1,0 +1,102 @@
+@import "./dashboard.scss";
+@import "./main.scss";
+
+.report-display-container {
+  @extend .Display_Inline_Block;
+  @extend .Container_Left_Margin;
+
+  .report-display-table-container {
+    @extend .Shadow;
+    @extend .Container_Padding;
+    @extend .Button_Edits;
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 992px) {
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: start;
+    }
+  }
+
+  .submit-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    margin: $primaryMargin;
+    background: blue;
+    color: white;
+    border: none;
+  }
+
+  .title {
+    margin-bottom: 20px;
+  }
+
+  table {
+    width: 100%;
+
+    @media (min-width: 992px) {
+      max-width: 70%;
+    }
+  }
+
+  .report-option-buttons {
+    margin-top: 20px;
+
+    @media (min-width: 992px) {
+      margin-top: 0;
+      max-width: 30%;
+    }
+
+    h1 {
+      font-size: 20px;
+      text-align: center;
+      font-weight: 600;
+    }
+  }
+
+  td,
+  tr,
+  th {
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  td,
+  tr,
+  th,
+  table {
+    border-style: solid;
+    border-width: 1px;
+  }
+
+  .download-link-generator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1976d2;
+    color: #ffffff;
+    text-transform: uppercase;
+    padding: 10px;
+    width: 100%;
+    margin-top: 30px;
+    font-size: 16px;
+    letter-spacing: 3px;
+    text-decoration: none;
+    border-radius: 0.35rem;
+    border-style: none;
+  }
+
+  #download-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    a {
+      @extend .download-link-generator;
+      background: black;
+    }
+  }
+}

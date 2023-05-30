@@ -124,7 +124,7 @@ $layout-breakpoint-small: 960px;
   font-weight: 200;
 }
 
-.Bold_Text {
+.bold-text {
   font-weight: 600;
 }
 
@@ -144,17 +144,7 @@ $layout-breakpoint-small: 960px;
   border-style: none;
 }
 
-.Loading_Div_Buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  p {
-    margin: 0 0 0 10px;
-  }
-}
-
-.Loading_Div {
+.loader-button {
   display: flex;
   align-items: center;
   justify-content: center;

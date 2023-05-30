@@ -1,0 +1,32 @@
+@import "./main.scss";
+
+.list-reports-container {
+  @extend .Display_Inline_Block;
+  @extend .Container_Left_Margin;
+  position: relative;
+
+  .list-reports-table-container {
+    @extend .Shadow;
+    @extend .Container_Padding;
+    @extend .Button_Edits;
+
+    .no-report-header {
+      text-align: center;
+    }
+
+    .owner-report-only {
+      display: inline-flex;
+      align-self: flex-start;
+      input {
+        margin-right: 10px;
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    .all-reports-checkbox {
+      width: 15px;
+      height: 15px;
+    }
+  }
+}

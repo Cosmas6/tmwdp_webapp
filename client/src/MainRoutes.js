@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useRoutes, Navigate } from "react-router-dom";
-import Authentication from "./components/Authentication";
+import AuthContainer from "./auth/AuthContainer";
 import DashboardRoutes from "./Dashboard/DashboardRoutes";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import ForgotPassword from "./components/ForgotPassword";
-import ResetPassword from "./components/ResetPassword";
-import { ModalProvider } from "./DailyReport/ModalContext";
-import "./stylesheets/mainroutes.scss";
+import Login from "./auth/Login";
+import Register from "./auth/Register";
+import ForgotPassword from "./auth/ForgotPassword";
+import ResetPassword from "./auth/ResetPassword";
+import { ModalProvider } from "./Dashboard/ModalContext";
+import "./stylesheets/main-routes.scss";
 
 // const Login = React.lazy(() => import("./components/Login"));
 // const Register = React.lazy(() => import("./components/Register"));
@@ -33,7 +33,7 @@ const MainRoutes = () => {
     { path: "/", element: <Navigate replace to="/auth/login" /> },
     {
       path: "auth/*",
-      element: <Authentication />,
+      element: <AuthContainer />,
       children: [
         { path: "login", element: <Login /> },
         { path: "register", element: <Register /> },

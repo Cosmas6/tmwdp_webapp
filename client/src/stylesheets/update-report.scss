@@ -1,0 +1,6 @@
+@import "./create-report.scss";
+
+.update-report-container {
+  position: relative;
+  @extend .create-report-container;
+}
