@@ -1,5 +1,5 @@
 import React from "react";
-import HomePage from "../Dashboard/HomePage";
+import ReportCalendar from "./ReportCalendar";
 import CreateReportDam, {
   UpdateReportDams,
   ListReportsDams,
@@ -32,7 +32,7 @@ import CreateReportTunnels, {
 const ReportRoutes = [
   {
     path: "dashboard-overview",
-    element: <HomePage />,
+    element: <ReportCalendar />,
   },
   {
     path: "spillway",

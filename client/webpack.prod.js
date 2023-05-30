@@ -17,9 +17,7 @@ module.exports = merge(common, {
   },
   optimization: {
     minimize: true,
-    minimizer: [
-      new TerserPlugin(),
-    ],
+    minimizer: [new TerserPlugin()],
 
     splitChunks: {
       chunks: "async",
@@ -44,14 +42,5 @@ module.exports = merge(common, {
       template: "./public/index.html",
       filename: "./index.html",
     }),
-    new MiniCssExtractPlugin({}),
   ],
-  module: {
-    rules: [
-      {
-        test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
-      },
-    ],
-  },
 });

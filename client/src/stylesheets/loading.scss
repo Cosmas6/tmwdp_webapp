@@ -1,28 +1,26 @@
-@import "./main.scss";
+/* Loader CSS */
 
 .loader {
-  @extend .display-inline-block;
-  float: inherit;
-  position: relative;
-  border: 5px solid #f3f3f3;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 64px;
+  height: 64px;
+  margin: -32px 0 0 -32px;
+  border: 0.5em solid rgba(0, 0, 0, 0.2);
+  border-left: 0.5em solid #1976d2;
   border-radius: 50%;
-  border-top: 5px solid #3498db;
-  width: 30px;
-  height: 30px;
-  -webkit-animation: spin 2s linear infinite; /* Safari */
-  animation: spin 2s linear infinite;
+  animation: load8 1.1s infinite linear;
+  transition: opacity 0.3s;
+  z-index: -1;
 }
 
-@-webkit-keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
+.loader--hide {
+  display: none;
 }
 
-@keyframes spin {
+@keyframes load8 {
   0% {
     transform: rotate(0deg);
   }

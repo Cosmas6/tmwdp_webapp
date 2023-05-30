@@ -9,6 +9,7 @@ import ResetPassword from "./auth/ResetPassword";
 import { ModalProvider } from "./Dashboard/ModalContext";
 import "./stylesheets/main-routes.scss";
 
+
 // const Login = React.lazy(() => import("./components/Login"));
 // const Register = React.lazy(() => import("./components/Register"));
 

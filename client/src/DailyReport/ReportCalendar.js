@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import jwt_decode from "jwt-decode";
 import Cookies from "universal-cookie";
+import "../stylesheets/react-big-calendar.css";
 import "../stylesheets/report-calendar.scss";
-import "react-big-calendar/lib/css/react-big-calendar.css";
 import moment from "moment";
 import ModalContext from "../Dashboard/ModalContext";
 
@@ -14,6 +14,7 @@ const ReportCalendar = () => {
   const [events, setEvents] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
   const [isMonthView, setIsMonthView] = useState(true);
+  const [username, setUsername] = useState("");
   const navigate = useNavigate();
   const calendarRef = useRef(null);
   const { openModal, closeModal } = useContext(ModalContext);
@@ -63,6 +64,7 @@ const ReportCalendar = () => {
         const decodedToken = jwt_decode(token);
         const userFirstName = decodedToken.userFirstName;
         const userLastName = decodedToken.userLastName;
+        setUsername(userFirstName);
         // Create a full name by joining first name and last name with a space
         const username = `${userFirstName} ${userLastName}`;
 
@@ -127,35 +129,50 @@ const ReportCalendar = () => {
   }, []);
 
   return (
-    <div ref={calendarRef} className="drtrack-container">
-      {selectedDate && !isMonthView && (
-        <button className="submit-button" onClick={openCreateReportModal}>
-          Create Report
-        </button>
-      )}
-      <Calendar
-        className={selectedDate && !isMonthView ? "day-view" : ""}
-        localizer={localizer}
-        events={events}
-        startAccessor="start"
-        endAccessor="end"
-        selectable={true}
-        views={["month", "day"]}
-        messages={{
-          month: "Month-View",
-          agenda: "Details",
-        }}
-        onView={(view) => {
-          setIsMonthView(view === "month");
-        }}
-        components={{
-          dateCellWrapper: ({ children, value }) =>
-            React.cloneElement(children, { "data-date": value }),
-        }}
-        onSelectEvent={(event) => {
-          navigate(`/dashboard/${event.section}/display/${event.id}`);
-        }}
-      />
+    <div className="home-page-container container-fluid">
+      <div className="row">
+        <div className="col-12">
+          <div className="welcome-content">
+            <h1 className="welcome-title">Hello! Eng. {username}</h1>
+            <div className="dr-calendar">
+              <h1>Daily Report Calendar</h1>
+              <div ref={calendarRef} className="drtrack-container">
+                {selectedDate && !isMonthView && (
+                  <button
+                    className="submit-button"
+                    onClick={openCreateReportModal}
+                  >
+                    Create Report
+                  </button>
+                )}
+                <Calendar
+                  className={selectedDate && !isMonthView ? "day-view" : ""}
+                  localizer={localizer}
+                  events={events}
+                  startAccessor="start"
+                  endAccessor="end"
+                  selectable={true}
+                  views={["month", "day"]}
+                  messages={{
+                    month: "Month-View",
+                    agenda: "Details",
+                  }}
+                  onView={(view) => {
+                    setIsMonthView(view === "month");
+                  }}
+                  components={{
+                    dateCellWrapper: ({ children, value }) =>
+                      React.cloneElement(children, { "data-date": value }),
+                  }}
+                  onSelectEvent={(event) => {
+                    navigate(`/dashboard/${event.section}/display/${event.id}`);
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
