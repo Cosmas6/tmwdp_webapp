@@ -2,13 +2,13 @@
 @import "./main.scss";
 
 .report-display-container {
-  @extend .Display_Inline_Block;
-  @extend .Container_Left_Margin;
+  @extend .display-inline-block;
+  @extend .container-left-margin;
 
   .report-display-table-container {
-    @extend .Shadow;
-    @extend .Container_Padding;
-    @extend .Button_Edits;
+    @extend .shadow;
+    @extend .container-padding;
+    @extend .button-edits;
     display: flex;
     flex-direction: column;
 

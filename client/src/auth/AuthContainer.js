@@ -6,7 +6,7 @@ import "../stylesheets/auth-container.scss";
 
 function Authentication() {
   return (
-    <div className="auth-container">
+    <div className="auth-container-main">
       <ImageContainer />
       <Outlet />
     </div>

@@ -18,7 +18,6 @@ const HomePage = () => {
       const decodedToken = jwt_decode(token);
       const username = decodedToken.userFirstName;
       setUsername(username);
-      console.log(username);
     }
   }, []);
   return (

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { TailSpin } from "react-loader-spinner";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { RadioGroup, Radio, FormControlLabel } from "@mui/material";
@@ -32,6 +32,13 @@ const CreateReportDam = (props) => {
     name: "rocktrip",
   });
   const navigate = useNavigate();
+  const location = useLocation();
+  
+  const selectedDate = location.state
+    ? new Date(location.state.selectedDate).toISOString()
+    : new Date().toISOString();
+
+  console.log(selectedDate, "selectedDate");
 
   const [userInfo, setUserInfo] = useState("");
   const [loading, setLoading] = useState(false);
@@ -40,7 +47,7 @@ const CreateReportDam = (props) => {
     const token = cookies.get("TOKEN");
     const configuration = {
       method: "get",
-      url: "https://nodejs.tmwdp.co.ke/login/currentUser",
+      url: "http://localhost:4001/login/currentUser",
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -155,14 +162,14 @@ const CreateReportDam = (props) => {
                 <Controller
                   control={control}
                   name="Date"
-                  defaultValue={new Date()}
+                  defaultValue={selectedDate}
                   render={({ field: { onChange, value } }) => (
                     <DesktopDatePicker
                       label="Date"
                       inputFormat="dd MMMM yyyy"
                       disableMaskedInput
-                      value={value}
-                      onChange={onChange}
+                      value={new Date(value)}
+                      onChange={(date) => onChange(date.toISOString())}
                       renderInput={(params) => <TextField {...params} />}
                     />
                   )}

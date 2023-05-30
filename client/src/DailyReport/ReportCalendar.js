@@ -66,7 +66,7 @@ const ReportCalendar = () => {
         // Create a full name by joining first name and last name with a space
         const username = `${userFirstName} ${userLastName}`;
 
-        console.log(username);
+        // console.log(username);
         const response = await fetch(
           `http://localhost:4001/user-report/user?user=${encodeURIComponent(
             username

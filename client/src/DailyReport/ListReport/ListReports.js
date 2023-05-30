@@ -15,7 +15,7 @@ const ListReports = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
-  console.log(selectedReports);
+  // console.log(selectedReports);
 
   const decodedToken = jwt_decode(token);
   const userFirstName = decodedToken.userFirstName;
@@ -82,7 +82,7 @@ const ListReports = (props) => {
 
     getReports();
 
-    return () => console.log("ReadingDRSpillway unmounted");
+    // return () => console.log("ReadingDRSpillway unmounted");
   }, [filterMyReports]);
 
   const handleCheckboxChange = (event, id) => {

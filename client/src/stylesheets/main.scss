@@ -27,11 +27,11 @@ $layout-breakpoint-small: 960px;
   margin-bottom: $marginBottom;
 }
 
-.Display_Block {
+.display-block {
   @include displayBlock();
 }
 
-.Display_Flex {
+.display-flex {
   @include displayFlex();
   margin-left: $navMargin;
   margin-top: $topMargin;
@@ -44,7 +44,7 @@ $layout-breakpoint-small: 960px;
   }
 }
 
-.Display_Inline_Block {
+.display-inline-block {
   margin-top: $topMargin;
   margin-bottom: $navMargin;
   margin-right: $navMargin;
@@ -62,7 +62,7 @@ $layout-breakpoint-small: 960px;
   }
 }
 
-.Shadow {
+.shadow {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
   border-radius: 0.75rem;
@@ -70,36 +70,36 @@ $layout-breakpoint-small: 960px;
   --bs-card-border-width: 0px;
 }
 
-.Sidebar_White_Color {
+.sidebar-white-color {
   .simplebar-track.simplebar-vertical .simplebar-scrollbar:before {
     background-color: white;
   }
 }
 
-.Sidebar_Black_Color {
+.sidebar-black-color {
   .simplebar-track.simplebar-vertical .simplebar-scrollbar:before {
     background-color: black;
   }
 }
 
-.Container_Margin {
+.container-margin {
   margin: $navMargin;
 }
 
-.Container_Padding {
+.container-padding {
   padding: $navPadding;
   overflow: auto;
   overflow-y: scroll;
 }
 
-.Container_Left_Margin {
+.container-left-margin {
   @media (min-width: 768px) {
     margin-left: 270px !important;
     width: calc(100% - 280px) !important;
   }
 }
 
-.Container_Nav_Width {
+.container-nav-width {
   @include media(">=768px") {
     margin-left: 19rem;
   }
@@ -148,14 +148,13 @@ $layout-breakpoint-small: 960px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 40px;
 
   p {
     margin: 0 0 0 10px;
   }
 }
 
-.Button_Edits {
+.button-edits {
   .edit-button,
   .view-button {
     background: #1976d2;

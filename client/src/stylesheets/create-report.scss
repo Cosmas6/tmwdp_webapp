@@ -3,14 +3,14 @@
 @import "~include-media/dist/_include-media.scss";
 
 .create-report-container {
-  @extend .Display_Inline_Block;
-  @extend .Container_Left_Margin;
-  @extend .Sidebar_Black_Color;
+  @extend .display-inline-block;
+  @extend .container-left-margin;
+  @extend .sidebar-black-color;
   position: relative;
 
   .Form_Container {
-    @extend .Shadow;
-    @extend .Container_Padding;
+    @extend .shadow;
+    @extend .container-padding;
   }
 
   .date-container {

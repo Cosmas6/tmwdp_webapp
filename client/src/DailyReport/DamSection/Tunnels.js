@@ -9,7 +9,7 @@ export default function CreateReportTunnels() {
   return (
     <div className="create-report-tunnels">
       <CreateReport
-        fetchLink={`https://nodejs.tmwdp.co.ke/report-tunnels/add`}
+        fetchLink={`http://localhost:4001/report-tunnels/add`}
         dataLink={`/dashboard/dashboard-overview`}
         sectionValue={"Tunnels"}
       />
@@ -22,8 +22,8 @@ export function UpdateReportTunnels() {
   return (
     <div className="update-report-tunnels">
       <UpdateReports
-        fetchLink={`https://nodejs.tmwdp.co.ke/report-tunnels/${params.id.toString()}`}
-        fetchLinkPost={`https://nodejs.tmwdp.co.ke/report-tunnels/update/${params.id}`}
+        fetchLink={`http://localhost:4001/report-tunnels/${params.id.toString()}`}
+        fetchLinkPost={`http://localhost:4001/report-tunnels/update/${params.id}`}
         navigateLink={`/dashboard/tunnels/display/${params.id.toString()}`}
       />
     </div>
@@ -35,8 +35,8 @@ export function ListReportTunnels() {
     <div className="list-report-tunnels">
       <ListReports
         drName={"Tunnels"}
-        fetchLink={`https://nodejs.tmwdp.co.ke/report-tunnels`}
-        deleteFetch={`https://nodejs.tmwdp.co.ke/report-tunnels`}
+        fetchLink={`http://localhost:4001/report-tunnels`}
+        deleteFetch={`http://localhost:4001/report-tunnels`}
         createReportLink={`tunnels`}
       />
     </div>
@@ -49,7 +49,7 @@ export function ReportViewTunnels() {
       <ReportView
         department={`tunnels`}
         viewRoute={`report-tunnels`}
-        deleteFetch={`https://nodejs.tmwdp.co.ke/report-tunnels`}
+        deleteFetch={`http://localhost:4001/report-tunnels`}
       />
     </div>
   );

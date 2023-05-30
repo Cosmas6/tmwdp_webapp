@@ -4,7 +4,7 @@
   overflow: hidden !important;
   position: relative !important;
 
-  @extend .Sidebar_White_Color;
+  @extend .sidebar-white-color;
 
   .nav-toggle-button {
     position: absolute;
@@ -69,7 +69,7 @@
   }
 
   .dropdown-menu {
-    @extend .Shadow;
+    @extend .shadow;
     display: none;
     position: absolute;
     right: -5%;

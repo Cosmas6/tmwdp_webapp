@@ -9,7 +9,7 @@ export default function CreateReportSpillway() {
   return (
     <div className="create-report-spillway">
       <CreateReport
-        fetchLink={`https://nodejs.tmwdp.co.ke/report-spillway/add`}
+        fetchLink={`http://localhost:4001/report-spillway/add`}
         dataLink={`/dashboard/dashboard-overview`}
         sectionValue={"Spillway"}
       />
@@ -22,8 +22,8 @@ export function UpdateReportSpillway() {
   return (
     <div className="update-report-spillway">
       <UpdateReports
-        fetchLink={`https://nodejs.tmwdp.co.ke/report-spillway/${params.id.toString()}`}
-        fetchLinkPost={`https://nodejs.tmwdp.co.ke/report-spillway/update/${params.id}`}
+        fetchLink={`http://localhost:4001/report-spillway/${params.id.toString()}`}
+        fetchLinkPost={`http://localhost:4001/report-spillway/update/${params.id}`}
         navigateLink={`/dashboard/spillway/display/${params.id.toString()}`}
       />
     </div>
@@ -35,8 +35,8 @@ export function ListReportSpillway() {
     <div className="list-report-spillway">
       <ListReports
         drName={"Spillway"}
-        fetchLink={`https://nodejs.tmwdp.co.ke/report-spillway`}
-        deleteFetch={`https://nodejs.tmwdp.co.ke/report-spillway`}
+        fetchLink={`http://localhost:4001/report-spillway`}
+        deleteFetch={`http://localhost:4001/report-spillway`}
         createReportLink={`spillway`}
       />
     </div>
@@ -49,7 +49,7 @@ export function ReportViewSpillway() {
       <ReportView
         department={`spillway`}
         viewRoute={`report-spillway`}
-        deleteFetch={`https://nodejs.tmwdp.co.ke/report-spillway`}
+        deleteFetch={`http://localhost:4001/report-spillway`}
       />
     </div>
   );

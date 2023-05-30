@@ -16,16 +16,16 @@ const MainRoutes = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState(null);
 
-  console.log(modalContent, "modalContent");
+  // console.log(modalContent, "modalContent");
 
   const openModal = (content) => {
-    console.log("Open modal called");
+    // console.log("Open modal called");
     setModalContent(content);
     setModalOpen(true);
   };
 
   const closeModal = () => {
-    console.log("Close modal called");
+    // console.log("Close modal called");
     setModalOpen(false);
   };
 
@@ -47,7 +47,7 @@ const MainRoutes = () => {
     },
   ]);
 
-  console.log(modalOpen, "modalOpen");
+
   return (
     <ModalProvider
       value={{

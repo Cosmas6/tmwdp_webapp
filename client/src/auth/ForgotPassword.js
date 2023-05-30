@@ -34,11 +34,11 @@ export default function ForgotPassword() {
           )
           .then(
             (result) => {
-              console.log(result.text);
+              // console.log(result.text);
               setLoading(false);
             },
             (error) => {
-              console.log(error.text);
+              // console.log(error.text);
               setLoading(false);
             }
           );

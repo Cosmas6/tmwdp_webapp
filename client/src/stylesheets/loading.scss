@@ -1,8 +1,8 @@
 @import "./main.scss";
 
 .loader {
-  @extend .Display_Inline_Block;
-  float:inherit;
+  @extend .display-inline-block;
+  float: inherit;
   position: relative;
   border: 5px solid #f3f3f3;
   border-radius: 50%;

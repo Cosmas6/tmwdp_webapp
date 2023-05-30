@@ -1,14 +1,14 @@
 @import "./main.scss";
 
 .list-reports-container {
-  @extend .Display_Inline_Block;
-  @extend .Container_Left_Margin;
+  @extend .display-inline-block;
+  @extend .container-left-margin;
   position: relative;
 
   .list-reports-table-container {
-    @extend .Shadow;
-    @extend .Container_Padding;
-    @extend .Button_Edits;
+    @extend .shadow;
+    @extend .container-padding;
+    @extend .button-edits;
 
     .no-report-header {
       text-align: center;

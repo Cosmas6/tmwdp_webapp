@@ -45,7 +45,7 @@ const Register = () => {
 
     const configuration = {
       method: "post",
-      url: "https://nodejs.tmwdp.co.ke/register",
+      url: "http://localhost:4001/register",
       data: {
         firstName,
         lastName,
