@@ -5,11 +5,11 @@ import UpdateReports from "../UpdateReport/UpdateReport";
 import ListReports from "../ListReport/ListReports";
 import ReportView from "../DisplayReport/ReportView";
 
-export default function CreateReportEmployeeCamp() {
+export default function CreateReportEmployersCamp() {
   return (
-    <div className="DR_Create">
+    <div className="create-report-employers-camp">
       <CreateReport
-        fetchLink={`https://nodejs.tmwdp.co.ke/DailyREmpCampRouter/add`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/report-employers-camp/add`}
         dataLink={`/dashboard/dashboard-overview`}
         sectionValue={"EmployersCamp"}
       />
@@ -17,39 +17,39 @@ export default function CreateReportEmployeeCamp() {
   );
 }
 
-export function UpdateReportEmployeeCamp() {
+export function UpdateReportEmployersCamp() {
   const params = useParams();
   return (
-    <div className="DR_Edit">
+    <div className="update-report-employers-camp">
       <UpdateReports
-        fetchLink={`https://nodejs.tmwdp.co.ke/DailyREmpCampRouter/${params.id.toString()}`}
-        fetchLinkPost={`https://nodejs.tmwdp.co.ke/DailyREmpCampRouter/update/${params.id}`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/report-employers-camp/${params.id.toString()}`}
+        fetchLinkPost={`https://nodejs.tmwdp.co.ke/report-employers-camp/update/${params.id}`}
         navigateLink={`/dashboard/employerscamp/display/${params.id.toString()}`}
       />
     </div>
   );
 }
 
-export function ListReportEmployeeCamp() {
+export function ListReportEmployersCamp() {
   return (
-    <div className="DR_Reading">
+    <div className="list-report-employers-camp">
       <ListReports
         drName={"Employer's Camp"}
-        fetchLink={`https://nodejs.tmwdp.co.ke/DailyREmpCampRouter`}
-        deleteFetch={`https://nodejs.tmwdp.co.ke/DailyREmpCampRouter`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/report-employers-camp`}
+        deleteFetch={`https://nodejs.tmwdp.co.ke/report-employers-camp`}
         createReportLink={`employersCamp`}
       />
     </div>
   );
 }
 
-export function ReportViewEmployeeCamp() {
+export function ReportViewEmployersCamp() {
   return (
-    <div className="DR_Employers_Camp">
+    <div className="report-view-employers-camp">
       <ReportView
         department={`employerscamp`}
-        viewRoute={`DailyREmpCampRouter`}
-        deleteFetch={`https://nodejs.tmwdp.co.ke/DailyREmpCampRouter`}
+        viewRoute={`report-employers-camp`}
+        deleteFetch={`https://nodejs.tmwdp.co.ke/report-employers-camp`}
       />
     </div>
   );

@@ -12,10 +12,10 @@ import CreateReportSpillway, {
   ReportViewSpillway,
 } from "./DamSection/Spillway.js";
 
-import CreateReportEmployeeCamp, {
-  UpdateReportEmployeeCamp,
-  ListReportEmployeeCamp,
-  ReportViewEmployeeCamp,
+import CreateReportEmployersCamp, {
+  UpdateReportEmployersCamp,
+  ListReportEmployersCamp,
+  ReportViewEmployersCamp,
 } from "./DamSection/EmployersCamp.js";
 
 import CreateReportInstrumentation, {
@@ -46,10 +46,10 @@ const ReportRoutes = [
   {
     path: "employerscamp",
     children: [
-      { path: "create", element: <CreateReportEmployeeCamp /> },
-      { path: "edit/:id", element: <UpdateReportEmployeeCamp /> },
-      { path: "read", element: <ListReportEmployeeCamp /> },
-      { path: "display/:id", element: <ReportViewEmployeeCamp /> },
+      { path: "create", element: <CreateReportEmployersCamp /> },
+      { path: "edit/:id", element: <UpdateReportEmployersCamp /> },
+      { path: "read", element: <ListReportEmployersCamp /> },
+      { path: "display/:id", element: <ReportViewEmployersCamp /> },
     ],
   },
   {

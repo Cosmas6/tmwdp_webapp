@@ -7,9 +7,9 @@ import ReportView from "../DisplayReport/ReportView";
 
 export default function CreateReportInstrumentation() {
   return (
-    <div className="DR_Create">
+    <div className="create-report-instrumentation">
       <CreateReport
-        fetchLink={`https://nodejs.tmwdp.co.ke/DailyRInstRouter/add`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/report-instrumentation/add`}
         dataLink={`/dashboard/dashboard-overview`}
         sectionValue={"Instrumentation"}
       />
@@ -20,10 +20,10 @@ export default function CreateReportInstrumentation() {
 export function UpdateReportInstrumentation() {
   const params = useParams();
   return (
-    <div className="DR_Edit">
+    <div className="update-report-instrumentation">
       <UpdateReports
-        fetchLink={`https://nodejs.tmwdp.co.ke/DailyRInstRouter/${params.id.toString()}`}
-        fetchLinkPost={`https://nodejs.tmwdp.co.ke/DailyRInstRouter/update/${params.id}`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/report-instrumentation/${params.id.toString()}`}
+        fetchLinkPost={`https://nodejs.tmwdp.co.ke/report-instrumentation/update/${params.id}`}
         navigateLink={`/dashboard/instrumentation/display/${params.id.toString()}`}
       />
     </div>
@@ -32,11 +32,11 @@ export function UpdateReportInstrumentation() {
 
 export function ListReportInstrumentation() {
   return (
-    <div className="DR_Reading">
+    <div className="list-report-instrumentation">
       <ListReports
         drName={"Instrumentation"}
-        fetchLink={`https://nodejs.tmwdp.co.ke/DailyRInstRouter`}
-        deleteFetch={`https://nodejs.tmwdp.co.ke/DailyRInstRouter`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/report-instrumentation`}
+        deleteFetch={`https://nodejs.tmwdp.co.ke/report-instrumentation`}
         createReportLink={`instrumentation`}
       />
     </div>
@@ -45,11 +45,11 @@ export function ListReportInstrumentation() {
 
 export function ReportViewInstrumentation() {
   return (
-    <div className="DR_Spillway_And_Tunnels">
+    <div className="report-view-instrumentation">
       <ReportView
         department={`instrumentation`}
-        viewRoute={`DailyRInstRouter`}
-        deleteFetch={`https://nodejs.tmwdp.co.ke/DailyRInstRouter`}
+        viewRoute={`report-instrumentation`}
+        deleteFetch={`https://nodejs.tmwdp.co.ke/report-instrumentation`}
       />
     </div>
   );

@@ -7,9 +7,9 @@ import UpdateReportDam from "../UpdateReport/UpdateReportDam";
 
 export default function CreateReportDams() {
   return (
-    <div className="DR_Create">
-      <CreateReportDams
-        fetchLink={`https://nodejs.tmwdp.co.ke/DailyRDamsRouter/add`}
+    <div className="create-report-dam">
+      <CreateReportDam
+        fetchLink={`https://nodejs.tmwdp.co.ke/report-dams/add`}
         dataLink={`/dashboard/dashboard-overview`}
         sectionValue={"Dams"}
       />
@@ -20,10 +20,10 @@ export default function CreateReportDams() {
 export function UpdateReportDams() {
   const params = useParams();
   return (
-    <div className="DR_Edit">
+    <div className="update-report-dam">
       <UpdateReportDam
-        fetchLink={`https://nodejs.tmwdp.co.ke/DailyRDamsRouter/${params.id.toString()}`}
-        fetchLinkPost={`https://nodejs.tmwdp.co.ke/DailyRDamsRouter/update/${params.id}`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/report-dams/${params.id.toString()}`}
+        fetchLinkPost={`https://nodejs.tmwdp.co.ke/report-dams/update/${params.id}`}
         navigateLink={`/dashboard/dams/display/${params.id.toString()}`}
       />
     </div>
@@ -32,11 +32,11 @@ export function UpdateReportDams() {
 
 export function ListReportsDams() {
   return (
-    <div className="DR_Reading">
+    <div className="list-report-dam">
       <ListReports
         drName={"Dams"}
-        fetchLink={`https://nodejs.tmwdp.co.ke/DailyRDamsRouter`}
-        deleteFetch={`https://nodejs.tmwdp.co.ke/DailyRDamsRouter`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/report-dams`}
+        deleteFetch={`https://nodejs.tmwdp.co.ke/report-dams`}
         createReportLink={`dams`}
       />
     </div>
@@ -45,10 +45,10 @@ export function ListReportsDams() {
 
 export function ReportViewDams() {
   return (
-    <div className="DR_Dams">
+    <div className="report-view-dam">
       <ReportViewDam
-        viewRoute={`DailyRDamsRouter`}
-        deleteFetch={`https://nodejs.tmwdp.co.ke/DailyRDamsRouter`}
+        viewRoute={`report-dams`}
+        deleteFetch={`https://nodejs.tmwdp.co.ke/report-dams`}
         department={`dams`}
       />
     </div>

@@ -68,7 +68,7 @@ const ReportCalendar = () => {
 
         console.log(username);
         const response = await fetch(
-          `http://localhost:4001/UserReportRoute/user?user=${encodeURIComponent(
+          `http://localhost:4001/user-report/user?user=${encodeURIComponent(
             username
           )}`
         );

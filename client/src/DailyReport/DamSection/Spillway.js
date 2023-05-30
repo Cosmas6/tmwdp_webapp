@@ -7,9 +7,9 @@ import ReportView from "../DisplayReport/ReportView";
 
 export default function CreateReportSpillway() {
   return (
-    <div className="DR_Create">
+    <div className="create-report-spillway">
       <CreateReport
-        fetchLink={`https://nodejs.tmwdp.co.ke/DailyRSpillwayRouter/add`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/report-spillway/add`}
         dataLink={`/dashboard/dashboard-overview`}
         sectionValue={"Spillway"}
       />
@@ -20,10 +20,10 @@ export default function CreateReportSpillway() {
 export function UpdateReportSpillway() {
   const params = useParams();
   return (
-    <div className="DR_Edit">
+    <div className="update-report-spillway">
       <UpdateReports
-        fetchLink={`https://nodejs.tmwdp.co.ke/DailyRSpillwayRouter/${params.id.toString()}`}
-        fetchLinkPost={`https://nodejs.tmwdp.co.ke/DailyRSpillwayRouter/update/${params.id}`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/report-spillway/${params.id.toString()}`}
+        fetchLinkPost={`https://nodejs.tmwdp.co.ke/report-spillway/update/${params.id}`}
         navigateLink={`/dashboard/spillway/display/${params.id.toString()}`}
       />
     </div>
@@ -32,11 +32,11 @@ export function UpdateReportSpillway() {
 
 export function ListReportSpillway() {
   return (
-    <div className="DR_Reading">
+    <div className="list-report-spillway">
       <ListReports
         drName={"Spillway"}
-        fetchLink={`https://nodejs.tmwdp.co.ke/DailyRSpillwayRouter`}
-        deleteFetch={`https://nodejs.tmwdp.co.ke/DailyRSpillwayRouter`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/report-spillway`}
+        deleteFetch={`https://nodejs.tmwdp.co.ke/report-spillway`}
         createReportLink={`spillway`}
       />
     </div>
@@ -45,11 +45,11 @@ export function ListReportSpillway() {
 
 export function ReportViewSpillway() {
   return (
-    <div className="DR_Spillway_And_Tunnels">
+    <div className="report-view-spillway">
       <ReportView
         department={`spillway`}
-        viewRoute={`DailyRSpillwayRouter`}
-        deleteFetch={`https://nodejs.tmwdp.co.ke/DailyRSpillwayRouter`}
+        viewRoute={`report-spillway`}
+        deleteFetch={`https://nodejs.tmwdp.co.ke/report-spillway`}
       />
     </div>
   );

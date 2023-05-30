@@ -7,9 +7,9 @@ import ReportView from "../DisplayReport/ReportView";
 
 export default function CreateReportTunnels() {
   return (
-    <div className="DR_Create">
+    <div className="create-report-tunnels">
       <CreateReport
-        fetchLink={`https://nodejs.tmwdp.co.ke/DailyRTunnelsRouter/add`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/report-tunnels/add`}
         dataLink={`/dashboard/dashboard-overview`}
         sectionValue={"Tunnels"}
       />
@@ -20,10 +20,10 @@ export default function CreateReportTunnels() {
 export function UpdateReportTunnels() {
   const params = useParams();
   return (
-    <div className="DR_Edit">
+    <div className="update-report-tunnels">
       <UpdateReports
-        fetchLink={`https://nodejs.tmwdp.co.ke/DailyRTunnelsRouter/${params.id.toString()}`}
-        fetchLinkPost={`https://nodejs.tmwdp.co.ke/DailyRTunnelsRouter/update/${params.id}`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/report-tunnels/${params.id.toString()}`}
+        fetchLinkPost={`https://nodejs.tmwdp.co.ke/report-tunnels/update/${params.id}`}
         navigateLink={`/dashboard/tunnels/display/${params.id.toString()}`}
       />
     </div>
@@ -32,11 +32,11 @@ export function UpdateReportTunnels() {
 
 export function ListReportTunnels() {
   return (
-    <div className="DR_Reading">
+    <div className="list-report-tunnels">
       <ListReports
         drName={"Tunnels"}
-        fetchLink={`https://nodejs.tmwdp.co.ke/DailyRTunnelsRouter`}
-        deleteFetch={`https://nodejs.tmwdp.co.ke/DailyRTunnelsRouter`}
+        fetchLink={`https://nodejs.tmwdp.co.ke/report-tunnels`}
+        deleteFetch={`https://nodejs.tmwdp.co.ke/report-tunnels`}
         createReportLink={`tunnels`}
       />
     </div>
@@ -45,11 +45,11 @@ export function ListReportTunnels() {
 
 export function ReportViewTunnels() {
   return (
-    <div className="DR_Spillway_And_Tunnels">
+    <div className="report-view-tunnels">
       <ReportView
         department={`tunnels`}
-        viewRoute={`DailyRTunnelsRouter`}
-        deleteFetch={`https://nodejs.tmwdp.co.ke/DailyRTunnelsRouter`}
+        viewRoute={`report-tunnels`}
+        deleteFetch={`https://nodejs.tmwdp.co.ke/report-tunnels`}
       />
     </div>
   );
