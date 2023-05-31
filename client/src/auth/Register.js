@@ -11,6 +11,7 @@ export const colourOptions = [
   { value: "Spillway&Tunnels", label: "Spillway & Tunnels" },
   { value: "Instrumentation", label: "Instrumentation" },
   { value: "Dams", label: "Dams" },
+  { value: "EmployersCamp", label: "Employers Camp" },
 ];
 
 const Register = () => {
@@ -37,8 +38,8 @@ const Register = () => {
   const onSubmit = (data) => {
     setLoading(true);
     const formElement = formRef.current;
-    const firstName = data.first - name;
-    const lastName = data.last - name;
+    const firstName = data.firstName;
+    const lastName = data.lastName;
     const department = data.Department;
     const email = data.Email;
     const password = data.Password;
@@ -60,7 +61,7 @@ const Register = () => {
         //if result is status 200
         setRegisterStatus(``);
         setLoading(false);
-        window.location.href = "/login";
+        window.location.href = "/auth/login";
         formElement.reset();
       })
       .catch((error) => {
@@ -79,7 +80,7 @@ const Register = () => {
             type="text"
             placeholder="First Name"
             id="register-firstName"
-            {...register("first-name", {
+            {...register("firstName", {
               required: true,
             })}
           />
@@ -88,7 +89,7 @@ const Register = () => {
             type="text"
             placeholder="Last Name"
             id="register-lastName"
-            {...register("last-name", {
+            {...register("lastName", {
               required: true,
             })}
           />
@@ -100,7 +101,7 @@ const Register = () => {
             render={({ field: { onChange, value } }) => (
               <ReactSelect
                 options={colourOptions}
-                placeholder="Department..."
+                placeholder="Departments..."
                 isMulti
                 closeMenuOnSelect={false}
                 hideSelectedOptions={false}
