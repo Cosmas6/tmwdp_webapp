@@ -21,7 +21,7 @@ router.post("/", (req, res) => {
     passwordResetToken.save();
 
     // Create reset link
-    const resetLink = "http://localhost:8080/auth/reset-password/" + token;
+    const resetLink = "https://tmwdp.co.ke/auth/reset-password/" + token;
 
     // Send reset link back to client
     res.send({
